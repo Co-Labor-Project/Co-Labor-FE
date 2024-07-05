@@ -1,0 +1,22 @@
+.Header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+.Header > div,
+ul {
+  display: flex;
+  padding: 0px 10px;
+  cursor: pointer;
+}
+
+.Header > .logo {
+  background-image: url(/src/assets/Co-labor.png);
+  width: 140px;
+  height: 70px;
+  background-size: cover;
+}
+
+.Header > .right-child {
+  margin-left: auto;
+}
