@@ -1,0 +1,12 @@
+.JobNoticeList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.JobNoticeListWrapper {
+  border: 1px solid rgb(246, 246, 246);
+  border-radius: 20px;
+  width: 80%;
+  height: 100%;
+}

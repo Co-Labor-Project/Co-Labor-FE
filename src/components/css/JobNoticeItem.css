@@ -1,0 +1,25 @@
+.JobNotieItem {
+  margin: 30px 20px;
+}
+.companyImg {
+  border-radius: 15px;
+}
+
+.infoName {
+  margin-top: 8px;
+  font-size: 16px;
+  color: #232527;
+}
+
+.infoTitle {
+  margin-top: 18px;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.infoCondi {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #777777;
+}

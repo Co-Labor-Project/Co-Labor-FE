@@ -1,6 +1,6 @@
 import React from 'react';
 import RecentReviewItem from './RecentReviewItem';
-
+import './css/RecentReview.css';
 const mockData = [
   {
     id: 1,
@@ -26,14 +26,29 @@ const mockData = [
     rating: 3,
     link: ' 라우팅 정보',
   },
+  {
+    id: 4,
+    company: '기업이름4',
+    comment: '얼씨구 절씨구',
+    info: ' 2024 -123-435',
+    rating: 3,
+    link: ' 라우팅 정보',
+  },
+  {
+    id: 5,
+    company: '기업이름5',
+    comment: '웅앵웅 잉옹웅',
+    info: ' 2024 -123-435',
+    rating: 3,
+    link: ' 라우팅 정보',
+  },
 ];
 const RecentReview = () => {
   return (
-    <div>
+    <div className="recentReview">
       {mockData.map((item) => (
         <RecentReviewItem key={item.id} {...item} />
       ))}
-      <RecentReviewItem />
     </div>
   );
 };
