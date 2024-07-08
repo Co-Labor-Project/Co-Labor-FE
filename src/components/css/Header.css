@@ -6,20 +6,27 @@
   font-weight: bold;
   padding: 5px 0px;
 }
-.Header > div,
-ul {
+.Header > div {
   display: flex;
   padding: 0px 20px;
   cursor: pointer;
 }
 
+.Header > div:hover {
+  font-size: 19px;
+}
 .Header > .logo {
   background-image: url(/src/assets/Co-labor.png);
   width: 140px;
   height: 70px;
   background-size: cover;
 }
-
+.Header > .logo:hover {
+  background-image: url(/src/assets/Co-labor.png);
+  width: 160px;
+  height: 70px;
+  background-size: cover;
+}
 .Header > .right-child {
   margin-left: auto;
 }
