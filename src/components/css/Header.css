@@ -2,13 +2,14 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgb(226, 226, 226);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
+  padding: 5px 0px;
 }
 .Header > div,
 ul {
   display: flex;
-  padding: 0px 10px;
+  padding: 0px 20px;
   cursor: pointer;
 }
 

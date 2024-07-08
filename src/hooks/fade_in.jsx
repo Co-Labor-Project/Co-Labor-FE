@@ -50,7 +50,7 @@ const useScrollFadeIn = (direction = 'up', duration = 1, delay = 0) => {
     style: {
       opacity: 0,
       transform: handleDirection(direction),
-      display: 'inline-block',
+      display: 'block',
       margin: '20px',
     },
   };

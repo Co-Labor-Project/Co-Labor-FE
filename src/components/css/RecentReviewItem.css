@@ -1,19 +1,38 @@
-.itemWrapper {
-  border-radius: 10px;
-  border: solid 0.5px rgb(226, 226, 226);
-  padding: 20px 15px;
-  width: 400px;
+.recentReviewItem {
+  width: 500px;
+  margin: 20px;
 }
-.info {
-  display: flex;
-  margin-bottom: 20px;
+
+.itemWrapper {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.itemWrapper h5 {
+  margin-bottom: 10px;
+  font-size: 1.25em;
+  color: #333;
+}
+
+.itemWrapper .info {
+  margin-top: 10px;
+  font-size: 0.875em;
+  color: #777;
 }
 
 .moreBtn {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #58c179;
+  color: white;
+  border: none;
   border-radius: 5px;
-  border: 1px solid grey;
-  padding: 10px 20px;
+  cursor: pointer;
   text-align: center;
-  margin: 0px 50px;
-  background-color: rgb(236, 236, 236);
+}
+
+.moreBtn:hover {
+  background-color: #63e65a;
 }

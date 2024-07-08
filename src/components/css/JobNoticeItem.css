@@ -3,6 +3,9 @@
 }
 .companyImg {
   border-radius: 15px;
+  background-color: red;
+  width: 230px;
+  height: 145px;
 }
 
 .infoName {

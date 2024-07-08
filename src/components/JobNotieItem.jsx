@@ -7,8 +7,8 @@ const JobNotieItem = ({ id, photo, name, title, condition }) => {
   return (
     <div {...fadeInProps}>
       <div className="JobNotieItem">
-        <div className="companyImg">
-          <img src={photo} />
+        <div>
+          <img className="companyImg" src={photo} />
         </div>
         <div className="companyInfo">
           <div className="infoName">{name}</div>

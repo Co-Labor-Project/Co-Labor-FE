@@ -1,4 +1,4 @@
-.JobNoticeList {
+/* .JobNoticeList {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,4 +9,14 @@
   border-radius: 20px;
   width: 80%;
   height: 100%;
+} */
+
+.JobNoticeList {
+  padding: 20px 200px;
+  width: 100%;
+  max-width: 1600px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
 }

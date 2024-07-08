@@ -1,4 +1,5 @@
 import CompanyList from '../components/CompanyList';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import QuickMenu from '../components/QuickMenu';
 import RecentReview from '../components/RecentReview';
@@ -8,6 +9,7 @@ const Home = () => {
       <Header />
       <QuickMenu />
       <RecentReview />
+      <Footer />
     </div>
   );
 };
