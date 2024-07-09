@@ -6,6 +6,7 @@ const Search = () => {
   return (
     <div>
       <Header />
+      <h1>검색했을 때 페이지</h1>
       <Footer />
     </div>
   );

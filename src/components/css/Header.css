@@ -30,3 +30,33 @@
 .Header > .right-child {
   margin-left: auto;
 }
+
+.searchBox {
+  border: 3px solid #58c179;
+  width: 600px;
+  height: 40px;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.searchBox:focus-within {
+  border: 4px solid #a1e2a1;
+  width: 800px;
+  height: 50px;
+}
+
+.searchBoxInner {
+  border: none;
+  width: 100%;
+  font-size: 18px;
+}
+.searchBoxInner:focus {
+  outline: none;
+}
+
+.searchBoxIcon {
+  height: 30px;
+  width: 30px;
+  margin: auto;
+  z-index: 1px;
+}

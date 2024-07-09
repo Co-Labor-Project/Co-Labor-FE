@@ -15,7 +15,7 @@ function App() {
         <Route path="/JobNotice" element={<JobNotice />} />
         <Route path="/IegalAdvice" element={<IegalAdvice />} />
         <Route path="/Support" element={<Support />} />
-        <Route path="/Search" element={<Search />} />
+        <Route path="/Search/:keyword" element={<Search />} />
 
         <Route path="*" element={<Notfound />} />
       </Routes>
