@@ -4,26 +4,25 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
 }
-.companyImg {
+.jobNoticeImg {
   border-radius: 15px;
-  background-color: red;
   width: 200px;
   height: 126px;
 }
 
-.infoName {
+.jobNotice_infoName {
   margin-top: 8px;
   font-size: 16px;
   color: #232527;
 }
 
-.infoTitle {
+.jobNotice_infoTitle {
   margin-top: 18px;
   font-size: 23px;
   font-weight: bold;
 }
 
-.infoCondi {
+.jobNotice_infoCondi {
   margin-top: 10px;
   font-size: 13px;
   font-weight: 400;

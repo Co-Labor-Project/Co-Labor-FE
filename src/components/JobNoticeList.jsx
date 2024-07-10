@@ -3,7 +3,7 @@ import './css/JobNoticeList.css';
 import JobNotieItem from './JobNotieItem';
 import FilterBox from './FilterBox';
 import { Location, JOB, EMPLOYMENT, OPTIONS } from './FilterOption';
-
+import './css/common.css';
 const mockData = [
   {
     id: 1,
@@ -83,7 +83,7 @@ const JobNoticeList = () => {
   return (
     <>
       <div className="gap"></div>
-      <div className="reviewTitle">📢 채용 공고</div>
+      <div className="title">📢 채용 공고</div>
       <div className="gap"></div>
 
       <div className="jobNoticeFilter">

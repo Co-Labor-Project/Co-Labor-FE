@@ -1,0 +1,13 @@
+.title {
+  position: absolute;
+  left: calc(50% - 550px);
+  font-size: 26px;
+  font-weight: bold;
+  width: 1100px;
+  border-bottom: 3px solid #58c179;
+  padding-bottom: 15px;
+  padding-left: 20px;
+}
+.gap {
+  height: 80px;
+}

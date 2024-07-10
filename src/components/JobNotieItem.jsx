@@ -8,12 +8,12 @@ const JobNotieItem = ({ id, photo, name, title, condition }) => {
     <div {...fadeInProps}>
       <div className="JobNotieItem">
         <div>
-          <img className="companyImg" src={photo} />
+          <img className="jobNoticeImg" src={photo} />
         </div>
-        <div className="companyInfo">
-          <div className="infoName">{name}</div>
-          <div className="infoTitle">{title}</div>
-          <div className="infoCondi">{condition}</div>
+        <div className="jobNoticeInfo">
+          <div className="jobNotice_infoName">{name}</div>
+          <div className="jobNotice_infoTitle">{title}</div>
+          <div className="jobNotice_infoCondi">{condition}</div>
         </div>
       </div>
     </div>

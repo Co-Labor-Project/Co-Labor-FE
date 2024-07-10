@@ -1,7 +1,7 @@
 import React from 'react';
 import RecentReviewItem from './RecentReviewItem';
+import './css/RecentReviewList.css';
 
-import './css/RecentReview.css';
 const mockData = [
   {
     id: 1,
@@ -48,7 +48,7 @@ const mockData = [
 const RecentReview = () => {
   return (
     <div className="recentReview">
-      <div className="reviewTitle">📝 최근 리뷰</div>
+      <div className="title">📝 최근 리뷰</div>
       <div className="gap"></div>
 
       <div className="recentReviewList">

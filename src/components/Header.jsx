@@ -1,7 +1,5 @@
 import React from 'react';
 import './css/Header.css';
-import CompanyInfo from './Dropdown/CompanyInfo';
-import JobNotice from './Dropdown/JobNotice';
 import searchIcon from '../assets/search_icon.png';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
