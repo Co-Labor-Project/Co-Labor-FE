@@ -4,8 +4,8 @@
 .companyImg {
   border-radius: 15px;
   background-color: red;
-  width: 230px;
-  height: 145px;
+  width: 200px;
+  height: 126px;
 }
 
 .infoName {
@@ -25,4 +25,6 @@
   font-size: 13px;
   font-weight: 400;
   color: #777777;
+  white-space: normal;
+  width: 200px;
 }

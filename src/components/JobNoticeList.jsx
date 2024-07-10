@@ -77,11 +77,16 @@ const mockData = [
 ];
 const JobNoticeList = () => {
   return (
-    <div className="JobNoticeList">
-      {mockData.map((item) => (
-        <JobNotieItem key={item.id} {...item} />
-      ))}
-    </div>
+    <>
+      <div className="gap"></div>
+      <div className="reviewTitle">📢 채용 공고</div>
+      <div className="gap"></div>
+      <div className="JobNoticeList">
+        {mockData.map((item) => (
+          <JobNotieItem key={item.id} {...item} />
+        ))}
+      </div>
+    </>
   );
 };
 

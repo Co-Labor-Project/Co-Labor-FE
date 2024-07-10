@@ -46,9 +46,14 @@ const mockData = [
 const RecentReview = () => {
   return (
     <div className="recentReview">
-      {mockData.map((item) => (
-        <RecentReviewItem key={item.id} {...item} />
-      ))}
+      <div className="reviewTitle">📝 최근 리뷰</div>
+      <div className="gap"></div>
+      <div className="recentReviewList">
+        {mockData.map((item) => (
+          <RecentReviewItem key={item.id} {...item} />
+        ))}
+      </div>
+      <div className="gap"></div>
     </div>
   );
 };

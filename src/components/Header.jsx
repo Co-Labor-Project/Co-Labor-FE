@@ -1,11 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
 import './css/Header.css';
 import CompanyInfo from './Dropdown/CompanyInfo';
 import JobNotice from './Dropdown/JobNotice';
-import { useState } from 'react';
 import searchIcon from '../assets/search_icon.png';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 const Header = () => {
   const nav = useNavigate();
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -33,7 +32,7 @@ const Header = () => {
         <input
           type="text"
           className="searchBoxInner"
-          placeholder="무엇이든 검색해보세요!"
+          placeholder="직무, 회사,  검색해보세요!"
           onChange={changeInput}
           onKeyDown={keyHandler}
         />
