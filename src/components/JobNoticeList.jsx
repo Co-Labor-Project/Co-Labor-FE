@@ -1,6 +1,9 @@
 import React from 'react';
 import './css/JobNoticeList.css';
 import JobNotieItem from './JobNotieItem';
+import FilterBox from './FilterBox';
+import { Location, JOB, EMPLOYMENT, OPTIONS } from './FilterOption';
+
 const mockData = [
   {
     id: 1,
@@ -75,12 +78,22 @@ const mockData = [
     condition: '4년제 대학, 경력 2년 이상, javascript, java',
   },
 ];
+
 const JobNoticeList = () => {
   return (
     <>
       <div className="gap"></div>
       <div className="reviewTitle">📢 채용 공고</div>
       <div className="gap"></div>
+
+      <div className="jobNoticeFilter">
+        <FilterBox option={JOB} />
+        <FilterBox option={EMPLOYMENT} />
+        <Location />
+        <div className="filterSort">
+          <FilterBox option={OPTIONS} />
+        </div>
+      </div>
       <div className="JobNoticeList">
         {mockData.map((item) => (
           <JobNotieItem key={item.id} {...item} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import RecentReviewItem from './RecentReviewItem';
+
 import './css/RecentReview.css';
 const mockData = [
   {
@@ -43,11 +44,13 @@ const mockData = [
     link: ' 라우팅 정보',
   },
 ];
+
 const RecentReview = () => {
   return (
     <div className="recentReview">
       <div className="reviewTitle">📝 최근 리뷰</div>
       <div className="gap"></div>
+
       <div className="recentReviewList">
         {mockData.map((item) => (
           <RecentReviewItem key={item.id} {...item} />

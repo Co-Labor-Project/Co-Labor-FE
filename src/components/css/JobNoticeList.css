@@ -1,16 +1,3 @@
-/* .JobNoticeList {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-.JobNoticeListWrapper {
-  border: 1px solid rgb(246, 246, 246);
-  border-radius: 20px;
-  width: 80%;
-  height: 100%;
-} */
-
 .JobNoticeList {
   padding: 20px 200px;
   width: 100%;
@@ -19,4 +6,16 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
+}
+
+.jobNoticeFilter {
+  position: absolute;
+  left: calc(50% - 550px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 1100px;
+}
+.filterSort {
+  margin-left: auto;
 }
