@@ -11,8 +11,12 @@ const Header = () => {
     setSearchKeyword(e.target.value);
   };
   const searchHandler = () => {
-    nav(`/search/${searchKeyword}`);
-    setSearchKeyword('');
+    if (searchKeyword === '') {
+      alert('❌ 검색어를 입력해 주세요!');
+    } else {
+      nav(`/search/${searchKeyword}`);
+      setSearchKeyword('');
+    }
   };
   const keyHandler = (e) => {
     if (e.keyCode === 13) {

@@ -2,12 +2,23 @@ import React from 'react';
 import './css/RecentReviewItem.css';
 import useScrollFadeIn from '../hooks/fade_in';
 
-const RecentReviewItem = ({ id, company, comment, info, rating, link }) => {
+const RecentReviewItem = ({
+  id,
+  company,
+  comment,
+  info,
+  rating,
+  link,
+  photo,
+}) => {
   const fadeInProps = useScrollFadeIn('up', 1);
   return (
     <div className="recentReviewItem">
       <div {...fadeInProps}>
-        <h5>{company}</h5>
+        <h5>
+          <img src={photo} width="30" height="30" />
+          {company}
+        </h5>
         <div className="itemWrapper">
           <div>
             <h2>&quot;{comment} &quot;</h2>

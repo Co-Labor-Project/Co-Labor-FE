@@ -10,6 +10,8 @@ const mockData = [
     info: ' 2024 -123-435',
     rating: 3,
     link: ' 라우팅 정보',
+    photo:
+      'https://img.freepik.com/premium-vector/free-vector-youtube-icon-logo-social-media-logo_901408-454.jpg',
   },
   {
     id: 2,
@@ -18,6 +20,8 @@ const mockData = [
     info: ' 2024 -123-435',
     rating: 3,
     link: ' 라우팅 정보',
+    photo:
+      'https://img.freepik.com/premium-vector/free-vector-youtube-icon-logo-social-media-logo_901408-454.jpg',
   },
   {
     id: 3,
@@ -26,6 +30,8 @@ const mockData = [
     info: ' 2024 -123-435',
     rating: 3,
     link: ' 라우팅 정보',
+    photo:
+      'https://img.freepik.com/premium-vector/free-vector-youtube-icon-logo-social-media-logo_901408-454.jpg',
   },
   {
     id: 4,
@@ -34,6 +40,8 @@ const mockData = [
     info: ' 2024 -123-435',
     rating: 3,
     link: ' 라우팅 정보',
+    photo:
+      'https://img.freepik.com/premium-vector/free-vector-youtube-icon-logo-social-media-logo_901408-454.jpg',
   },
   {
     id: 5,
@@ -42,6 +50,8 @@ const mockData = [
     info: ' 2024 -123-435',
     rating: 3,
     link: ' 라우팅 정보',
+    photo:
+      'https://img.freepik.com/premium-vector/free-vector-youtube-icon-logo-social-media-logo_901408-454.jpg',
   },
 ];
 

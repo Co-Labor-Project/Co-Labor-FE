@@ -36,3 +36,12 @@
 .moreBtn:hover {
   background-color: #72dc72;
 }
+
+h5 {
+  display: flex;
+  align-items: center;
+}
+
+h5 > img {
+  margin-right: 7px;
+}
