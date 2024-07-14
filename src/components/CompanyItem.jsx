@@ -1,8 +1,11 @@
 import React from 'react';
 import useScrollFadeIn from '../hooks/fade_in';
 import './css/CompanyItem.css';
-const CompanyItem = ({ id, photo, name, address, role }) => {
+const CompanyItem = ({ id, photo, name, address }) => {
   const fadeInProps = useScrollFadeIn('up', 1);
+  if (!photo) {
+    photo = 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
+  }
   return (
     <div className="companyItem">
       <div {...fadeInProps}>
@@ -11,9 +14,7 @@ const CompanyItem = ({ id, photo, name, address, role }) => {
         </div>
         <div className="companyInfo">
           <div className="company_infoName">{name}</div>
-          <div className="company_info">
-            {role} | {address}
-          </div>
+          <div className="company_info">기업 분류 | {address}</div>
         </div>
       </div>
     </div>

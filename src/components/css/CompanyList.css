@@ -7,3 +7,12 @@
   margin: auto;
   margin-top: 30px;
 }
+.companylist_AI_search {
+  width: 800px;
+  margin: 0 auto;
+}
+.searchContainer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}

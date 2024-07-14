@@ -18,9 +18,8 @@ import 'swiper/css/pagination';
 import JobNotieItem from './JobNotieItem';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-import SearchIcon from '@mui/icons-material/Search'; // 올바른 import 문
+import SearchIcon from '@mui/icons-material/Search';
 function MyMap() {
-  // instead of window.naver.maps
   const navermaps = useNavermaps();
 
   return (
@@ -171,7 +170,7 @@ const QuickMenu = () => {
           </Swiper>
         </div>
       </div>
-      <div className="introduce2">
+      {/* <div className="introduce2">
         <div className="map_introduce">
           <MapDiv
             style={{
@@ -184,7 +183,7 @@ const QuickMenu = () => {
         </div>
 
         <div className="legalAdvice_introduce"></div>
-      </div>
+      </div> */}
     </div>
   );
 };

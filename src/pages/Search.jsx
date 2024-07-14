@@ -1,12 +1,14 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-
+import { useParams } from 'react-router-dom';
+import SearchOutput from '../components/SearchOutput';
 const Search = () => {
+  const params = useParams();
   return (
     <div>
       <Header />
-      <h1>검색했을 때 페이지</h1>
+      <SearchOutput input={params.keyword} />
       <Footer />
     </div>
   );
