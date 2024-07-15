@@ -33,7 +33,7 @@ const SearchOutput = ({ input }) => {
         setJobs(data.jobs || []);
         setReviews(data.reviews || []);
         // console.log(data.enterprises);
-        //console.log('data.job:', data.jobs);
+        console.log('data.job:', data.jobs);
         // console.log(data.reviews);
         setLoading(false);
       } catch (error) {

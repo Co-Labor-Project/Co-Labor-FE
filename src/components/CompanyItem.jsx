@@ -1,13 +1,26 @@
 import React from 'react';
 import useScrollFadeIn from '../hooks/fade_in';
 import './css/CompanyItem.css';
-const CompanyItem = ({ id, photo, name, address }) => {
+import { useNavigate, useParams } from 'react-router-dom';
+import useEmpty from '../hooks/useEmpty';
+const CompanyItem = ({ id, photo, name, address, enterprise_id }) => {
+  const nav = useNavigate();
+  const parms = useParams();
   const fadeInProps = useScrollFadeIn('up', 1);
+  const isObjEmpty = useEmpty(parms);
   if (!photo) {
     photo = 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
   }
+  console.log('paramsprams', parms);
+  const clickHandler = () => {
+    if (isObjEmpty) {
+      nav(`/CompanyInfo/${enterprise_id}`);
+    } else {
+      nav(`/Search/${parms.keyword}/${enterprise_id}`);
+    }
+  };
   return (
-    <div className="companyItem">
+    <div className="companyItem" onClick={clickHandler}>
       <div {...fadeInProps}>
         <div className="companyImg">
           <img src={photo} width="100px" height="55px" />
