@@ -4,6 +4,13 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   width: 200px;
+  cursor: pointer;
+  transition: all 0.5s;
+  border: 0px solid #58c179;
+}
+.companyItem:hover {
+  border: 3px solid #58c179;
+  width: 230px;
 }
 .companyImg {
   display: flex;
