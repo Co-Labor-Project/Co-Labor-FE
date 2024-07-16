@@ -64,3 +64,10 @@
   margin: auto;
   z-index: 1px;
 }
+
+.enterpriseApply {
+  color: #ff5d5d;
+  border: 2px solid #ff5d5d;
+  padding: 10px;
+  border-radius: 15px;
+}

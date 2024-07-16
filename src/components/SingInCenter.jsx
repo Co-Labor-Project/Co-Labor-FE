@@ -58,6 +58,12 @@ const SingInCenter = () => {
                     placeholder="Confirm password"
                   />
                 </div>
+                <div className="input-group">
+                  <div className="enterpriseMem">
+                    <span>기업회원이신가요?</span>
+                    <input type="checkbox" />
+                  </div>
+                </div>
                 <button type="submit">Sign up</button>
                 <p>
                   <span>Already have an account?</span>
