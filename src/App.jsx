@@ -1,7 +1,10 @@
+import React, { useEffect, useState } from 'react';
+import { createContext } from 'react';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { NavermapsProvider } from 'react-naver-maps';
 import CompanyInfo from './pages/CompanyInfo';
-import { createContext } from 'react';
+
 import Home from './pages/Home';
 import Notfound from './pages/Notfound';
 import JobNotice from './pages/JobNotice';
@@ -11,8 +14,10 @@ import Search from './pages/Search';
 import Companydetails from './pages/CompanyDetails';
 import JobNoticeDetails from './pages/JobNoticeDetails';
 import SingIn from './pages/SingIn';
+
 export const JobContext = createContext();
 export const CompanyContext = createContext();
+
 const mockJobData = [
   {
     job_id: 1,
@@ -88,115 +93,21 @@ const mockJobData = [
     enterprise: { name: '(주) pat & mat' },
   },
 ];
-const mockCompanyData = [
-  {
-    id: 1,
-    photo:
-      'https://i.namu.wiki/i/os1p_saAg0g1bwlA5nKw9DUk_qGCJOtAC5gygZolo66jeAdP_yNyoARSQdzKb_yIFLL9bwhXtFuMSfoWQ9Gzmw.svg',
-    name: '(주) pat & mat',
-    title: '패트와 매트',
-    condition: '4년제 대학, 경력 2년 이상, javascript, java',
-    address: '청주시',
-    role: '현장직 인력',
-    enterprise_id: '1',
-  },
-  {
-    id: 2,
-    photo:
-      'https://i.namu.wiki/i/os1p_saAg0g1bwlA5nKw9DUk_qGCJOtAC5gygZolo66jeAdP_yNyoARSQdzKb_yIFLL9bwhXtFuMSfoWQ9Gzmw.svg',
-    name: '(주) pat & mat',
-    title: '패트와 매트',
-    condition: '4년제 대학, 경력 2년 이상, javascript, java',
-    address: '청주시',
-    role: '현장직 인력',
-    enterprise_id: '1119',
-  },
-  {
-    id: 3,
-    photo:
-      'https://i.namu.wiki/i/os1p_saAg0g1bwlA5nKw9DUk_qGCJOtAC5gygZolo66jeAdP_yNyoARSQdzKb_yIFLL9bwhXtFuMSfoWQ9Gzmw.svg',
-    name: '(주) pat & mat',
-    title: '패트와 매트',
-    condition: '4년제 대학, 경력 2년 이상, javascript, java',
-    address: '청주시',
-    role: '현장직 인력',
-    enterprise_id: '11118',
-  },
-  {
-    id: 4,
-    photo:
-      'https://i.namu.wiki/i/os1p_saAg0g1bwlA5nKw9DUk_qGCJOtAC5gygZolo66jeAdP_yNyoARSQdzKb_yIFLL9bwhXtFuMSfoWQ9Gzmw.svg',
-    name: '(주) pat & mat',
-    title: '패트와 매트',
-    condition: '4년제 대학, 경력 2년 이상, javascript, java',
-    address: '청주시',
-    role: '현장직 인력',
-    enterprise_id: '1112',
-  },
-  {
-    id: 5,
-    photo:
-      'https://i.namu.wiki/i/os1p_saAg0g1bwlA5nKw9DUk_qGCJOtAC5gygZolo66jeAdP_yNyoARSQdzKb_yIFLL9bwhXtFuMSfoWQ9Gzmw.svg',
-    name: '(주) pat & mat',
-    title: '패트와 매트',
-    condition: '4년제 대학',
-    address: '청주시',
-    role: '현장직 인력',
-    enterprise_id: '1113',
-  },
-  {
-    id: 6,
-    photo:
-      'https://i.namu.wiki/i/os1p_saAg0g1bwlA5nKw9DUk_qGCJOtAC5gygZolo66jeAdP_yNyoARSQdzKb_yIFLL9bwhXtFuMSfoWQ9Gzmw.svg',
-    name: '(주) pat & mat',
-    title: '패트와 매트',
-    condition: '4년제 대학, 경력 2년 이상, javascript, java',
-    address: '청주시',
-    role: '현장직 인력',
-    enterprise_id: '1114',
-  },
-  {
-    id: 7,
-    photo:
-      'https://i.namu.wiki/i/os1p_saAg0g1bwlA5nKw9DUk_qGCJOtAC5gygZolo66jeAdP_yNyoARSQdzKb_yIFLL9bwhXtFuMSfoWQ9Gzmw.svg',
-    name: '(주) pat & mat',
-    title: '패트와 매트',
-    condition: '4년제 대학, 경력 2년 이상, javascript, java',
-    address: '청주시',
-    role: '현장직 인력',
-    enterprise_id: '1115',
-  },
-  {
-    id: 8,
-    photo:
-      'https://i.namu.wiki/i/os1p_saAg0g1bwlA5nKw9DUk_qGCJOtAC5gygZolo66jeAdP_yNyoARSQdzKb_yIFLL9bwhXtFuMSfoWQ9Gzmw.svg',
-    name: '(주) pat & mat',
-    title: '패트와 매트',
-    condition: '4년제 대학, 경력 2년 이상, javascript, java',
-    address: '청주시',
-    role: '현장직 인력',
-    enterprise_id: '1116',
-  },
-  {
-    id: 9,
-    photo:
-      'https://i.namu.wiki/i/os1p_saAg0g1bwlA5nKw9DUk_qGCJOtAC5gygZolo66jeAdP_yNyoARSQdzKb_yIFLL9bwhXtFuMSfoWQ9Gzmw.svg',
-    name: '(주) pat & mat',
-    title: '패트와 매트',
-    condition: '4년제 대학, 경력 2년 이상, javascript, java',
-    address: '청주시',
-    role: '현장직 인력',
-    enterprise_id: '1117',
-  },
-];
+
 function App() {
+  const [companies, setCompanies] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/api/enterprises')
+      .then((response) => response.json())
+      .then((data) => setCompanies(data))
+      .catch((error) => console.error('Error fetching companies:', error));
+  }, []);
+
   return (
-    <NavermapsProvider
-      // ncpClientId="MY_NAVERMAPS_CLIENT_ID"
-      ncpClientId="du60d8o1se"
-    >
+    <NavermapsProvider ncpClientId="du60d8o1se">
       <JobContext.Provider value={mockJobData}>
-        <CompanyContext.Provider value={mockCompanyData}>
+        <CompanyContext.Provider value={companies}>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />} />
