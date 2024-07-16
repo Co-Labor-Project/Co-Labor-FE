@@ -9,10 +9,9 @@ const Support = () => {
   return (
     <div>
       <Header />
-      <h1>지원 페이지</h1>
       <MapDiv
         style={{
-          width: '93%',
+          width: '100%',
           height: '600px',
         }}
       >

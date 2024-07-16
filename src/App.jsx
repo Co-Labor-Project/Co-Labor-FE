@@ -11,6 +11,7 @@ import Search from './pages/Search';
 import Companydetails from './pages/CompanyDetails';
 import JobNoticeDetails from './pages/JobNoticeDetails';
 import SingIn from './pages/SingIn';
+import EnterpriseApply from './pages/EnterpriseApply';
 export const JobContext = createContext();
 export const CompanyContext = createContext();
 const mockJobData = [
@@ -205,7 +206,6 @@ function App() {
               <Route path="/IegalAdvice" element={<IegalAdvice />} />
               <Route path="/Support" element={<Support />} />
               <Route path="/SingIn" element={<SingIn />} />
-
               <Route path="/Search/:keyword" element={<Search />} />
               <Route path="/AiSearch/:keyword" element={<Search />} />
               <Route
@@ -221,6 +221,7 @@ function App() {
                 element={<JobNoticeDetails />}
               />
               <Route path="/JobNotice/:job_id" element={<JobNoticeDetails />} />
+              <Route path="/EnterpriseApply" element={<EnterpriseApply />} />
               <Route path="*" element={<Notfound />} />
             </Routes>
           </BrowserRouter>
