@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/CompanyList.css';
 import FilterBox from './FilterBox';
-import { Location, JOB, EMPLOYMENT, OPTIONS } from './FilterOption';
+import { Location, JOB, OPTIONS } from './FilterOption';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
@@ -15,7 +15,6 @@ const CompanyList = ({ data }) => {
 
   const companyData =
     Array.isArray(data) && data.length > 0 ? data : contextData;
-  console.log('companyData:', companyData);
   const nav = useNavigate();
   const [searchKeyword, setSearchKeyword] = useState('');
   const changeInput = (e) => {
@@ -26,7 +25,7 @@ const CompanyList = ({ data }) => {
     if (searchKeyword === '') {
       alert('❌ 검색어를 입력해 주세요!');
     } else {
-      nav(`/search/${searchKeyword}`);
+      nav(`/AiSearch/${searchKeyword}`);
       setSearchKeyword('');
     }
   };

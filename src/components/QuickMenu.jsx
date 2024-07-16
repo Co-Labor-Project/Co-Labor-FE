@@ -21,21 +21,21 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import { JobContext } from '../App';
 
-function MyMap() {
-  const navermaps = useNavermaps();
+// function MyMap() {
+//   const navermaps = useNavermaps();
 
-  return (
-    <NaverMap
-      defaultCenter={new navermaps.LatLng(36.632473380701, 127.45314301376)}
-      defaultZoom={15}
-    >
-      <Marker defaultPosition={new navermaps.LatLng(37.3595704, 127.105399)} />
-      <Marker
-        defaultPosition={new navermaps.LatLng(36.632473380701, 127.45314301376)}
-      />
-    </NaverMap>
-  );
-}
+//   return (
+//     <NaverMap
+//       defaultCenter={new navermaps.LatLng(36.632473380701, 127.45314301376)}
+//       defaultZoom={15}
+//     >
+//       <Marker defaultPosition={new navermaps.LatLng(37.3595704, 127.105399)} />
+//       <Marker
+//         defaultPosition={new navermaps.LatLng(36.632473380701, 127.45314301376)}
+//       />
+//     </NaverMap>
+//   );
+// }
 
 const QuickMenu = () => {
   const nav = useNavigate();
@@ -50,7 +50,7 @@ const QuickMenu = () => {
     if (searchKeyword === '') {
       alert('❌ 검색어를 입력해 주세요!');
     } else {
-      nav(`/search/${searchKeyword}`);
+      nav(`/AiSearch/${searchKeyword}`);
       setSearchKeyword('');
     }
   };
@@ -94,26 +94,12 @@ const QuickMenu = () => {
           >
             {contextData.map((item) => (
               <SwiperSlide key={item.enterprise_id}>
-                <JobNotieItem key={item.enterprise_id} {...item} />
+                <JobNotieItem {...item} />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
       </div>
-      {/* <div className="introduce2">
-        <div className="map_introduce">
-          <MapDiv
-            style={{
-              width: '300px',
-              height: '300px',
-            }}
-          >
-            <MyMap />
-          </MapDiv>
-        </div>
-
-        <div className="legalAdvice_introduce"></div>
-      </div> */}
     </div>
   );
 };

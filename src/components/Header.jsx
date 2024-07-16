@@ -45,9 +45,9 @@ const Header = () => {
         />
       </div>
       <div className="right-child">
-        <div>로그인</div>
+        <div> 기업 등록</div>
       </div>
-      <div>회원가입</div>
+      <div onClick={() => nav('/SingIn')}>로그인 / 회원가입</div>
     </div>
   );
 };
