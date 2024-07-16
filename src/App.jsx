@@ -10,6 +10,7 @@ import Support from './pages/Support';
 import Search from './pages/Search';
 import Companydetails from './pages/CompanyDetails';
 import JobNoticeDetails from './pages/JobNoticeDetails';
+import SingIn from './pages/SingIn';
 export const JobContext = createContext();
 export const CompanyContext = createContext();
 const mockJobData = [
@@ -203,7 +204,10 @@ function App() {
               <Route path="/JobNotice" element={<JobNotice />} />
               <Route path="/IegalAdvice" element={<IegalAdvice />} />
               <Route path="/Support" element={<Support />} />
+              <Route path="/SingIn" element={<SingIn />} />
+
               <Route path="/Search/:keyword" element={<Search />} />
+              <Route path="/AiSearch/:keyword" element={<Search />} />
               <Route
                 path="/Search/:keyword/:enterprise_id"
                 element={<Companydetails />}

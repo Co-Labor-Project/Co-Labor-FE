@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/SearchOutput.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import JobNoticeList from './JobNoticeList';
 import CompanyList from './CompanyList';
 const SearchOutput = ({ input }) => {
@@ -8,23 +8,27 @@ const SearchOutput = ({ input }) => {
   const [jobs, setJobs] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const url = window.location.href;
+  let desURL = '';
+  if (url.indexOf('AiSearch') === -1) {
+    desURL = `http://localhost:8080/search?keyword=${input}`;
+  } else {
+    desURL = `http://localhost:8080/ai-search?sentence=${input}`;
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:8080/search?keyword=${input}`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json; charset=utf-8',
-            },
-          }
-        );
+        const response = await fetch(desURL, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+        });
         if (!response.ok) {
           throw new Error('데이터 불러오기 실패');
         }
 
-        // console.log(response);
+        console.log(response);
 
         const data = await response.json();
         // console.log('data:', data);

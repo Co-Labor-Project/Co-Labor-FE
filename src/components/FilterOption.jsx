@@ -283,14 +283,11 @@ const JOB = [
   { value: 'base', name: '직무' },
   { value: 'test', name: 'test' },
 ];
-const EMPLOYMENT = [
-  { value: 'base', name: '고용 형태' },
-  { value: 'fullTime', name: '정규직' },
-  { value: 'temporary', name: '비정규직' },
-];
+
 const OPTIONS = [
-  { value: 'banana', name: '최신순' },
-  { value: 'apple', name: '조회순' },
+  { value: 'latest', name: '최신순' },
+  { value: 'oldest', name: '오래된 순' },
+  { value: 'viewest', name: '조회순' },
 ];
 const Location = () => {
   const [selectedCity, setSelectedCity] = useState('전체');
@@ -328,4 +325,4 @@ const Location = () => {
   );
 };
 
-export { Location, JOB, EMPLOYMENT, OPTIONS };
+export { Location, JOB, OPTIONS };

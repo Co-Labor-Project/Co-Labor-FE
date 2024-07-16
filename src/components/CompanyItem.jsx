@@ -11,7 +11,6 @@ const CompanyItem = ({ id, photo, name, address, enterprise_id }) => {
   if (!photo) {
     photo = 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
   }
-  console.log('paramsprams', parms);
   const clickHandler = () => {
     if (isObjEmpty) {
       nav(`/CompanyInfo/${enterprise_id}`);
