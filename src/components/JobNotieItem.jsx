@@ -1,27 +1,26 @@
-import React from 'react';
-import './css/JobNoticeItem.css';
-import useScrollFadeIn from '../hooks/fade_in';
-import { useNavigate, useParams } from 'react-router-dom';
-import useEmpty from '../hooks/useEmpty';
+import React from "react";
+import "./css/JobNoticeItem.css";
+import useScrollFadeIn from "../hooks/fade_in";
+import { useNavigate, useParams } from "react-router-dom";
+import useEmpty from "../hooks/useEmpty";
+
 const JobNotieItem = ({
-  id,
   photo,
   title,
-  condition,
+  requirement,
   enterprise,
   description,
   job_id,
 }) => {
-  const fadeInProps = useScrollFadeIn('up', 1);
+  const fadeInProps = useScrollFadeIn("up", 1);
   const nav = useNavigate();
   const parms = useParams();
   const isObjEmpty = useEmpty(parms);
-  const name = enterprise?.name || 'No Enterprise Name';
-  condition = description || condition;
+  const name = enterprise?.name || "No Enterprise Name";
 
   if (!photo) {
     photo =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s';
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
   }
   const clickHandler = () => {
     if (isObjEmpty) {
@@ -40,7 +39,8 @@ const JobNotieItem = ({
         <div className="jobNoticeInfo">
           <div className="jobNotice_infoName">{name}</div>
           <div className="jobNotice_infoTitle">{title}</div>
-          <div className="jobNotice_infoCondi">{condition}</div>
+          <div className="jobNotice_infoCondi">{requirement}</div>
+          <div className="jobNotice_infoDescription">{description}</div>
         </div>
       </div>
     </div>
