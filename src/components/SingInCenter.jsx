@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import './css/SingInCenter.css';
-
+import { useNavigate } from 'react-router-dom';
+import { LoginContext } from '../App';
 const SingInCenter = () => {
+  const { loginState, setLoginState } = useContext(LoginContext);
+  const nav = useNavigate();
   let url = '';
   const containerRef = useRef(null);
   const [input, setInput] = useState({
@@ -40,27 +43,58 @@ const SingInCenter = () => {
       }
     )
       .then((response) => response.json())
-      .then((result) => console.log('로그인결과: ', result));
+      .then((result) => {
+        console.log('로그인결과: ', result);
+        console.log('result.message:', result.message);
+        if (result.message === 'Login successful') {
+          setLoginState((prevState) => ({
+            ...prevState,
+            userLogin: true,
+          }));
+          alert('로그인 성공!');
+          nav('/');
+        } else {
+          throw new Error('로그인 실패');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('로그인 실패!');
+      });
   };
+
   const onsubmit = () => {
     if (input.password !== input.passwordConfirm) {
       alert('패스워드가 일치하지 않습니다.');
       return;
     }
-    if (input.isEnterprise)
-      url = 'http://localhost:8080/auth/signup-enterprise';
-    else url = 'http://localhost:8080/auth/signup-labor';
+    url = input.isEnterprise
+      ? 'http://localhost:8080/auth/signup-enterprise'
+      : 'http://localhost:8080/auth/signup-labor';
     console.log('패스워드 일치 후 요청 보내기');
-    // signUp();
+    const json = JSON.stringify(input);
+    signUp(json);
   };
-  const signUp = () => {
+
+  const signUp = (json) => {
     fetch(url, {
       method: 'POST',
-      body: JSON.stringify(input),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json,
     })
       .then((response) => response.json())
-      .then((result) => console.log('회원가입결과: ', result));
+      .then((result) => {
+        console.log('회원가입결과: ', result);
+        if (!alert('회원가입 성공!')) nav('/');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('회원가입 실패!');
+      });
   };
+
   const toggle = () => {
     if (containerRef.current) {
       containerRef.current.classList.toggle('sign-in');

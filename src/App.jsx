@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { NavermapsProvider } from 'react-naver-maps';
 import CompanyInfo from './pages/CompanyInfo';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import Home from './pages/Home';
 import Notfound from './pages/Notfound';
 import JobNotice from './pages/JobNotice';
@@ -14,6 +14,7 @@ import SingIn from './pages/SingIn';
 import EnterpriseApply from './pages/EnterpriseApply';
 export const JobContext = createContext();
 export const CompanyContext = createContext();
+export const LoginContext = createContext();
 const mockJobData = [
   {
     job_id: 1,
@@ -190,43 +191,53 @@ const mockCompanyData = [
     enterprise_id: '1117',
   },
 ];
+
 function App() {
+  const [loginState, setLoginState] = useState({
+    userLogin: false,
+    userEnterprise: false,
+  });
   return (
     <NavermapsProvider
       // ncpClientId="MY_NAVERMAPS_CLIENT_ID"
       ncpClientId="du60d8o1se"
     >
-      <JobContext.Provider value={mockJobData}>
-        <CompanyContext.Provider value={mockCompanyData}>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/CompanyInfo" element={<CompanyInfo />} />
-              <Route path="/JobNotice" element={<JobNotice />} />
-              <Route path="/IegalAdvice" element={<IegalAdvice />} />
-              <Route path="/Support" element={<Support />} />
-              <Route path="/SingIn" element={<SingIn />} />
-              <Route path="/Search/:keyword" element={<Search />} />
-              <Route path="/AiSearch/:keyword" element={<Search />} />
-              <Route
-                path="/Search/:keyword/:enterprise_id"
-                element={<Companydetails />}
-              />
-              <Route
-                path="/CompanyInfo/:enterprise_id"
-                element={<Companydetails />}
-              />
-              <Route
-                path="/Search/:keyword/jobNotice/:job_id"
-                element={<JobNoticeDetails />}
-              />
-              <Route path="/JobNotice/:job_id" element={<JobNoticeDetails />} />
-              <Route path="/EnterpriseApply" element={<EnterpriseApply />} />
-              <Route path="*" element={<Notfound />} />
-            </Routes>
-          </BrowserRouter>
-        </CompanyContext.Provider>
-      </JobContext.Provider>
+      <LoginContext.Provider value={{ loginState, setLoginState }}>
+        <JobContext.Provider value={mockJobData}>
+          <CompanyContext.Provider value={mockCompanyData}>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/CompanyInfo" element={<CompanyInfo />} />
+                <Route path="/JobNotice" element={<JobNotice />} />
+                <Route path="/IegalAdvice" element={<IegalAdvice />} />
+                <Route path="/Support" element={<Support />} />
+                <Route path="/SingIn" element={<SingIn />} />
+                <Route path="/Search/:keyword" element={<Search />} />
+                <Route path="/AiSearch/:keyword" element={<Search />} />
+                <Route
+                  path="/Search/:keyword/:enterprise_id"
+                  element={<Companydetails />}
+                />
+                <Route
+                  path="/CompanyInfo/:enterprise_id"
+                  element={<Companydetails />}
+                />
+                <Route
+                  path="/Search/:keyword/jobNotice/:job_id"
+                  element={<JobNoticeDetails />}
+                />
+                <Route
+                  path="/JobNotice/:job_id"
+                  element={<JobNoticeDetails />}
+                />
+                <Route path="/EnterpriseApply" element={<EnterpriseApply />} />
+                <Route path="*" element={<Notfound />} />
+              </Routes>
+            </BrowserRouter>
+          </CompanyContext.Provider>
+        </JobContext.Provider>
+      </LoginContext.Provider>
     </NavermapsProvider>
   );
 }
