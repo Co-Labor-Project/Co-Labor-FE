@@ -15,8 +15,9 @@
   border-radius: 15px;
   transition: all 0.1s;
   border: 0px solid #58c179;
+  max-width: 250px;
   cursor: pointer;
-  max-width: 280px;
+  border-radius: 8px; /* 모서리를 둥글게 */
 }
 
 .CompanyDetailsCenterJobNotieItem:hover {

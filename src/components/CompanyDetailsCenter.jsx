@@ -1,6 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { CompanyContext, JobContext, ReviewContext } from "../App";
 import "./css/CompanyDetailsCenter.css";
 
@@ -41,7 +46,7 @@ const CompanyDetailsCenter = () => {
 
   const defaultJobPhoto =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
-  const displayJobPhoto = jobData.photo || defaultJobPhoto;
+  const displayJobPhoto = (job) => job.photo || defaultJobPhoto;
 
   return (
     <div>
@@ -75,31 +80,39 @@ const CompanyDetailsCenter = () => {
         <div className="gap"></div>
         <div className="CompanyDetailsCenterJobList">
           {jobData.length > 0 ? (
-            jobData.map((job) => (
-              <div key={job.job_id}>
-                <div className="CompanyDetailsCenterJobItem">
-                  <div className="CompanyDetailsCenteritemWrapper">
-                    <div className="CompanyDetailsCenterjobNoticeInfo">
-                      <div className="CompanyDetailsCenterjobNotice_infoTitle">
-                        {job.title}
-                      </div>
-                      <img
-                        className="CompanyDetailsCenterjobNoticeImg"
-                        src={displayJobPhoto}
-                        width="100px"
-                        alt={jobData.title}
-                      />
-                      <div className="CompanyDetailsCenterjobNotice_infoCondi">
-                        {job.requirement}
-                      </div>
-                      <div className="CompanyDetailsCenterjobNotice_infoDescription">
-                        {job.description}
+            <Swiper
+              modules={[Navigation, Pagination]}
+              spaceBetween={-150}
+              slidesPerView={4}
+              navigation
+              pagination={{ clickable: true }}
+            >
+              {jobData.map((job) => (
+                <SwiperSlide key={job.job_id}>
+                  <div className="CompanyDetailsCenterJobItem">
+                    <div className="CompanyDetailsCenteritemWrapper">
+                      <div className="CompanyDetailsCenterjobNoticeInfo">
+                        <div className="CompanyDetailsCenterjobNotice_infoTitle">
+                          {job.title}
+                        </div>
+                        <img
+                          className="CompanyDetailsCenterjobNoticeImg"
+                          src={displayJobPhoto(job)}
+                          width="100px"
+                          alt={job.title}
+                        />
+                        <div className="CompanyDetailsCenterjobNotice_infoCondi">
+                          {job.requirement}
+                        </div>
+                        <div className="CompanyDetailsCenterjobNotice_infoDescription">
+                          {job.description}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))
+                </SwiperSlide>
+              ))}
+            </Swiper>
           ) : (
             <div className="CompanyDetailsCenterjobNotice_infoTitle">
               등록된 채용 공고가 없습니다.
