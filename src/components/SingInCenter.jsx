@@ -51,6 +51,7 @@ const SingInCenter = () => {
             ...prevState,
             userLogin: true,
           }));
+          console.log(loginState);
           alert('로그인 성공!');
           nav('/');
         } else {
