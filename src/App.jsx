@@ -1,27 +1,34 @@
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+
 import React, { useEffect, useState, createContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { NavermapsProvider } from "react-naver-maps";
-import CompanyInfo from "./pages/CompanyInfo";
 
-import Home from "./pages/Home";
-import Notfound from "./pages/Notfound";
-import JobNotice from "./pages/JobNotice";
-import IegalAdvice from "./pages/IegalAdvice";
-import Support from "./pages/Support";
-import Search from "./pages/Search";
-import Companydetails from "./pages/CompanyDetails";
-import JobNoticeDetails from "./pages/JobNoticeDetails";
-import SingIn from "./pages/SingIn";
+import { NavermapsProvider } from 'react-naver-maps';
 
-export const JobContext = createContext();
+import CompanyInfo from './pages/CompanyInfo';
+import Home from './pages/Home';
+import Notfound from './pages/Notfound';
+import JobNotice from './pages/JobNotice';
+import IegalAdvice from './pages/IegalAdvice';
+import Support from './pages/Support';
+import Search from './pages/Search';
+import Companydetails from './pages/CompanyDetails';
+import JobNoticeDetails from './pages/JobNoticeDetails';
+import SingIn from './pages/SingIn';
+import EnterpriseApply from './pages/EnterpriseApply';
+  export const JobContext = createContext();
 export const CompanyContext = createContext();
+export const LoginContext = createContext();
 export const ReviewContext = createContext();
-
 function App() {
   const [jobs, setJobs] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [reviews, setReviews] = useState([]);
-
+const [loginState, setLoginState] = useState({
+    userLogin: false,
+    userEnterprise: false,
+  });
   useEffect(() => {
     fetch("http://localhost:8080/api/jobs")
       .then((response) => response.json())
@@ -43,11 +50,25 @@ function App() {
       .catch((error) => console.error("Error fetching reviews:", error));
   }, []);
 
+  
+  
+  
+  
+  
+  
+  
+  
   return (
     <NavermapsProvider ncpClientId="du60d8o1se">
+     <LoginContext.Provider value={{ loginState, setLoginState }}>
       <JobContext.Provider value={jobs}>
         <CompanyContext.Provider value={companies}>
           <ReviewContext.Provider value={reviews}>
+
+
+
+
+
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -75,12 +96,16 @@ function App() {
                   path="/JobNotice/:job_id"
                   element={<JobNoticeDetails />}
                 />
+
+                <Route path="/EnterpriseApply" element={<EnterpriseApply />} />
                 <Route path="*" element={<Notfound />} />
               </Routes>
             </BrowserRouter>
           </ReviewContext.Provider>
-        </CompanyContext.Provider>
-      </JobContext.Provider>
+          </CompanyContext.Provider>
+        </JobContext.Provider>
+      </LoginContext.Provider>
+
     </NavermapsProvider>
   );
 }

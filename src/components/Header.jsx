@@ -3,10 +3,10 @@ import './css/Header.css';
 import searchIcon from '../assets/search_icon.png';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import EnterpriseApply from '../pages/EnterpriseApply';
 const Header = () => {
   const nav = useNavigate();
   const [searchKeyword, setSearchKeyword] = useState('');
-
   const changeInput = (e) => {
     setSearchKeyword(e.target.value);
   };
@@ -45,8 +45,16 @@ const Header = () => {
         />
       </div>
       <div className="right-child">
-        <div> 기업 등록</div>
+        <div
+          className="enterpriseApply"
+          onClick={() => {
+            nav('/EnterpriseApply');
+          }}
+        >
+          기업 등록
+        </div>
       </div>
+
       <div onClick={() => nav('/SingIn')}>로그인 / 회원가입</div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { NaverMap, Marker, useNavermaps } from 'react-naver-maps';
 import axios from 'axios';
-
+import './css/SupportCenterMap.css';
 function SupportCenterMap() {
   const navermaps = useNavermaps();
   const mapRef = useRef(null);
@@ -11,7 +11,7 @@ function SupportCenterMap() {
     new navermaps.LatLng(36.632473380701, 127.45314301376)
   );
   const [overlays, setOverlays] = useState([]);
-
+  const [toogle, setToggle] = useState(false);
   useEffect(() => {
     axios
       .get('http://localhost:8080/api/support-centers/all')
@@ -130,50 +130,53 @@ function SupportCenterMap() {
   }, [centers, currentPosition, mapRef.current]);
 
   return (
-    <NaverMap
-      ref={mapRef}
-      center={mapCenter}
-      defaultZoom={15}
-      style={{ width: '100%', height: '100%' }}
-    >
-      {currentPosition && (
-        <Marker
-          position={
-            new navermaps.LatLng(
-              currentPosition.latitude,
-              currentPosition.longitude
-            )
-          }
-          title="현재 위치"
-          clickable={true}
-          icon={{
-            content:
-              '<img src="/src/assets/current_location_icon.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
-            size: new navermaps.Size(24, 24),
-            origin: new navermaps.Point(0, 0),
-            anchor: new navermaps.Point(12, 12),
-          }}
-        />
-      )}
-      {centers.map((center) => (
-        <Marker
-          key={center.support_center_id}
-          position={new navermaps.LatLng(center.latitude, center.longitude)}
-          title={center.name}
-          clickable={true}
-          icon={{
-            content:
-              '<img src="/src/assets/support_center_icon.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
-            size: new navermaps.Size(24, 24),
-            origin: new navermaps.Point(0, 0),
-            anchor: new navermaps.Point(12, 12),
-          }}
-          onClick={() => {
-            alert(`${center.name}\n${center.address}\n${center.phone}`);
-          }}
-        />
-      ))}
-    </NaverMap>
+    <div>
+      <NaverMap
+        ref={mapRef}
+        center={mapCenter}
+        defaultZoom={15}
+        style={{ width: '100%', height: '100%' }}
+      >
+        {currentPosition && (
+          <Marker
+            position={
+              new navermaps.LatLng(
+                currentPosition.latitude,
+                currentPosition.longitude
+              )
+            }
+            title="현재 위치"
+            clickable={true}
+            icon={{
+              content:
+                '<img src="/src/assets/current_location_icon.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
+              size: new navermaps.Size(24, 24),
+              origin: new navermaps.Point(0, 0),
+              anchor: new navermaps.Point(12, 12),
+            }}
+          />
+        )}
+        {centers.map((center) => (
+          <Marker
+            key={center.support_center_id}
+            position={new navermaps.LatLng(center.latitude, center.longitude)}
+            title={center.name}
+            clickable={true}
+            icon={{
+              content:
+                '<img src="/src/assets/support_center_icon.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
+              size: new navermaps.Size(24, 24),
+              origin: new navermaps.Point(0, 0),
+              anchor: new navermaps.Point(12, 12),
+            }}
+            onClick={() => {
+              alert(`${center.name}\n${center.address}\n${center.phone}`);
+            }}
+          />
+        ))}
+      </NaverMap>
+      <div className="sidePage"></div>
+    </div>
   );
 }
 

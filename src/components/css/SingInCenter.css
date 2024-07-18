@@ -321,3 +321,17 @@
     font-size: 2rem;
   }
 }
+
+.enterpriseMem {
+  display: flex;
+  height: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.enterpriseMem > span {
+  flex: 1;
+  color: var(--gray-2);
+}
+.enterpriseMem > input {
+  flex: 1;
+}
