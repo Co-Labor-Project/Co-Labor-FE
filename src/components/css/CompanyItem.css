@@ -7,6 +7,7 @@
   cursor: pointer;
   transition: all 0.5s;
   border: 0px solid #58c179;
+  max-width: 200px;
 }
 .companyItem:hover {
   border: 3px solid #58c179;
