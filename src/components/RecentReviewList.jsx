@@ -1,73 +1,29 @@
-import React from 'react';
-import RecentReviewItem from './RecentReviewItem';
-import './css/RecentReviewList.css';
+import React from "react";
+import "./css/RecentReviewList.css";
+import RecentReviewItem from "./RecentReviewItem";
+import "./css/common.css";
+import { useContext } from "react";
+import { ReviewContext } from "../App";
 
-const mockData = [
-  {
-    id: 1,
-    company: '기업이름',
-    comment: '어쩌구 저쩌구 여기 개구짐',
-    info: ' 2024 -123-435',
-    rating: 3,
-    link: ' 라우팅 정보',
-    photo:
-      'https://img.freepik.com/premium-vector/free-vector-youtube-icon-logo-social-media-logo_901408-454.jpg',
-  },
-  {
-    id: 2,
-    company: '기업이름2',
-    comment: '어쩌구 저쩌구 여기 좋을지도',
-    info: ' 2024 -123-435',
-    rating: 3,
-    link: ' 라우팅 정보',
-    photo:
-      'https://img.freepik.com/premium-vector/free-vector-youtube-icon-logo-social-media-logo_901408-454.jpg',
-  },
-  {
-    id: 3,
-    company: '기업이름3',
-    comment: '우짤래니 저짤래니',
-    info: ' 2024 -123-435',
-    rating: 3,
-    link: ' 라우팅 정보',
-    photo:
-      'https://img.freepik.com/premium-vector/free-vector-youtube-icon-logo-social-media-logo_901408-454.jpg',
-  },
-  {
-    id: 4,
-    company: '기업이름4',
-    comment: '얼씨구 절씨구',
-    info: ' 2024 -123-435',
-    rating: 3,
-    link: ' 라우팅 정보',
-    photo:
-      'https://img.freepik.com/premium-vector/free-vector-youtube-icon-logo-social-media-logo_901408-454.jpg',
-  },
-  {
-    id: 5,
-    company: '기업이름5',
-    comment: '웅앵웅 잉옹웅',
-    info: ' 2024 -123-435',
-    rating: 3,
-    link: ' 라우팅 정보',
-    photo:
-      'https://img.freepik.com/premium-vector/free-vector-youtube-icon-logo-social-media-logo_901408-454.jpg',
-  },
-];
+const RecentReview = ({ data }) => {
+  const contextData = useContext(ReviewContext);
 
-const RecentReview = () => {
+  const reviewData =
+    Array.isArray(data) && data.length > 0 ? data : contextData;
   return (
-    <div className="recentReview">
-      <div className="title">📝 최근 리뷰</div>
-      <div className="gap"></div>
+    <>
+      <div className="recentReview">
+        <div className="title">📝 최근 리뷰</div>
+        <div className="gap"></div>
 
-      <div className="recentReviewList">
-        {mockData.map((item) => (
-          <RecentReviewItem key={item.id} {...item} />
-        ))}
+        <div className="recentReviewList">
+          {reviewData.map((item) => (
+            <RecentReviewItem key={item.review_id} {...item} />
+          ))}
+        </div>
+        <div className="gap"></div>
       </div>
-      <div className="gap"></div>
-    </div>
+    </>
   );
 };
 
