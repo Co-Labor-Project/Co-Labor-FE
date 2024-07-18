@@ -20,10 +20,20 @@
 }
 .introduce2 {
   flex: 1;
-  background-color: blue;
+  /* background-color: blue; */
   margin-left: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.banner {
+  background-image: url(../../assets/banner.jpg);
+  width: 600px;
+  height: 342px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+}
 .introduce2 > .legalAdvice_introduce {
   width: 400px;
   height: 200px;
