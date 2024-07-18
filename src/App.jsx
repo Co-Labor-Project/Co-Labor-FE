@@ -1,17 +1,20 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { useEffect, useState, createContext } from "react";
-import { NavermapsProvider } from "react-naver-maps";
-import CompanyInfo from "./pages/CompanyInfo";
-import Home from "./pages/Home";
-import Notfound from "./pages/Notfound";
-import JobNotice from "./pages/JobNotice";
-import IegalAdvice from "./pages/IegalAdvice";
-import Support from "./pages/Support";
-import Search from "./pages/Search";
-import Companydetails from "./pages/CompanyDetails";
-import JobNoticeDetails from "./pages/JobNoticeDetails";
-import SingIn from "./pages/SingIn";
-import EnterpriseApply from "./pages/EnterpriseApply";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import React, { useEffect, useState, createContext } from 'react';
+
+import { NavermapsProvider } from 'react-naver-maps';
+
+import CompanyInfo from './pages/CompanyInfo';
+import Home from './pages/Home';
+import Notfound from './pages/Notfound';
+import JobNotice from './pages/JobNotice';
+import IegalAdvice from './pages/IegalAdvice';
+import Support from './pages/Support';
+import Search from './pages/Search';
+import Companydetails from './pages/CompanyDetails';
+import JobNoticeDetails from './pages/JobNoticeDetails';
+import SingIn from './pages/SingIn';
+import EnterpriseApply from './pages/EnterpriseApply';
 export const JobContext = createContext();
 export const CompanyContext = createContext();
 export const LoginContext = createContext();
@@ -25,24 +28,24 @@ function App() {
     userEnterprise: false,
   });
   useEffect(() => {
-    fetch("http://localhost:8080/api/jobs")
+    fetch('http://localhost:8080/api/jobs')
       .then((response) => response.json())
       .then((data) => setJobs(data))
-      .catch((error) => console.error("Error fetching jobs:", error));
+      .catch((error) => console.error('Error fetching jobs:', error));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/enterprises")
+    fetch('http://localhost:8080/api/enterprises')
       .then((response) => response.json())
       .then((data) => setCompanies(data))
-      .catch((error) => console.error("Error fetching companies:", error));
+      .catch((error) => console.error('Error fetching companies:', error));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/reviews")
+    fetch('http://localhost:8080/api/reviews')
       .then((response) => response.json())
       .then((data) => setReviews(data))
-      .catch((error) => console.error("Error fetching reviews:", error));
+      .catch((error) => console.error('Error fetching reviews:', error));
   }, []);
 
   return (
@@ -59,6 +62,7 @@ function App() {
                   <Route path="/IegalAdvice" element={<IegalAdvice />} />
                   <Route path="/Support" element={<Support />} />
                   <Route path="/SingIn" element={<SingIn />} />
+
                   <Route path="/Search/:keyword" element={<Search />} />
                   <Route path="/AiSearch/:keyword" element={<Search />} />
                   <Route

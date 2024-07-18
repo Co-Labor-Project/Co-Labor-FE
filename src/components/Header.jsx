@@ -19,6 +19,7 @@ const Header = () => {
       nav(`/search/${searchKeyword}`);
       setSearchKeyword('');
     }
+    console.log(loginState);
   };
   const keyHandler = (e) => {
     if (e.keyCode === 13) {
@@ -56,7 +57,7 @@ const Header = () => {
           기업 등록
         </div>
       </div>
-      {!loginState && (
+      {!loginState.userLogin && (
         <div onClick={() => nav('/SingIn')}>로그인 / 회원가입</div>
       )}
     </div>
