@@ -5,15 +5,16 @@ import React, {
   useEffect,
   useCallback,
 } from 'react';
-import CompanyItem from './CompanyItem';
-import { useNavigate } from 'react-router-dom';
-import './css/CompanyList.css';
-import FilterBox from './FilterBox';
-import { Location, JOB } from './FilterOption';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import SearchIcon from '@mui/icons-material/Search';
-import { CompanyContext } from '../App';
+import CompanyItem from "./CompanyItem";
+import { useNavigate } from "react-router-dom";
+import "./css/CompanyList.css";
+import FilterBox from "./FilterBox";
+import { Location, JOB } from "./FilterOption";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from "@mui/icons-material/Search";
+import { CompanyContext } from "../App";
+
 
 const CompanyList = ({ data }) => {
   const contextData = useContext(CompanyContext);
