@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './css/IegalAdviceCenter.css';
+import React, { useState, useEffect } from "react";
+import "./css/IegalAdviceCenter.css";
 
 const IegalAdviceCenter = () => {
   const [messages, setMessages] = useState([]);
@@ -19,7 +19,7 @@ const IegalAdviceCenter = () => {
   return (
     <div className="app">
       <div className="chat-box">
-        <h1>CoLaw</h1>
+        <h1 className="chatTitle">CoLaw</h1>
         <MessageList messages={messages} />
         <MessageForm onSendMessage={handleSendMessage} />
       </div>
@@ -39,9 +39,9 @@ const MessageList = ({ messages }) => (
 // 메시지 컴포넌트
 const Message = ({ text, isUser }) => {
   return (
-    <div className={isUser ? 'user-message' : 'ai-message'}>
+    <div className={isUser ? "user-message" : "ai-message"}>
       <p>
-        <b>{isUser ? '' : 'Co Labor :'}</b> {text}
+        <b>{isUser ? "" : "Co Labor :"}</b> {text}
       </p>
     </div>
   );
@@ -49,12 +49,12 @@ const Message = ({ text, isUser }) => {
 
 // 메시지 전송 폼 컴포넌트
 const MessageForm = ({ onSendMessage }) => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     onSendMessage(message);
-    setMessage('');
+    setMessage("");
   };
 
   return (
