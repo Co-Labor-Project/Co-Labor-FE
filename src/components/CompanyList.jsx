@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import CompanyItem from "./CompanyItem";
 import { useNavigate } from "react-router-dom";
 import "./css/CompanyList.css";
