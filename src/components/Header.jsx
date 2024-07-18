@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import './css/Header.css';
 import searchIcon from '../assets/search_icon.png';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EnterpriseApply from '../pages/EnterpriseApply';
+import { LoginContext } from '../App';
+
 const Header = () => {
   const nav = useNavigate();
+  const { loginState, setLoginState } = useContext(LoginContext);
   const [searchKeyword, setSearchKeyword] = useState('');
   const changeInput = (e) => {
     setSearchKeyword(e.target.value);
@@ -54,8 +56,9 @@ const Header = () => {
           기업 등록
         </div>
       </div>
-
-      <div onClick={() => nav('/SingIn')}>로그인 / 회원가입</div>
+      {!loginState && (
+        <div onClick={() => nav('/SingIn')}>로그인 / 회원가입</div>
+      )}
     </div>
   );
 };

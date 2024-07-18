@@ -6,6 +6,7 @@
   transition: all 0.1s;
   border: 0px solid #58c179;
   cursor: pointer;
+  max-width: 280px;
 }
 .JobNotieItem:hover {
   border: 3px solid #58c179;
