@@ -18,7 +18,7 @@ const RecentReview = ({ data }) => {
 
         <div className="recentReviewList">
           {reviewData.map((item) => (
-            <RecentReviewItem key={item.id} {...item} />
+            <RecentReviewItem key={item.review_id} {...item} />
           ))}
         </div>
         <div className="gap"></div>

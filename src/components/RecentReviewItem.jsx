@@ -11,6 +11,7 @@ const RecentReviewItem = ({
   cons,
   created_at,
   enterprise,
+  review_id,
 }) => {
   const fadeInProps = useScrollFadeIn("up", 1);
   const nav = useNavigate();
@@ -39,6 +40,7 @@ const RecentReviewItem = ({
             <div>{cons}</div>
             <div>{created_at}</div>
             <div>{rating}</div>
+            <div>{review_id}</div>
           </div>
           <div className="moreBtn" onClick={clickHandler}>
             {" "}
