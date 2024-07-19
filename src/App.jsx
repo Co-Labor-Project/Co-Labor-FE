@@ -1,6 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import React, { useEffect, useState, createContext } from "react";
+
 import { NavermapsProvider } from "react-naver-maps";
+
 import CompanyInfo from "./pages/CompanyInfo";
 import Home from "./pages/Home";
 import Notfound from "./pages/Notfound";
@@ -12,10 +15,12 @@ import Companydetails from "./pages/CompanyDetails";
 import JobNoticeDetails from "./pages/JobNoticeDetails";
 import SingIn from "./pages/SingIn";
 import EnterpriseApply from "./pages/EnterpriseApply";
+
 export const JobContext = createContext();
 export const CompanyContext = createContext();
 export const LoginContext = createContext();
 export const ReviewContext = createContext();
+
 function App() {
   const [jobs, setJobs] = useState([]);
   const [companies, setCompanies] = useState([]);
@@ -24,6 +29,7 @@ function App() {
     userLogin: false,
     userEnterprise: false,
   });
+
   useEffect(() => {
     fetch("http://localhost:8080/api/jobs")
       .then((response) => response.json())
@@ -45,6 +51,16 @@ function App() {
       .catch((error) => console.error("Error fetching reviews:", error));
   }, []);
 
+  useEffect(() => {
+    const savedUsername = sessionStorage.getItem("username");
+    if (savedUsername) {
+      setLoginState((prevState) => ({
+        ...prevState,
+        userLogin: true,
+      }));
+    }
+  }, []);
+
   return (
     <NavermapsProvider ncpClientId="du60d8o1se">
       <LoginContext.Provider value={{ loginState, setLoginState }}>
@@ -59,6 +75,7 @@ function App() {
                   <Route path="/IegalAdvice" element={<IegalAdvice />} />
                   <Route path="/Support" element={<Support />} />
                   <Route path="/SingIn" element={<SingIn />} />
+
                   <Route path="/Search/:keyword" element={<Search />} />
                   <Route path="/AiSearch/:keyword" element={<Search />} />
                   <Route
