@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./css/IegalAdviceCenter.css";
 import { useNavigate } from "react-router-dom";
 
+
 const IegalAdviceCenter = () => {
   const [messages, setMessages] = useState([]);
   const [username, setUsername] = useState("");
@@ -91,7 +92,8 @@ const IegalAdviceCenter = () => {
   return (
     <div className="app">
       <div className="chat-box">
-        <h1>CoLaw</h1>
+
+        <h1 className="chatTitle">CoLaw</h1>
         <MessageList messages={messages} loading={loading} />
         <MessageForm onSendMessage={handleSendMessage} />
       </div>

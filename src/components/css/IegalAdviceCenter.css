@@ -76,7 +76,7 @@
   cursor: pointer;
 }
 
-h1 {
+.chatTitle {
   text-align: center;
   /* background-color: #f5f5f5; */
   background-color: var(--primary-color);

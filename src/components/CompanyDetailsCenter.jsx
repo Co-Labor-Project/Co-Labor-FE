@@ -1,79 +1,159 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
-import useScrollFadeIn from "../hooks/fade_in";
-import { CompanyContext, ReviewContext } from "../App";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { CompanyContext, JobContext, ReviewContext } from "../App";
 import "./css/CompanyDetailsCenter.css";
-import "./css/RecentReviewList.css";
-import "./css/RecentReviewItem.css";
 
 const CompanyDetailsCenter = () => {
   const params = useParams();
-  const contextData = useContext(CompanyContext);
-  const fadeInProps = useScrollFadeIn("up", 1);
+  const companyContext = useContext(CompanyContext);
+  const reviewContext = useContext(ReviewContext);
+  const jobContext = useContext(JobContext);
 
-  const companyData = contextData.find(
-    (item) => String(item.enterprise_id) === String(params.enterprise_id)
+  const companyData = companyContext.find(
+    (company) => String(company.enterprise_id) === String(params.enterprise_id)
   );
 
-  const reviewData = useContext(ReviewContext).filter(
+  const reviewData = reviewContext.filter(
     (review) =>
       String(review.enterprise.enterprise_id) === String(params.enterprise_id)
   );
 
+  const jobData = jobContext.filter(
+    (job) =>
+      String(job.enterprise.enterprise_id) === String(params.enterprise_id)
+  );
+
   if (!companyData) {
-    return <div>잘못된 페이지 접근입니다.</div>;
+    return <div>Loading</div>;
   }
 
-  const defaultPhoto =
+  const defaultCompanyPhoto =
     "https://cdn-icons-png.flaticon.com/512/4091/4091968.png";
-  const displayedPhoto = companyData.photo || defaultPhoto;
+  const displayCompanyPhoto = companyData.photo || defaultCompanyPhoto;
 
-  const defaultType = "기업 분류를 작성해주세요!";
-  const displayType = companyData.type || defaultType;
+  const defaultCompanyType = "기업 분류를 작성해주세요!";
+  const displayCompanyType = companyData.type || defaultCompanyType;
 
-  const defaultDescription = "기업 설명을 작성해주세요!";
-  const displayDescription = companyData.description || defaultDescription;
+  const defaultCompanyDescription = "기업 설명을 작성해주세요!";
+  const displayCompanyDescription =
+    companyData.description || defaultCompanyDescription;
+
+  const defaultJobPhoto =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
+  const displayJobPhoto = (job) => job.photo || defaultJobPhoto;
 
   return (
-    <div>
-      <h1>기업 상세 정보 페이지</h1>
-      <div>
-        주소: {companyData.address1} {companyData.address2}{" "}
-        {companyData.address3}
+    <div className="CompanyDetail">
+      <br />
+      <br />
+      <div className="CompanyDetailsCenterCompany">
+        <h1 className="title">{companyData.name} 기본 정보</h1>
+        <div className="gap"></div>
+        <div className="CompanyDetailsCenterCompanyBasicInfo">
+          <div className="CompanyDetailsCenterCompanyImgContainer">
+            <img
+              className="CompanyDetailsCenterCompanyImg"
+              src={displayCompanyPhoto}
+              alt={companyData.name}
+            />
+          </div>
+          <div className="CompanyDetailsCenterCompanyTextContainer">
+            <div className="CompanyDetailsCenterCompanyText">
+              <div className="CompanyDetailsCenterCompanyAddress">
+                주소: {companyData.address1} {companyData.address2}{" "}
+                {companyData.address3}
+              </div>
+              <div className="CompanyDetailsCenterCompanyPh">
+                전화번호: {companyData.phone_number}
+              </div>
+              <div className="CompanyDetailsCenterCompanyType">
+                기업 분류: {displayCompanyType}
+              </div>
+              <div className="CompanyDetailsCenterCompanyDes">
+                기업 설명: {displayCompanyDescription}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>이름: {companyData.name}</div>
-      <div>
-        <img src={displayedPhoto} width="100px" alt={name} />
+
+      <div className="gap"></div>
+      <div className="gap2"></div>
+
+      <div className="CompanyDetailsCenterJob">
+        <h1 className="title">{companyData.name} 채용 공고</h1>
+        <div className="gap2"></div>
+        <div className="CompanyDetailsCenterJobList">
+          {jobData.length > 0 ? (
+            <Swiper
+              modules={[Navigation, Pagination]}
+              spaceBetween={-110}
+              slidesPerView={3}
+              navigation
+              pagination={{ clickable: true }}
+            >
+              {jobData.map((job) => (
+                <SwiperSlide key={job.job_id}>
+                  <div className="CompanyDetailsCenterJobItem">
+                    <div className="CompanyDetailsCenteritemWrapper">
+                      <div className="CompanyDetailsCenterjobNoticeInfo">
+                        <div className="CompanyDetailsCenterjobNotice_infoTitle">
+                          {job.title}
+                        </div>
+                        <img
+                          className="CompanyDetailsCenterjobNoticeImg"
+                          src={displayJobPhoto(job)}
+                          width="100px"
+                          alt={job.title}
+                        />
+                        <div className="CompanyDetailsCenterjobNotice_infoCondi">
+                          {job.requirement}
+                        </div>
+                        <div className="CompanyDetailsCenterjobNotice_infoDescription">
+                          {job.description}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <div className="CompanyDetailsCenterjobNotice_infoTitle">
+              등록된 채용 공고가 없습니다.
+            </div>
+          )}
+        </div>
       </div>
-      <div>기업 분류: {displayType}</div>
-      <div>기업 설명: {displayDescription}</div>
-      <div>전화번호: {companyData.phone_number}</div>
-      <br />
-      <br />
-      <br />
 
-      {/* 리뷰 데이터 평점 평균 및 시각화 그래프 */}
+      <div className="gap"></div>
+      <div className="gap2"></div>
 
-      <div className="recentReview">
-        <h1 className="title">{companyData.name} 리뷰 보기</h1>
-        <div className="recentReviewList">
+      <div className="CompanyDetailsCenterReview">
+        <h1 className="title">{companyData.name} 리뷰</h1>
+        <div className="gap"></div>
+        <div className="CompanyDetailsCenterReviewList">
           {reviewData.length > 0 ? (
             reviewData.map((review) => (
-              <div key={review.review_id} className="recentReviewItem">
-                <div {...fadeInProps}>
-                  <div className="itemWrapper">
+              <div key={review.review_id}>
+                <div className="CompanyDetailsCenterReviewItem">
+                  <div className="CompanyDetailsCenteritemWrapper">
                     <h2>{review.title}</h2>
-                    <p>{review.pros}</p>
-                    <p>{review.cons}</p>
-                    <p>평점: {review.rating}</p>
-                    <p>작성일: {review.created_at}</p>
+                    <div>{review.pros}</div>
+                    <div>{review.cons}</div>
+                    <div>평점: {review.rating}</div>
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <p>리뷰가 없습니다.</p>
+            <div>리뷰가 없습니다.</div>
           )}
         </div>
       </div>
