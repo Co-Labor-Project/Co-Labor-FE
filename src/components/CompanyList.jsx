@@ -273,7 +273,11 @@ const CompanyList = ({ data }) => {
           </div>
         )}
       </div>
-      {!viewAll && <button onClick={moreButton}>더보기</button>}
+      {!viewAll && (
+        <button onClick={moreButton} className="w-btn w-btn-indigo">
+          더보기
+        </button>
+      )}
     </div>
   );
 };
