@@ -1,23 +1,23 @@
-import React, { useState, useContext } from "react";
-import "./css/Header.css";
-import searchIcon from "../assets/search_icon.png";
-import { useNavigate } from "react-router-dom";
-import EnterpriseApply from "../pages/EnterpriseApply";
-import { LoginContext } from "../App";
+import React, { useState, useContext } from 'react';
+import './css/Header.css';
+import searchIcon from '../assets/search_icon.png';
+import { useNavigate } from 'react-router-dom';
+import EnterpriseApply from '../pages/EnterpriseApply';
+import { LoginContext } from '../App';
 
 const Header = () => {
   const nav = useNavigate();
   const { loginState, setLoginState } = useContext(LoginContext);
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState('');
   const changeInput = (e) => {
     setSearchKeyword(e.target.value);
   };
   const searchHandler = () => {
-    if (searchKeyword === "") {
-      alert("❌ 검색어를 입력해 주세요!");
+    if (searchKeyword === '') {
+      alert('❌ 검색어를 입력해 주세요!');
     } else {
       nav(`/search/${searchKeyword}`);
-      setSearchKeyword("");
+      setSearchKeyword('');
     }
     console.log(loginState);
   };
@@ -28,11 +28,11 @@ const Header = () => {
   };
   return (
     <div className="Header">
-      <div className="logo" onClick={() => nav("/")}></div>
-      <div onClick={() => nav("/CompanyInfo")}>기업 정보</div>
-      <div onClick={() => nav("/JobNotice")}>채용 공고</div>
-      <div onClick={() => nav("/IegalAdvice")}>법률 상담</div>
-      <div onClick={() => nav("/Support")}>노동자 지원센터</div>
+      <div className="logo" onClick={() => nav('/')}></div>
+      <div onClick={() => nav('/CompanyInfo')}>기업 정보</div>
+      <div onClick={() => nav('/JobNotice')}>채용 공고</div>
+      <div onClick={() => nav('/IegalAdvice')}>법률 상담</div>
+      <div onClick={() => nav('/Support')}>노동자 지원센터</div>
       <div className="searchBox">
         <input
           type="text"
@@ -49,13 +49,21 @@ const Header = () => {
       </div>
       <div className="right-child">
         <div
-          className="enterpriseApply"
+          className="jobNoticeApply"
           onClick={() => {
-            nav("/EnterpriseApply");
+            nav('/JobNoticeApply');
           }}
         >
-          기업 등록
+          채용공고 등록
         </div>
+      </div>
+      <div
+        className="enterpriseApply"
+        onClick={() => {
+          nav('/EnterpriseApply');
+        }}
+      >
+        기업 등록
       </div>
       {!loginState.userLogin && (
         <div onClick={() => nav('/SingIn')}>로그인 / 회원가입</div>

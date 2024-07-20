@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 .title {
   position: absolute;
   left: calc(50% - 550px);
@@ -11,11 +12,12 @@
 .gap {
   height: 80px;
 }
-/* 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap'); */
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;

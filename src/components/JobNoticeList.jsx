@@ -32,6 +32,11 @@ const JobNoticeList = ({
           ))}
         </div>
       )}
+      {searchNull.jobs && (
+        <div className="isNullJobNotice">
+          <h3>등록된 채용공고가 없습니다!</h3>
+        </div>
+      )}
     </>
   );
 };

@@ -15,6 +15,7 @@ import Companydetails from './pages/CompanyDetails';
 import JobNoticeDetails from './pages/JobNoticeDetails';
 import SingIn from './pages/SingIn';
 import EnterpriseApply from './pages/EnterpriseApply';
+import JobNoticeApply from './pages/JobNoticeApply';
 export const JobContext = createContext();
 export const CompanyContext = createContext();
 export const LoginContext = createContext();
@@ -86,6 +87,7 @@ function App() {
                     path="/EnterpriseApply"
                     element={<EnterpriseApply />}
                   />
+                  <Route path="/JobNoticeApply" element={<JobNoticeApply />} />
                   <Route path="*" element={<Notfound />} />
                 </Routes>
               </BrowserRouter>
