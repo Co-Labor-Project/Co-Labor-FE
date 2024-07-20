@@ -29,6 +29,7 @@ const SearchOutput = ({ input }) => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json; charset=utf-8',
+            credentials: 'include',
           },
         });
         if (!response.ok) {
@@ -44,6 +45,7 @@ const SearchOutput = ({ input }) => {
         setEnterprises(data.enterprises || []);
         setJobs(data.jobs || []);
         setReviews(data.reviews || []);
+
         console.log(data.enterprises);
         setLoading(false);
       } catch (error) {
