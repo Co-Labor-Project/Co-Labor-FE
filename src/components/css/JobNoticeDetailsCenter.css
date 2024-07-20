@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  font-size: 17px;
 }
 
 .JobDetailsBasicInfo {
@@ -11,8 +12,8 @@
   margin-top: 20px;
   margin: 0 auto;
   justify-content: start;
-  gap: 150px;
-  padding-left: 50px;
+  gap: 170px;
+  padding-left: 70px;
 }
 
 .JobNDetailsCondi {
@@ -20,9 +21,15 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   transition: all 0.1s;
-  max-width: 500px;
+  max-width: 550px;
   flex: 2;
   line-height: 35px;
+}
+.JobDetailKey {
+  display: flex;
+}
+section {
+  width: 90px;
 }
 .JobDetailImg {
   flex: 1;

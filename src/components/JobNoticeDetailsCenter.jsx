@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { JobContext } from "../App";
 import "./css/JobNoticeDetailsCenter.css";
+import "./css/common.css";
 
 const JobNoticeDetailsCenter = () => {
   const params = useParams();
@@ -38,19 +39,34 @@ const JobNoticeDetailsCenter = () => {
           alt={jobData.title}
         />
         <div className="JobNDetailsCondi">
-          <div>마감 기한: {jobData.deadDate}</div>
-          <div>조건: {jobData.requirement}</div>
-          <div>연락처: {jobData.enterpriseUser.email}</div>
-          {/* <div> 직무 : {jobData.jobRole}</div>
-          <div> 경력 : {jobData.experience}</div>
-          <div> 고용형태 : {jobData.employmentType}</div>
-          <div> 근무지역 : {jobData.location}</div>
-          <div> 스킬 : {jobData.skills}</div> */}
-          <div> 직무 : </div>
-          <div> 경력 : </div>
-          <div> 고용형태 : </div>
-          <div> 근무지역 : </div>
-          <div> 스킬 : </div>
+          <div className="JobDetailKey">
+            <section>마감 기한:</section> {jobData.deadDate}
+          </div>
+          <div className="JobDetailKey">
+            <section>조건: </section>
+            {jobData.requirement}
+          </div>
+          <div className="JobDetailKey">
+            <section>연락처:</section> {jobData.enterpriseUser.email}
+          </div>
+          <div className="JobDetailKey">
+            <section>직무 :</section> {jobData.jobRole}
+          </div>
+          <div className="JobDetailKey">
+            <section>경력 : </section>
+            {jobData.experience}
+          </div>
+          <div className="JobDetailKey">
+            <section>고용형태 :</section> {jobData.employmentType}
+          </div>
+          <div className="JobDetailKey">
+            <section>근무지역 : </section>
+            {jobData.location}
+          </div>
+          <div className="JobDetailKey">
+            <section>스킬 : </section>
+            {jobData.skills}
+          </div>
         </div>
       </div>
       <hr />
