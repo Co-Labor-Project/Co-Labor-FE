@@ -1,16 +1,16 @@
-import React from 'react';
-import './css/SearchOutput.css';
-import { useEffect, useState, useRef } from 'react';
-import JobNoticeList from './JobNoticeList';
-import CompanyList from './CompanyList';
+import React from "react";
+import "./css/SearchOutput.css";
+import { useEffect, useState, useRef } from "react";
+import JobNoticeList from "./JobNoticeList";
+import CompanyList from "./CompanyList";
 const SearchOutput = ({ input }) => {
   const [enterprises, setEnterprises] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const url = window.location.href;
-  let desURL = '';
-  if (url.indexOf('AiSearch') === -1) {
+  let desURL = "";
+  if (url.indexOf("AiSearch") === -1) {
     desURL = `http://localhost:8080/search?keyword=${input}`;
   } else {
     desURL = `http://localhost:8080/ai-search?sentence=${input}`;
@@ -19,13 +19,14 @@ const SearchOutput = ({ input }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(desURL, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json; charset=utf-8',
+            "Content-Type": "application/json; charset=utf-8",
+            credentials: "include",
           },
         });
         if (!response.ok) {
-          throw new Error('데이터 불러오기 실패');
+          throw new Error("데이터 불러오기 실패");
         }
 
         console.log(response);
@@ -37,11 +38,11 @@ const SearchOutput = ({ input }) => {
         setJobs(data.jobs || []);
         setReviews(data.reviews || []);
         // console.log(data.enterprises);
-        console.log('data.job:', data.jobs);
+        console.log("data.job:", data.jobs);
         // console.log(data.reviews);
         setLoading(false);
       } catch (error) {
-        console.error('Fetch error:', error);
+        console.error("Fetch error:", error);
       }
     };
     fetchData();

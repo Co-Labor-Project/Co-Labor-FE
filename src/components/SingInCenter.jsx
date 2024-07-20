@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import "./css/SingInCenter.css";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../App";
+import axios from "axios";
 
 const SingInCenter = () => {
   const { loginState, setLoginState } = useContext(LoginContext);
@@ -20,17 +21,17 @@ const SingInCenter = () => {
 
   useEffect(() => {
     console.log("Login state changed:", loginState);
-    if (loginState.userLogin) {
+    if (loginState.userLogin || loginState.userEnterprise) {
       nav("/");
     }
   }, [loginState, nav]);
 
-  useEffect(() => {
-    const savedUsername = sessionStorage.getItem("username");
-    if (savedUsername) {
-      setLoginState({ userLogin: true });
-    }
-  }, [setLoginState]);
+  // useEffect(() => {
+  //   const savedUsername = sessionStorage.getItem("username");
+  //   if (savedUsername) {
+  //     setLoginState({ userLogin: true });
+  //   }
+  // }, [setLoginState]);
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
@@ -50,24 +51,24 @@ const SingInCenter = () => {
 
   const onLogin = () => {
     console.log(Loginusername, Loginpassword);
-    fetch(
-      `http://localhost:8080/auth/login?username=${Loginusername}&password=${Loginpassword}`,
-      {
-        method: "POST",
-        credentials: "include", // 세션 쿠키 포함
-      }
-    )
-      .then((response) => response.json())
-      .then((result) => {
+    axios
+      .post(
+        `http://localhost:8080/auth/login?username=${Loginusername}&password=${Loginpassword}`,
+        {},
+        { withCredentials: true }
+      )
+      .then((response) => {
+        const result = response.data;
         console.log("로그인결과: ", result);
-        console.log("result.message:", result.message);
         if (result.message === "Login successful") {
           sessionStorage.setItem("username", Loginusername);
-          setLoginState((prevState) => ({
-            ...prevState,
-            userLogin: true,
-          }));
           alert("로그인 성공!");
+          console.log(document.cookie);
+          if (result.userType === "enterprise") {
+            setLoginState({ userEnterprise: true, userLogin: false });
+          } else {
+            setLoginState({ userLogin: true, userEnterprise: false });
+          }
         } else {
           throw new Error("로그인 실패");
         }
@@ -98,6 +99,7 @@ const SingInCenter = () => {
         "Content-Type": "application/json",
       },
       body: json,
+      credentials: "include",
     })
       .then((response) => response.json())
       .then((result) => {
