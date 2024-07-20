@@ -258,7 +258,9 @@ const CompanyDetailsCenter = () => {
               </div>
             ))
           ) : (
-            <div>리뷰가 없습니다.</div>
+            <div className="CompanyDetailsCenterjobNotice_infoTitle">
+              등록된 리뷰가 없습니다.
+            </div>
           )}
         </div>
       </div>

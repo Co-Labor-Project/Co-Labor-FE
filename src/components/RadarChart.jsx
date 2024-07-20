@@ -39,7 +39,7 @@ const RadarChart = ({ data }) => {
           data.averageCulture,
           data.averageManagement,
         ],
-        backgroundColor: "rgba(139, 204, 159, 0.2)", // 배경색 변경
+        backgroundColor: "rgba(139, 204, 159, 0.7)", // 배경색 변경
         borderColor: "rgba(139, 204, 159, 1)", // 테두리 색상 변경
         borderWidth: 1,
       },
