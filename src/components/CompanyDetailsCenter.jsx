@@ -132,9 +132,6 @@ const CompanyDetailsCenter = () => {
         </div>
       </div>
 
-      <div className="gap"></div>
-      <div className="gap2"></div>
-
       <div className="CompanyDetailsCenterReview">
         <h1 className="title">{companyData.name} 리뷰</h1>
         <div className="gap"></div>
@@ -142,12 +139,24 @@ const CompanyDetailsCenter = () => {
           {reviewData.length > 0 ? (
             reviewData.map((review) => (
               <div key={review.review_id}>
-                <div className="CompanyDetailsCenterReviewItem">
-                  <div className="CompanyDetailsCenteritemWrapper">
-                    <h2>{review.title}</h2>
+                <div className="CompanyDetailsCenterReviewitemWrapper">
+                  <h5>{review.title}</h5>
+                  <div className="CompanyDetailsCenterReviewInfo">
+                    <div>평점 : {review.rating}</div>
+                    <div>승진 기회 및 개인 성장 가능성</div>
+                    <div>{review.promotion_rating}</div>
+                    <div>복지 및 급여</div>
+                    <div>{review.salary_rating}</div>
+                    <div>업무와 삶의 균형</div>
+                    <div>{review.balance_rating}</div>
+                    <div>사내 문화 평가 점수</div>
+                    <div>{review.culture_rating}</div>
+                    <div>경영진 관련 평가 점수</div>
+                    <div>{review.management_rating}</div>
+                    <div>장점</div>
                     <div>{review.pros}</div>
+                    <div>단점</div>
                     <div>{review.cons}</div>
-                    <div>평점: {review.rating}</div>
                   </div>
                 </div>
               </div>

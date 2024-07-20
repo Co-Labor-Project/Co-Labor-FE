@@ -45,7 +45,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/reviews")
+    fetch("http://localhost:8080/api/reviews/all")
       .then((response) => response.json())
       .then((data) => setReviews(data))
       .catch((error) => console.error("Error fetching reviews:", error));

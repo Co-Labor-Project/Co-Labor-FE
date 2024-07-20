@@ -98,6 +98,45 @@
   margin-bottom: 6px;
 }
 
+.CompanyDetailsCenterReviewList {
+  padding: 20px 0px;
+  width: 1200px;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  margin: 0 auto;
+  margin-left: 363px;
+}
+
+.CompanyDetailsCenterReview {
+  margin-top: 120px;
+}
+
+.CompanyDetailsCenterReviewitemWrapper {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  margin-left: 60px;
+
+  width: 500px;
+}
+
+.CompanyDetailsCenterReviewitemWrapper h5 {
+  margin-bottom: 10px;
+  font-size: 1.25em;
+  color: #333;
+}
+
+.CompanyDetailsCenterReviewInfo {
+  margin-top: 10px;
+  font-size: 1em;
+  color: #333;
+  line-height: 35px;
+}
+
 .gap2 {
   height: 40px;
 }
