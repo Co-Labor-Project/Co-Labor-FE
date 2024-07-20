@@ -1,3 +1,4 @@
+
 // import React from 'react';
 // import './css/SearchOutput.css';
 // import { useEffect, useState, useRef } from 'react';
@@ -127,8 +128,8 @@ const SearchOutput = ({ input }) => {
   });
   const [isAI, setIsAi] = useState(true);
   const url = window.location.href;
-  let desURL = '';
-  if (url.indexOf('AiSearch') === -1) {
+  let desURL = "";
+  if (url.indexOf("AiSearch") === -1) {
     desURL = `http://localhost:8080/search?keyword=${input}`;
   } else {
     desURL = `http://localhost:8080/ai-search?sentence=${input}`;
@@ -138,13 +139,14 @@ const SearchOutput = ({ input }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(desURL, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json; charset=utf-8',
+            "Content-Type": "application/json; charset=utf-8",
+            credentials: "include",
           },
         });
         if (!response.ok) {
-          throw new Error('데이터 불러오기 실패');
+          throw new Error("데이터 불러오기 실패");
         }
         if (desURL.indexOf('AiSearch') === -1) {
           setIsAi(false);
@@ -156,6 +158,7 @@ const SearchOutput = ({ input }) => {
         setEnterprises(data.enterprises || []);
         setJobs(data.jobs || []);
         setReviews(data.reviews || []);
+
         console.log(data.enterprises);
         setLoading(false);
       } catch (error) {

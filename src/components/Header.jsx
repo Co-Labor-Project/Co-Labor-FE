@@ -48,17 +48,19 @@ const Header = () => {
         />
       </div>
       <div className="right-child">
-        <div
-          className="enterpriseApply"
-          onClick={() => {
-            nav("/EnterpriseApply");
-          }}
-        >
-          기업 등록
-        </div>
+        {loginState.userEnterprise && (
+          <div
+            className="enterpriseApply"
+            onClick={() => {
+              nav("/EnterpriseApply");
+            }}
+          >
+            기업 등록
+          </div>
+        )}
       </div>
-      {!loginState.userLogin && (
-        <div onClick={() => nav('/SingIn')}>로그인 / 회원가입</div>
+      {!loginState.userLogin && !loginState.userEnterprise && (
+        <div onClick={() => nav("/SingIn")}>로그인 / 회원가입</div>
       )}
     </div>
   );
