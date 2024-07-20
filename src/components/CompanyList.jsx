@@ -1,12 +1,6 @@
-// import React, {
-//   useContext,
-//   useState,
-//   useRef,
-//   useEffect,
-//   useCallback,
-// } from 'react';
+// import React, { useContext, useState, useRef, useEffect } from 'react';
 // import CompanyItem from './CompanyItem';
-// import { useNavigate } from 'react-router-dom';
+// import { useNavigate, useParams } from 'react-router-dom';
 // import './css/CompanyList.css';
 // import FilterBox from './FilterBox';
 // import { Location, JOB } from './FilterOption';
@@ -14,8 +8,9 @@
 // import InputAdornment from '@mui/material/InputAdornment';
 // import SearchIcon from '@mui/icons-material/Search';
 // import { CompanyContext } from '../App';
+// import useEmpty from '../hooks/useEmpty';
 
-// const CompanyList = ({ data }) => {
+// const CompanyList = ({ data, searchNull }) => {
 //   const contextData = useContext(CompanyContext);
 //   const companyData =
 //     Array.isArray(data) && data.length > 0 ? data : contextData;
@@ -24,15 +19,12 @@
 //   const [visibleItems, setVisibleItems] = useState(12);
 //   const listRef = useRef();
 //   const [viewAll, setViewAll] = useState(false);
-//   const [viewAllFlag, setViewAllFlag] = useState(false);
 //   const changeInput = (e) => {
 //     setSearchKeyword(e.target.value);
-//     console.log(viewAll);
-//     console.log(itemsToShow);
 //   };
-//   const arr1 = companyData.slice(12);
-//   const itemsToShow = viewAll ? companyData : arr1;
+//   const arr1 = companyData.length < 12 ? companyData : companyData.slice(12);
 
+//   const itemsToShow = viewAll ? companyData : arr1;
 //   const searchHandler = () => {
 //     if (searchKeyword === '') {
 //       alert('❌ 검색어를 입력해 주세요!');
@@ -69,11 +61,6 @@
 //   useEffect(() => {
 //     const currentElement = target;
 //     const currentObserver = observer.current;
-//     console.log(currentElement);
-
-//     if (currentElement) {
-//       currentObserver.observe(currentElement);
-//     }
 
 //     return () => {
 //       if (currentElement) {
@@ -90,11 +77,7 @@
 
 //   const moreButton = () => {
 //     setViewAll(true);
-
-//     console.log(true);
 //     loadMoreItems();
-//     console.log('이게 씨발?', viewAll);
-//     setViewAllFlag(true);
 //   };
 
 //   return (
@@ -133,14 +116,17 @@
 //         {itemsToShow.slice(0, visibleItems).map((item) => (
 //           <CompanyItem key={item.enterprise_id} {...item} />
 //         ))}
-//         {visibleItems < companyData.length && (
-//             <div ref={setTarget} className="loading">
-//               Loading...
-//             </div>
-//           ) &&
-//           viewAll}
+//         {viewAll && visibleItems < companyData.length && (
+//           <div ref={setTarget} className="loading">
+//             Loading...
+//           </div>
+//         )}
 //       </div>
-//       {!viewAll && <button onClick={moreButton}>더보기</button>}
+//       {!viewAll && companyData.length > 12 && (
+//         <button onClick={moreButton} className="w-btn w-btn-indigo">
+//           더보기
+//         </button>
+//       )}
 //     </div>
 //   );
 // };
@@ -157,7 +143,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import { CompanyContext } from '../App';
 
-const CompanyList = ({ data }) => {
+const CompanyList = ({ data, searchNull }) => {
   const contextData = useContext(CompanyContext);
   const companyData =
     Array.isArray(data) && data.length > 0 ? data : contextData;
@@ -166,10 +152,13 @@ const CompanyList = ({ data }) => {
   const [visibleItems, setVisibleItems] = useState(12);
   const listRef = useRef();
   const [viewAll, setViewAll] = useState(false);
+
   const changeInput = (e) => {
     setSearchKeyword(e.target.value);
   };
-  const arr1 = companyData.slice(12);
+
+  const arr1 = companyData.length < 12 ? companyData : companyData.slice(0, 12);
+
   const itemsToShow = viewAll ? companyData : arr1;
 
   const searchHandler = () => {
@@ -208,10 +197,6 @@ const CompanyList = ({ data }) => {
   useEffect(() => {
     const currentElement = target;
     const currentObserver = observer.current;
-
-    // if (currentElement) {
-    //   currentObserver.observe(currentElement);
-    // }
 
     return () => {
       if (currentElement) {
@@ -273,7 +258,7 @@ const CompanyList = ({ data }) => {
           </div>
         )}
       </div>
-      {!viewAll && (
+      {!viewAll && companyData.length > 12 && (
         <button onClick={moreButton} className="w-btn w-btn-indigo">
           더보기
         </button>
