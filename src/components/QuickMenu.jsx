@@ -41,7 +41,8 @@ const QuickMenu = () => {
   const nav = useNavigate();
   const [searchKeyword, setSearchKeyword] = useState('');
   const contextData = useContext(JobContext);
-
+  const limitData =
+    contextData.length > 12 ? contextData.slice(0, 12) : contextData;
   const changeInput = (e) => {
     setSearchKeyword(e.target.value);
   };
@@ -92,7 +93,7 @@ const QuickMenu = () => {
             navigation
             pagination={{ clickable: true }}
           >
-            {contextData.map((item) => (
+            {limitData.map((item) => (
               <SwiperSlide key={item.enterprise_id}>
                 <JobNotieItem {...item} />
               </SwiperSlide>

@@ -1,15 +1,17 @@
-import React from "react";
-import "./css/RecentReviewList.css";
-import RecentReviewItem from "./RecentReviewItem";
-import "./css/common.css";
-import { useContext } from "react";
-import { ReviewContext } from "../App";
+import React from 'react';
+import './css/RecentReviewList.css';
+import RecentReviewItem from './RecentReviewItem';
+import './css/common.css';
+import { useContext } from 'react';
+import { ReviewContext } from '../App';
 
 const RecentReview = ({ data }) => {
   const contextData = useContext(ReviewContext);
 
   const reviewData =
     Array.isArray(data) && data.length > 0 ? data : contextData;
+  const limitData =
+    reviewData.length > 10 ? reviewData.slice(0, 10) : reviewData;
   return (
     <>
       <div className="recentReview">
@@ -17,7 +19,7 @@ const RecentReview = ({ data }) => {
         <div className="gap"></div>
 
         <div className="recentReviewList">
-          {reviewData.map((item) => (
+          {limitData.map((item) => (
             <RecentReviewItem key={item.review_id} {...item} />
           ))}
         </div>
