@@ -8,6 +8,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { CompanyContext, JobContext, ReviewContext } from "../App";
 import "./css/CompanyDetailsCenter.css";
+import StarRate from "./StarRate";
+import BarGraph from "./BarGraph";
 
 const CompanyDetailsCenter = () => {
   const params = useParams();
@@ -56,28 +58,24 @@ const CompanyDetailsCenter = () => {
         <h1 className="title">{companyData.name} 기본 정보</h1>
         <div className="gap"></div>
         <div className="CompanyDetailsCenterCompanyBasicInfo">
-          <div className="CompanyDetailsCenterCompanyImgContainer">
-            <img
-              className="CompanyDetailsCenterCompanyImg"
-              src={displayCompanyPhoto}
-              alt={companyData.name}
-            />
-          </div>
-          <div className="CompanyDetailsCenterCompanyTextContainer">
-            <div className="CompanyDetailsCenterCompanyText">
-              <div className="CompanyDetailsCenterCompanyAddress">
-                주소: {companyData.address1} {companyData.address2}{" "}
-                {companyData.address3}
-              </div>
-              <div className="CompanyDetailsCenterCompanyPh">
-                전화번호: {companyData.phone_number}
-              </div>
-              <div className="CompanyDetailsCenterCompanyType">
-                기업 분류: {displayCompanyType}
-              </div>
-              <div className="CompanyDetailsCenterCompanyDes">
-                기업 설명: {displayCompanyDescription}
-              </div>
+          <img
+            className="CompanyDetailsCenterCompanyImg"
+            src={displayCompanyPhoto}
+            alt={companyData.name}
+          />
+          <div className="CompanyDetailsCenterCompanyText">
+            <div className="CompanyDetailsCenterCompanyAddress">
+              주소: {companyData.address1} {companyData.address2}{" "}
+              {companyData.address3}
+            </div>
+            <div className="CompanyDetailsCenterCompanyPh">
+              전화번호: {companyData.phone_number}
+            </div>
+            <div className="CompanyDetailsCenterCompanyType">
+              기업 분류: {displayCompanyType}
+            </div>
+            <div className="CompanyDetailsCenterCompanyDes">
+              기업 설명: {displayCompanyDescription}
             </div>
           </div>
         </div>
@@ -142,17 +140,20 @@ const CompanyDetailsCenter = () => {
                 <div className="CompanyDetailsCenterReviewitemWrapper">
                   <h5>{review.title}</h5>
                   <div className="CompanyDetailsCenterReviewInfo">
-                    <div>평점 : {review.rating}</div>
+                    <div>
+                      {review.created_at} 작성자 : {review.laborUser.name}
+                    </div>
+                    <StarRate rating={review.rating} />
                     <div>승진 기회 및 개인 성장 가능성</div>
-                    <div>{review.promotion_rating}</div>
+                    <BarGraph rating={review.promotion_rating} />
                     <div>복지 및 급여</div>
-                    <div>{review.salary_rating}</div>
+                    <BarGraph rating={review.salary_rating} />
                     <div>업무와 삶의 균형</div>
-                    <div>{review.balance_rating}</div>
+                    <BarGraph rating={review.balance_rating} />
                     <div>사내 문화 평가 점수</div>
-                    <div>{review.culture_rating}</div>
+                    <BarGraph rating={review.culture_rating} />
                     <div>경영진 관련 평가 점수</div>
-                    <div>{review.management_rating}</div>
+                    <BarGraph rating={review.management_rating} />
                     <div>장점</div>
                     <div>{review.pros}</div>
                     <div>단점</div>
