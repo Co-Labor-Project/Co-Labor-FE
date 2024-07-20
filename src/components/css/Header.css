@@ -75,6 +75,7 @@
   display: flex;
   align-items: center;
   margin-right: 10px;
+  margin-left: 15px;
 }
 .jobNoticeApply {
   color: #2c88f8;

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 .title {
   position: absolute;
   left: calc(50% - 550px);
@@ -14,8 +14,9 @@
 }
 
 * {
-  font-family: 'IBM Plex Sans KR', sans-serif;
-  font-weight: 400;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400px;
   font-style: normal;
 
   margin: 0;

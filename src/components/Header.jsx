@@ -48,14 +48,16 @@ const Header = () => {
         />
       </div>
       <div className="right-child">
-        <div
-          className="jobNoticeApply"
-          onClick={() => {
-            nav('/JobNoticeApply');
-          }}
-        >
-          채용공고 등록
-        </div>
+        {loginState.userEnterprise && (
+          <div
+            className="jobNoticeApply"
+            onClick={() => {
+              nav('/JobNoticeApply');
+            }}
+          >
+            채용공고 등록
+          </div>
+        )}
         {loginState.userEnterprise && (
           <div
             className="enterpriseApply"
