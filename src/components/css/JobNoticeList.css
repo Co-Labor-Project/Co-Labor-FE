@@ -19,3 +19,9 @@
 .filterSort {
   margin-left: auto;
 }
+.isNullJobNotice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 150px;
+}
