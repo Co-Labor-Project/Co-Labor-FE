@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -17,6 +17,7 @@ const CompanyDetailsCenter = () => {
   const companyContext = useContext(CompanyContext);
   const reviewContext = useContext(ReviewContext);
   const jobContext = useContext(JobContext);
+  const nav = useNavigate();
 
   const companyData = companyContext.find(
     (company) => String(company.enterprise_id) === String(params.enterprise_id)
@@ -94,6 +95,10 @@ const CompanyDetailsCenter = () => {
 
   const averageRatings = calculateAverageRatings(reviewData);
 
+  const clickHandler = (jobId) => {
+    nav(`/JobNotice/${jobId}`);
+  };
+
   return (
     <div className="CompanyDetail">
       <br />
@@ -142,7 +147,10 @@ const CompanyDetailsCenter = () => {
             >
               {jobData.map((job) => (
                 <SwiperSlide key={job.job_id}>
-                  <div className="CompanyDetailsCenterJobItem">
+                  <div
+                    className="CompanyDetailsCenterJobItem"
+                    onClick={() => clickHandler(job.job_id)}
+                  >
                     <div className="CompanyDetailsCenteritemWrapper">
                       <div className="CompanyDetailsCenterjobNoticeInfo">
                         <div className="CompanyDetailsCenterjobNotice_infoTitle">
