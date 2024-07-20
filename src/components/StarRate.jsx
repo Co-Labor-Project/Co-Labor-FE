@@ -46,5 +46,6 @@ const StarRateWrap = styled.div`
   .star_icon {
     display: inline-flex;
     margin-right: 5px;
+    margin-top: 13px;
   }
 `;

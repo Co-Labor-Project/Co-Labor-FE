@@ -88,6 +88,29 @@
   margin-bottom: 6px;
 }
 
+.CompanyDetailsCenterAllReview {
+  padding: 20px 0px;
+  width: 1200px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  display: flex;
+}
+
+.CompanyDetailsCenterAllReviewitemWrapper {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  height: 500px;
+
+  align-items: center;
+  margin-top: 10px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
 .CompanyDetailsCenterReviewList {
   padding: 20px 0px;
   width: 1200px;
@@ -96,7 +119,6 @@
   flex-wrap: wrap;
   margin: 0 auto;
   justify-content: center;
-  margin: 0 auto;
 }
 
 .CompanyDetailsCenterReview {

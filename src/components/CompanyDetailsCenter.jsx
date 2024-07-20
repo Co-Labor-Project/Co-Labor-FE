@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,6 +10,7 @@ import { CompanyContext, JobContext, ReviewContext } from "../App";
 import "./css/CompanyDetailsCenter.css";
 import StarRate from "./StarRate";
 import BarGraph from "./BarGraph";
+import RadarChart from "./RadarChart";
 
 const CompanyDetailsCenter = () => {
   const params = useParams();
@@ -31,6 +32,12 @@ const CompanyDetailsCenter = () => {
       String(job.enterprise.enterprise_id) === String(params.enterprise_id)
   );
 
+  const [totalReviews, setTotalReviews] = useState(0);
+
+  useEffect(() => {
+    setTotalReviews(reviewData.length);
+  }, [reviewData]);
+
   if (!companyData) {
     return <div>Loading</div>;
   }
@@ -49,6 +56,43 @@ const CompanyDetailsCenter = () => {
   const defaultJobPhoto =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
   const displayJobPhoto = (job) => job.photo || defaultJobPhoto;
+
+  // 리뷰 각 평점의 평균을 계산하는 함수
+  const calculateAverageRatings = (reviews) => {
+    const totalRatings = reviews.length;
+    if (totalRatings === 0) return {};
+
+    const sumRatings = reviews.reduce(
+      (acc, review) => {
+        acc.total += review.rating;
+        acc.promotion += review.promotion_rating;
+        acc.salary += review.salary_rating;
+        acc.balance += review.balance_rating;
+        acc.culture += review.culture_rating;
+        acc.management += review.management_rating;
+        return acc;
+      },
+      {
+        total: 0,
+        promotion: 0,
+        salary: 0,
+        balance: 0,
+        culture: 0,
+        management: 0,
+      }
+    );
+
+    return {
+      averageTotal: (sumRatings.total / totalRatings).toFixed(1),
+      averagePromotion: (sumRatings.promotion / totalRatings).toFixed(1),
+      averageSalary: (sumRatings.salary / totalRatings).toFixed(1),
+      averageBalance: (sumRatings.balance / totalRatings).toFixed(1),
+      averageCulture: (sumRatings.culture / totalRatings).toFixed(1),
+      averageManagement: (sumRatings.management / totalRatings).toFixed(1),
+    };
+  };
+
+  const averageRatings = calculateAverageRatings(reviewData);
 
   return (
     <div className="CompanyDetail">
@@ -129,10 +173,53 @@ const CompanyDetailsCenter = () => {
           )}
         </div>
       </div>
+      <div className="gap" />
+
+      <h1 className="title">{companyData.name} 전체 리뷰 통계</h1>
+      <div className="gap" />
+
+      <div className="CompanyDetailsCenterAllReview">
+        <div className="CompanyDetailsCenterAllReviewitemWrapper">
+          <div style={{ marginTop: "10px" }}>
+            <span>{totalReviews}개의 리뷰</span>
+            <StarRate rating={averageRatings.averageTotal} />
+            <br />
+            <br />
+          </div>
+          <div>
+            <span>승진 기회 및 개인 성장 가능성: </span>
+            <BarGraph rating={averageRatings.averagePromotion} />
+            <br />
+          </div>
+          <div>
+            <span>복지 및 급여: </span>
+            <BarGraph rating={averageRatings.averageSalary} />
+            <br />
+          </div>
+          <div>
+            <span>업무와 삶의 균형: </span>
+            <BarGraph rating={averageRatings.averageBalance} />
+            <br />
+          </div>
+          <div>
+            <span>사내 문화 평가 점수: </span>
+            <BarGraph rating={averageRatings.averageCulture} />
+            <br />
+          </div>
+          <div>
+            <span>경영진 관련 평가 점수: </span>
+            <BarGraph rating={averageRatings.averageManagement} />
+            <br />
+          </div>
+        </div>
+        <div className="CompanyDetailsCenterAllReviewitemWrapper">
+          <RadarChart data={averageRatings} />
+        </div>
+      </div>
 
       <div className="CompanyDetailsCenterReview">
         <h1 className="title">{companyData.name} 리뷰</h1>
-        <div className="gap"></div>
+        <div className="gap" />
         <div className="CompanyDetailsCenterReviewList">
           {reviewData.length > 0 ? (
             reviewData.map((review) => (

@@ -36,5 +36,6 @@ const BarGraphWrap = styled.div`
   .bar_icon {
     display: inline-flex;
     margin-right: 5px;
+    margin-top: 5px;
   }
 `;
