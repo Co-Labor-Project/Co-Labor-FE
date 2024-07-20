@@ -13,27 +13,27 @@
 }
 .jobNoticeImg {
   border-radius: 15px;
-  width: 200px;
+  width: 150px;
   height: 126px;
 }
 
 .jobNotice_infoName {
-  margin-top: 8px;
   font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
   color: #232527;
 }
 
 .jobNotice_infoTitle {
-  margin-top: 18px;
+  margin-top: 3px;
   font-size: 23px;
   font-weight: bold;
 }
 
 .jobNotice_infoCondi {
-  margin-top: 10px;
+  margin-top: 5px;
   font-size: 13px;
   font-weight: 400;
-  color: #777777;
   white-space: normal;
   width: 200px;
 }

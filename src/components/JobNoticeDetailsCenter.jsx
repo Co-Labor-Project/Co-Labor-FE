@@ -21,32 +21,41 @@ const JobNoticeDetailsCenter = () => {
     jobData.imageName ||
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
 
+  // const bold = "조직 소개";
+  // if (jobData.description.includes(bold)) {
+  //   const tmp = new RegExp(bold, "g");
+  //   jobData.description.replace(tmp, "<b>" + bold + "</b>");
+  // }
   return (
-    <div className="JobNoticeDetail">
-      <h1 className="title">{jobData.title} 채용 정보</h1>
-      <div className="gap"></div>
-      <div className="JobNoticeDetailsBasicInfo">
+    <div className="JobDetail">
+      <div className="gap2" />
+      <h1 className="title">{jobData.title}</h1>
+      <div className="gap" />
+      <div className="JobDetailsBasicInfo">
         <img
-          className="JobNoticeDetailsImg"
+          className="JobDetailsImg"
           src={displayJobPhoto}
           alt={jobData.title}
         />
-        <div className="JobNoticeDetailsText">
-          {jobData.requirement && (
-            <div className="JobNoticeDetailsReq">
-              조건: {jobData.requirement}
-            </div>
-          )}
-          <div className="JobNoticeDetailsDescription">
-            설명: {jobData.description}
-          </div>
-          <div className="JobNoticeDetailsDead">
-            마감 기한: {jobData.dead_date}
-          </div>
-          <div className="JobNoticeDetailsEmail">
-            연락처: {jobData.enterpriseUser.email}
-          </div>
+        <div className="JobNDetailsCondi">
+          <div>마감 기한: {jobData.deadDate}</div>
+          <div>조건: {jobData.requirement}</div>
+          <div>연락처: {jobData.enterpriseUser.email}</div>
+          {/* <div> 직무 : {jobData.jobRole}</div>
+          <div> 경력 : {jobData.experience}</div>
+          <div> 고용형태 : {jobData.employmentType}</div>
+          <div> 근무지역 : {jobData.location}</div>
+          <div> 스킬 : {jobData.skills}</div> */}
+          <div> 직무 : </div>
+          <div> 경력 : </div>
+          <div> 고용형태 : </div>
+          <div> 근무지역 : </div>
+          <div> 스킬 : </div>
         </div>
+      </div>
+      <hr />
+      <div className="JobDetailsdescription">
+        <pre>{jobData.description}</pre>
       </div>
     </div>
   );

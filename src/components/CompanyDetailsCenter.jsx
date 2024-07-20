@@ -163,10 +163,25 @@ const CompanyDetailsCenter = () => {
                           alt={job.title}
                         />
                         <div className="CompanyDetailsCenterjobNotice_infoCondi">
-                          {job.requirement}
+                          마감일 : {job.deadDate}
                         </div>
-                        <div className="CompanyDetailsCenterjobNotice_infoDescription">
-                          {job.description}
+                        <div className="CompanyDetailsCenterjobNotice_infoCondi">
+                          제약 조건 : {job.requirement}
+                        </div>
+                        <div className="CompanyDetailsCenterjobNotice_infoCondi">
+                          직무 : {job.jobRole}
+                        </div>
+                        <div className="CompanyDetailsCenterjobNotice_infoCondi">
+                          경력 : {job.experience}
+                        </div>
+                        <div className="CompanyDetailsCenterjobNotice_infoCondi">
+                          고용형태 : {job.employmentType}
+                        </div>
+                        <div className="CompanyDetailsCenterjobNotice_infoCondi">
+                          근무지역 : {job.location}
+                        </div>
+                        <div className="CompanyDetailsCenterjobNotice_infoCondi">
+                          스킬 : {job.skills}
                         </div>
                       </div>
                     </div>

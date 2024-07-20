@@ -55,6 +55,13 @@
   margin-bottom: 70px;
 }
 
+.CompanyDetailsCenterjobNotice_infoDescription {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 23px;
+  font-weight: bold;
+}
+
 .CompanyDetailsCenterJobNotieItem:hover {
   border: 3px solid #58c179;
 }
@@ -72,20 +79,17 @@
 }
 
 .CompanyDetailsCenterjobNotice_infoTitle {
-  margin-top: 0px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-size: 20px;
   font-weight: bold;
 }
 
 .CompanyDetailsCenterjobNotice_infoCondi {
-  margin-top: 10px;
-  font-size: 13px;
+  margin-top: 5px;
+  font-size: 15px;
   font-weight: 400;
-  color: #777777;
   white-space: normal;
   width: 200px;
-  margin-bottom: 6px;
 }
 
 .CompanyDetailsCenterAllReview {

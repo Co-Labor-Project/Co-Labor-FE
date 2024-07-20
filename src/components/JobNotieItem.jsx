@@ -9,8 +9,13 @@ const JobNotieItem = ({
   title,
   requirement,
   enterprise,
-  description,
   job_id,
+  jobRole,
+  experience,
+  employmentType,
+  location,
+  skills,
+  deadDate,
 }) => {
   const fadeInProps = useScrollFadeIn("up", 1);
   const nav = useNavigate();
@@ -34,13 +39,17 @@ const JobNotieItem = ({
     <div {...fadeInProps}>
       <div className="JobNotieItem" onClick={clickHandler}>
         <div>
+          <div className="jobNoticeInfo">
+            <div className="jobNotice_infoName">{name}</div>
+          </div>
           <img className="jobNoticeImg" src={photo} />
         </div>
         <div className="jobNoticeInfo">
-          <div className="jobNotice_infoName">{name}</div>
           <div className="jobNotice_infoTitle">{title}</div>
-          <div className="jobNotice_infoCondi">{requirement}</div>
-          <div className="jobNotice_infoDescription">{description}</div>
+          <div className="jobNotice_infoCondi">마감 기한 : {deadDate}</div>
+          <div className="jobNotice_infoCondi">1{jobRole}</div>
+          <div className="jobNotice_infoCondi">1{employmentType}</div>
+          <div className="jobNotice_infoCondi">1{location}</div>
         </div>
       </div>
     </div>
