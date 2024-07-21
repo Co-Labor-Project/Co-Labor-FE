@@ -17,6 +17,8 @@ const Support = () => {
       >
         <SupportCenterMap />
       </MapDiv>
+      <div className="gap"></div>
+      <Footer />
     </div>
   );
 };
