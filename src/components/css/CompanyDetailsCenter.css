@@ -53,6 +53,7 @@
   cursor: pointer;
   border-radius: 8px; /* 모서리를 둥글게 */
   margin-bottom: 70px;
+  height: 440px;
 }
 
 .CompanyDetailsCenterjobNotice_infoDescription {

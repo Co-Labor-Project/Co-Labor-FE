@@ -115,12 +115,15 @@ const JobNoticeDetailsCenter = () => {
   }
 
   const displayJobPhoto =
-    jobData.imageName ||
+    "http://localhost:8080/static/images/" + jobData.imageName ||
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
 
-  const displayCompanyPhoto =
-    // companyDataData.imageName ||
-    "https://cdn-icons-png.flaticon.com/512/4091/4091968.png";
+  // const displayCompanyPhoto =
+  //   "http://localhost:8080/static/images/" + companyData.imageName ||
+  //   "https://cdn-icons-png.flaticon.com/512/4091/4091968.png";
+  const displayCompanyPhoto = companyData.imageName
+    ? `http://localhost:8080/static/images/${companyData.imageName}`
+    : "https://cdn-icons-png.flaticon.com/512/4091/4091968.png";
 
   const defaultCompanyType = "기업 분류를 작성해주세요!";
   const displayCompanyType = companyData.type || defaultCompanyType;

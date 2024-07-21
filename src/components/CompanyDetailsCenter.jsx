@@ -56,9 +56,11 @@ const CompanyDetailsCenter = () => {
     return <div>Loading</div>;
   }
 
-  const defaultCompanyPhoto =
+  const defaultCompanyimageName =
     "https://cdn-icons-png.flaticon.com/512/4091/4091968.png";
-  const displayCompanyPhoto = companyData.photo || defaultCompanyPhoto;
+  const displayCompanyimageName = companyData.imageName
+    ? "http://localhost:8080/static/images/" + company.imageName
+    : defaultCompanyimageName;
 
   const defaultCompanyType = "기업 분류를 작성해주세요!";
   const displayCompanyType = companyData.type || defaultCompanyType;
@@ -67,9 +69,12 @@ const CompanyDetailsCenter = () => {
   const displayCompanyDescription =
     companyData.description || defaultCompanyDescription;
 
-  const defaultJobPhoto =
+  const defaultJobimageName =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
-  const displayJobPhoto = (job) => job.photo || defaultJobPhoto;
+  const displayJobimageName = (job) =>
+    job.imageName
+      ? "http://localhost:8080/static/images/" + job.imageName
+      : defaultJobimageName;
 
   // 리뷰 각 평점의 평균을 계산하는 함수
   const calculateAverageRatings = (reviews) => {
@@ -122,7 +127,7 @@ const CompanyDetailsCenter = () => {
         <div className="CompanyDetailsCenterCompanyBasicInfo">
           <img
             className="CompanyDetailsCenterCompanyImg"
-            src={displayCompanyPhoto}
+            src={displayCompanyimageName}
             alt={companyData.name}
           />
           <div className="CompanyDetailsCenterCompanyText">
@@ -172,7 +177,7 @@ const CompanyDetailsCenter = () => {
                         </div>
                         <img
                           className="CompanyDetailsCenterjobNoticeImg"
-                          src={displayJobPhoto(job)}
+                          src={displayJobimageName(job)}
                           width="100px"
                           alt={job.title}
                         />
@@ -210,7 +215,7 @@ const CompanyDetailsCenter = () => {
           )}
         </div>
       </div>
-      <div className="gap" />
+      <div className="gap2" />
 
       <h1 className="title">{companyData.name} 전체 리뷰 통계</h1>
       <div className="gap" />

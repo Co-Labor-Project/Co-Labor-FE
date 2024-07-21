@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useEmpty from "../hooks/useEmpty";
 
 const JobNotieItem = ({
-  photo,
+  imageName,
   title,
   requirement,
   enterprise,
@@ -23,12 +23,14 @@ const JobNotieItem = ({
   const isObjEmpty = useEmpty(parms);
   const name = enterprise?.name || "No Enterprise Name";
 
-  if (!photo) {
-    photo =
+  console.log(imageName);
+  if (!imageName) {
+    imageName =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
+  } else {
+    imageName = "http://localhost:8080/static/images/" + imageName;
   }
   const clickHandler = () => {
-    console.log("parmsparmsparmsparms", parms);
     if (
       isObjEmpty ||
       parms.keyword === "undefined" ||
@@ -47,7 +49,7 @@ const JobNotieItem = ({
           <div className="jobNoticeInfo">
             <div className="jobNotice_infoName">{name}</div>
           </div>
-          <img className="jobNoticeImg" src={photo} />
+          <img className="jobNoticeImg" src={imageName} />
         </div>
         <div className="jobNoticeInfo">
           <div className="jobNotice_infoTitle">{title}</div>

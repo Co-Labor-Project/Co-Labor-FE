@@ -5,6 +5,7 @@
   font-size: 15px;
 
   padding: 5px 0px;
+  z-index: 100;
 }
 .Header > div {
   display: flex;

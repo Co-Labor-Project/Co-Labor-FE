@@ -19,7 +19,7 @@
   margin: 0 auto;
   justify-content: start;
   gap: 170px;
-  padding-left: 70px;
+  padding-left: 20px;
 }
 
 .JobNDetailsCondi {
@@ -38,7 +38,9 @@
   width: 90px;
   margin-right: 20px;
 }
-.JobDetailImg {
+.JobDetailsImg {
+  max-width: 400px;
+  max-height: 400px;
   flex: 1;
 }
 .JobDetailsdescription {
