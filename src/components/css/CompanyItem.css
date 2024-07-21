@@ -5,7 +5,7 @@
   border-radius: 15px;
   width: 200px;
   cursor: pointer;
-  transition: all 0.5s;
+  transition: all 0.5s smooth;
   border: 0px solid #58c179;
   max-width: 200px;
 }
