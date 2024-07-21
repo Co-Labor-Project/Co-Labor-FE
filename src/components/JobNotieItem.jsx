@@ -28,7 +28,12 @@ const JobNotieItem = ({
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
   }
   const clickHandler = () => {
-    if (isObjEmpty) {
+    console.log("parmsparmsparmsparms", parms);
+    if (
+      isObjEmpty ||
+      parms.keyword === "undefined" ||
+      parms.keyword === undefined
+    ) {
       nav(`/JobNotice/${job_id}`);
     } else {
       nav(`/Search/${parms.keyword}/jobNotice/${job_id}`);
@@ -47,9 +52,9 @@ const JobNotieItem = ({
         <div className="jobNoticeInfo">
           <div className="jobNotice_infoTitle">{title}</div>
           <div className="jobNotice_infoCondi">마감 기한 : {deadDate}</div>
-          <div className="jobNotice_infoCondi">1{jobRole}</div>
-          <div className="jobNotice_infoCondi">1{employmentType}</div>
-          <div className="jobNotice_infoCondi">1{location}</div>
+          <div className="jobNotice_infoCondi">직무 : {jobRole}</div>
+          <div className="jobNotice_infoCondi">고용형태 : {employmentType}</div>
+          <div className="jobNotice_infoCondi">근무지역 : {location}</div>
         </div>
       </div>
     </div>

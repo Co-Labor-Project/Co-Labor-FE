@@ -132,23 +132,24 @@
 // };
 
 // export default CompanyList;
-import React, { useContext, useState, useRef, useEffect } from 'react';
-import CompanyItem from './CompanyItem';
-import { useNavigate } from 'react-router-dom';
-import './css/CompanyList.css';
-import FilterBox from './FilterBox';
-import { Location, JOB } from './FilterOption';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import SearchIcon from '@mui/icons-material/Search';
-import { CompanyContext } from '../App';
+import React, { useContext, useState, useRef, useEffect } from "react";
+import CompanyItem from "./CompanyItem";
+import { useNavigate } from "react-router-dom";
+import "./css/CompanyList.css";
+import FilterBox from "./FilterBox";
+import { Location, JOB } from "./FilterOption";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from "@mui/icons-material/Search";
+import { CompanyContext } from "../App";
 
 const CompanyList = ({ data, searchNull }) => {
   const contextData = useContext(CompanyContext);
+  console.log(contextData);
   const companyData =
     Array.isArray(data) && data.length > 0 ? data : contextData;
   const nav = useNavigate();
-  const [searchKeyword, setSearchKeyword] = useState('');
+  const [searchKeyword, setSearchKeyword] = useState("");
   const [visibleItems, setVisibleItems] = useState(12);
   const listRef = useRef();
   const [viewAll, setViewAll] = useState(false);
@@ -162,11 +163,11 @@ const CompanyList = ({ data, searchNull }) => {
   const itemsToShow = viewAll ? companyData : arr1;
 
   const searchHandler = () => {
-    if (searchKeyword === '') {
-      alert('❌ 검색어를 입력해 주세요!');
+    if (searchKeyword === "") {
+      alert("❌ 검색어를 입력해 주세요!");
     } else {
       nav(`/AiSearch/${searchKeyword}`);
-      setSearchKeyword('');
+      setSearchKeyword("");
     }
   };
 
@@ -232,7 +233,7 @@ const CompanyList = ({ data, searchNull }) => {
               <InputAdornment position="end">
                 <SearchIcon
                   onClick={searchHandler}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                 />
               </InputAdornment>
             ),

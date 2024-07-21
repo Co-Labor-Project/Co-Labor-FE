@@ -14,11 +14,17 @@ import RadarChart from "./RadarChart";
 
 const CompanyDetailsCenter = () => {
   const params = useParams();
-  const companyContext = useContext(CompanyContext);
   const reviewContext = useContext(ReviewContext);
+  const companyContext = useContext(CompanyContext);
   const jobContext = useContext(JobContext);
   const nav = useNavigate();
+  // useEffect(() => {
+  // console.log(params, companyContext);
+  // console.log(params, jobContext);
+  // }, []);
 
+  // console.log(companyContext);
+  // console.log(jobContext);
   const companyData = companyContext.find(
     (company) => String(company.enterprise_id) === String(params.enterprise_id)
   );
@@ -32,6 +38,12 @@ const CompanyDetailsCenter = () => {
     (job) =>
       String(job.enterprise.enterprise_id) === String(params.enterprise_id)
   );
+  // console.log(jobContext.map((job) => job.enterprise));
+  // console.log(jobContext[353]);
+  console.log(jobData);
+  // console.log(companyData);
+  // console.log(jobData);
+  // console.log(reviewData);
 
   const [totalReviews, setTotalReviews] = useState(0);
 
@@ -39,6 +51,7 @@ const CompanyDetailsCenter = () => {
     setTotalReviews(reviewData.length);
   }, [reviewData]);
 
+  console.log(jobContext);
   if (!companyData) {
     return <div>Loading</div>;
   }
@@ -144,6 +157,7 @@ const CompanyDetailsCenter = () => {
               slidesPerView={3}
               navigation
               pagination={{ clickable: true }}
+              width="1000"
             >
               {jobData.map((job) => (
                 <SwiperSlide key={job.job_id}>
