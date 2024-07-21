@@ -1,9 +1,88 @@
-// components/JobNoticeDetailsCenter.jsx
-import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
-import { JobContext } from "../App";
-import "./css/JobNoticeDetailsCenter.css";
-import "./css/common.css";
+// // components/JobNoticeDetailsCenter.jsx
+// import React, { useContext } from "react";
+// import { useParams } from "react-router-dom";
+// import { JobContext } from "../App";
+// import "./css/JobNoticeDetailsCenter.css";
+// import "./css/common.css";
+
+// const JobNoticeDetailsCenter = () => {
+//   const params = useParams();
+//   const contextData = useContext(JobContext);
+//   const jobId = params.job_id;
+
+//   const jobData = contextData.find(
+//     (item) => String(item.job_id) === String(jobId)
+//   );
+
+//   if (!jobData) {
+//     return <div>Loading</div>;
+//   }
+
+//   const displayJobPhoto =
+//     jobData.imageName ||
+//     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
+
+//   // const bold = "조직 소개";
+//   // if (jobData.description.includes(bold)) {
+//   //   const tmp = new RegExp(bold, "g");
+//   //   jobData.description.replace(tmp, "<b>" + bold + "</b>");
+//   // }
+//   return (
+//     <div className="JobDetail">
+//       <div className="gap2" />
+//       <h1 className="title">{jobData.title}</h1>
+//       <div className="gap" />
+//       <div className="JobDetailsBasicInfo">
+//         <img
+//           className="JobDetailsImg"
+//           src={displayJobPhoto}
+//           alt={jobData.title}
+//         />
+//         <div className="JobNDetailsCondi">
+//           <div className="JobDetailKey">
+//             <section>마감 기한:</section> {jobData.deadDate}
+//           </div>
+//           <div className="JobDetailKey">
+//             <section>조건: </section>
+//             {jobData.requirement}
+//           </div>
+//           <div className="JobDetailKey">
+//             <section>연락처:</section> {jobData.enterpriseUser.email}
+//           </div>
+//           <div className="JobDetailKey">
+//             <section>직무 :</section> {jobData.jobRole}
+//           </div>
+//           <div className="JobDetailKey">
+//             <section>경력 : </section>
+//             {jobData.experience}
+//           </div>
+//           <div className="JobDetailKey">
+//             <section>고용형태 :</section> {jobData.employmentType}
+//           </div>
+//           <div className="JobDetailKey">
+//             <section>근무지역 : </section>
+//             {jobData.location}
+//           </div>
+//           <div className="JobDetailKey">
+//             <section>스킬 : </section>
+//             {jobData.skills}
+//           </div>
+//         </div>
+//       </div>
+//       <hr />
+//       <div className="JobDetailsdescription">
+//         <pre>{jobData.description}</pre>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default JobNoticeDetailsCenter;
+import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { JobContext } from '../App';
+import './css/JobNoticeDetailsCenter.css';
+import './css/common.css';
 
 const JobNoticeDetailsCenter = () => {
   const params = useParams();
@@ -20,13 +99,42 @@ const JobNoticeDetailsCenter = () => {
 
   const displayJobPhoto =
     jobData.imageName ||
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s';
 
-  // const bold = "조직 소개";
-  // if (jobData.description.includes(bold)) {
-  //   const tmp = new RegExp(bold, "g");
-  //   jobData.description.replace(tmp, "<b>" + bold + "</b>");
-  // }
+  // "우대사항"을 bold체로 변경
+  // const descriptionWithBold = jobData.description.replace(
+  //   /우대사항/g,
+  //   '<b>우대사항</b>'
+  // );
+  const highlightWords = [
+    '우대사항',
+    '채용 절차',
+    '자격 요건',
+    '채용절차 ',
+    ' 간편 접수',
+    '1차 인터뷰',
+    '2차 인터뷰',
+    '최종합격 ',
+    '업무환경 ',
+    '복지혜택 ',
+    '핵심업무 ',
+    '조직 소개',
+    '팀 메시지',
+    '복지혜택',
+    '복지 및 혜택',
+    '핵심업무',
+  ];
+
+  const applyHighlighting = (text) => {
+    let highlightedText = text;
+    highlightWords.forEach((word) => {
+      const regex = new RegExp(word, 'g');
+      highlightedText = highlightedText.replace(regex, `<b>${word}</b>`);
+    });
+    return highlightedText;
+  };
+  const descriptionWithHighlights = applyHighlighting(jobData.description);
+
   return (
     <div className="JobDetail">
       <div className="gap2" />
@@ -40,38 +148,38 @@ const JobNoticeDetailsCenter = () => {
         />
         <div className="JobNDetailsCondi">
           <div className="JobDetailKey">
-            <section>마감 기한:</section> {jobData.deadDate}
+            <p>마감 기한</p> <span>{jobData.deadDate}</span>
           </div>
           <div className="JobDetailKey">
-            <section>조건: </section>
+            <p>조건 </p>
             {jobData.requirement}
           </div>
           <div className="JobDetailKey">
-            <section>연락처:</section> {jobData.enterpriseUser.email}
+            <p>연락처</p> <span>{jobData.enterpriseUser.email}</span>
           </div>
           <div className="JobDetailKey">
-            <section>직무 :</section> {jobData.jobRole}
+            <p>직무 </p> <span>{jobData.jobRole}</span>
           </div>
           <div className="JobDetailKey">
-            <section>경력 : </section>
-            {jobData.experience}
+            <p>경력 </p>
+            <span>{jobData.experience}</span>
           </div>
           <div className="JobDetailKey">
-            <section>고용형태 :</section> {jobData.employmentType}
+            <p>고용형태 </p> <span>{jobData.employmentType}</span>
           </div>
           <div className="JobDetailKey">
-            <section>근무지역 : </section>
-            {jobData.location}
+            <p>근무지역 </p>
+            <span>{jobData.location}</span>
           </div>
           <div className="JobDetailKey">
-            <section>스킬 : </section>
-            {jobData.skills}
+            <p>스킬 </p>
+            <span>{jobData.skills}</span>
           </div>
         </div>
       </div>
       <hr />
       <div className="JobDetailsdescription">
-        <pre>{jobData.description}</pre>
+        <pre dangerouslySetInnerHTML={{ __html: descriptionWithHighlights }} />
       </div>
     </div>
   );

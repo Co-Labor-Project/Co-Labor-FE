@@ -17,7 +17,6 @@ const Support = () => {
       >
         <SupportCenterMap />
       </MapDiv>
-      <Footer />
     </div>
   );
 };

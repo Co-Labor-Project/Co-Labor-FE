@@ -28,8 +28,9 @@
 .JobDetailKey {
   display: flex;
 }
-section {
+.JobDetailKey > p {
   width: 90px;
+  margin-right: 20px;
 }
 .JobDetailImg {
   flex: 1;
@@ -45,7 +46,10 @@ hr {
   height: 3px;
   background-color: #58c179;
 }
-
+.JobDetailKey > span {
+  word-break: break-all;
+  width: 500px;
+}
 pre {
   word-wrap: break-word;
   white-space: pre-wrap;

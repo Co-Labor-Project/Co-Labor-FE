@@ -2,16 +2,19 @@ import React, { useEffect, useState, useRef } from 'react';
 import { NaverMap, Marker, useNavermaps } from 'react-naver-maps';
 import axios from 'axios';
 import './css/SupportCenterMap.css';
+import SupportCenterItem from './SupportCenterItem';
+
 function SupportCenterMap() {
   const navermaps = useNavermaps();
   const mapRef = useRef(null);
   const [centers, setCenters] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(null);
-  const [mapCenter, setMapCenter] = useState(
-    new navermaps.LatLng(36.632473380701, 127.45314301376)
-  );
+  const [mapCenter, setMapCenter] = useState(null); // 초기 값 null로 설정
   const [overlays, setOverlays] = useState([]);
-  const [toogle, setToggle] = useState(false);
+  const [nearestCenter, setNearestCenter] = useState(null);
+  const [sortedCenters, setSortedCenters] = useState([]);
+  const [selectedCenter, setSelectedCenter] = useState(null);
+
   useEffect(() => {
     axios
       .get('http://localhost:8080/api/support-centers/all')
@@ -27,17 +30,16 @@ function SupportCenterMap() {
               };
               setCurrentPosition(pos);
 
-              const nearestCenter = response.data.reduce((prev, curr) => {
-                const prevDistance = getDistance(pos, prev);
-                const currDistance = getDistance(pos, curr);
-                return prevDistance < currDistance ? prev : curr;
-              }, response.data[0]);
+              const sorted = [...response.data].sort((a, b) => {
+                return getDistance(pos, a) - getDistance(pos, b);
+              });
+
+              setNearestCenter(sorted[0]);
+              setSelectedCenter(sorted[0]);
+              setSortedCenters(sorted);
 
               setMapCenter(
-                new navermaps.LatLng(
-                  nearestCenter.latitude,
-                  nearestCenter.longitude
-                )
+                new navermaps.LatLng(sorted[0].latitude, sorted[0].longitude)
               );
             },
             (error) => {
@@ -129,53 +131,101 @@ function SupportCenterMap() {
     }
   }, [centers, currentPosition, mapRef.current]);
 
+  const handleCenterClick = (center) => {
+    setSelectedCenter(center);
+    setMapCenter(new navermaps.LatLng(center.latitude, center.longitude)); // 지도 중심을 선택된 지원 센터로 이동
+  };
+
   return (
-    <div>
-      <NaverMap
-        ref={mapRef}
-        center={mapCenter}
-        defaultZoom={15}
-        style={{ width: '100%', height: '100%' }}
-      >
-        {currentPosition && (
-          <Marker
-            position={
-              new navermaps.LatLng(
-                currentPosition.latitude,
-                currentPosition.longitude
-              )
-            }
-            title="현재 위치"
-            clickable={true}
-            icon={{
-              content:
-                '<img src="/src/assets/current_location_icon.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
-              size: new navermaps.Size(24, 24),
-              origin: new navermaps.Point(0, 0),
-              anchor: new navermaps.Point(12, 12),
-            }}
-          />
-        )}
-        {centers.map((center) => (
-          <Marker
-            key={center.support_center_id}
-            position={new navermaps.LatLng(center.latitude, center.longitude)}
-            title={center.name}
-            clickable={true}
-            icon={{
-              content:
-                '<img src="/src/assets/support_center_icon.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
-              size: new navermaps.Size(24, 24),
-              origin: new navermaps.Point(0, 0),
-              anchor: new navermaps.Point(12, 12),
-            }}
-            onClick={() => {
-              alert(`${center.name}\n${center.address}\n${center.phone}`);
-            }}
-          />
-        ))}
-      </NaverMap>
-      <div className="sidePage"></div>
+    <div className="mapContainer">
+      {mapCenter && ( // mapCenter가 null이 아닐 때만 NaverMap 렌더링
+        <NaverMap
+          ref={mapRef}
+          center={mapCenter}
+          defaultZoom={15}
+          style={{ width: '100%', height: '100%' }}
+        >
+          {currentPosition && (
+            <Marker
+              position={
+                new navermaps.LatLng(
+                  currentPosition.latitude,
+                  currentPosition.longitude
+                )
+              }
+              title="현재 위치"
+              clickable={true}
+              icon={{
+                content:
+                  '<img src="/src/assets/current_location_icon.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
+                size: new navermaps.Size(24, 24),
+                origin: new navermaps.Point(0, 0),
+                anchor: new navermaps.Point(12, 12),
+              }}
+            />
+          )}
+          {centers.map((center) => (
+            <Marker
+              key={center.support_center_id}
+              position={new navermaps.LatLng(center.latitude, center.longitude)}
+              title={center.name}
+              clickable={true}
+              icon={{
+                content:
+                  '<img src="/src/assets/support_center_icon.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
+                size: new navermaps.Size(24, 24),
+                origin: new navermaps.Point(0, 0),
+                anchor: new navermaps.Point(12, 12),
+              }}
+              onClick={() => {
+                handleCenterClick(center);
+
+                // alert(`${center.name}\n${center.address}\n${center.phone}`);
+              }}
+            />
+          ))}
+        </NaverMap>
+      )}
+
+      <div className="sidePage">
+        <div className="chooseCenter">
+          <div className="selected">
+            <div className="selectImg"></div>
+            {selectedCenter && (
+              <div className="selectedText">
+                <p>
+                  📌 <b>이름</b>: {selectedCenter.name}
+                </p>
+                <p>
+                  🏢 <b>주소</b>: {selectedCenter.address}
+                </p>
+                <p>
+                  📞 <b>전화번호</b>: {selectedCenter.phone}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="nearCenterList">
+          {sortedCenters.map((center, index) => (
+            <div key={index} onClick={() => handleCenterClick(center)}>
+              <SupportCenterItem
+                name={center.name}
+                address={center.address}
+                phone={center.phone}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="chooseMode">
+        <button className="setSupportCenter" onClick={() => {}}>
+          지원센터
+        </button>
+        <button className="Hospital" onClick={() => {}}>
+          병원
+        </button>
+      </div>
     </div>
   );
 }
