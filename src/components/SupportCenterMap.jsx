@@ -14,10 +14,15 @@ function SupportCenterMap() {
   const [nearestCenter, setNearestCenter] = useState(null);
   const [sortedCenters, setSortedCenters] = useState([]);
   const [selectedCenter, setSelectedCenter] = useState(null);
-
+  const [hospitalLocation, setHospitalLocation] = useState([]);
+  const [optionCenter, setOptionCenter] = useState(false); //false인 경우 지원센터
   useEffect(() => {
+    const url = optionCenter
+      ? 'http://localhost:8080/api/hospitals/all'
+      : 'http://localhost:8080/api/support-centers/all';
+
     axios
-      .get('http://localhost:8080/api/support-centers/all')
+      .get(url)
       .then((response) => {
         setCenters(response.data);
 
@@ -51,8 +56,16 @@ function SupportCenterMap() {
       .catch((error) => {
         console.error('Error fetching support centers:', error);
       });
-  }, [navermaps]);
-
+  }, [navermaps, optionCenter]);
+  // useEffect(() => {
+  //   fetch('http://localhost:8080/api/hospitals/all')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setHospitalLocation(data);
+  //       console.log(hospitalLocation);
+  //     })
+  //     .catch((error) => console.error('Error fetching companies:', error));
+  // }, []);
   const getDistance = (pos1, pos2) => {
     const toRad = (value) => (value * Math.PI) / 180;
     const R = 6371;
@@ -219,10 +232,20 @@ function SupportCenterMap() {
         </div>
       </div>
       <div className="chooseMode">
-        <button className="setSupportCenter" onClick={() => {}}>
+        <button
+          className="setSupportCenter"
+          onClick={() => {
+            setOptionCenter(false);
+          }}
+        >
           지원센터
         </button>
-        <button className="Hospital" onClick={() => {}}>
+        <button
+          className="Hospital"
+          onClick={() => {
+            setOptionCenter(true);
+          }}
+        >
           병원
         </button>
       </div>
