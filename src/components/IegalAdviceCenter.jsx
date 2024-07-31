@@ -115,8 +115,9 @@ const Message = ({ text, isUser }) => {
   return (
     <div className={isUser ? "user-message" : "ai-message"}>
       <p>
-        <b>{isUser ? "" : "Co Labor :"}</b> {text}
+        <b>{isUser ? "" : "Co Labor :"}</b>
       </p>
+      <div dangerouslySetInnerHTML={{ __html: text }} />
     </div>
   );
 };
