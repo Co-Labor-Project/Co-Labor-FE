@@ -36,7 +36,7 @@ const CompanyItem = ({
         </div>
         <div className="companyInfo">
           <div className="company_infoName">{name}</div>
-          <div className="company_info">기업 분류 | {type}</div>
+          <div className="company_info">Company Category | {type}</div>
           <div className="company_info">
             {address1} {address2}
           </div>

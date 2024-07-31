@@ -164,7 +164,7 @@ const CompanyList = ({ data, searchNull }) => {
 
   const searchHandler = () => {
     if (searchKeyword === "") {
-      alert("❌ 검색어를 입력해 주세요!");
+      alert("❌ Please enter a search term!");
     } else {
       nav(`/AiSearch/${searchKeyword}`);
       setSearchKeyword("");
@@ -222,7 +222,7 @@ const CompanyList = ({ data, searchNull }) => {
       <div className="searchContainer">
         <TextField
           className="companylist_AI_search"
-          label="🤖 AI 기반으로 무엇이든 검색해보세요!  "
+          label="🤖 Search anything with AI!  "
           multiline
           maxRows={4}
           color="success"
@@ -241,7 +241,7 @@ const CompanyList = ({ data, searchNull }) => {
         />
       </div>
       <div className="gap"></div>
-      <div className="title">🏢 기업 정보</div>
+      <div className="title">🏢 Company Information</div>
       <div className="gap"></div>
 
       <div className="jobNoticeFilter">
@@ -261,7 +261,7 @@ const CompanyList = ({ data, searchNull }) => {
       </div>
       {!viewAll && companyData.length > 12 && (
         <button onClick={moreButton} className="w-btn w-btn-indigo">
-          더보기
+          See More
         </button>
       )}
     </div>
