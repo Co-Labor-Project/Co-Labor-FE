@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./css/SearchOutput.css";
-import JobNoticeList from "./JobNoticeList";
-import CompanyList from "./CompanyList";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import './css/SearchOutput.css';
+import JobNoticeList from './JobNoticeList';
+import CompanyList from './CompanyList';
+import { useParams } from 'react-router-dom';
 
 const SearchOutput = ({ input }) => {
   const [enterprises, setEnterprises] = useState([]);
@@ -16,8 +16,8 @@ const SearchOutput = ({ input }) => {
   });
   const [isAI, setIsAi] = useState(true);
   const url = window.location.href;
-  let desURL = "";
-  if (url.indexOf("AiSearch") === -1) {
+  let desURL = '';
+  if (url.indexOf('AiSearch') === -1) {
     desURL = `http://3.36.90.4:8080/search?keyword=${input}`;
   } else {
     desURL = `http://43.202.57.234:8081/ai-search?sentence=${input}`;
@@ -27,18 +27,18 @@ const SearchOutput = ({ input }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(desURL, {
-          method: "GET",
+          method: 'GET',
           headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            credentials: "include",
+            'Content-Type': 'application/json; charset=utf-8',
+            credentials: 'include',
           },
         });
         if (!response.ok) {
-          throw new Error("데이터 불러오기 실패");
+          throw new Error('데이터 불러오기 실패');
         }
-        if (desURL.indexOf("AiSearch") === -1) {
+        if (desURL.indexOf('AiSearch') === -1) {
           setIsAi(false);
-          console.log("isAI", isAI);
+          console.log('isAI', isAI);
         }
         console.log(response);
 
@@ -50,7 +50,7 @@ const SearchOutput = ({ input }) => {
         console.log(data.enterprises);
         setLoading(false);
       } catch (error) {
-        console.error("Fetch error:", error);
+        console.error('Fetch error:', error);
         setLoading(false);
       }
     };
@@ -93,7 +93,7 @@ const SearchOutput = ({ input }) => {
     }
   }, [enterprises, jobs, reviews]);
   const params = useParams();
-  console.log("paramsparamsparamsparams:", params.keyword);
+
   return (
     <div>
       <div className="inputText">

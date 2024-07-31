@@ -1,34 +1,34 @@
-import React, { useEffect, useState, useRef } from "react";
-import { NaverMap, Marker, useNavermaps } from "react-naver-maps";
-import axios from "axios";
-import "./css/SupportCenterMap.css";
-import SupportCenterItem from "./SupportCenterItem";
+import React, { useEffect, useState, useRef } from 'react';
+import { NaverMap, Marker, useNavermaps } from 'react-naver-maps';
+import axios from 'axios';
+import './css/SupportCenterMap.css';
+import SupportCenterItem from './SupportCenterItem';
 
 function SupportCenterMap() {
   const navermaps = useNavermaps();
   const mapRef = useRef(null);
   const [centers, setCenters] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(null);
-  const [mapCenter, setMapCenter] = useState(null); // 초기 값 null로 설정
+  const [mapCenter, setMapCenter] = useState(null);
   const [overlays, setOverlays] = useState([]);
   const [nearestCenter, setNearestCenter] = useState(null);
   const [sortedCenters, setSortedCenters] = useState([]);
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [hospitalLocation, setHospitalLocation] = useState([]);
-  const [optionCenter, setOptionCenter] = useState(false); //false인 경우 지원센터
+  const [optionCenter, setOptionCenter] = useState(false); // false인 경우 지원센터
+
   useEffect(() => {
     const url = optionCenter
-      ? "http://3.36.90.4:8080/api/hospitals/all"
-      : "http://3.36.90.4:8080/api/support-centers/all";
+      ? 'http://3.36.90.4:8080/api/hospitals/region/서울특별시 중구'
+      : 'http://3.36.90.4:8080/api/support-centers/all';
 
     axios
       .get(url)
       .then((response) => {
         setCenters(response.data);
-
         const pos = {
-          latitude: 37.495472,
-          longitude: 126.887536,
+          latitude: 37.566735659339784,
+          longitude: 127.00939480609217,
         };
         setCurrentPosition(pos);
 
@@ -45,18 +45,10 @@ function SupportCenterMap() {
         );
       })
       .catch((error) => {
-        console.error("Error fetching support centers:", error);
+        console.error('Error fetching support centers:', error);
       });
   }, [navermaps, optionCenter]);
-  // useEffect(() => {
-  //   fetch('http://3.36.90.4:8080/api/hospitals/all')
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setHospitalLocation(data);
-  //       console.log(hospitalLocation);
-  //     })
-  //     .catch((error) => console.error('Error fetching companies:', error));
-  // }, []);
+
   const getDistance = (pos1, pos2) => {
     const toRad = (value) => (value * Math.PI) / 180;
     const R = 6371;
@@ -89,13 +81,13 @@ function SupportCenterMap() {
           zIndex: 1,
         });
 
-        navermaps.Event.addListener(overlay, "mouseover", () => {
+        navermaps.Event.addListener(overlay, 'mouseover', () => {
           overlay.setContent(
             `<div style="background: white; border: 1px solid black; padding: 5px;">${center.name}</div>`
           );
         });
 
-        navermaps.Event.addListener(overlay, "mouseout", () => {
+        navermaps.Event.addListener(overlay, 'mouseout', () => {
           overlay.setContent(
             `<div style="display:none; background: white; border: 1px solid black; padding: 5px;">${center.name}</div>`
           );
@@ -116,13 +108,13 @@ function SupportCenterMap() {
           zIndex: 1,
         });
 
-        navermaps.Event.addListener(currentPosOverlay, "mouseover", () => {
+        navermaps.Event.addListener(currentPosOverlay, 'mouseover', () => {
           currentPosOverlay.setContent(
             '<div style="background: white; border: 1px solid black; padding: 5px;">현재 위치</div>'
           );
         });
 
-        navermaps.Event.addListener(currentPosOverlay, "mouseout", () => {
+        navermaps.Event.addListener(currentPosOverlay, 'mouseout', () => {
           currentPosOverlay.setContent(
             '<div style="display:none; background: white; border: 1px solid black; padding: 5px;">현재 위치</div>'
           );
@@ -133,21 +125,21 @@ function SupportCenterMap() {
 
       setOverlays(newOverlays);
     }
-  }, [centers, currentPosition, mapRef.current]);
+  }, [centers, currentPosition, mapRef.current, optionCenter]);
 
   const handleCenterClick = (center) => {
     setSelectedCenter(center);
-    setMapCenter(new navermaps.LatLng(center.latitude, center.longitude)); // 지도 중심을 선택된 지원 센터로 이동
+    setMapCenter(new navermaps.LatLng(center.latitude, center.longitude));
   };
 
   return (
     <div className="mapContainer">
-      {mapCenter && ( // mapCenter가 null이 아닐 때만 NaverMap 렌더링
+      {mapCenter && (
         <NaverMap
           ref={mapRef}
           center={mapCenter}
           defaultZoom={15}
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: '100%', height: '100%' }}
         >
           {currentPosition && (
             <Marker
@@ -183,8 +175,6 @@ function SupportCenterMap() {
               }}
               onClick={() => {
                 handleCenterClick(center);
-
-                // alert(`${center.name}\n${center.address}\n${center.phone}`);
               }}
             />
           ))}
@@ -206,6 +196,11 @@ function SupportCenterMap() {
                 <p>
                   📞 <b>전화번호</b>: {selectedCenter.phone}
                 </p>
+                {optionCenter && (
+                  <p>
+                    🏥 <b>병원 정보</b>: {selectedCenter.hospitalInfo}
+                  </p>
+                )}
               </div>
             )}
           </div>
@@ -217,6 +212,7 @@ function SupportCenterMap() {
                 name={center.name}
                 address={center.address}
                 phone={center.phone}
+                hospitalInfo={optionCenter ? center.hospitalInfo : null} // 병원 정보 추가
               />
             </div>
           ))}
