@@ -23,15 +23,15 @@ Chart.register(
 const RadarChart = ({ data }) => {
   const chartData = {
     labels: [
-      "승진 기회",
-      "복지 및 급여",
-      "업무와 삶의 균형",
-      "사내 문화",
-      "경영진",
+      "Promotion Opportunities",
+      "Benefits and Compensation",
+      "Work-Life Balance",
+      "Company Culture",
+      "Management",
     ],
     datasets: [
       {
-        label: "기업 평균",
+        label: "Average Review",
         data: [
           data.averagePromotion,
           data.averageSalary,

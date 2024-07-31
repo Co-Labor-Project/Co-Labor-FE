@@ -44,7 +44,7 @@ const RecentReviewItem = ({
           </div>
           <div className="moreBtn" onClick={clickHandler}>
             {" "}
-            리뷰 더 확인하기{" "}
+            View More Reviews{" "}
           </div>
         </div>
       </div>

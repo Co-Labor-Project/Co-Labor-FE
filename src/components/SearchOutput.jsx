@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import './css/SearchOutput.css';
-import JobNoticeList from './JobNoticeList';
-import CompanyList from './CompanyList';
+import React, { useEffect, useState } from "react";
+import "./css/SearchOutput.css";
+import JobNoticeList from "./JobNoticeList";
+import CompanyList from "./CompanyList";
 
 const SearchOutput = ({ input }) => {
   const [enterprises, setEnterprises] = useState([]);
@@ -15,8 +15,8 @@ const SearchOutput = ({ input }) => {
   });
   const [isAI, setIsAi] = useState(true);
   const url = window.location.href;
-  let desURL = '';
-  if (url.indexOf('AiSearch') === -1) {
+  let desURL = "";
+  if (url.indexOf("AiSearch") === -1) {
     desURL = `http://localhost:8080/search?keyword=${input}`;
   } else {
     desURL = `http://localhost:8080/ai-search?sentence=${input}`;
@@ -26,18 +26,18 @@ const SearchOutput = ({ input }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(desURL, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json; charset=utf-8',
-            credentials: 'include',
+            "Content-Type": "application/json; charset=utf-8",
+            credentials: "include",
           },
         });
         if (!response.ok) {
-          throw new Error('데이터 불러오기 실패');
+          throw new Error("Failed to Load Data");
         }
-        if (desURL.indexOf('AiSearch') === -1) {
+        if (desURL.indexOf("AiSearch") === -1) {
           setIsAi(false);
-          console.log('isAI', isAI);
+          console.log("isAI", isAI);
         }
         console.log(response);
 
@@ -49,7 +49,7 @@ const SearchOutput = ({ input }) => {
         console.log(data.enterprises);
         setLoading(false);
       } catch (error) {
-        console.error('Fetch error:', error);
+        console.error("Fetch error:", error);
         setLoading(false);
       }
     };
@@ -95,7 +95,7 @@ const SearchOutput = ({ input }) => {
   return (
     <div>
       <div className="inputText">
-        <h2> &quot;{input}&quot; 검색 결과</h2>
+        <h2> &quot;{input}&quot; Search Results</h2>
       </div>
       {loading ? (
         <p>Loading...</p>

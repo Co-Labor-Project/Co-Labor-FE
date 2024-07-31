@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { NaverMap, Marker, useNavermaps } from 'react-naver-maps';
-import axios from 'axios';
-import './css/SupportCenterMap.css';
-import SupportCenterItem from './SupportCenterItem';
+import React, { useEffect, useState, useRef } from "react";
+import { NaverMap, Marker, useNavermaps } from "react-naver-maps";
+import axios from "axios";
+import "./css/SupportCenterMap.css";
+import SupportCenterItem from "./SupportCenterItem";
 
 function SupportCenterMap() {
   const navermaps = useNavermaps();
@@ -18,8 +18,8 @@ function SupportCenterMap() {
   const [optionCenter, setOptionCenter] = useState(false); //false인 경우 지원센터
   useEffect(() => {
     const url = optionCenter
-      ? 'http://localhost:8080/api/hospitals/all'
-      : 'http://localhost:8080/api/support-centers/all';
+      ? "http://localhost:8080/api/hospitals/all"
+      : "http://localhost:8080/api/support-centers/all";
 
     axios
       .get(url)
@@ -48,13 +48,13 @@ function SupportCenterMap() {
               );
             },
             (error) => {
-              console.error('Error getting current position:', error);
+              console.error("Error getting current position:", error);
             }
           );
         }
       })
       .catch((error) => {
-        console.error('Error fetching support centers:', error);
+        console.error("Error fetching support centers:", error);
       });
   }, [navermaps, optionCenter]);
   // useEffect(() => {
@@ -98,13 +98,13 @@ function SupportCenterMap() {
           zIndex: 1,
         });
 
-        navermaps.Event.addListener(overlay, 'mouseover', () => {
+        navermaps.Event.addListener(overlay, "mouseover", () => {
           overlay.setContent(
             `<div style="background: white; border: 1px solid black; padding: 5px;">${center.name}</div>`
           );
         });
 
-        navermaps.Event.addListener(overlay, 'mouseout', () => {
+        navermaps.Event.addListener(overlay, "mouseout", () => {
           overlay.setContent(
             `<div style="display:none; background: white; border: 1px solid black; padding: 5px;">${center.name}</div>`
           );
@@ -125,13 +125,13 @@ function SupportCenterMap() {
           zIndex: 1,
         });
 
-        navermaps.Event.addListener(currentPosOverlay, 'mouseover', () => {
+        navermaps.Event.addListener(currentPosOverlay, "mouseover", () => {
           currentPosOverlay.setContent(
             '<div style="background: white; border: 1px solid black; padding: 5px;">현재 위치</div>'
           );
         });
 
-        navermaps.Event.addListener(currentPosOverlay, 'mouseout', () => {
+        navermaps.Event.addListener(currentPosOverlay, "mouseout", () => {
           currentPosOverlay.setContent(
             '<div style="display:none; background: white; border: 1px solid black; padding: 5px;">현재 위치</div>'
           );
@@ -156,7 +156,7 @@ function SupportCenterMap() {
           ref={mapRef}
           center={mapCenter}
           defaultZoom={15}
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: "100%", height: "100%" }}
         >
           {currentPosition && (
             <Marker
@@ -166,7 +166,7 @@ function SupportCenterMap() {
                   currentPosition.longitude
                 )
               }
-              title="현재 위치"
+              title="Current Location"
               clickable={true}
               icon={{
                 content:
@@ -207,13 +207,13 @@ function SupportCenterMap() {
             {selectedCenter && (
               <div className="selectedText">
                 <p>
-                  📌 <b>이름</b>: {selectedCenter.name}
+                  📌 <b>name</b>: {selectedCenter.name}
                 </p>
                 <p>
-                  🏢 <b>주소</b>: {selectedCenter.address}
+                  🏢 <b>address</b>: {selectedCenter.address}
                 </p>
                 <p>
-                  📞 <b>전화번호</b>: {selectedCenter.phone}
+                  📞 <b>phone</b>: {selectedCenter.phone}
                 </p>
               </div>
             )}
@@ -238,7 +238,7 @@ function SupportCenterMap() {
             setOptionCenter(false);
           }}
         >
-          지원센터
+          SupportCenter
         </button>
         <button
           className="Hospital"
@@ -246,7 +246,7 @@ function SupportCenterMap() {
             setOptionCenter(true);
           }}
         >
-          병원
+          Hospital
         </button>
       </div>
     </div>

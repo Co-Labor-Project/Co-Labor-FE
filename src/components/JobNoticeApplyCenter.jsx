@@ -142,19 +142,19 @@
 // };
 
 // export default JobNoticeApplyCenter;
-import React, { useState } from 'react';
-import './css/JobNoticeApplyCenter.css';
+import React, { useState } from "react";
+import "./css/JobNoticeApplyCenter.css";
 
 const JobNoticeApplyCenter = () => {
   const [input, setInput] = useState({
-    enterpriseId: '',
-    name: '',
-    address1: '',
-    address2: '',
-    address3: '',
-    type: '',
-    phoneNumber: '',
-    description: '',
+    enterpriseId: "",
+    name: "",
+    address1: "",
+    address2: "",
+    address3: "",
+    type: "",
+    phoneNumber: "",
+    description: "",
   });
 
   const [showSection2, setShowSection2] = useState(false);
@@ -181,13 +181,13 @@ const JobNoticeApplyCenter = () => {
   return (
     <div className="JobNoticeApplyCenter">
       <div className="sections-wrapper">
-        <section className={`section1 ${showSection2 ? 'hidden' : ''}`}>
+        <section className={`section1 ${showSection2 ? "hidden" : ""}`}>
           <div className="input-group">
             <i className="bx bxs-lock-alt"></i>
             <input
               type="text"
               name="name"
-              placeholder="조건"
+              placeholder="Conditions"
               value={input.name}
               onChange={onChangeInput}
               className="sectionInput"
@@ -199,7 +199,7 @@ const JobNoticeApplyCenter = () => {
               className="sectionInput"
               type="text"
               name="type"
-              placeholder="직무"
+              placeholder="Position"
               value={input.type}
               onChange={onChangeInput}
             />
@@ -209,7 +209,7 @@ const JobNoticeApplyCenter = () => {
             <input
               type="text"
               name="phoneNumber"
-              placeholder="경력"
+              placeholder="Experience"
               value={input.phoneNumber}
               onChange={onChangeInput}
               className="sectionInput"
@@ -220,7 +220,7 @@ const JobNoticeApplyCenter = () => {
             <input
               type="text"
               name="phoneNumber"
-              placeholder="고용형태"
+              placeholder="Employment Type"
               value={input.phoneNumber}
               onChange={onChangeInput}
               className="sectionInput"
@@ -231,21 +231,21 @@ const JobNoticeApplyCenter = () => {
             <input
               type="text"
               name="phoneNumber"
-              placeholder="마감 기한"
+              placeholder="Deadline"
               value={input.phoneNumber}
               onChange={onChangeInput}
               className="sectionInput"
             />
           </div>
-          <button onClick={handleProceed}>이어서 진행</button>
+          <button onClick={handleProceed}>Continue</button>
         </section>
-        <section className={`section2 ${showSection2 ? '' : 'hidden'}`}>
+        <section className={`section2 ${showSection2 ? "" : "hidden"}`}>
           <div className="input-group">
             <i className="bx bxs-lock-alt"></i>
             <input
               type="text"
               name="name"
-              placeholder="근무 지역"
+              placeholder="Location"
               value={input.name}
               onChange={onChangeInput}
               className="sectionInput"
@@ -256,7 +256,7 @@ const JobNoticeApplyCenter = () => {
             <input
               type="text"
               name="type"
-              placeholder="스킬"
+              placeholder="Skills"
               value={input.type}
               onChange={onChangeInput}
               className="sectionInput"
@@ -267,7 +267,7 @@ const JobNoticeApplyCenter = () => {
             <input
               type="text"
               name="phoneNumber"
-              placeholder="제목"
+              placeholder="Title"
               value={input.phoneNumber}
               onChange={onChangeInput}
               className="sectionInput"
@@ -277,13 +277,13 @@ const JobNoticeApplyCenter = () => {
             <i className="bx bxs-lock-alt"></i>
             <textarea
               name="description"
-              placeholder="설명"
+              placeholder="Description"
               value={input.description}
               onChange={onChangeInput}
               className="sectionInput"
             />
           </div>
-          <button onClick={onSubmit}>등록하기</button>
+          <button onClick={onSubmit}>Register</button>
         </section>
       </div>
     </div>

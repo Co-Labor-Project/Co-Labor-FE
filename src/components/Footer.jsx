@@ -1,11 +1,11 @@
-import React from 'react';
-import './css/Footer.css';
+import React from "react";
+import "./css/Footer.css";
 const Footer = () => {
   return (
     <footer>
       <p>
         <br />
-        <span>개인정보 처리방침 | 이용약관 </span>
+        <span>Privacy Policy | Terms of Service </span>
         <br />
         <span>©2024.Pelican.All rights reserved</span>
       </p>

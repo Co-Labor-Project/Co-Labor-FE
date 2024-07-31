@@ -53,10 +53,12 @@ const JobNotieItem = ({
         </div>
         <div className="jobNoticeInfo">
           <div className="jobNotice_infoTitle">{title}</div>
-          <div className="jobNotice_infoCondi">마감 기한 : {deadDate}</div>
-          <div className="jobNotice_infoCondi">직무 : {jobRole}</div>
-          <div className="jobNotice_infoCondi">고용형태 : {employmentType}</div>
-          <div className="jobNotice_infoCondi">근무지역 : {location}</div>
+          <div className="jobNotice_infoCondi">Deadline : {deadDate}</div>
+          <div className="jobNotice_infoCondi">Position : {jobRole}</div>
+          <div className="jobNotice_infoCondi">
+            Employment Type : {employmentType}
+          </div>
+          <div className="jobNotice_infoCondi">Work Location : {location}</div>
         </div>
       </div>
     </div>

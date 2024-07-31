@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./css/IegalAdviceCenter.css";
 import { useNavigate } from "react-router-dom";
 
-
 const IegalAdviceCenter = () => {
   const [messages, setMessages] = useState([]);
   const [username, setUsername] = useState("");
@@ -16,7 +15,7 @@ const IegalAdviceCenter = () => {
       setUsername(storedUsername);
     } else {
       navigate("/SingIn");
-      alert("이 기능을 사용하려면 로그인이 필요합니다.");
+      alert("You need to log in to use this feature.");
     }
   }, [navigate]);
 
@@ -42,7 +41,7 @@ const IegalAdviceCenter = () => {
       })
       .catch((error) => {
         console.error("Error fetching messages:", error);
-        alert("메시지를 불러오지 못했습니다. 다시 시도해 주세요.");
+        alert("Failed to load the message. Please try again.");
       })
       .finally(() => {
         setLoading(false);
@@ -62,6 +61,7 @@ const IegalAdviceCenter = () => {
       { text: message, isUser: true },
     ]);
 
+    setLoading(true);
     fetch(
       `http://localhost:8080/api/chatting/send?userId=${username}&message=${encodeURIComponent(
         message
@@ -79,7 +79,10 @@ const IegalAdviceCenter = () => {
       })
       .catch((error) => {
         console.error("Error sending message:", error);
-        alert("메시지를 전송하지 못했습니다. 다시 시도해 주세요.");
+        alert("Failed to send the message. Please try again.");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -92,10 +95,10 @@ const IegalAdviceCenter = () => {
   return (
     <div className="app">
       <div className="chat-box">
-
-        <h1 className="chatTitle">CoLaw</h1>
+        <h1>CoLaw</h1>
         <MessageList messages={messages} loading={loading} />
-        <MessageForm onSendMessage={handleSendMessage} />
+        <MessageForm onSendMessage={handleSendMessage} loading={loading} />
+        {loading && <LoadingIndicator />}
       </div>
     </div>
   );
@@ -104,11 +107,9 @@ const IegalAdviceCenter = () => {
 // 메시지 목록 컴포넌트
 const MessageList = ({ messages, loading }) => (
   <div className="messages-list">
-    {loading ? (
-      <p>Loading...</p>
-    ) : (
-      messages.map((message, index) => <Message key={index} {...message} />)
-    )}
+    {messages.map((message, index) => (
+      <Message key={index} {...message} />
+    ))}
   </div>
 );
 
@@ -124,7 +125,7 @@ const Message = ({ text, isUser }) => {
 };
 
 // 메시지 전송 폼 컴포넌트
-const MessageForm = ({ onSendMessage }) => {
+const MessageForm = ({ onSendMessage, loading }) => {
   const [message, setMessage] = useState("");
 
   const handleSubmit = (event) => {
@@ -140,9 +141,10 @@ const MessageForm = ({ onSendMessage }) => {
         value={message}
         onChange={(event) => setMessage(event.target.value)}
         className="message-input"
+        disabled={loading} // 로딩 중일 때 입력 비활성화
       />
-      <button type="submit" className="send-button">
-        Send
+      <button type="submit" className="send-button" disabled={loading}>
+        {loading ? "Sending..." : "Send"}
       </button>
     </form>
   );

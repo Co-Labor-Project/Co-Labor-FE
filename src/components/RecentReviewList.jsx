@@ -1,9 +1,9 @@
-import React from 'react';
-import './css/RecentReviewList.css';
-import RecentReviewItem from './RecentReviewItem';
-import './css/common.css';
-import { useContext } from 'react';
-import { ReviewContext } from '../App';
+import React from "react";
+import "./css/RecentReviewList.css";
+import RecentReviewItem from "./RecentReviewItem";
+import "./css/common.css";
+import { useContext } from "react";
+import { ReviewContext } from "../App";
 
 const RecentReview = ({ data }) => {
   const contextData = useContext(ReviewContext);
@@ -15,7 +15,7 @@ const RecentReview = ({ data }) => {
   return (
     <>
       <div className="recentReview">
-        <div className="title">📝 최근 리뷰</div>
+        <div className="title">📝 Recent Reviews</div>
         <div className="gap"></div>
 
         <div className="recentReviewList">

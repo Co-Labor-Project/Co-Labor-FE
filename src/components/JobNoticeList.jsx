@@ -1,11 +1,11 @@
-import React from 'react';
-import './css/JobNoticeList.css';
-import JobNotieItem from './JobNotieItem';
-import FilterBox from './FilterBox';
-import { Location, JOB, OPTIONS } from './FilterOption';
-import './css/common.css';
-import { useContext } from 'react';
-import { JobContext } from '../App';
+import React from "react";
+import "./css/JobNoticeList.css";
+import JobNotieItem from "./JobNotieItem";
+import FilterBox from "./FilterBox";
+import { Location, JOB, OPTIONS } from "./FilterOption";
+import "./css/common.css";
+import { useContext } from "react";
+import { JobContext } from "../App";
 
 const JobNoticeList = ({
   data,
@@ -16,7 +16,7 @@ const JobNoticeList = ({
   return (
     <>
       <div className="gap"></div>
-      <div className="title">📢 채용 공고</div>
+      <div className="title">📢 Job Listings</div>
       <div className="gap"></div>
       <div className="jobNoticeFilter">
         <FilterBox option={JOB} />
@@ -34,7 +34,7 @@ const JobNoticeList = ({
       )}
       {searchNull.jobs && (
         <div className="isNullJobNotice">
-          <h3>등록된 채용공고가 없습니다!</h3>
+          <h3>No job listings available!</h3>
         </div>
       )}
     </>

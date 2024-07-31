@@ -59,10 +59,10 @@ const SingInCenter = () => {
       )
       .then((response) => {
         const result = response.data;
-        console.log("로그인결과: ", result);
+        console.log("Login Results: ", result);
         if (result.message === "Login successful") {
           sessionStorage.setItem("username", Loginusername);
-          alert("로그인 성공!");
+          alert("Login Successful!");
           console.log(document.cookie);
           if (result.userType === "enterprise") {
             setLoginState({ userEnterprise: true, userLogin: false });
@@ -70,24 +70,24 @@ const SingInCenter = () => {
             setLoginState({ userLogin: true, userEnterprise: false });
           }
         } else {
-          throw new Error("로그인 실패");
+          throw new Error("Login Failed");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("로그인 실패!");
+        alert("Login Failed!");
       });
   };
 
   const onsubmit = () => {
     if (input.password !== input.passwordConfirm) {
-      alert("패스워드가 일치하지 않습니다.");
+      alert("Passwords do not match.");
       return;
     }
     const url = input.isEnterprise
       ? "http://localhost:8080/auth/signup-enterprise"
       : "http://localhost:8080/auth/signup-labor";
-    console.log("패스워드 일치 후 요청 보내기");
+    console.log("Send request after matching passwords.");
     const json = JSON.stringify(input);
     signUp(json, url);
   };
@@ -103,12 +103,12 @@ const SingInCenter = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("회원가입결과: ", result);
-        if (!alert("회원가입 성공!")) nav("/");
+        console.log("Registration Results: ", result);
+        if (!alert("Registration Successful!")) nav("/");
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("회원가입 실패!");
+        alert("Registration Failed!");
       });
   };
 
@@ -186,7 +186,7 @@ const SingInCenter = () => {
                 </div>
                 <div className="input-group">
                   <div className="enterpriseMem">
-                    <span>기업회원이신가요?</span>
+                    <span>Are you a company member?</span>
                     <input
                       type="checkbox"
                       name="isEnterprise"
