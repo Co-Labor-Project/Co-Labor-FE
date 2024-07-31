@@ -6,12 +6,12 @@ export default defineConfig({
   server: {
     proxy: {
       "/auth": {
-        target: "http://localhost:8080",
+        target: "http://3.36.90.4:8080",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/auth/, ""),
       },
       "/api": {
-        target: "http://localhost:8080",
+        target: "http://3.36.90.4:8080",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

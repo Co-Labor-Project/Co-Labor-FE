@@ -87,6 +87,11 @@ textarea {
   border-radius: 0.5rem;
   border: 0.125rem solid var(--white);
   outline: none;
+  height: 600px;
+}
+
+textarea::placeholder {
+  font-size: 1.2em;
 }
 
 .input-group textarea:focus {
@@ -127,6 +132,7 @@ textarea {
 
 .sectionInput {
   width: 500px;
+  height: 70px;
 }
 
 .input-group input.sectionInput {
@@ -154,4 +160,15 @@ section > button {
 
 .hidden {
   display: none;
+}
+
+.wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.jobdes {
+  font-size: 1.2em;
 }
