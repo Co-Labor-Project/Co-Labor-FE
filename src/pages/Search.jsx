@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import SearchOutput from '../components/SearchOutput';
 const Search = () => {
   const params = useParams();
+
   return (
     <div>
       <Header />

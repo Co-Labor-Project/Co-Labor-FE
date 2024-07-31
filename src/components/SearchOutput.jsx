@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './css/SearchOutput.css';
 import JobNoticeList from './JobNoticeList';
 import CompanyList from './CompanyList';
+import { useParams } from 'react-router-dom';
 
 const SearchOutput = ({ input }) => {
   const [enterprises, setEnterprises] = useState([]);
@@ -17,9 +18,9 @@ const SearchOutput = ({ input }) => {
   const url = window.location.href;
   let desURL = '';
   if (url.indexOf('AiSearch') === -1) {
-    desURL = `http://localhost:8080/search?keyword=${input}`;
+    desURL = `http://3.36.90.4:8080/search?keyword=${input}`;
   } else {
-    desURL = `http://localhost:8080/ai-search?sentence=${input}`;
+    desURL = `http://3.36.90.4:8080/ai-search?sentence=${input}`;
   }
 
   useEffect(() => {
@@ -91,7 +92,8 @@ const SearchOutput = ({ input }) => {
       }));
     }
   }, [enterprises, jobs, reviews]);
-
+  const params = useParams();
+  console.log('paramsparamsparamsparams:', params.keyword);
   return (
     <div>
       <div className="inputText">

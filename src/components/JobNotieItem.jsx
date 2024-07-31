@@ -1,8 +1,8 @@
-import React from "react";
-import "./css/JobNoticeItem.css";
-import useScrollFadeIn from "../hooks/fade_in";
-import { useNavigate, useParams } from "react-router-dom";
-import useEmpty from "../hooks/useEmpty";
+import React from 'react';
+import './css/JobNoticeItem.css';
+import useScrollFadeIn from '../hooks/fade_in';
+import { useNavigate, useParams } from 'react-router-dom';
+import useEmpty from '../hooks/useEmpty';
 
 const JobNotieItem = ({
   imageName,
@@ -17,23 +17,23 @@ const JobNotieItem = ({
   skills,
   deadDate,
 }) => {
-  const fadeInProps = useScrollFadeIn("up", 1);
+  const fadeInProps = useScrollFadeIn('up', 1);
   const nav = useNavigate();
   const parms = useParams();
   const isObjEmpty = useEmpty(parms);
-  const name = enterprise?.name || "No Enterprise Name";
+  const name = enterprise?.name || 'No Enterprise Name';
 
   console.log(imageName);
   if (!imageName) {
     imageName =
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s';
   } else {
-    imageName = "http://localhost:8080/static/images/" + imageName;
+    imageName = 'http://3.36.90.4:8080/static/images/' + imageName;
   }
   const clickHandler = () => {
     if (
       isObjEmpty ||
-      parms.keyword === "undefined" ||
+      parms.keyword === 'undefined' ||
       parms.keyword === undefined
     ) {
       nav(`/JobNotice/${job_id}`);

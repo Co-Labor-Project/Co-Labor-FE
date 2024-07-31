@@ -18,8 +18,8 @@ function SupportCenterMap() {
   const [optionCenter, setOptionCenter] = useState(false); //false인 경우 지원센터
   useEffect(() => {
     const url = optionCenter
-      ? 'http://localhost:8080/api/hospitals/all'
-      : 'http://localhost:8080/api/support-centers/all';
+      ? 'http://3.36.90.4:8080/api/hospitals/all'
+      : 'http://3.36.90.4:8080/api/support-centers/all';
 
     axios
       .get(url)
@@ -58,7 +58,7 @@ function SupportCenterMap() {
       });
   }, [navermaps, optionCenter]);
   // useEffect(() => {
-  //   fetch('http://localhost:8080/api/hospitals/all')
+  //   fetch('http://3.36.90.4:8080/api/hospitals/all')
   //     .then((response) => response.json())
   //     .then((data) => {
   //       setHospitalLocation(data);

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { CompanyContext, JobContext, ReviewContext } from "../App";
-import "./css/CompanyDetailsCenter.css";
-import StarRate from "./StarRate";
-import BarGraph from "./BarGraph";
-import RadarChart from "./RadarChart";
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { CompanyContext, JobContext, ReviewContext } from '../App';
+import './css/CompanyDetailsCenter.css';
+import StarRate from './StarRate';
+import BarGraph from './BarGraph';
+import RadarChart from './RadarChart';
 
 const CompanyDetailsCenter = () => {
   const params = useParams();
@@ -57,23 +57,23 @@ const CompanyDetailsCenter = () => {
   }
 
   const defaultCompanyimageName =
-    "https://cdn-icons-png.flaticon.com/512/4091/4091968.png";
+    'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
   const displayCompanyimageName = companyData.imageName
-    ? "http://localhost:8080/static/images/" + company.imageName
+    ? 'http://3.36.90.4:8080/static/images/' + companyData.imageName
     : defaultCompanyimageName;
 
-  const defaultCompanyType = "기업 분류를 작성해주세요!";
+  const defaultCompanyType = '기업 분류를 작성해주세요!';
   const displayCompanyType = companyData.type || defaultCompanyType;
 
-  const defaultCompanyDescription = "기업 설명을 작성해주세요!";
+  const defaultCompanyDescription = '기업 설명을 작성해주세요!';
   const displayCompanyDescription =
     companyData.description || defaultCompanyDescription;
 
   const defaultJobimageName =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s';
   const displayJobimageName = (job) =>
     job.imageName
-      ? "http://localhost:8080/static/images/" + job.imageName
+      ? 'http://3.36.90.4:8080/static/images/' + job.imageName
       : defaultJobimageName;
 
   // 리뷰 각 평점의 평균을 계산하는 함수
@@ -132,7 +132,7 @@ const CompanyDetailsCenter = () => {
           />
           <div className="CompanyDetailsCenterCompanyText">
             <div className="CompanyDetailsCenterCompanyAddress">
-              주소: {companyData.address1} {companyData.address2}{" "}
+              주소: {companyData.address1} {companyData.address2}{' '}
               {companyData.address3}
             </div>
             <div className="CompanyDetailsCenterCompanyPh">
@@ -222,7 +222,7 @@ const CompanyDetailsCenter = () => {
 
       <div className="CompanyDetailsCenterAllReview">
         <div className="CompanyDetailsCenterAllReviewitemWrapper">
-          <div style={{ marginTop: "10px" }}>
+          <div style={{ marginTop: '10px' }}>
             <span>{totalReviews}개의 리뷰</span>
             <StarRate rating={averageRatings.averageTotal} />
             <br />

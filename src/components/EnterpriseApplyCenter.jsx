@@ -1,27 +1,27 @@
-import "./css/EnterpriseApplyCenter.css";
-import "./css/SingInCenter.css";
-import React, { useState, useEffect, useRef, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { LoginContext } from "../App";
+import './css/EnterpriseApplyCenter.css';
+import './css/SingInCenter.css';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { LoginContext } from '../App';
 
 const EnterpriseApplyCenter = () => {
   const nav = useNavigate();
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
   const loginContext = useContext(LoginContext);
 
   // 현재 로그인된 사용자 가져오기
   useEffect(() => {
-    const storedUsername = sessionStorage.getItem("username");
+    const storedUsername = sessionStorage.getItem('username');
     if (storedUsername) {
       setUsername(storedUsername);
     } else {
-      nav("/SingIn");
-      alert("이 기능을 사용하려면 로그인이 필요합니다.");
+      nav('/SingIn');
+      alert('이 기능을 사용하려면 로그인이 필요합니다.');
     }
   }, [nav]);
 
   const containerRef = useRef(null);
-  const [regiNum, setRegiNum] = useState("");
+  const [regiNum, setRegiNum] = useState('');
 
   const onChange = (e) => {
     setRegiNum(e.target.value);
@@ -32,14 +32,14 @@ const EnterpriseApplyCenter = () => {
   };
 
   const [input, setInput] = useState({
-    enterpriseId: "",
-    name: "",
-    address1: "",
-    address2: "",
-    address3: "",
-    type: "",
-    phoneNumber: "",
-    description: "",
+    enterpriseId: '',
+    name: '',
+    address1: '',
+    address2: '',
+    address3: '',
+    type: '',
+    phoneNumber: '',
+    description: '',
   });
 
   const onChangeInput = (e) => {
@@ -53,23 +53,23 @@ const EnterpriseApplyCenter = () => {
   };
 
   const onSubmit = (json) => {
-    console.log("현재 입력창 상태", input);
-    fetch("http://localhost:8080/api/enterprises/queue", {
-      method: "POST",
+    console.log('현재 입력창 상태', input);
+    fetch('http://3.36.90.4:8080/api/enterprises/queue', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(input),
-      credentials: "include",
+      credentials: 'include',
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("기업등록결과: ", result);
-        if (!alert("기업등록 성공!")) nav("/");
+        console.log('기업등록결과: ', result);
+        if (!alert('기업등록 성공!')) nav('/');
       })
       .catch((error) => {
-        console.error("Error:", error);
-        alert("회원가입 실패!");
+        console.error('Error:', error);
+        alert('회원가입 실패!');
       });
   };
 
@@ -78,12 +78,12 @@ const EnterpriseApplyCenter = () => {
 
     // 첫 번째 fetch 호출
     const response1 = await fetch(
-      `http://localhost:8080/auth/hasEnterprise?username=${sessionStorage.getItem(
-        "username"
+      `http://3.36.90.4:8080/auth/hasEnterprise?username=${sessionStorage.getItem(
+        'username'
       )}`,
       {
-        method: "GET",
-        credentials: "include", // 세션 쿠키 포함
+        method: 'GET',
+        credentials: 'include', // 세션 쿠키 포함
       }
     );
     console.log(response1);
@@ -91,9 +91,9 @@ const EnterpriseApplyCenter = () => {
     if (response1.ok) {
       const hasEnterprise = await response1.json();
       if (hasEnterprise) {
-        alert("이미 기업이 등록된 회원입니다.");
+        alert('이미 기업이 등록된 회원입니다.');
         flag = true;
-        nav("/");
+        nav('/');
         return; // 이미 기업이 등록된 경우, 함수 종료
       }
     }
@@ -101,10 +101,10 @@ const EnterpriseApplyCenter = () => {
     // 두 번째 fetch 호출
     if (!flag) {
       const response2 = await fetch(
-        `http://localhost:8080/api/enterprises/status?enterpriseId=${regiNum}`,
+        `http://3.36.90.4:8080/api/enterprises/status?enterpriseId=${regiNum}`,
         {
-          method: "GET",
-          credentials: "include", // 세션 쿠키 포함
+          method: 'GET',
+          credentials: 'include', // 세션 쿠키 포함
         }
       );
 
@@ -112,16 +112,16 @@ const EnterpriseApplyCenter = () => {
       console.log(result2);
 
       if (result2.status === 1) {
-        console.log("실제 존재하는 사업자 번호");
-        console.log(sessionStorage.getItem("username"));
+        console.log('실제 존재하는 사업자 번호');
+        console.log(sessionStorage.getItem('username'));
 
         const response3 = await fetch(
-          `http://localhost:8080/api/enterprises/map?enterpriseId=${regiNum}&username=${sessionStorage.getItem(
-            "username"
+          `http://3.36.90.4:8080/api/enterprises/map?enterpriseId=${regiNum}&username=${sessionStorage.getItem(
+            'username'
           )}`,
           {
-            method: "POST",
-            credentials: "include", // 세션 쿠키 포함
+            method: 'POST',
+            credentials: 'include', // 세션 쿠키 포함
           }
         );
 
@@ -129,28 +129,28 @@ const EnterpriseApplyCenter = () => {
         console.log(result3);
 
         if (result3.status === 1) {
-          alert("기업 등록이 완료되었습니다!");
-          nav("/");
+          alert('기업 등록이 완료되었습니다!');
+          nav('/');
         } else {
           toggle();
         }
       } else {
-        alert("존재하지 않는 사업자 번호입니다.");
+        alert('존재하지 않는 사업자 번호입니다.');
       }
     }
   };
 
   const toggle = () => {
     if (containerRef.current) {
-      containerRef.current.classList.toggle("sign-in");
-      containerRef.current.classList.toggle("sign-up");
+      containerRef.current.classList.toggle('sign-in');
+      containerRef.current.classList.toggle('sign-up');
     }
   };
 
   useEffect(() => {
     if (containerRef.current) {
       setTimeout(() => {
-        containerRef.current.classList.add("sign-in");
+        containerRef.current.classList.add('sign-in');
       }, 200);
     }
   }, []);
@@ -193,11 +193,11 @@ const EnterpriseApplyCenter = () => {
 
                 <div
                   className="input-group"
-                  style={{ display: "flex", gap: "10px" }}
+                  style={{ display: 'flex', gap: '10px' }}
                 >
                   <i
                     className="bx bxs-lock-alt"
-                    style={{ display: "flex" }}
+                    style={{ display: 'flex' }}
                   ></i>
                   <input
                     style={{ flex: 1 }}
