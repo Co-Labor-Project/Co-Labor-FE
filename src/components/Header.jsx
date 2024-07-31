@@ -31,7 +31,9 @@ const Header = () => {
       <div className="logo" onClick={() => nav('/')}></div>
       <div onClick={() => nav('/CompanyInfo')}>기업 정보</div>
       <div onClick={() => nav('/JobNotice')}>채용 공고</div>
-      <div onClick={() => nav('/IegalAdvice')}>법률 상담</div>
+      {!loginState.userEnterprise && (
+        <div onClick={() => nav('/IegalAdvice')}>법률 상담</div>
+      )}
       <div onClick={() => nav('/Support')}>노동자 지원센터</div>
       <div className="searchBox">
         <input

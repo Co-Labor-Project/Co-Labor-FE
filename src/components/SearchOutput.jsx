@@ -93,7 +93,7 @@ const SearchOutput = ({ input }) => {
     }
   }, [enterprises, jobs, reviews]);
   const params = useParams();
-  console.log('paramsparamsparamsparams:', params.keyword);
+  // console.log('paramsparamsparamsparams:', params.keyword);
   return (
     <div>
       <div className="inputText">

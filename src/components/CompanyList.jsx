@@ -121,7 +121,10 @@ const CompanyList = ({ data, searchNull }) => {
         ))}
         {viewAll && visibleItems < companyData.length && (
           <div ref={setTarget} className="loading">
-            Loading...
+            <div className="LoadingWrapper">
+              <div className="loading-spinner"></div>
+              <p>🤖 기업정보를 불러오는 중 입니다...</p>
+            </div>
           </div>
         )}
       </div>
