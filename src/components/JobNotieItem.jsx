@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./css/JobNoticeItem.css";
 import useScrollFadeIn from "../hooks/fade_in";
 import { useNavigate, useParams } from "react-router-dom";
@@ -22,22 +22,40 @@ const JobNotieItem = ({
   const parms = useParams();
   const isObjEmpty = useEmpty(parms);
   const name = enterprise?.name || "No Enterprise Name";
+  const defaultImage =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
+  const [imageSrc, setImageSrc] = useState(defaultImage);
 
-  // console.log(job_id + "  " + imageName);
-  if (!imageName) {
-    imageName =
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
-  } else {
-    const temp_img = imageName;
-    imageName = "http://3.36.90.4:8080/static/images/" + imageName;
-    const response = fetch(imageName);
-    if (response.ok) {
-      // console.log("스태틱 이미지입니다. 이미지 경로 : " + imageName);
-    } else {
-      // console.log("스태틱 이미지가 아닙니다. 이미지 경로 : " + imageName);
-      imageName = "http://3.36.90.4:8080/api/jobs/images/" + temp_img;
-    }
-  }
+  useEffect(() => {
+    const checkImage = async () => {
+      if (!imageName) {
+        return;
+      }
+
+      const url = `http://3.36.90.4:8080/static/images/${imageName}`;
+      try {
+        const response = await fetch(url);
+        if (response.ok) {
+          setImageSrc(url);
+        } else if (response.status === 404) {
+          const fallbackUrl = `http://3.36.90.4:8080/api/jobs/images/${imageName}`;
+          const fallbackResponse = await fetch(fallbackUrl);
+          if (fallbackResponse.ok) {
+            setImageSrc(fallbackUrl);
+          } else {
+            setImageSrc(defaultImage);
+          }
+        } else {
+          setImageSrc(defaultImage);
+        }
+      } catch (error) {
+        setImageSrc(defaultImage);
+      }
+    };
+
+    checkImage();
+  }, [imageName]);
+
   const clickHandler = () => {
     if (
       isObjEmpty ||
@@ -57,7 +75,7 @@ const JobNotieItem = ({
           <div className="jobNoticeInfo">
             <div className="jobNotice_infoName">{name}</div>
           </div>
-          <img className="jobNoticeImg" src={imageName} />
+          <img className="jobNoticeImg" src={imageSrc} alt={title} />
         </div>
         <div className="jobNoticeInfo">
           <div className="jobNotice_infoTitle">{title}</div>

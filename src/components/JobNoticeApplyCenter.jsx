@@ -72,13 +72,13 @@ const JobNoticeApplyCenter = () => {
       alert("모든 입력 필드를 채워주세요.");
       return;
     }
-    if (!image) {
+    if (!selectedFile) {
       alert("이미지를 업로드 해주세요.");
       return;
     }
 
     const formData = new FormData();
-    formData.append("enterprise_user_id", username); // 사용자 ID를 적절히 설정하세요
+    formData.append("enterprise_user_id", username);
     formData.append("image", selectedFile);
     formData.append(
       "job",
@@ -94,9 +94,9 @@ const JobNoticeApplyCenter = () => {
         views: 0,
       })
     );
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0] + ": " + pair[1]);
+    // }
 
     fetch("http://3.36.90.4:8080/api/jobs", {
       method: "POST",
@@ -104,13 +104,13 @@ const JobNoticeApplyCenter = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         alert("등록 성공!");
         setIsEnroll(true);
         nav("/JobNotice/");
       })
       .catch((error) => {
-        console.error("Error submitting the form", error);
+        // console.error("Error submitting the form", error);
         alert("등록 실패!");
       });
   };

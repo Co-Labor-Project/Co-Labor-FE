@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { JobContext, CompanyContext } from "../App";
 import JobNotieItem from "./JobNotieItem";
@@ -11,50 +11,61 @@ const JobNoticeDetailsCenter = () => {
   const companyContext = useContext(CompanyContext);
   const jobId = params.job_id;
   const nav = useNavigate();
-  // const jobArr = Array.isArray(contextData);
 
-  let jobData = contextData.find(
-    (item) => String(item.job_id) === String(jobId)
-  );
-
-  let companyData = companyContext.find(
-    (item) =>
-      String(item.enterprise_id) === String(jobData.enterprise.enterprise_id)
-  );
+  const [jobData, setJobData] = useState(null);
+  const [companyData, setCompanyData] = useState(null);
+  const [displayJobPhoto, setDisplayJobPhoto] = useState("");
 
   useEffect(() => {
-    jobData = contextData.find((item) => String(item.job_id) === String(jobId));
-    companyData = companyContext.find(
-      (item) =>
-        String(item.enterprise_id) === String(jobData.enterprise.enterprise_id)
+    const job = contextData.find(
+      (item) => String(item.job_id) === String(jobId)
     );
-  }, []);
+    if (job) {
+      setJobData(job);
+      const company = companyContext.find(
+        (item) =>
+          String(item.enterprise_id) === String(job.enterprise.enterprise_id)
+      );
+      setCompanyData(company);
 
-  if (!jobData) {
-    return <div>Loading</div>;
-  }
+      if (job.imageName) {
+        const checkImage = async () => {
+          const url = `http://3.36.90.4:8080/static/images/${job.imageName}`;
+          try {
+            const response = await fetch(url);
+            if (response.ok) {
+              setDisplayJobPhoto(url);
+            } else if (response.status === 404) {
+              const fallbackUrl = `http://3.36.90.4:8080/api/jobs/images/${job.imageName}`;
+              const fallbackResponse = await fetch(fallbackUrl);
+              if (fallbackResponse.ok) {
+                setDisplayJobPhoto(fallbackUrl);
+              } else {
+                setDisplayJobPhoto(
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s"
+                );
+              }
+            }
+          } catch (error) {
+            console.error("Error fetching image:", error);
+            setDisplayJobPhoto(
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s"
+            );
+          }
+        };
 
-  // const displayJobPhoto =
-  //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
-  // if (jobData.imageName != null) {
-  //   "http://3.36.90.4:8080/static/images/" + jobData.imageName;
-  // }
-
-  let displayJobPhoto;
-  if (!jobData.imageName) {
-    displayJobPhoto =
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
-  } else {
-    displayJobPhoto =
-      "http://3.36.90.4:8080/static/images/" + jobData.imageName;
-    const response = fetch(displayJobPhoto);
-    if (response.ok) {
-      // console.log("스태틱 이미지입니다. 이미지 경로 : " + imageName);
-    } else {
-      // console.log("스태틱 이미지가 아닙니다. 이미지 경로 : " + imageName);
-      displayJobPhoto =
-        "http://3.36.90.4:8080/api/jobs/images/" + jobData.imageName;
+        setDisplayJobPhoto(""); // 초기화하여 이전 이미지가 남지 않도록 함
+        checkImage();
+      } else {
+        setDisplayJobPhoto(
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s"
+        );
+      }
     }
+  }, [jobId, contextData, companyContext]);
+
+  if (!jobData || !companyData) {
+    return <div>Loading</div>;
   }
 
   const displayCompanyPhoto = companyData.imageName
@@ -68,11 +79,6 @@ const JobNoticeDetailsCenter = () => {
   const displayCompanyDescription =
     companyData.description || defaultCompanyDescription;
 
-  // "우대사항"을 bold체로 변경
-  // const descriptionWithBold = jobData.description.replace(
-  //   /우대사항/g,
-  //   '<b>우대사항</b>'
-  // );
   const highlightWords = [
     "우대사항",
     "채용 절차",
