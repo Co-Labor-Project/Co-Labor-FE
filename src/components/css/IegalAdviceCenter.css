@@ -120,3 +120,45 @@
     transform: rotate(360deg);
   }
 }
+
+.LoadingWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  gap: 10px;
+}
+.LoadingWrapper > p {
+  white-space: nowrap;
+  animation: opacity 2s linear infinite;
+}
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 5px solid #3498db;
+  border-top: 5px solid transparent;
+  border-radius: 50%;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
