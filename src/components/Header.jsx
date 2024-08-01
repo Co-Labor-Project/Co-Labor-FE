@@ -1,22 +1,22 @@
-import React, { useState, useContext } from "react";
-import "./css/Header.css";
-import searchIcon from "../assets/search_icon.png";
-import { useNavigate } from "react-router-dom";
-import { LoginContext } from "../App";
+import React, { useState, useContext } from 'react';
+import './css/Header.css';
+import searchIcon from '../assets/search_icon.png';
+import { useNavigate } from 'react-router-dom';
+import { LoginContext } from '../App';
 
 const Header = () => {
   const nav = useNavigate();
   const { loginState, setLoginState } = useContext(LoginContext);
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState('');
   const changeInput = (e) => {
     setSearchKeyword(e.target.value);
   };
   const searchHandler = () => {
-    if (searchKeyword === "") {
-      alert("❌ 검색어를 입력해 주세요!");
+    if (searchKeyword === '') {
+      alert('❌ 검색어를 입력해 주세요!');
     } else {
       nav(`/search/${searchKeyword}`);
-      setSearchKeyword("");
+      setSearchKeyword('');
     }
     console.log(loginState);
   };
@@ -30,24 +30,24 @@ const Header = () => {
     try {
       const response1 = await fetch(
         `http://3.36.90.4:8080/auth/hasEnterprise?username=${sessionStorage.getItem(
-          "username"
+          'username'
         )}`,
         {
-          method: "GET",
-          credentials: "include", // 세션 쿠키 포함
+          method: 'GET',
+          credentials: 'include', // 세션 쿠키 포함
         }
       );
 
       const hasEnterprise = await response1.json();
 
       if (!hasEnterprise) {
-        alert("기업 등록을 먼저 해주세요!");
-        nav("/");
+        alert('기업 등록을 먼저 해주세요!');
+        nav('/');
       } else {
-        nav("/JobNoticeApply");
+        nav('/JobNoticeApply');
       }
     } catch (error) {
-      console.error("Error checking enterprise:", error);
+      console.error('Error checking enterprise:', error);
     }
   };
 
@@ -86,7 +86,7 @@ const Header = () => {
           <div
             className="enterpriseApply"
             onClick={() => {
-              nav("/EnterpriseApply");
+              nav('/EnterpriseApply');
             }}
           >
             기업 등록
@@ -94,7 +94,7 @@ const Header = () => {
         )}
       </div>
       {!loginState.userLogin && !loginState.userEnterprise && (
-        <div onClick={() => nav("/SingIn")}>로그인 / 회원가입</div>
+        <div onClick={() => nav('/SingIn')}>로그인 / 회원가입</div>
       )}
     </div>
   );
