@@ -37,7 +37,7 @@ function SupportCenterMap() {
         });
 
         setNearestCenter(sorted[0]);
-        setSelectedCenter(sorted[0]);
+        setSelectedCenter(sorted[0]); // 선택된 센터가 처음에 병원 데이터로 업데이트되도록 설정
         setSortedCenters(sorted);
 
         setMapCenter(
@@ -186,7 +186,24 @@ function SupportCenterMap() {
           <div className="selected">
             <div className="selectImg"></div>
             {selectedCenter && (
+              // <div className="selectedText">
+              //   <p>
+              //     📌 <b>이름</b>: {selectedCenter.name}
+              //   </p>
+              //   <p>
+              //     🏢 <b>주소</b>: {selectedCenter.address}
+              //   </p>
+              //   <p>
+              //     📞 <b>전화번호</b>: {selectedCenter.phone}
+              //   </p>
+              //   {optionCenter && (
+              //     <p>
+              //       🏥 <b>병원 정보</b>: {selectedCenter.hospitalInfo}
+              //     </p>
+              //   )}
+              // </div><div className="selectedText">
               <div className="selectedText">
+                {' '}
                 <p>
                   📌 <b>이름</b>: {selectedCenter.name}
                 </p>
@@ -196,11 +213,12 @@ function SupportCenterMap() {
                 <p>
                   📞 <b>전화번호</b>: {selectedCenter.phone}
                 </p>
-                {optionCenter && (
-                  <p>
-                    🏥 <b>병원 정보</b>: {selectedCenter.hospitalInfo}
-                  </p>
-                )}
+                {optionCenter &&
+                  selectedCenter.hospitalInfo && ( // hospitalInfo가 존재할 때만 표시
+                    <p>
+                      🏥 <b>병원 정보</b>: {selectedCenter.hospitalInfo}
+                    </p>
+                  )}
               </div>
             )}
           </div>
