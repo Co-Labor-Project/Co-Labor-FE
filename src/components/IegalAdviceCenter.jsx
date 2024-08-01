@@ -262,11 +262,13 @@ const IegalAdviceCenter = () => {
 const MessageList = ({ messages, loading, isSending }) => (
   <div className="messages-list">
     {loading ? (
+
           <div className="LoadingWrapper">
             <div className="loading-spinner"></div>
             <p>🤖 이전 채팅 기록을 불러오는 중 입니다...</p>
           </div>
         ) : (
+
       <>
         {messages.map((message, index) => (
           <Message key={index} {...message} />
@@ -275,7 +277,9 @@ const MessageList = ({ messages, loading, isSending }) => (
         {isSending && (
           <div className="LoadingWrapper">
             <div className="loading-spinner"></div>
+
             <p>🤖 답변을 생성 중 입니다...</p>
+
           </div>
         )}
       </>

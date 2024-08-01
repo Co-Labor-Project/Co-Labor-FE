@@ -53,6 +53,7 @@ const Header = () => {
 
   return (
     <div className="Header">
+
       <div className="logo" onClick={() => nav('/')}></div>
       <div onClick={() => nav('/CompanyInfo')}>기업 정보</div>
       <div onClick={() => nav('/JobNotice')}>채용 공고</div>

@@ -1,8 +1,10 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import { NaverMap, Marker, useNavermaps } from 'react-naver-maps';
 import axios from 'axios';
 import './css/SupportCenterMap.css';
 import SupportCenterItem from './SupportCenterItem';
+
 
 function SupportCenterMap() {
   const navermaps = useNavermaps();
@@ -19,8 +21,10 @@ function SupportCenterMap() {
 
   useEffect(() => {
     const url = optionCenter
+
       ? 'http://3.36.90.4:8080/api/hospitals/region/서울특별시 중구'
       : 'http://3.36.90.4:8080/api/support-centers/all';
+
 
     axios
       .get(url)
@@ -31,6 +35,7 @@ function SupportCenterMap() {
           longitude: 127.00939480609217,
         };
         setCurrentPosition(pos);
+
 
         const sorted = [...response.data].sort((a, b) => {
           return getDistance(pos, a) - getDistance(pos, b);
@@ -213,12 +218,14 @@ function SupportCenterMap() {
                 <p>
                   📞 <b>전화번호</b>: {selectedCenter.phone}
                 </p>
+
                 {optionCenter &&
-                  selectedCenter.hospitalInfo && ( // hospitalInfo가 존재할 때만 표시
+                  selectedCenter.hospitalInfo && ( 
                     <p>
                       🏥 <b>병원 정보</b>: {selectedCenter.hospitalInfo}
                     </p>
                   )}
+
               </div>
             )}
           </div>
