@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { JobContext, CompanyContext } from '../App';
-import JobNotieItem from './JobNotieItem';
-import './css/JobNoticeDetailsCenter.css';
-import './css/common.css';
+import React, { useContext, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { JobContext, CompanyContext } from "../App";
+import JobNotieItem from "./JobNotieItem";
+import "./css/JobNoticeDetailsCenter.css";
+import "./css/common.css";
 
 const JobNoticeDetailsCenter = () => {
   const params = useParams();
@@ -34,21 +34,37 @@ const JobNoticeDetailsCenter = () => {
     return <div>Loading</div>;
   }
 
-  const displayJobPhoto =
-    'http://3.36.90.4:8080/static/images/' + jobData.imageName ||
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s';
+  // const displayJobPhoto =
+  //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
+  // if (jobData.imageName != null) {
+  //   "http://3.36.90.4:8080/static/images/" + jobData.imageName;
+  // }
 
-  // const displayCompanyPhoto =
-  //   "http://3.36.90.4:8080/static/images/" + companyData.imageName ||
-  //   "https://cdn-icons-png.flaticon.com/512/4091/4091968.png";
+  let displayJobPhoto;
+  if (!jobData.imageName) {
+    displayJobPhoto =
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
+  } else {
+    displayJobPhoto =
+      "http://3.36.90.4:8080/static/images/" + jobData.imageName;
+    const response = fetch(displayJobPhoto);
+    if (response.ok) {
+      // console.log("스태틱 이미지입니다. 이미지 경로 : " + imageName);
+    } else {
+      // console.log("스태틱 이미지가 아닙니다. 이미지 경로 : " + imageName);
+      displayJobPhoto =
+        "http://3.36.90.4:8080/api/jobs/images/" + jobData.imageName;
+    }
+  }
+
   const displayCompanyPhoto = companyData.imageName
     ? `http://3.36.90.4:8080/static/images/${companyData.imageName}`
-    : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
+    : "https://cdn-icons-png.flaticon.com/512/4091/4091968.png";
 
-  const defaultCompanyType = '기업 분류를 작성해주세요!';
+  const defaultCompanyType = "기업 분류를 작성해주세요!";
   const displayCompanyType = companyData.type || defaultCompanyType;
 
-  const defaultCompanyDescription = '기업 설명을 작성해주세요!';
+  const defaultCompanyDescription = "기업 설명을 작성해주세요!";
   const displayCompanyDescription =
     companyData.description || defaultCompanyDescription;
 
@@ -58,28 +74,28 @@ const JobNoticeDetailsCenter = () => {
   //   '<b>우대사항</b>'
   // );
   const highlightWords = [
-    '우대사항',
-    '채용 절차',
-    '자격 요건',
-    '채용절차 ',
-    ' 간편 접수',
-    '1차 인터뷰',
-    '2차 인터뷰',
-    '최종합격 ',
-    '업무환경 ',
-    '복지혜택 ',
-    '핵심업무 ',
-    '조직 소개',
-    '팀 메시지',
-    '복지혜택',
-    '복지 및 혜택',
-    '핵심업무',
+    "우대사항",
+    "채용 절차",
+    "자격 요건",
+    "채용절차 ",
+    " 간편 접수",
+    "1차 인터뷰",
+    "2차 인터뷰",
+    "최종합격 ",
+    "업무환경 ",
+    "복지혜택 ",
+    "핵심업무 ",
+    "조직 소개",
+    "팀 메시지",
+    "복지혜택",
+    "복지 및 혜택",
+    "핵심업무",
   ];
 
   const applyHighlighting = (text) => {
     let highlightedText = text;
     highlightWords.forEach((word) => {
-      const regex = new RegExp(word, 'g');
+      const regex = new RegExp(word, "g");
       highlightedText = highlightedText.replace(regex, `<b>${word}</b>`);
     });
     return highlightedText;
@@ -100,9 +116,9 @@ const JobNoticeDetailsCenter = () => {
           />
           <div className="JobNDetailsCondi">
             <div className="JobDetailKey">
-              <p>주소 </p>{' '}
+              <p>주소 </p>{" "}
               <span>
-                {companyData.address1} {companyData.address2}{' '}
+                {companyData.address1} {companyData.address2}{" "}
                 {companyData.address3}
               </span>
             </div>
