@@ -56,6 +56,7 @@ const JobNoticeApplyCenter = () => {
       location,
       skills,
       description,
+      image,
     } = input;
 
     if (
@@ -69,6 +70,10 @@ const JobNoticeApplyCenter = () => {
       !description
     ) {
       alert("모든 입력 필드를 채워주세요.");
+      return;
+    }
+    if (!image) {
+      alert("이미지를 업로드 해주세요.");
       return;
     }
 
@@ -101,7 +106,7 @@ const JobNoticeApplyCenter = () => {
       .then((data) => {
         console.log(data);
         alert("등록 성공!");
-        setIsEnroll(false);
+        setIsEnroll(true);
         nav("/JobNotice/");
       })
       .catch((error) => {

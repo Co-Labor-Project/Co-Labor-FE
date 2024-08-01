@@ -49,7 +49,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setJobs(data);
-        setIsEnroll(flase);
+        setIsEnroll(false);
         // console.log("jobcalled");
       })
       .catch((error) => console.error("Error fetching jobs:", error));
