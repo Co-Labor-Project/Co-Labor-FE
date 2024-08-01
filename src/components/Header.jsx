@@ -82,8 +82,7 @@ const Header = () => {
             location.href = 'http://colabor-en.site';
           }}
         >
-          <img src="/src/assets/icon8.png" alt="" width="36px" height="36px" />
-          English
+          English ↺
         </button>
 
         {loginState.userEnterprise && (

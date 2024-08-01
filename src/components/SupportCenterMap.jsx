@@ -1,10 +1,8 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import { NaverMap, Marker, useNavermaps } from 'react-naver-maps';
 import axios from 'axios';
 import './css/SupportCenterMap.css';
 import SupportCenterItem from './SupportCenterItem';
-
 
 function SupportCenterMap() {
   const navermaps = useNavermaps();
@@ -21,10 +19,8 @@ function SupportCenterMap() {
 
   useEffect(() => {
     const url = optionCenter
-
       ? 'http://3.36.90.4:8080/api/hospitals/region/서울특별시 중구'
       : 'http://3.36.90.4:8080/api/support-centers/all';
-
 
     axios
       .get(url)
@@ -36,11 +32,11 @@ function SupportCenterMap() {
         };
         setCurrentPosition(pos);
 
-
-        const sorted = [...response.data].sort((a, b) => {
-          return getDistance(pos, a) - getDistance(pos, b);
-        });
-
+        const sorted = [...response.data]
+          .sort((a, b) => {
+            return getDistance(pos, a) - getDistance(pos, b);
+          })
+          .slice(0, 50);
         setNearestCenter(sorted[0]);
         setSelectedCenter(sorted[0]); // 선택된 센터가 처음에 병원 데이터로 업데이트되도록 설정
         setSortedCenters(sorted);
@@ -191,22 +187,6 @@ function SupportCenterMap() {
           <div className="selected">
             <div className="selectImg"></div>
             {selectedCenter && (
-              // <div className="selectedText">
-              //   <p>
-              //     📌 <b>이름</b>: {selectedCenter.name}
-              //   </p>
-              //   <p>
-              //     🏢 <b>주소</b>: {selectedCenter.address}
-              //   </p>
-              //   <p>
-              //     📞 <b>전화번호</b>: {selectedCenter.phone}
-              //   </p>
-              //   {optionCenter && (
-              //     <p>
-              //       🏥 <b>병원 정보</b>: {selectedCenter.hospitalInfo}
-              //     </p>
-              //   )}
-              // </div><div className="selectedText">
               <div className="selectedText">
                 {' '}
                 <p>
@@ -218,14 +198,11 @@ function SupportCenterMap() {
                 <p>
                   📞 <b>전화번호</b>: {selectedCenter.phone}
                 </p>
-
-                {optionCenter &&
-                  selectedCenter.hospitalInfo && ( 
-                    <p>
-                      🏥 <b>병원 정보</b>: {selectedCenter.hospitalInfo}
-                    </p>
-                  )}
-
+                {optionCenter && selectedCenter.hospitalInfo && (
+                  <p>
+                    🏥 <b>병원 정보</b>: {selectedCenter.hospitalInfo}
+                  </p>
+                )}
               </div>
             )}
           </div>
