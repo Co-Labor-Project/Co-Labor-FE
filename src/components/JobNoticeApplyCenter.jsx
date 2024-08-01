@@ -1,9 +1,11 @@
 import "./css/JobNoticeApplyCenter.css";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect, useRef, useContext } from "react";
+import { IsEnrollContext } from "../App";
 
 const JobNoticeApplyCenter = () => {
   const nav = useNavigate();
+  const { setIsEnroll } = useContext(IsEnrollContext);
   const [username, setUsername] = useState("");
 
   useEffect(() => {
@@ -99,6 +101,7 @@ const JobNoticeApplyCenter = () => {
       .then((data) => {
         console.log(data);
         alert("등록 성공!");
+        setIsEnroll(false);
         nav("/JobNotice/");
       })
       .catch((error) => {
