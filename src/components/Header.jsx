@@ -53,7 +53,6 @@ const Header = () => {
 
   return (
     <div className="Header">
-
       <div className="logo" onClick={() => nav('/')}></div>
       <div onClick={() => nav('/CompanyInfo')}>기업 정보</div>
       <div onClick={() => nav('/JobNotice')}>채용 공고</div>
@@ -77,6 +76,16 @@ const Header = () => {
         />
       </div>
       <div className="right-child">
+        <button
+          className="langaugeContainer"
+          onClick={() => {
+            location.href = 'http://colabor-en.site';
+          }}
+        >
+          <img src="/src/assets/icon8.png" alt="" width="36px" height="36px" />
+          English
+        </button>
+
         {loginState.userEnterprise && (
           <div className="jobNoticeApply" onClick={handleJobNoticeApply}>
             채용공고 등록
