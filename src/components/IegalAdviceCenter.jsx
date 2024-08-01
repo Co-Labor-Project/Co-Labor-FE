@@ -147,25 +147,25 @@
 // };
 
 // export default IegalAdviceCenter;
-import React, { useState, useEffect } from 'react';
-import './css/IegalAdviceCenter.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "./css/IegalAdviceCenter.css";
+import { useNavigate } from "react-router-dom";
 
 const IegalAdviceCenter = () => {
   const [messages, setMessages] = useState([]);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
   const [isSending, setIsSending] = useState(false); // 메시지 전송 중 상태 추가
   const navigate = useNavigate();
 
   // 현재 로그인된 사용자 가져오기
   useEffect(() => {
-    const storedUsername = sessionStorage.getItem('username');
+    const storedUsername = sessionStorage.getItem("username");
     if (storedUsername) {
       setUsername(storedUsername);
     } else {
-      navigate('/SingIn');
-      alert('이 기능을 사용하려면 로그인이 필요합니다.');
+      navigate("/SingIn");
+      alert("이 기능을 사용하려면 로그인이 필요합니다.");
     }
   }, [navigate]);
 
@@ -173,11 +173,11 @@ const IegalAdviceCenter = () => {
   const fetchMessages = (userId) => {
     setLoading(true);
     fetch(`http://3.36.90.4:8080/api/chatting/all?userId=${userId}`, {
-      credentials: 'include',
+      credentials: "include",
     })
       .then((response) => {
         if (response.status === 401) {
-          throw new Error('Unauthorized');
+          throw new Error("Unauthorized");
         }
         return response.json();
       })
@@ -190,8 +190,8 @@ const IegalAdviceCenter = () => {
         );
       })
       .catch((error) => {
-        console.error('Error fetching messages:', error);
-        alert('메시지를 불러오지 못했습니다. 다시 시도해 주세요.');
+        console.error("Error fetching messages:", error);
+        alert("메시지를 불러오지 못했습니다. 다시 시도해 주세요.");
       })
       .finally(() => {
         setLoading(false);
@@ -201,7 +201,7 @@ const IegalAdviceCenter = () => {
   // 메시지 전송 핸들러
   const handleSendMessage = (message) => {
     if (!username) {
-      console.error('User not logged in');
+      console.error("User not logged in");
       return;
     }
 
@@ -218,19 +218,19 @@ const IegalAdviceCenter = () => {
         message
       )}`,
       {
-        method: 'POST',
-        credentials: 'include',
+        method: "POST",
+        credentials: "include",
       }
     )
       .then((response) => {
         if (response.status === 401) {
-          throw new Error('Unauthorized');
+          throw new Error("Unauthorized");
         }
         fetchMessages(username);
       })
       .catch((error) => {
-        console.error('Error sending message:', error);
-        alert('메시지를 전송하지 못했습니다. 다시 시도해 주세요.');
+        console.error("Error sending message:", error);
+        alert("메시지를 전송하지 못했습니다. 다시 시도해 주세요.");
       })
       .finally(() => {
         setIsSending(false); // 응답을 받으면 로딩 상태 해제
@@ -262,13 +262,11 @@ const IegalAdviceCenter = () => {
 const MessageList = ({ messages, loading, isSending }) => (
   <div className="messages-list">
     {loading ? (
-
-          <div className="LoadingWrapper">
-            <div className="loading-spinner"></div>
-            <p>🤖 이전 채팅 기록을 불러오는 중 입니다...</p>
-          </div>
-        ) : (
-
+      <div className="LoadingWrapper">
+        <div className="loading-spinner"></div>
+        <p>🤖 이전 채팅 기록을 불러오는 중 입니다...</p>
+      </div>
+    ) : (
       <>
         {messages.map((message, index) => (
           <Message key={index} {...message} />
@@ -279,7 +277,6 @@ const MessageList = ({ messages, loading, isSending }) => (
             <div className="loading-spinner"></div>
 
             <p>🤖 답변을 생성 중 입니다...</p>
-
           </div>
         )}
       </>
@@ -290,24 +287,28 @@ const MessageList = ({ messages, loading, isSending }) => (
 // 메시지 컴포넌트
 const Message = ({ text, isUser }) => {
   return (
-    <div className={isUser ? 'user-message' : 'ai-message'}>
-      <p>
-        <b>{isUser ? '' : 'Co Labor :'}</b> {text}
-      </p>
+    <div>
+      <div className={isUser ? "user-message" : "ai-message"}>
+        <b className="messageWrapper">{isUser ? "" : "Co Labor :"}</b>
+        <div
+          className="messageWrapper2"
+          dangerouslySetInnerHTML={{ __html: text }}
+        />
+      </div>
     </div>
   );
 };
 
 // 메시지 전송 폼 컴포넌트
 const MessageForm = ({ onSendMessage, isSending }) => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!isSending) {
       // 메시지 전송 중에는 중복 전송 방지
       onSendMessage(message);
-      setMessage('');
+      setMessage("");
     }
   };
 
@@ -321,7 +322,7 @@ const MessageForm = ({ onSendMessage, isSending }) => {
         disabled={isSending} // 전송 중일 때 입력 비활성화
       />
       <button type="submit" className="send-button" disabled={isSending}>
-        {isSending ? 'Sending...' : 'Send'} {/* 전송 중 상태 표시 */}
+        {isSending ? "Sending..." : "Send"} {/* 전송 중 상태 표시 */}
       </button>
     </form>
   );
