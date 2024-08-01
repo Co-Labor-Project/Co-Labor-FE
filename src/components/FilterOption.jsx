@@ -279,6 +279,7 @@ const countyOptions = {
   ],
   Jeju: ["All", "Seogwipo-si", "Jeju-si", "Namjeju-gun", "Bukjeju-gun"],
 };
+
 const JOB = [
   { value: "base", name: "Position" },
   { value: "test", name: "Test" },
