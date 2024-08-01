@@ -20,7 +20,7 @@ const SearchOutput = ({ input }) => {
   if (url.indexOf("AiSearch") === -1) {
     desURL = `http://3.36.90.4:8080/search?keyword=${input}`;
   } else {
-    desURL = `http://localhost:8081/ai-search?sentence=${input}`;
+    desURL = `http://43.202.57.234:8081/ai-search?sentence=${input}`;
   }
 
   useEffect(() => {
