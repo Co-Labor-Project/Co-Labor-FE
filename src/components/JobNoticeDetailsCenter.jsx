@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { JobContext, CompanyContext } from "../App";
-import JobNotieItem from "./JobNotieItem";
-import "./css/JobNoticeDetailsCenter.css";
-import "./css/common.css";
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { JobContext, CompanyContext } from '../App';
+import JobNotieItem from './JobNotieItem';
+import './css/JobNoticeDetailsCenter.css';
+import './css/common.css';
 
 const JobNoticeDetailsCenter = () => {
   const params = useParams();
@@ -14,7 +14,7 @@ const JobNoticeDetailsCenter = () => {
 
   const [jobData, setJobData] = useState(null);
   const [companyData, setCompanyData] = useState(null);
-  const [displayJobPhoto, setDisplayJobPhoto] = useState("");
+  const [displayJobPhoto, setDisplayJobPhoto] = useState('');
 
   useEffect(() => {
     const job = contextData.find(
@@ -30,35 +30,35 @@ const JobNoticeDetailsCenter = () => {
 
       if (job.imageName) {
         const checkImage = async () => {
-          const url = `http://3.36.90.4:8080/static/images/${job.imageName}`;
+          const url = `http://43.203.208.57:8080/static/images/${job.imageName}`;
           try {
             const response = await fetch(url);
             if (response.ok) {
               setDisplayJobPhoto(url);
             } else if (response.status === 404) {
-              const fallbackUrl = `http://3.36.90.4:8080/api/jobs/images/${job.imageName}`;
+              const fallbackUrl = `http://43.203.208.57:8080/api/jobs/images/${job.imageName}`;
               const fallbackResponse = await fetch(fallbackUrl);
               if (fallbackResponse.ok) {
                 setDisplayJobPhoto(fallbackUrl);
               } else {
                 setDisplayJobPhoto(
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s"
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s'
                 );
               }
             }
           } catch (error) {
-            console.error("Error fetching image:", error);
+            console.error('Error fetching image:', error);
             setDisplayJobPhoto(
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s"
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s'
             );
           }
         };
 
-        setDisplayJobPhoto(""); // 초기화하여 이전 이미지가 남지 않도록 함
+        setDisplayJobPhoto(''); // 초기화하여 이전 이미지가 남지 않도록 함
         checkImage();
       } else {
         setDisplayJobPhoto(
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s"
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s'
         );
       }
     }
@@ -69,39 +69,39 @@ const JobNoticeDetailsCenter = () => {
   }
 
   const displayCompanyPhoto = companyData.imageName
-    ? `http://3.36.90.4:8080/static/images/${companyData.imageName}`
-    : "https://cdn-icons-png.flaticon.com/512/4091/4091968.png";
+    ? `http://43.203.208.57:8080/static/images/${companyData.imageName}`
+    : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
 
-  const defaultCompanyType = "기업 분류를 작성해주세요!";
+  const defaultCompanyType = '기업 분류를 작성해주세요!';
   const displayCompanyType = companyData.type || defaultCompanyType;
 
-  const defaultCompanyDescription = "기업 설명을 작성해주세요!";
+  const defaultCompanyDescription = '기업 설명을 작성해주세요!';
   const displayCompanyDescription =
     companyData.description || defaultCompanyDescription;
 
   const highlightWords = [
-    "우대사항",
-    "채용 절차",
-    "자격 요건",
-    "채용절차 ",
-    " 간편 접수",
-    "1차 인터뷰",
-    "2차 인터뷰",
-    "최종합격 ",
-    "업무환경 ",
-    "복지혜택 ",
-    "핵심업무 ",
-    "조직 소개",
-    "팀 메시지",
-    "복지혜택",
-    "복지 및 혜택",
-    "핵심업무",
+    '우대사항',
+    '채용 절차',
+    '자격 요건',
+    '채용절차 ',
+    ' 간편 접수',
+    '1차 인터뷰',
+    '2차 인터뷰',
+    '최종합격 ',
+    '업무환경 ',
+    '복지혜택 ',
+    '핵심업무 ',
+    '조직 소개',
+    '팀 메시지',
+    '복지혜택',
+    '복지 및 혜택',
+    '핵심업무',
   ];
 
   const applyHighlighting = (text) => {
     let highlightedText = text;
     highlightWords.forEach((word) => {
-      const regex = new RegExp(word, "g");
+      const regex = new RegExp(word, 'g');
       highlightedText = highlightedText.replace(regex, `<b>${word}</b>`);
     });
     return highlightedText;
@@ -122,9 +122,9 @@ const JobNoticeDetailsCenter = () => {
           />
           <div className="JobNDetailsCondi">
             <div className="JobDetailKey">
-              <p>주소 </p>{" "}
+              <p>주소 </p>{' '}
               <span>
-                {companyData.address1} {companyData.address2}{" "}
+                {companyData.address1} {companyData.address2}{' '}
                 {companyData.address3}
               </span>
             </div>

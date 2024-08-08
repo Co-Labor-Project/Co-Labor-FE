@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import "./css/JobNoticeItem.css";
-import useScrollFadeIn from "../hooks/fade_in";
-import { useNavigate, useParams } from "react-router-dom";
-import useEmpty from "../hooks/useEmpty";
+import React, { useState, useEffect } from 'react';
+import './css/JobNoticeItem.css';
+import useScrollFadeIn from '../hooks/fade_in';
+import { useNavigate, useParams } from 'react-router-dom';
+import useEmpty from '../hooks/useEmpty';
 
 const JobNotieItem = ({
   imageName,
@@ -17,13 +17,13 @@ const JobNotieItem = ({
   skills,
   deadDate,
 }) => {
-  const fadeInProps = useScrollFadeIn("up", 1);
+  const fadeInProps = useScrollFadeIn('up', 1);
   const nav = useNavigate();
   const parms = useParams();
   const isObjEmpty = useEmpty(parms);
-  const name = enterprise?.name || "No Enterprise Name";
+  const name = enterprise?.name || 'No Enterprise Name';
   const defaultImage =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s';
   const [imageSrc, setImageSrc] = useState(defaultImage);
 
   useEffect(() => {
@@ -32,13 +32,13 @@ const JobNotieItem = ({
         return;
       }
 
-      const url = `http://3.36.90.4:8080/static/images/${imageName}`;
+      const url = `http://43.203.208.57:8080/static/images/${imageName}`;
       try {
         const response = await fetch(url);
         if (response.ok) {
           setImageSrc(url);
         } else if (response.status === 404) {
-          const fallbackUrl = `http://3.36.90.4:8080/api/jobs/images/${imageName}`;
+          const fallbackUrl = `http://43.203.208.57:8080/api/jobs/images/${imageName}`;
           const fallbackResponse = await fetch(fallbackUrl);
           if (fallbackResponse.ok) {
             setImageSrc(fallbackUrl);
@@ -59,7 +59,7 @@ const JobNotieItem = ({
   const clickHandler = () => {
     if (
       isObjEmpty ||
-      parms.keyword === "undefined" ||
+      parms.keyword === 'undefined' ||
       parms.keyword === undefined
     ) {
       nav(`/JobNotice/${job_id}`);
