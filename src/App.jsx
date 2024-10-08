@@ -34,29 +34,29 @@ function App() {
   const [isEnroll, setIsEnroll] = useState(false);
 
   useEffect(() => {
-    fetch('http://43.203.208.57:8080/api/enterprises')
+    fetch(`${import.meta.env.VITE_SERVER_URL}:8080/api/enterprises`)
       .then((response) => response.json())
       .then((data) => {
         setCompanies(data);
-        // console.log(data, companies);
+        console.log(data, companies);
         // console.log("company list called");
       })
       .catch((error) => console.error('Error fetching companies:', error));
   }, []);
 
   useEffect(() => {
-    fetch('http://43.203.208.57:8080/api/jobs')
+    fetch(`${import.meta.env.VITE_SERVER_URL}:8080/api/jobs`)
       .then((response) => response.json())
       .then((data) => {
         setJobs(data);
         setIsEnroll(false);
-        // console.log("jobcalled");
+        console.log('job:', data);
       })
       .catch((error) => console.error('Error fetching jobs:', error));
   }, [isEnroll]);
 
   useEffect(() => {
-    fetch('http://43.203.208.57:8080/api/reviews/all')
+    fetch(`${import.meta.env.VITE_SERVER_URL}:8080/api/reviews/all`)
       .then((response) => response.json())
       .then((data) => setReviews(data))
       .catch((error) => console.error('Error fetching reviews:', error));

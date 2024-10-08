@@ -57,7 +57,8 @@ const CompanyDetailsCenter = () => {
   const defaultCompanyimageName =
     'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
   const displayCompanyimageName = companyData.imageName
-    ? 'http://43.203.208.57:8080/static/images/' + companyData.imageName
+    ? `${import.meta.env.VITE_SERVER_URL}:8080/static/images/` +
+      companyData.imageName
     : defaultCompanyimageName;
 
   const defaultCompanyType = '기업 분류를 작성해주세요!';
@@ -71,7 +72,7 @@ const CompanyDetailsCenter = () => {
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s';
   const displayJobimageName = (job) =>
     job.imageName
-      ? 'http://43.203.208.57:8080/static/images/' + job.imageName
+      ? `${import.meta.env.VITE_SERVER_URL}:8080/static/images/` + job.imageName
       : defaultJobimageName;
 
   // 리뷰 각 평점의 평균을 계산하는 함수

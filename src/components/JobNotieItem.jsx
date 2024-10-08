@@ -32,13 +32,17 @@ const JobNotieItem = ({
         return;
       }
 
-      const url = `http://43.203.208.57:8080/static/images/${imageName}`;
+      const url = `${
+        import.meta.env.VITE_SERVER_URL
+      }:8080/static/images/${imageName}`;
       try {
         const response = await fetch(url);
         if (response.ok) {
           setImageSrc(url);
         } else if (response.status === 404) {
-          const fallbackUrl = `http://43.203.208.57:8080/api/jobs/images/${imageName}`;
+          const fallbackUrl = `${
+            import.meta.env.VITE_SERVER_URL
+          }:8080/api/jobs/images/${imageName}`;
           const fallbackResponse = await fetch(fallbackUrl);
           if (fallbackResponse.ok) {
             setImageSrc(fallbackUrl);

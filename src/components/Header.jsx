@@ -29,7 +29,9 @@ const Header = () => {
   const handleJobNoticeApply = async () => {
     try {
       const response1 = await fetch(
-        `http://43.203.208.57:8080/auth/hasEnterprise?username=${sessionStorage.getItem(
+        `${
+          import.meta.env.VITE_SERVER_URL
+        }:8080/auth/hasEnterprise?username=${sessionStorage.getItem(
           'username'
         )}`,
         {

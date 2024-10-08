@@ -54,7 +54,7 @@ const EnterpriseApplyCenter = () => {
 
   const onSubmit = (json) => {
     console.log('현재 입력창 상태', input);
-    fetch('http://43.203.208.57:8080/api/enterprises/queue', {
+    fetch(`${import.meta.env.VITE_SERVER_URL}:8080/api/enterprises/queue`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -78,9 +78,9 @@ const EnterpriseApplyCenter = () => {
 
     // 첫 번째 fetch 호출
     const response1 = await fetch(
-      `http://43.203.208.57:8080/auth/hasEnterprise?username=${sessionStorage.getItem(
-        'username'
-      )}`,
+      `${
+        import.meta.env.VITE_SERVER_URL
+      }:8080/auth/hasEnterprise?username=${sessionStorage.getItem('username')}`,
       {
         method: 'GET',
         credentials: 'include', // 세션 쿠키 포함
@@ -101,7 +101,9 @@ const EnterpriseApplyCenter = () => {
     // 두 번째 fetch 호출
     if (!flag) {
       const response2 = await fetch(
-        `http://43.203.208.57:8080/api/enterprises/status?enterpriseId=${regiNum}`,
+        `${
+          import.meta.env.VITE_SERVER_URL
+        }:8080/api/enterprises/status?enterpriseId=${regiNum}`,
         {
           method: 'GET',
           credentials: 'include', // 세션 쿠키 포함
@@ -116,7 +118,9 @@ const EnterpriseApplyCenter = () => {
         console.log(sessionStorage.getItem('username'));
 
         const response3 = await fetch(
-          `http://43.203.208.57:8080/api/enterprises/map?enterpriseId=${regiNum}&username=${sessionStorage.getItem(
+          `${
+            import.meta.env.VITE_SERVER_URL
+          }:8080/api/enterprises/map?enterpriseId=${regiNum}&username=${sessionStorage.getItem(
             'username'
           )}`,
           {

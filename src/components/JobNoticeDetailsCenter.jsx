@@ -30,19 +30,23 @@ const JobNoticeDetailsCenter = () => {
 
       if (job.imageName) {
         const checkImage = async () => {
-          const url = `http://43.203.208.57:8080/static/images/${job.imageName}`;
+          const url = `${import.meta.env.VITE_SERVER_URL}:8080/static/images/${
+            job.imageName
+          }`;
           try {
             const response = await fetch(url);
             if (response.ok) {
               setDisplayJobPhoto(url);
             } else if (response.status === 404) {
-              const fallbackUrl = `http://43.203.208.57:8080/api/jobs/images/${job.imageName}`;
+              const fallbackUrl = `${
+                import.meta.env.VITE_SERVER_URL
+              }:8080/api/jobs/images/${job.imageName}`;
               const fallbackResponse = await fetch(fallbackUrl);
               if (fallbackResponse.ok) {
                 setDisplayJobPhoto(fallbackUrl);
               } else {
                 setDisplayJobPhoto(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s'
+                  `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s`
                 );
               }
             }
@@ -69,7 +73,9 @@ const JobNoticeDetailsCenter = () => {
   }
 
   const displayCompanyPhoto = companyData.imageName
-    ? `http://43.203.208.57:8080/static/images/${companyData.imageName}`
+    ? `${import.meta.env.VITE_SERVER_URL}:8080/static/images/${
+        companyData.imageName
+      }`
     : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
 
   const defaultCompanyType = '기업 분류를 작성해주세요!';

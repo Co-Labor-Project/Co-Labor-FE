@@ -23,9 +23,14 @@ const IegalAdviceCenter = () => {
   // 메시지 목록 불러오기
   const fetchMessages = (userId) => {
     setLoading(true);
-    fetch(`http://43.203.208.57:8080/api/chatting/all?userId=${userId}`, {
-      credentials: 'include',
-    })
+    fetch(
+      `${
+        import.meta.env.VITE_SERVER_URL
+      }:8080/api/chatting/all?userId=${userId}`,
+      {
+        credentials: 'include',
+      }
+    )
       .then((response) => {
         if (response.status === 401) {
           throw new Error('Unauthorized');
@@ -65,7 +70,9 @@ const IegalAdviceCenter = () => {
     ]);
 
     fetch(
-      `http://43.203.208.57:8080/api/chatting/send?userId=${username}&message=${encodeURIComponent(
+      `${
+        import.meta.env.VITE_SERVER_URL
+      }:8080/api/chatting/send?userId=${username}&message=${encodeURIComponent(
         message
       )}`,
       {
