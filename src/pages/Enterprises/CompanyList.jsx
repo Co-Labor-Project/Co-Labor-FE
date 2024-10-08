@@ -1,7 +1,6 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import CompanyItem from './CompanyItem';
 import { useNavigate } from 'react-router-dom';
-import './CompanyList.css';
 import FilterBox from '../../component/filter/FilterBox';
 import { Location, JOB } from '../../component/filter/FilterOption';
 import TextField from '@mui/material/TextField';
@@ -10,6 +9,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import { CompanyContext } from '../../App';
 import MainTitle from '../../component/MainTitle';
 import styled from 'styled-components';
+import {
+  LoadingSpinner,
+  LoadingText,
+  LoadingWrapper,
+} from '../../component/CommonStyled';
 const CompanyList = ({ data, searchNull }) => {
   const contextData = useContext(CompanyContext);
   console.log(contextData);
@@ -85,32 +89,40 @@ const CompanyList = ({ data, searchNull }) => {
   };
 
   return (
-    <div>
-      <div className="companyList" ref={listRef}>
+    <>
+      <BaseContainer ref={listRef}>
         {itemsToShow.slice(0, visibleItems).map((item) => (
           <CompanyItem key={item.enterprise_id} {...item} />
         ))}
         {viewAll && visibleItems < companyData.length && (
-          <div ref={setTarget} className="loading">
-            <div className="LoadingWrapper">
-              <div className="loading-spinner"></div>
-              <p>🤖 기업정보를 불러오는 중 입니다...</p>
-            </div>
+          <div ref={setTarget}>
+            <LoadingWrapper>
+              <LoadingSpinner></LoadingSpinner>
+              <LoadingText>🤖 기업정보를 불러오는 중 입니다...</LoadingText>
+            </LoadingWrapper>
           </div>
         )}
-      </div>
+      </BaseContainer>
       <ButtonWrapper>
         {!viewAll && companyData.length > 12 && (
           <MoreButton onClick={moreButton}>더보기</MoreButton>
         )}
       </ButtonWrapper>
-    </div>
+    </>
   );
 };
 
 export default CompanyList;
+const BaseContainer = styled.div`
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-around;
+`;
 const ButtonWrapper = styled.div`
-  margin-bottom: 30px;
+  margin: 30px 0px;
   width: 100%;
   display: flex;
   justify-content: center;
