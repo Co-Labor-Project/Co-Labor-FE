@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/FilterBox.css';
+import './FilterBox.css';
 
 const FilterBox = (props) => {
   return (

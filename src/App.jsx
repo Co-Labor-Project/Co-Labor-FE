@@ -4,7 +4,7 @@ import React, { useEffect, useState, createContext } from 'react';
 
 import { NavermapsProvider } from 'react-naver-maps';
 import Header from './component/Header';
-import Footer from './components/Footer';
+import Footer from './component/Footer';
 
 import CompanyInfo from './pages/Enterprises/CompanyInfo';
 import Home from './pages/Home/Home';

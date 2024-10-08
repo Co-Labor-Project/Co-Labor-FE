@@ -1,8 +1,8 @@
 import React from 'react';
 import './css/JobNoticeList.css';
 import JobNotieItem from './JobNotieItem';
-import FilterBox from './FilterBox';
-import { Location, JOB, OPTIONS } from './FilterOption';
+import FilterBox from '../component/filter/FilterBox';
+import { Location, JOB, OPTIONS } from '../component/filter/FilterOption';
 import './css/common.css';
 import { useContext } from 'react';
 import { JobContext } from '../App';

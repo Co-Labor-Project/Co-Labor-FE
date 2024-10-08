@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../component/Header';
-import Footer from '../components/Footer';
+import Footer from '../component/Footer';
 import IegalAdviceCenter from '../components/IegalAdviceCenter';
 const IegalAdvice = () => {
   return (

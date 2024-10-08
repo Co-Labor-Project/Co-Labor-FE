@@ -1,8 +1,8 @@
 import React from 'react';
-import './css/Footer.css';
+import styled from 'styled-components';
 const Footer = () => {
   return (
-    <footer>
+    <BaseContainer>
       <p>
         <br />
         <span>개인정보 처리방침 | 이용약관 </span>
@@ -17,8 +17,14 @@ const Footer = () => {
         <br />
         <br />
       </nav>
-    </footer>
+    </BaseContainer>
   );
 };
 
 export default Footer;
+const BaseContainer = styled.div`
+  border-top: 0.8px solid rgb(236, 236, 236);
+  margin-top: 30px;
+  margin: 0 auto;
+  text-align: center;
+`;
