@@ -6,7 +6,7 @@ import { NavermapsProvider } from 'react-naver-maps';
 import Header from './component/Header';
 import Footer from './component/Footer';
 
-import Company from './pages/Enterprises/Company';
+import Enterprises from './pages/Enterprises/Enterprises';
 import Home from './pages/Home/Home';
 import Notfound from './pages/Notfound';
 import JobNotice from './pages/JobNotice';
@@ -87,7 +87,7 @@ function App() {
                     <Header />
                     <Routes>
                       <Route path="/" element={<Home />} />
-                      <Route path="/Company" element={<Company />} />
+                      <Route path="/Enterprises" element={<Enterprises />} />
                       <Route path="/JobNotice" element={<JobNotice />} />
                       <Route path="/IegalAdvice" element={<IegalAdvice />} />
                       <Route path="/Support" element={<Support />} />

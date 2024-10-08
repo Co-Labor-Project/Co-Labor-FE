@@ -1,4 +1,4 @@
-import CompanyList from './CompanyList';
+import EnterprisesList from './components/EnterprisesList';
 import Header from '../../component/Header';
 import Footer from '../../component/Footer';
 import { BackGroundField } from '../../component/CommonStyled';
@@ -7,7 +7,7 @@ function Company() {
   return (
     <BackGroundField>
       <MainTitleFilter text="🏢 기업 정보" />
-      <CompanyList />
+      <EnterprisesList />
     </BackGroundField>
   );
 }

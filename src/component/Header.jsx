@@ -56,7 +56,9 @@ const Header = () => {
   return (
     <BaseContiner>
       <Logo onClick={() => nav('/')}></Logo>
-      <IndexContiner onClick={() => nav('/Company')}>기업 정보</IndexContiner>
+      <IndexContiner onClick={() => nav('/Enterprises')}>
+        기업 정보
+      </IndexContiner>
       <IndexContiner onClick={() => nav('/JobNotice')}>채용 공고</IndexContiner>
       {!loginState.userEnterprise && (
         <IndexContiner onClick={() => nav('/IegalAdvice')}>
