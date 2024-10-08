@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+import Header from '../component/Header';
 import SingInCenter from '../components/SingInCenter';
 
 const SingIn = () => {

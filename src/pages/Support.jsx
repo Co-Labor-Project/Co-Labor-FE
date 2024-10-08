@@ -1,6 +1,6 @@
 // src/pages/Support.jsx
 import React from 'react';
-import Header from '../components/Header';
+import Header from '../component/Header';
 import Footer from '../components/Footer';
 import SupportCenterMap from '../components/SupportCenterMap';
 import { Container as MapDiv } from 'react-naver-maps';

@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Header from '../component/Header';
 import { useParams } from 'react-router-dom';
 import SearchOutput from '../components/SearchOutput';
 const Search = () => {

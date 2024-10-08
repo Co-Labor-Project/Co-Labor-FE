@@ -1,5 +1,5 @@
 import CompanyList from '../components/CompanyList';
-import Header from '../components/Header';
+import Header from '../component/Header';
 import JobNoticeList from '../components/JobNoticeList';
 import RecentReview from '../components/RecentReviewList';
 import Footer from '../components/Footer';

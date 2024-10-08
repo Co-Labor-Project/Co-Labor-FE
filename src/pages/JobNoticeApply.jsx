@@ -1,6 +1,6 @@
 import React from 'react';
 import JobNoticeApplyCenter from '../components/JobNoticeApplyCenter';
-import Header from '../components/Header';
+import Header from '../component/Header';
 import Footer from '../components/Footer';
 const JobNoticeApply = () => {
   return (

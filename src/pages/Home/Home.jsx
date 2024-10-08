@@ -1,7 +1,7 @@
 import CompanyList from '../../components/CompanyList';
 import Footer from '../../components/Footer';
 import GoogleTranslate from '../../components/GoogleTranslate';
-import Header from '../../components/Header';
+import Header from '../../component/Header';
 import QuickMenu from '../../components/QuickMenu';
 import RecentReview from '../../components/RecentReviewList';
 const Home = () => {
