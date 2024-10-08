@@ -54,6 +54,7 @@ const Container = styled.div`
   transition: all 0.3s ease-in-out;
   border: 0px solid #58c179;
   max-width: 200px;
+  vertical-align: middle;
 
   &:hover {
     border: 3px solid #58c179;

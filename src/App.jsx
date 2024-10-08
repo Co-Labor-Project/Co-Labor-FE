@@ -9,15 +9,15 @@ import Footer from './component/Footer';
 import Enterprises from './pages/Enterprises/Enterprises';
 import Home from './pages/Home/Home';
 import Notfound from './pages/Notfound';
-import JobNotice from './pages/JobNotice';
-import IegalAdvice from './pages/IegalAdvice';
-import Support from './pages/Support';
+import JobNotice from './pages/Jobs/JobNotice';
+import IegalAdvice from './pages/LegalChat/IegalAdvice';
+import Support from './pages/Map/Support';
 import Search from './pages/Search';
-import Companydetails from './pages/CompanyDetails';
-import JobNoticeDetails from './pages/JobNoticeDetails';
-import SingIn from './pages/SingIn';
-import EnterpriseApply from './pages/EnterpriseApply';
-import JobNoticeApply from './pages/JobNoticeApply';
+import Companydetails from './pages/Enterprises/CompanyDetails';
+import JobNoticeDetails from './pages/Jobs/JobNoticeDetails';
+import SingIn from './pages/Login/SingIn';
+import EnterpriseApply from './pages/Apply/EnterpriseApply';
+import JobNoticeApply from './pages/Apply/JobNoticeApply';
 export const JobContext = createContext();
 export const CompanyContext = createContext();
 export const LoginContext = createContext();
@@ -39,8 +39,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setCompanies(data);
-        console.log(data, companies);
-        // console.log("company list called");
       })
       .catch((error) => console.error('Error fetching companies:', error));
   }, []);
@@ -51,7 +49,6 @@ function App() {
       .then((data) => {
         setJobs(data);
         setIsEnroll(false);
-        console.log('job:', data);
       })
       .catch((error) => console.error('Error fetching jobs:', error));
   }, [isEnroll]);

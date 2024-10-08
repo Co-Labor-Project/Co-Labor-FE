@@ -6,11 +6,11 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { CompanyContext, JobContext, ReviewContext } from '../App';
-import './css/CompanyDetailsCenter.css';
-import StarRate from './StarRate';
-import BarGraph from './BarGraph';
-import RadarChart from './RadarChart';
+import { CompanyContext, JobContext, ReviewContext } from '../../App';
+import './CompanyDetailsCenter.css';
+import StarRate from '../../components/StarRate';
+import BarGraph from '../../components/BarGraph';
+import RadarChart from '../../components/RadarChart';
 
 const CompanyDetailsCenter = () => {
   const params = useParams();
