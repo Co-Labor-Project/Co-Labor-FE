@@ -19,7 +19,7 @@ export const LoadingWrapper = styled.div`
   width: 130px;
   gap: 10px;
 `;
-export const rotate = keyframes`
+const rotate = keyframes`
     from {
       transform: rotate(0deg);
     }
@@ -28,7 +28,7 @@ export const rotate = keyframes`
     }
   `;
 
-export const opacity = keyframes`
+const opacity = keyframes`
     0% {
       opacity: 0;
     }
