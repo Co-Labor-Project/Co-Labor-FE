@@ -5,9 +5,7 @@ import IegalAdviceCenter from '../components/IegalAdviceCenter';
 const IegalAdvice = () => {
   return (
     <div>
-      <Header />
       <IegalAdviceCenter />
-      <Footer />
     </div>
   );
 };

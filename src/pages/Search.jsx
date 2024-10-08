@@ -8,9 +8,7 @@ const Search = () => {
 
   return (
     <div>
-      <Header />
       <SearchOutput input={params.keyword} />
-      <Footer />
     </div>
   );
 };

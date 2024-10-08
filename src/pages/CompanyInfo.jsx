@@ -4,9 +4,7 @@ import Footer from '../components/Footer';
 function CompanyInfo() {
   return (
     <div>
-      <Header />
       <CompanyList />
-      <Footer />
     </div>
   );
 }

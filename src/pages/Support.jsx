@@ -8,7 +8,6 @@ import { Container as MapDiv } from 'react-naver-maps';
 const Support = () => {
   return (
     <div>
-      <Header />
       <MapDiv
         style={{
           width: '100%',
@@ -18,7 +17,6 @@ const Support = () => {
         <SupportCenterMap />
       </MapDiv>
       <div className="gap"></div>
-      <Footer />
     </div>
   );
 };

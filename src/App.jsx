@@ -3,9 +3,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState, createContext } from 'react';
 
 import { NavermapsProvider } from 'react-naver-maps';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 import CompanyInfo from './pages/CompanyInfo';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import Notfound from './pages/Notfound';
 import JobNotice from './pages/JobNotice';
 import IegalAdvice from './pages/IegalAdvice';
@@ -75,57 +77,61 @@ function App() {
   }, []);
 
   return (
-    <NavermapsProvider ncpClientId="du60d8o1se">
-      <LoginContext.Provider value={{ loginState, setLoginState }}>
-        <JobContext.Provider value={jobs}>
-          <IsEnrollContext.Provider value={{ isEnroll, setIsEnroll }}>
-            <CompanyContext.Provider value={companies}>
-              <ReviewContext.Provider value={reviews}>
-                <BrowserRouter>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/CompanyInfo" element={<CompanyInfo />} />
-                    <Route path="/JobNotice" element={<JobNotice />} />
-                    <Route path="/IegalAdvice" element={<IegalAdvice />} />
-                    <Route path="/Support" element={<Support />} />
-                    <Route path="/SingIn" element={<SingIn />} />
+    <>
+      <NavermapsProvider ncpClientId="du60d8o1se">
+        <LoginContext.Provider value={{ loginState, setLoginState }}>
+          <JobContext.Provider value={jobs}>
+            <IsEnrollContext.Provider value={{ isEnroll, setIsEnroll }}>
+              <CompanyContext.Provider value={companies}>
+                <ReviewContext.Provider value={reviews}>
+                  <BrowserRouter>
+                    <Header />
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/CompanyInfo" element={<CompanyInfo />} />
+                      <Route path="/JobNotice" element={<JobNotice />} />
+                      <Route path="/IegalAdvice" element={<IegalAdvice />} />
+                      <Route path="/Support" element={<Support />} />
+                      <Route path="/SingIn" element={<SingIn />} />
 
-                    <Route path="/Search/:keyword" element={<Search />} />
-                    <Route path="/AiSearch/:keyword" element={<Search />} />
-                    <Route
-                      path="/Search/:keyword/:enterprise_id"
-                      element={<Companydetails />}
-                    />
-                    <Route
-                      path="/CompanyInfo/:enterprise_id"
-                      element={<Companydetails />}
-                    />
-                    <Route
-                      path="/Search/:keyword/jobNotice/:job_id"
-                      element={<JobNoticeDetails />}
-                    />
-                    <Route
-                      path="/JobNotice/:job_id"
-                      element={<JobNoticeDetails />}
-                    />
+                      <Route path="/Search/:keyword" element={<Search />} />
+                      <Route path="/AiSearch/:keyword" element={<Search />} />
+                      <Route
+                        path="/Search/:keyword/:enterprise_id"
+                        element={<Companydetails />}
+                      />
+                      <Route
+                        path="/CompanyInfo/:enterprise_id"
+                        element={<Companydetails />}
+                      />
+                      <Route
+                        path="/Search/:keyword/jobNotice/:job_id"
+                        element={<JobNoticeDetails />}
+                      />
+                      <Route
+                        path="/JobNotice/:job_id"
+                        element={<JobNoticeDetails />}
+                      />
 
-                    <Route
-                      path="/EnterpriseApply"
-                      element={<EnterpriseApply />}
-                    />
-                    <Route
-                      path="/JobNoticeApply"
-                      element={<JobNoticeApply />}
-                    />
-                    <Route path="*" element={<Notfound />} />
-                  </Routes>
-                </BrowserRouter>
-              </ReviewContext.Provider>
-            </CompanyContext.Provider>
-          </IsEnrollContext.Provider>
-        </JobContext.Provider>
-      </LoginContext.Provider>
-    </NavermapsProvider>
+                      <Route
+                        path="/EnterpriseApply"
+                        element={<EnterpriseApply />}
+                      />
+                      <Route
+                        path="/JobNoticeApply"
+                        element={<JobNoticeApply />}
+                      />
+                      <Route path="*" element={<Notfound />} />
+                    </Routes>
+                    <Footer />
+                  </BrowserRouter>
+                </ReviewContext.Provider>
+              </CompanyContext.Provider>
+            </IsEnrollContext.Provider>
+          </JobContext.Provider>
+        </LoginContext.Provider>
+      </NavermapsProvider>
+    </>
   );
 }
 

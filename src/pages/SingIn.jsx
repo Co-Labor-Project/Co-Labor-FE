@@ -5,7 +5,6 @@ import SingInCenter from '../components/SingInCenter';
 const SingIn = () => {
   return (
     <div style={{ hegiht: '100vh' }}>
-      <Header />
       <SingInCenter />
     </div>
   );

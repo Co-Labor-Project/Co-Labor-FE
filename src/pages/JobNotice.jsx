@@ -6,9 +6,7 @@ import Footer from '../components/Footer';
 function JobNotice() {
   return (
     <div>
-      <Header />
       <JobNoticeList />
-      <Footer />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import EnterpriseApplyCenter from '../components/EnterpriseApplyCenter';
 const EnterpriseApply = () => {
   return (
     <>
-      <Header />
       <EnterpriseApplyCenter />
     </>
   );
