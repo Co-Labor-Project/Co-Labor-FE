@@ -1,0 +1,8 @@
+.title {
+  position: absolute;
+  left: calc(50% - 550px);
+  font-size: 26px;
+}
+.gap {
+  height: 80px;
+}

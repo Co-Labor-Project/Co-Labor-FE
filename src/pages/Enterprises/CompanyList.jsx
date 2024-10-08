@@ -1,14 +1,15 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import CompanyItem from './CompanyItem';
 import { useNavigate } from 'react-router-dom';
-import './css/CompanyList.css';
-import FilterBox from '../component/filter/FilterBox';
-import { Location, JOB } from '../component/filter/FilterOption';
+import './CompanyList.css';
+import FilterBox from '../../component/filter/FilterBox';
+import { Location, JOB } from '../../component/filter/FilterOption';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
-import { CompanyContext } from '../App';
-
+import { CompanyContext } from '../../App';
+import MainTitle from '../../component/MainTitle';
+import styled from 'styled-components';
 const CompanyList = ({ data, searchNull }) => {
   const contextData = useContext(CompanyContext);
   console.log(contextData);
@@ -85,36 +86,6 @@ const CompanyList = ({ data, searchNull }) => {
 
   return (
     <div>
-      <div className="searchContainer">
-        <TextField
-          className="companylist_AI_search"
-          label="🤖 AI 기반으로 무엇이든 검색해보세요!  "
-          multiline
-          maxRows={4}
-          color="success"
-          onChange={changeInput}
-          onKeyDown={keyHandler}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <SearchIcon
-                  onClick={searchHandler}
-                  style={{ cursor: 'pointer' }}
-                />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </div>
-      <div className="gap"></div>
-      <div className="title">🏢 기업 정보</div>
-      <div className="gap"></div>
-
-      <div className="jobNoticeFilter">
-        <FilterBox option={JOB} />
-        <Location />
-      </div>
-
       <div className="companyList" ref={listRef}>
         {itemsToShow.slice(0, visibleItems).map((item) => (
           <CompanyItem key={item.enterprise_id} {...item} />
@@ -128,13 +99,46 @@ const CompanyList = ({ data, searchNull }) => {
           </div>
         )}
       </div>
-      {!viewAll && companyData.length > 12 && (
-        <button onClick={moreButton} className="w-btn w-btn-indigo">
-          더보기
-        </button>
-      )}
+      <ButtonWrapper>
+        {!viewAll && companyData.length > 12 && (
+          <MoreButton onClick={moreButton}>더보기</MoreButton>
+        )}
+      </ButtonWrapper>
     </div>
   );
 };
 
 export default CompanyList;
+const ButtonWrapper = styled.div`
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const MoreButton = styled.button`
+  width: 100px;
+  height: 45px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  font-size: 16px;
+  transition: 0.25s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: aliceblue;
+  color: var(--primary-color);
+
+  &:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  &:active {
+    transform: scale(1.5);
+  }
+`;

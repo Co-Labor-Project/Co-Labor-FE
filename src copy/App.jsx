@@ -4,7 +4,7 @@ import React, { useEffect, useState, createContext } from 'react';
 
 import { NavermapsProvider } from 'react-naver-maps';
 
-import CompanyInfo from './pages/CompanyInfo';
+import Company from './pages/Company';
 import Home from './pages/Home';
 import Notfound from './pages/Notfound';
 import JobNotice from './pages/JobNotice';
@@ -84,7 +84,7 @@ function App() {
                 <BrowserRouter>
                   <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/CompanyInfo" element={<CompanyInfo />} />
+                    <Route path="/Company" element={<Company />} />
                     <Route path="/JobNotice" element={<JobNotice />} />
                     <Route path="/IegalAdvice" element={<IegalAdvice />} />
                     <Route path="/Support" element={<Support />} />
@@ -97,7 +97,7 @@ function App() {
                       element={<Companydetails />}
                     />
                     <Route
-                      path="/CompanyInfo/:enterprise_id"
+                      path="/Company/:enterprise_id"
                       element={<Companydetails />}
                     />
                     <Route

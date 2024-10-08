@@ -1,4 +1,4 @@
-import CompanyList from '../../components/CompanyList';
+import CompanyList from '../Enterprises/CompanyList';
 import Footer from '../../component/Footer';
 import GoogleTranslate from '../../components/GoogleTranslate';
 import Header from '../../component/Header';

@@ -1,4 +1,4 @@
-import CompanyList from '../components/CompanyList';
+import CompanyList from './Enterprises/CompanyList';
 import Header from '../component/Header';
 import JobNoticeList from '../components/JobNoticeList';
 import RecentReview from '../components/RecentReviewList';

@@ -1,7 +1,7 @@
-import React from "react";
-import "./css/RecentReviewItem.css";
-import useScrollFadeIn from "../hooks/fade_in";
-import { useNavigate, useParams } from "react-router-dom";
+import React from 'react';
+import './css/RecentReviewItem.css';
+import useScrollFadeIn from '../hooks/fade_in';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const RecentReviewItem = ({
   photo,
@@ -13,15 +13,15 @@ const RecentReviewItem = ({
   enterprise,
   review_id,
 }) => {
-  const fadeInProps = useScrollFadeIn("up", 1);
+  const fadeInProps = useScrollFadeIn('up', 1);
   const nav = useNavigate();
 
   if (!photo) {
     photo =
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s";
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s';
   }
   const clickHandler = () => {
-    nav(`/CompanyInfo/${enterprise.enterprise_id}`);
+    nav(`/Company/${enterprise.enterprise_id}`);
   };
 
   return (
@@ -43,8 +43,8 @@ const RecentReviewItem = ({
             <div>{review_id}</div>
           </div>
           <div className="moreBtn" onClick={clickHandler}>
-            {" "}
-            리뷰 더 확인하기{" "}
+            {' '}
+            리뷰 더 확인하기{' '}
           </div>
         </div>
       </div>

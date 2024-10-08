@@ -1,8 +1,8 @@
-import React from "react";
-import useScrollFadeIn from "../hooks/fade_in";
-import "./css/CompanyItem.css";
-import { useNavigate, useParams } from "react-router-dom";
-import useEmpty from "../hooks/useEmpty";
+import React from 'react';
+import useScrollFadeIn from '../hooks/fade_in';
+import './css/CompanyItem.css';
+import { useNavigate, useParams } from 'react-router-dom';
+import useEmpty from '../hooks/useEmpty';
 const CompanyItem = ({
   photo,
   name,
@@ -16,14 +16,14 @@ const CompanyItem = ({
 }) => {
   const nav = useNavigate();
   const parms = useParams();
-  const fadeInProps = useScrollFadeIn("up", 1);
+  const fadeInProps = useScrollFadeIn('up', 1);
   const isObjEmpty = useEmpty(parms);
   if (!photo) {
-    photo = "https://cdn-icons-png.flaticon.com/512/4091/4091968.png";
+    photo = 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
   }
   const clickHandler = () => {
     if (isObjEmpty) {
-      nav(`/CompanyInfo/${enterprise_id}`);
+      nav(`/Company/${enterprise_id}`);
     } else {
       nav(`/Search/${parms.keyword}/${enterprise_id}`);
     }
@@ -34,7 +34,7 @@ const CompanyItem = ({
         <div className="companyImg">
           <img src={photo} width="100px" height="55px" />
         </div>
-        <div className="companyInfo">
+        <div className="Company">
           <div className="company_infoName">{name}</div>
           <div className="company_info">기업 분류 | {type}</div>
           <div className="company_info">

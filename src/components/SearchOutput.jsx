@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './css/SearchOutput.css';
 import JobNoticeList from './JobNoticeList';
-import CompanyList from './CompanyList';
+import CompanyList from '../pages/Enterprises/CompanyList';
 import { useParams } from 'react-router-dom';
 
 const SearchOutput = ({ input }) => {

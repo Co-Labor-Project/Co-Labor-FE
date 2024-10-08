@@ -6,7 +6,7 @@ import { NavermapsProvider } from 'react-naver-maps';
 import Header from './component/Header';
 import Footer from './component/Footer';
 
-import CompanyInfo from './pages/Enterprises/CompanyInfo';
+import Company from './pages/Enterprises/Company';
 import Home from './pages/Home/Home';
 import Notfound from './pages/Notfound';
 import JobNotice from './pages/JobNotice';
@@ -18,7 +18,6 @@ import JobNoticeDetails from './pages/JobNoticeDetails';
 import SingIn from './pages/SingIn';
 import EnterpriseApply from './pages/EnterpriseApply';
 import JobNoticeApply from './pages/JobNoticeApply';
-// import { create } from "@mui/material/styles/createTransitions";
 export const JobContext = createContext();
 export const CompanyContext = createContext();
 export const LoginContext = createContext();
@@ -88,7 +87,7 @@ function App() {
                     <Header />
                     <Routes>
                       <Route path="/" element={<Home />} />
-                      <Route path="/CompanyInfo" element={<CompanyInfo />} />
+                      <Route path="/Company" element={<Company />} />
                       <Route path="/JobNotice" element={<JobNotice />} />
                       <Route path="/IegalAdvice" element={<IegalAdvice />} />
                       <Route path="/Support" element={<Support />} />
@@ -101,7 +100,7 @@ function App() {
                         element={<Companydetails />}
                       />
                       <Route
-                        path="/CompanyInfo/:enterprise_id"
+                        path="/Company/:enterprise_id"
                         element={<Companydetails />}
                       />
                       <Route
