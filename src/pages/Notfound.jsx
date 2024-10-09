@@ -4,6 +4,7 @@ const Notfound = () => {
     <BackGround>
       <Text404>4 0 4</Text404>
       <Text>Page Notfound</Text>
+      <Text>잘못된 접근입니다</Text>
     </BackGround>
   );
 };

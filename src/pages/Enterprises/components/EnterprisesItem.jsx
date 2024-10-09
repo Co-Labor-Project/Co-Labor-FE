@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 import useEmpty from '../../../hooks/useEmpty';
 import { FadeInContainer } from '../../../component/FadeIn';
 
-const CompanyItem = ({
+const EnterpriseItem = ({
   photo,
   name,
   address1,
@@ -42,7 +42,7 @@ const CompanyItem = ({
   );
 };
 
-export default CompanyItem;
+export default EnterpriseItem;
 
 const Container = styled.div`
   margin: 20px 10px;
