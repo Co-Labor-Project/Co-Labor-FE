@@ -83,7 +83,7 @@ const ButtonCotainer = styled.li`
   background-color: #ffffff;
   outline: none;
   border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
   border-radius: 5px;
   font-size: 14px;
   position: relative;
