@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import React, { useEffect, useState, createContext } from 'react';
-
+import styled from 'styled-components';
 import { NavermapsProvider } from 'react-naver-maps';
 import Header from './component/Header';
 import Footer from './component/Footer';
+import TranslateList from './component/TranslateList';
 
 import Enterprises from './pages/Enterprises/Enterprises';
 import Home from './pages/Home/Home';
@@ -120,6 +121,9 @@ function App() {
                       <Route path="*" element={<Notfound />} />
                     </Routes>
                     <Footer />
+                    <TraslateButton>
+                      <TranslateList />
+                    </TraslateButton>
                   </BrowserRouter>
                 </ReviewContext.Provider>
               </CompanyContext.Provider>
@@ -132,3 +136,10 @@ function App() {
 }
 
 export default App;
+
+const TraslateButton = styled.div`
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 200px;
+`;
