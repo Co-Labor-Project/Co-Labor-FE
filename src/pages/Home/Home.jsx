@@ -1,13 +1,17 @@
 import CompanyList from '../Enterprises/components/EnterprisesList';
 import Footer from '../../component/Footer';
-import GoogleTranslate from '../../components/GoogleTranslate';
+import TranslateList from '../../component/TranslateList';
 import Header from '../../component/Header';
 import QuickMenu from '../../components/QuickMenu';
 import RecentReview from '../../components/RecentReviewList';
+import styled from 'styled-components';
 const Home = () => {
   return (
     <>
-      <GoogleTranslate />
+      <TraslateButton>
+        <TranslateList />
+      </TraslateButton>
+
       <QuickMenu />
       <RecentReview />
     </>
@@ -15,3 +19,9 @@ const Home = () => {
 };
 
 export default Home;
+
+const TraslateButton = styled.div`
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+`;

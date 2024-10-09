@@ -13,7 +13,7 @@ import JobNotice from './pages/Jobs/JobNotice';
 import IegalAdvice from './pages/LegalChat/IegalAdvice';
 import Support from './pages/Map/Support';
 import Search from './pages/Search';
-import Companydetails from './pages/Enterprises/CompanyDetails';
+import EnterpriseParticular from './pages/Enterprises/EnterpriseParticular';
 import JobNoticeDetails from './pages/Jobs/JobNoticeDetails';
 import SingIn from './pages/Login/SingIn';
 import EnterpriseApply from './pages/Apply/EnterpriseApply';
@@ -94,11 +94,11 @@ function App() {
                       <Route path="/AiSearch/:keyword" element={<Search />} />
                       <Route
                         path="/Search/:keyword/:enterprise_id"
-                        element={<Companydetails />}
+                        element={<EnterpriseParticular />}
                       />
                       <Route
                         path="/Company/:enterprise_id"
-                        element={<Companydetails />}
+                        element={<EnterpriseParticular />}
                       />
                       <Route
                         path="/Search/:keyword/jobNotice/:job_id"
