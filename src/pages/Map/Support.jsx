@@ -4,10 +4,12 @@ import Header from '../../component/Header';
 import Footer from '../../component/Footer';
 import SupportCenterMap from '../../components/SupportCenterMap';
 import { Container as MapDiv } from 'react-naver-maps';
+// import Kakao from './Map';
 
 const Support = () => {
   return (
     <div>
+      {/* <Kakao /> */}
       <MapDiv
         style={{
           width: '100%',
@@ -16,7 +18,6 @@ const Support = () => {
       >
         <SupportCenterMap />
       </MapDiv>
-      <div className="gap"></div>
     </div>
   );
 };

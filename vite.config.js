@@ -1,26 +1,5 @@
-// import { defineConfig } from 'vite';
-// import react from '@vitejs/plugin-react';
-
-// export default defineConfig({
-//   plugins: [react()],
-//   server: {
-//     proxy: {
-//       '/auth': {
-//         target: `${import.meta.env.VITE_SERVER_URL}:8080`,
-//         changeOrigin: true,
-//         rewrite: (path) => path.replace(/^\/auth/, ''),
-//       },
-//       '/api': {
-//         target: `${import.meta.env.VITE_SERVER_URL}:8080`,
-//         changeOrigin: true,
-//         rewrite: (path) => path.replace(/^\/api/, ''),
-//       },
-//     },
-//   },
-// });
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
 
 export default defineConfig(({ mode }) => {
   // mode에 맞는 .env 파일 로드
@@ -30,15 +9,16 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     server: {
       proxy: {
-        '/auth': {
+        '/api': {
+          // 경로가 "/api" 로 시작하는 요청을 대상으로 proxy 설정
+          // 요청 전달 대상 서버 주소 설정
+          // target: `${env.VITE_SERVER_URL}:443`,
           target: `${env.VITE_SERVER_URL}:8080`,
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/auth/, ''),
-        },
-        '/api': {
-          target: `${env.VITE_SERVER_URL}:8080`, // 환경 변수 사용
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
+          // SSL 인증서 검증 무시
+          secure: false,
+          // WebSocket 프로토콜 사용
+          ws: true,
         },
       },
     },

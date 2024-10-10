@@ -71,6 +71,7 @@ const TextItem = styled.div`
   font-weight: 700;
   line-height: 45px;
   width: 100px;
+  min-width: 100px;
 `;
 const TextContent = styled.div`
   font-size: 18px;

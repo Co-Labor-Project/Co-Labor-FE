@@ -10,47 +10,86 @@ function SupportCenterMap() {
   const [centers, setCenters] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(null);
   const [mapCenter, setMapCenter] = useState(null);
-  const [overlays, setOverlays] = useState([]);
-  const [nearestCenter, setNearestCenter] = useState(null);
   const [sortedCenters, setSortedCenters] = useState([]);
   const [selectedCenter, setSelectedCenter] = useState(null);
-  const [hospitalLocation, setHospitalLocation] = useState([]);
   const [optionCenter, setOptionCenter] = useState(false); // false인 경우 지원센터
+
+  //
+  const [currentAddress, setCurrentAddress] = useState('서울특별시 강남구'); // 현재 위치의 주소
+  //
+
+  useEffect(() => {
+    // 사용자의 현재 위치 가져오기
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const userPosition = { latitude, longitude };
+        setCurrentPosition(userPosition);
+        setMapCenter(new navermaps.LatLng(latitude, longitude));
+
+        console.log(latitude, longitude);
+
+        // Reverse Geocoding으로 구까지 지정
+        reverseGeocode(latitude, longitude);
+        //
+      },
+      (error) => {
+        console.error('Error fetching current position:', error);
+      }
+    );
+  }, [navermaps]);
+  const reverseGeocode = (latitude, longitude) => {
+    const geocoder = new navermaps.Service.Geocoder(); // Geocoder 객체 생성
+    console.log('굳굳');
+    geocoder.reverseGeocode(
+      {
+        coords: new navermaps.LatLng(latitude, longitude),
+      },
+      (status, response) => {
+        if (status === navermaps.Service.Status.OK) {
+          const address = response.v2.address; // 행정 구역 정보
+          const city = address.region.area1.name; // 예: 서울특별시
+          const district = address.region.area2.name; // 예: 강남구
+          const fullAddress = `${city} ${district}`;
+          console.log(fullAddress);
+          setCurrentAddress(fullAddress);
+        } else {
+          console.error('Error during reverse geocoding:', status);
+        }
+      }
+    );
+  };
 
   useEffect(() => {
     const url = optionCenter
-      ? `${
-          import.meta.env.VITE_SERVER_URL
-        }:8080/api/hospitals/region/서울특별시 중구`
-      : `${import.meta.env.VITE_SERVER_URL}:8080/api/support-centers/all`;
-
+      ? `/api/hospitals/region/${currentAddress}`
+      : `/api/support-centers/all`;
+    console.log('진입은함', currentAddress);
     axios
       .get(url)
       .then((response) => {
         setCenters(response.data);
-        const pos = {
-          latitude: 37.566735659339784,
-          longitude: 127.00939480609217,
-        };
-        setCurrentPosition(pos);
 
         const sorted = [...response.data]
           .sort((a, b) => {
-            return getDistance(pos, a) - getDistance(pos, b);
+            return (
+              getDistance(currentPosition, a) - getDistance(currentPosition, b)
+            );
           })
           .slice(0, 50);
-        setNearestCenter(sorted[0]);
         setSelectedCenter(sorted[0]); // 선택된 센터가 처음에 병원 데이터로 업데이트되도록 설정
         setSortedCenters(sorted);
 
-        setMapCenter(
-          new navermaps.LatLng(sorted[0].latitude, sorted[0].longitude)
-        );
+        if (sorted[0]) {
+          setMapCenter(
+            new navermaps.LatLng(sorted[0].latitude, sorted[0].longitude)
+          );
+        }
       })
       .catch((error) => {
         console.error('Error fetching support centers:', error);
       });
-  }, [navermaps, optionCenter]);
+  }, [navermaps, optionCenter, currentPosition]);
 
   const getDistance = (pos1, pos2) => {
     const toRad = (value) => (value * Math.PI) / 180;
@@ -67,68 +106,6 @@ function SupportCenterMap() {
     const distance = R * c;
     return distance;
   };
-
-  useEffect(() => {
-    if (mapRef.current && mapRef.current.instance) {
-      const map = mapRef.current.instance;
-
-      overlays.forEach((overlay) => overlay.setMap(null));
-
-      const newOverlays = [];
-
-      centers.forEach((center) => {
-        const overlay = new navermaps.CustomOverlay({
-          map: map,
-          position: new navermaps.LatLng(center.latitude, center.longitude),
-          content: `<div style="display:none; background: white; border: 1px solid black; padding: 5px;">${center.name}</div>`,
-          zIndex: 1,
-        });
-
-        navermaps.Event.addListener(overlay, 'mouseover', () => {
-          overlay.setContent(
-            `<div style="background: white; border: 1px solid black; padding: 5px;">${center.name}</div>`
-          );
-        });
-
-        navermaps.Event.addListener(overlay, 'mouseout', () => {
-          overlay.setContent(
-            `<div style="display:none; background: white; border: 1px solid black; padding: 5px;">${center.name}</div>`
-          );
-        });
-
-        newOverlays.push(overlay);
-      });
-
-      if (currentPosition) {
-        const currentPosOverlay = new navermaps.CustomOverlay({
-          map: map,
-          position: new navermaps.LatLng(
-            currentPosition.latitude,
-            currentPosition.longitude
-          ),
-          content:
-            '<div style="display:none; background: white; border: 1px solid black; padding: 5px;">현재 위치</div>',
-          zIndex: 1,
-        });
-
-        navermaps.Event.addListener(currentPosOverlay, 'mouseover', () => {
-          currentPosOverlay.setContent(
-            '<div style="background: white; border: 1px solid black; padding: 5px;">현재 위치</div>'
-          );
-        });
-
-        navermaps.Event.addListener(currentPosOverlay, 'mouseout', () => {
-          currentPosOverlay.setContent(
-            '<div style="display:none; background: white; border: 1px solid black; padding: 5px;">현재 위치</div>'
-          );
-        });
-
-        newOverlays.push(currentPosOverlay);
-      }
-
-      setOverlays(newOverlays);
-    }
-  }, [centers, currentPosition, mapRef.current, optionCenter]);
 
   const handleCenterClick = (center) => {
     setSelectedCenter(center);

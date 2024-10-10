@@ -36,7 +36,7 @@ function App() {
   const [isEnroll, setIsEnroll] = useState(false);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_SERVER_URL}:8080/api/enterprises`)
+    fetch('/api/enterprises')
       .then((response) => response.json())
       .then((data) => {
         setCompanies(data);
@@ -45,7 +45,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_SERVER_URL}:8080/api/jobs`)
+    fetch(`/api/jobs`)
       .then((response) => response.json())
       .then((data) => {
         setJobs(data);
@@ -55,7 +55,7 @@ function App() {
   }, [isEnroll]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_SERVER_URL}:8080/api/reviews/all`)
+    fetch('/api/reviews/all')
       .then((response) => response.json())
       .then((data) => setReviews(data))
       .catch((error) => console.error('Error fetching reviews:', error));
@@ -75,7 +75,7 @@ function App() {
 
   return (
     <>
-      <NavermapsProvider ncpClientId="du60d8o1se">
+      <NavermapsProvider ncpClientId={`${import.meta.env.VITE_MAP_KEY}`}>
         <LoginContext.Provider value={{ loginState, setLoginState }}>
           <JobContext.Provider value={jobs}>
             <IsEnrollContext.Provider value={{ isEnroll, setIsEnroll }}>

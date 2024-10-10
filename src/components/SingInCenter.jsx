@@ -53,9 +53,7 @@ const SingInCenter = () => {
     // console.log(Loginusername, Loginpassword);
     axios
       .post(
-        `${
-          import.meta.env.VITE_SERVER_URL
-        }:8080/auth/login?username=${Loginusername}&password=${Loginpassword}`,
+        `/api/auth/login?username=${Loginusername}&password=${Loginpassword}`,
         {},
         { withCredentials: true }
       )
@@ -88,8 +86,8 @@ const SingInCenter = () => {
       return;
     }
     const url = input.isEnterprise
-      ? `${import.meta.env.VITE_SERVER_URL}:8080/auth/signup-enterprise`
-      : `${import.meta.env.VITE_SERVER_URL}:8080/auth/signup-labor`;
+      ? '/api/auth/signup-enterprise'
+      : '/api/auth/signup-labor';
     // console.log("패스워드 일치 후 요청 보내기");
     const json = JSON.stringify(input);
     signUp(json, url);
