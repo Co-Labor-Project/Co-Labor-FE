@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './IegalAdviceCenter.css';
 import { useNavigate } from 'react-router-dom';
 import MessageSend from './components/MessageSend';
 import { MessageList } from './components/Message';
