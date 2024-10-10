@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './css/IegalAdviceCenter.css';
+import './IegalAdviceCenter.css';
 import { useNavigate } from 'react-router-dom';
-
+import MessageSend from './components/MessageSend';
+import { MessageList } from './components/Message';
+import styled from 'styled-components';
 const IegalAdviceCenter = () => {
   const [messages, setMessages] = useState([]);
   const [username, setUsername] = useState('');
@@ -23,14 +25,9 @@ const IegalAdviceCenter = () => {
   // 메시지 목록 불러오기
   const fetchMessages = (userId) => {
     setLoading(true);
-    fetch(
-      `${
-        import.meta.env.VITE_SERVER_URL
-      }:8080/api/chatting/all?userId=${userId}`,
-      {
-        credentials: 'include',
-      }
-    )
+    fetch(`/api/chatting/all?userId=${userId}`, {
+      credentials: 'include',
+    })
       .then((response) => {
         if (response.status === 401) {
           throw new Error('Unauthorized');
@@ -70,9 +67,7 @@ const IegalAdviceCenter = () => {
     ]);
 
     fetch(
-      `${
-        import.meta.env.VITE_SERVER_URL
-      }:8080/api/chatting/send?userId=${username}&message=${encodeURIComponent(
+      `/api/chatting/send?userId=${username}&message=${encodeURIComponent(
         message
       )}`,
       {
@@ -91,7 +86,7 @@ const IegalAdviceCenter = () => {
         alert('메시지를 전송하지 못했습니다. 다시 시도해 주세요.');
       })
       .finally(() => {
-        setIsSending(false); // 응답을 받으면 로딩 상태 해제
+        setIsSending(false);
       });
   };
 
@@ -102,88 +97,35 @@ const IegalAdviceCenter = () => {
   }, [username]);
 
   return (
-    <div className="app">
-      <div className="chat-box">
-        <h1 className="chatTitle">CoLaw</h1>
+    <Field>
+      <BaseContainer>
         <MessageList
           messages={messages}
           loading={loading}
           isSending={isSending}
         />
-        <MessageForm onSendMessage={handleSendMessage} isSending={isSending} />
-      </div>
-    </div>
-  );
-};
-
-// 메시지 목록 컴포넌트
-const MessageList = ({ messages, loading, isSending }) => (
-  <div className="messages-list">
-    {loading ? (
-      <div className="LoadingWrapper">
-        <div className="loading-spinner"></div>
-        <p>🤖 이전 채팅 기록을 불러오는 중 입니다...</p>
-      </div>
-    ) : (
-      <>
-        {messages.map((message, index) => (
-          <Message key={index} {...message} />
-        ))}
-        {/* <p>Sending...</p> */}
-        {isSending && (
-          <div className="LoadingWrapper">
-            <div className="loading-spinner"></div>
-
-            <p>🤖 답변을 생성 중 입니다...</p>
-          </div>
-        )}
-      </>
-    )}
-  </div>
-);
-
-// 메시지 컴포넌트
-const Message = ({ text, isUser }) => {
-  return (
-    <div>
-      <div className={isUser ? 'user-message' : 'ai-message'}>
-        <b className="messageWrapper">{isUser ? '' : 'Co Labor :'}</b>
-        <div
-          className="messageWrapper2"
-          dangerouslySetInnerHTML={{ __html: text }}
-        />
-      </div>
-    </div>
-  );
-};
-
-// 메시지 전송 폼 컴포넌트
-const MessageForm = ({ onSendMessage, isSending }) => {
-  const [message, setMessage] = useState('');
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!isSending) {
-      // 메시지 전송 중에는 중복 전송 방지
-      onSendMessage(message);
-      setMessage('');
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="message-form">
-      <input
-        type="text"
-        value={message}
-        onChange={(event) => setMessage(event.target.value)}
-        className="message-input"
-        disabled={isSending} // 전송 중일 때 입력 비활성화
-      />
-      <button type="submit" className="send-button" disabled={isSending}>
-        {isSending ? 'Sending...' : 'Send'} {/* 전송 중 상태 표시 */}
-      </button>
-    </form>
+        <MessageSend onSendMessage={handleSendMessage} isSending={isSending} />
+      </BaseContainer>
+    </Field>
   );
 };
 
 export default IegalAdviceCenter;
+
+const Field = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background: #fff;
+`;
+const BaseContainer = styled.div`
+  width: 1000px;
+  height: 100%;
+  background: #fff;
+  /* box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.1); */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+`;
+// const Feild=styled.div``
