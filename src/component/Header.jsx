@@ -116,7 +116,7 @@ const BaseContiner = styled.div`
   z-index: 100;
 `;
 const Logo = styled.div`
-  background-image: url(/src/assets/Co-labor.png);
+  background-image: url('/src/assets/Co-labor.png');
   width: 140px;
   height: 70px;
   background-size: cover;
