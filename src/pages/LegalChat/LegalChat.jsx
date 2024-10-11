@@ -103,6 +103,7 @@ const LegalChat = () => {
           loading={loading}
           isSending={isSending}
         />
+        initial message
         <MessageSend onSendMessage={handleSendMessage} isSending={isSending} />
       </BaseContainer>
     </Field>
