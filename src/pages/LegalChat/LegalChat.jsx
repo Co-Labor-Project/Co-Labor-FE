@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import MessageSend from './components/MessageSend';
 import { MessageList } from './components/Message';
 import styled from 'styled-components';
-const IegalAdviceCenter = () => {
+const LegalChat = () => {
   const [messages, setMessages] = useState([]);
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
@@ -109,7 +109,7 @@ const IegalAdviceCenter = () => {
   );
 };
 
-export default IegalAdviceCenter;
+export default LegalChat;
 
 const Field = styled.div`
   display: flex;
@@ -127,4 +127,3 @@ const BaseContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-// const Feild=styled.div``
