@@ -11,7 +11,7 @@ import Enterprises from './pages/Enterprises/Enterprises';
 import Home from './pages/Home/Home';
 import Notfound from './pages/Notfound';
 import JobNotice from './pages/Jobs/JobNotice';
-import IegalAdvice from './pages/LegalChat/IegalAdvice';
+import LegalChat from './pages/LegalChat/LegalChat';
 import Support from './pages/Map/Support';
 import Search from './pages/Search';
 import EnterpriseParticular from './pages/Enterprises/EnterpriseParticular';
@@ -87,7 +87,7 @@ function App() {
                       <Route path="/" element={<Home />} />
                       <Route path="/Enterprises" element={<Enterprises />} />
                       <Route path="/JobNotice" element={<JobNotice />} />
-                      <Route path="/IegalAdvice" element={<IegalAdvice />} />
+                      <Route path="/LegalChat" element={<LegalChat />} />
                       <Route path="/Support" element={<Support />} />
                       <Route path="/SingIn" element={<SingIn />} />
 

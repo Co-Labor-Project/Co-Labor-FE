@@ -40,9 +40,7 @@ const JobNotieItem = ({
         if (response.ok) {
           setImageSrc(url);
         } else if (response.status === 404) {
-          const fallbackUrl = `${
-            import.meta.env.VITE_SERVER_URL
-          }:8080/api/jobs/images/${imageName}`;
+          const fallbackUrl = `/api/jobs/images/${imageName}`;
           const fallbackResponse = await fetch(fallbackUrl);
           if (fallbackResponse.ok) {
             setImageSrc(fallbackUrl);
