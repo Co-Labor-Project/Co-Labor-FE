@@ -98,7 +98,7 @@ const JobNoticeApplyCenter = () => {
     //   console.log(pair[0] + ": " + pair[1]);
     // }
 
-    fetch(`${import.meta.env.VITE_SERVER_URL}:8080/api/jobs`, {
+    fetch(`/api/jobs`, {
       method: 'POST',
       body: formData,
     })

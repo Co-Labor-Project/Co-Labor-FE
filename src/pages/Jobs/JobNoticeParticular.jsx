@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { JobContext, CompanyContext } from '../../../App';
-import JobNotieItem from './JobNotieItem';
-import './JobNoticeDetailsCenter.css';
+import { JobContext, CompanyContext } from '../../App';
+import JobNotieItem from './components/JobNotieItem';
+import MainTitle from '../../component/MainTitle';
+import styled from 'styled-components';
+import { BackGroundField } from '../../component/CommonStyled';
+import BasicInfo from '../Enterprises/components/BasicInfo';
 
 const JobNoticeDetailsCenter = () => {
   const params = useParams();
@@ -12,7 +15,7 @@ const JobNoticeDetailsCenter = () => {
   const nav = useNavigate();
 
   const [jobData, setJobData] = useState(null);
-  const [companyData, setCompanyData] = useState(null);
+  const [EnterpriseData, setEnterpriseData] = useState(null);
   const [displayJobPhoto, setDisplayJobPhoto] = useState('');
 
   useEffect(() => {
@@ -25,7 +28,7 @@ const JobNoticeDetailsCenter = () => {
         (item) =>
           String(item.enterprise_id) === String(job.enterprise.enterprise_id)
       );
-      setCompanyData(company);
+      setEnterpriseData(company);
 
       if (job.imageName) {
         const checkImage = async () => {
@@ -37,9 +40,7 @@ const JobNoticeDetailsCenter = () => {
             if (response.ok) {
               setDisplayJobPhoto(url);
             } else if (response.status === 404) {
-              const fallbackUrl = `${
-                import.meta.env.VITE_SERVER_URL
-              }:8080/api/jobs/images/${job.imageName}`;
+              const fallbackUrl = `/api/jobs/images/${job.imageName}`;
               const fallbackResponse = await fetch(fallbackUrl);
               if (fallbackResponse.ok) {
                 setDisplayJobPhoto(fallbackUrl);
@@ -67,23 +68,20 @@ const JobNoticeDetailsCenter = () => {
     }
   }, [jobId, contextData, companyContext]);
 
-  if (!jobData || !companyData) {
+  if (!jobData || !EnterpriseData) {
     return <div>Loading</div>;
   }
 
-  const displayCompanyPhoto = companyData.imageName
+  const EnterpriseImg = EnterpriseData.imageName
     ? `${import.meta.env.VITE_SERVER_URL}:8080/static/images/${
-        companyData.imageName
+        EnterpriseData.imageName
       }`
     : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
 
-  const defaultCompanyType = '기업 분류를 작성해주세요!';
-  const displayCompanyType = companyData.type || defaultCompanyType;
+  const EnterpriseType = EnterpriseData.type || '기업 분류를 작성해주세요!';
 
-  const defaultCompanyDescription = '기업 설명을 작성해주세요!';
-  const displayCompanyDescription =
-    companyData.description || defaultCompanyDescription;
-
+  const EnterpriseDescripton =
+    EnterpriseData.description || '기업 설명을 작성해주세요!';
   const highlightWords = [
     '우대사항',
     '채용 절차',
@@ -115,93 +113,101 @@ const JobNoticeDetailsCenter = () => {
   const descriptionWithHighlights = applyHighlighting(jobData.description);
 
   return (
-    <div className="JobDetail">
-      <div className="gap2"></div>
-      <div className="CompanyDetail">
-        <h1 className="title">{companyData.name}</h1>
-        <div className="gap" />
-        <div className="JobDetailsBasicInfo">
-          <img
-            className="JobCompanyImg"
-            src={displayCompanyPhoto}
-            alt={companyData.title}
-          />
-          <div className="JobNDetailsCondi">
-            <div className="JobDetailKey">
-              <p>주소 </p>{' '}
-              <span>
-                {companyData.address1} {companyData.address2}{' '}
-                {companyData.address3}
-              </span>
-            </div>
-            <div className="JobDetailKey">
-              <p>전화번호</p> <span>{companyData.phone_number}</span>
-            </div>
-            <div className="JobDetailKey">
-              <p>기업분류 </p> <span>{displayCompanyType}</span>
-            </div>
-            <div className="JobDetailKey">
-              <p>기업설명 </p>
-              <span>{displayCompanyDescription}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="gap" />
-      <h1 className="title">{jobData.title}</h1>
-      <div className="gap" />
-      <div className="JobDetailsBasicInfo">
-        <img
-          className="JobDetailsImg"
-          src={displayJobPhoto}
-          alt={jobData.title}
-        />
-        <div className="JobNDetailsCondi">
-          <div className="JobDetailKey">
-            <p>마감 기한</p> <span>{jobData.deadDate}</span>
-          </div>
+    <BackGroundField>
+      <MainTitle text={EnterpriseData.name} />
+      <BasicInfo
+        img={EnterpriseImg}
+        name={EnterpriseData.name}
+        address1={EnterpriseData.address1}
+        address2={EnterpriseData.address2}
+        address3={EnterpriseData.address3}
+        phone_number={EnterpriseData.phone_number}
+        type={EnterpriseType}
+        description={EnterpriseDescripton}
+      />
 
-          <div className="JobDetailKey">
+      <MainTitle text={jobData.title} />
+
+      <Container>
+        <DetailsImg src={displayJobPhoto} alt={jobData.title} />
+        <DetailsCondition>
+          <DetailKey>
+            <p>마감 기한</p> <span>{jobData.deadDate}</span>
+          </DetailKey>
+
+          <DetailKey>
             <p>연락처</p> <span>{jobData.enterpriseUser.email}</span>
-          </div>
-          <div className="JobDetailKey">
+          </DetailKey>
+          <DetailKey>
             <p>직무 </p> <span>{jobData.jobRole}</span>
-          </div>
-          <div className="JobDetailKey">
+          </DetailKey>
+          <DetailKey>
             <p>경력 </p>
             <span>{jobData.experience}</span>
-          </div>
-          <div className="JobDetailKey">
+          </DetailKey>
+          <DetailKey>
             <p>고용형태 </p> <span>{jobData.employmentType}</span>
-          </div>
-          <div className="JobDetailKey">
+          </DetailKey>
+          <DetailKey>
             <p>근무지역 </p>
             <span>{jobData.location}</span>
-          </div>
-          <div className="JobDetailKey">
+          </DetailKey>
+          <DetailKey>
             <p>스킬 </p>
             <span>{jobData.skills}</span>
-          </div>
-        </div>
-      </div>
-      <hr />
+          </DetailKey>
+        </DetailsCondition>
+      </Container>
+
       <div className="JobDetailsdescription">
         <pre dangerouslySetInnerHTML={{ __html: descriptionWithHighlights }} />
       </div>
-      <div className="gap2" />
-      <h1 className="title">연관된 공고</h1>
-      <div className="gap" />
+      <MainTitle text="연관된 공고" />
 
-      <div className="JobDetailsBasicInfo">
-        <div className="JobNoticeList">
+      <Container>
+        <div>
           {contextData.map((item) => (
             <JobNotieItem key={item.job_id} {...item} />
           ))}
         </div>
-      </div>
-      <div className="gap" />
-    </div>
+      </Container>
+    </BackGroundField>
   );
 };
 
 export default JobNoticeDetailsCenter;
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 20px 0px;
+  justify-content: start;
+  gap: 170px;
+  padding-left: 20px;
+`;
+const DetailsCondition = styled.div`
+  padding: 18px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  transition: all 0.1s;
+  max-width: 550px;
+  flex: 2;
+  line-height: 35px;
+`;
+
+const DetailKey = styled.div`
+  display: flex;
+
+  & > p {
+    width: 90px;
+    margin-right: 20px;
+    font-size: 17px;
+    font-weight: 550;
+  }
+`;
+
+const DetailsImg = styled.img`
+  max-width: 400px;
+  max-height: 400px;
+  flex: 1;
+`;
