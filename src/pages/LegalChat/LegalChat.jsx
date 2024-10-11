@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import MessageSend from './components/MessageSend';
 import { MessageList } from './components/Message';
 import styled from 'styled-components';
+import InitalMessage from './components/InitalMessage';
 const LegalChat = () => {
   const [messages, setMessages] = useState([]);
   const [username, setUsername] = useState('');
@@ -95,16 +96,45 @@ const LegalChat = () => {
     }
   }, [username]);
 
+  // return (
+
+  //   <Field>
+  //     <BaseContainer>
+  //       <MessageList
+  //         messages={messages}
+  //         loading={loading}
+  //         isSending={isSending}
+  //       />
+  //       <MessageSend onSendMessage={handleSendMessage} isSending={isSending} />
+  //     </BaseContainer>
+  //   </Field>
+  // );
   return (
     <Field>
       <BaseContainer>
-        <MessageList
-          messages={messages}
-          loading={loading}
-          isSending={isSending}
-        />
-        initial message
-        <MessageSend onSendMessage={handleSendMessage} isSending={isSending} />
+        {messages.length === 0 ? (
+          //메시지가 없을 때 초기화면
+          <InitalMessage
+            messages={messages}
+            loading={loading}
+            isSending={isSending}
+            onSendMessage={handleSendMessage}
+          />
+        ) : (
+          <>
+            {/* 메시지가 있을 때 */}
+            <MessageList
+              messages={messages}
+              loading={loading}
+              isSending={isSending}
+            />
+
+            <MessageSend
+              onSendMessage={handleSendMessage}
+              isSending={isSending}
+            />
+          </>
+        )}
       </BaseContainer>
     </Field>
   );
