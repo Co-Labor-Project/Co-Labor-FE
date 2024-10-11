@@ -18,7 +18,7 @@ const SearchOutput = ({ input }) => {
   const url = window.location.href;
   let desURL = '';
   if (url.indexOf('AiSearch') === -1) {
-    desURL = `${import.meta.env.VITE_SERVER_URL}:8080/search?keyword=${input}`;
+    desURL = `/api/search?keyword=${input}`;
   } else {
     desURL = `http://15.165.75.244:8081/ai-search?sentence=${input}`;
   }
