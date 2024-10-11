@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { JobContext, CompanyContext } from '../App';
+import { JobContext, CompanyContext } from '../../../App';
 import JobNotieItem from './JobNotieItem';
-import './css/JobNoticeDetailsCenter.css';
-import './css/common.css';
+import './JobNoticeDetailsCenter.css';
 
 const JobNoticeDetailsCenter = () => {
   const params = useParams();
@@ -105,6 +104,7 @@ const JobNoticeDetailsCenter = () => {
   ];
 
   const applyHighlighting = (text) => {
+    if (!text) return ''; // description이 null 또는 undefined인 경우 빈 문자열 반환
     let highlightedText = text;
     highlightWords.forEach((word) => {
       const regex = new RegExp(word, 'g');

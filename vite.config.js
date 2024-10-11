@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
           target: `${env.VITE_SERVER_URL}:8080`,
           changeOrigin: true,
           // SSL 인증서 검증 무시
-          secure: false,
+          secure: true,
           // WebSocket 프로토콜 사용
           ws: true,
         },

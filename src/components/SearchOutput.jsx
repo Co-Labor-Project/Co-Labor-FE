@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './css/SearchOutput.css';
-import JobNoticeList from './JobNoticeList';
+import JobNoticeList from '../pages/Jobs/components/JobNoticeList';
 import CompanyList from '../pages/Enterprises/components/EnterprisesList';
 import { useParams } from 'react-router-dom';
 
