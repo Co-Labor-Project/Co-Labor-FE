@@ -46,7 +46,7 @@ function SupportCenterMap() {
       .get(url)
       .then((response) => {
         setCenters(response.data);
-
+        console.log(response.data);
         const sorted = [...response.data]
           .sort((a, b) => {
             return (
@@ -104,24 +104,70 @@ function SupportCenterMap() {
     setSelectedCenter(center);
     setMapCenter(new navermaps.LatLng(center.latitude, center.longitude));
   };
-
-  const IconImage = optionCenter
+  const selectedIconImage = optionCenter
     ? {
-        //병원 아이콘 제작자: mavadee - Flaticon
         content:
-          '<img src="/assets/HospitalLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
+          '<img src="/assets/HospitalChoose.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 60px; height: 60px; left: 0px; top: 0px; z-index: 2;">',
+        size: new navermaps.Size(48, 48),
+        origin: new navermaps.Point(0, 0),
+        anchor: new navermaps.Point(24, 24),
+      }
+    : {
+        content:
+          '<img src="/assets/BuildingChoose.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 60px; height: 60px; left: 0px; top: 0px; z-index: 2;">',
+        size: new navermaps.Size(48, 48),
+        origin: new navermaps.Point(0, 0),
+        anchor: new navermaps.Point(24, 24),
+      };
+
+  const defaultIconImage = optionCenter
+    ? {
+        content:
+          '<img src="/assets/HospitalLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 40px; height: 40px; left: 0px; top: 0px;">',
         size: new navermaps.Size(24, 24),
         origin: new navermaps.Point(0, 0),
         anchor: new navermaps.Point(12, 12),
       }
     : {
-        //회사 아이콘 제작자: nawicon - Flaticon
         content:
-          '<img src="/assets/BuildingLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
+          '<img src="/assets/BuildingLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 40px; height: 40px; left: 0px; top: 0px;">',
         size: new navermaps.Size(24, 24),
         origin: new navermaps.Point(0, 0),
         anchor: new navermaps.Point(12, 12),
       };
+
+  // const defaultIconImage = optionCenter
+  //   ? {
+  //       content:
+  //         '<img src="/assets/HospitalLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 40px; height: 40px; left: 0px; top: 0px;">',
+  //       size: new navermaps.Size(24, 24),
+  //       origin: new navermaps.Point(0, 0),
+  //       anchor: new navermaps.Point(12, 12),
+  //     }
+  //   : {
+  //       content:
+  //         '<img src="/assets/BuildingLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 40px; height: 40px; left: 0px; top: 0px; ">',
+  //       size: new navermaps.Size(24, 24),
+  //       origin: new navermaps.Point(0, 0),
+  //       anchor: new navermaps.Point(12, 12),
+  //     };
+
+  // const selectedIconImage = optionCenter
+  //   ? {
+  //       content:
+  //         '<img src="/assets/HospitalChoose.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 60px; height: 60px; left: 0px; top: 0px; z-index: 2px;">',
+  //       size: new navermaps.Size(48, 48),
+  //       origin: new navermaps.Point(0, 0),
+  //       anchor: new navermaps.Point(24, 24),
+  //     }
+  //   : {
+  //       content:
+  //         '<img src="/assets/BuildingChoose.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 60px; height: 60px; left: 0px; top: 0px; z-index: 2px;">',
+  //       size: new navermaps.Size(48, 48),
+  //       origin: new navermaps.Point(0, 0),
+  //       anchor: new navermaps.Point(24, 24),
+  //     };
+
   return (
     <>
       {mapCenter && (
@@ -142,7 +188,6 @@ function SupportCenterMap() {
               title="현재 위치"
               clickable={true}
               icon={{
-                //내 위치 아이콘 제작자: Creative Stall Premium - Flaticon
                 content:
                   '<img src="/assets/currentLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
                 size: new navermaps.Size(48, 48),
@@ -157,7 +202,11 @@ function SupportCenterMap() {
               position={new navermaps.LatLng(center.latitude, center.longitude)}
               title={center.name}
               clickable={true}
-              icon={IconImage}
+              icon={
+                selectedCenter && selectedCenter.id === center.id
+                  ? selectedIconImage
+                  : defaultIconImage
+              }
               onClick={() => {
                 handleCenterClick(center);
               }}
