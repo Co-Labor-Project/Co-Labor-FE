@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { NaverMap, Marker, useNavermaps } from 'react-naver-maps';
 import axios from 'axios';
-import './SupportCenterMap.css';
 import SupportCenterItem from './components/SupportCenterItem';
 import styled from 'styled-components';
 import ChooseMode from './components/ChooseMode';
@@ -18,9 +17,7 @@ function SupportCenterMap() {
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [optionCenter, setOptionCenter] = useState(false); // false인 경우 지원센터
 
-  //
   const [currentAddress, setCurrentAddress] = useState('서울특별시 강남구'); // 현재 위치의 주소
-  //
 
   useEffect(() => {
     if (!navermaps) {
@@ -34,10 +31,6 @@ function SupportCenterMap() {
         const userPosition = { latitude, longitude };
         setCurrentPosition(userPosition);
         setMapCenter(new navermaps.LatLng(latitude, longitude));
-
-        // console.log(latitude, longitude);
-        // Reverse Geocoding으로 구까지 지정
-        //
       },
       (error) => {
         console.error('Error fetching current position:', error);
@@ -75,6 +68,22 @@ function SupportCenterMap() {
       });
   }, [navermaps, optionCenter, currentPosition]);
 
+  // 내 위치로 이동
+  const moveToCurrentPosition = () => {
+    console.log(currentPosition);
+    if (currentPosition) {
+      setMapCenter(
+        new navermaps.LatLng(
+          currentPosition.latitude,
+          currentPosition.longitude
+        )
+      );
+    } else {
+      console.error('현재 위치를 가져올 수 없습니다.');
+    }
+  };
+
+  // 거리 구하기
   const getDistance = (pos1, pos2) => {
     const toRad = (value) => (value * Math.PI) / 180;
     const R = 6371;
@@ -114,7 +123,7 @@ function SupportCenterMap() {
         anchor: new navermaps.Point(12, 12),
       };
   return (
-    <div className="mapContainer">
+    <>
       {mapCenter && (
         <NaverMap
           ref={mapRef}
@@ -163,8 +172,11 @@ function SupportCenterMap() {
         handleCenterClick={handleCenterClick}
       />
 
-      <ChooseMode setOptionCenter={setOptionCenter} />
-    </div>
+      <ChooseMode
+        setOptionCenter={setOptionCenter}
+        moveToCurrentPosition={moveToCurrentPosition}
+      />
+    </>
   );
 }
 

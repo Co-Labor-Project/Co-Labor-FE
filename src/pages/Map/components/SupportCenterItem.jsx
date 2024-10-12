@@ -29,6 +29,8 @@ const BaseContainer = styled.div`
   margin: 10px 10px;
   transition: all 0.3s ease-in;
   border: 0px solid var(--primary-color);
+  cursor: pointer;
+
   &:hover {
     margin: 10px 0px;
     padding: 5px 10px;
