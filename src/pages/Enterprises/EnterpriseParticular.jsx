@@ -10,7 +10,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import JobPreview from './components/JobPreview';
 import ReviewAverage from './components/ReviewAverage';
 import ReviewList from './components/ReviewList';
-
 const CompanyDetails = () => {
   const params = useParams();
   const companyContext = useContext(CompanyContext);
