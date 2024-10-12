@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './css/SearchOutput.css';
-import JobNoticeList from './JobNoticeList';
+import JobNoticeList from '../pages/Jobs/components/JobNoticeList';
 import CompanyList from '../pages/Enterprises/components/EnterprisesList';
 import { useParams } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ const SearchOutput = ({ input }) => {
   const url = window.location.href;
   let desURL = '';
   if (url.indexOf('AiSearch') === -1) {
-    desURL = `${import.meta.env.VITE_SERVER_URL}:8080/search?keyword=${input}`;
+    desURL = `/api/search?keyword=${input}`;
   } else {
     desURL = `http://15.165.75.244:8081/ai-search?sentence=${input}`;
   }

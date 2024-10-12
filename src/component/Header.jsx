@@ -29,11 +29,7 @@ const Header = () => {
   const handleJobNoticeApply = async () => {
     try {
       const response1 = await fetch(
-        `${
-          import.meta.env.VITE_SERVER_URL
-        }:8080/auth/hasEnterprise?username=${sessionStorage.getItem(
-          'username'
-        )}`,
+        `api/auth/hasEnterprise?username=${sessionStorage.getItem('username')}`,
         {
           method: 'GET',
           credentials: 'include', // 세션 쿠키 포함
@@ -61,7 +57,7 @@ const Header = () => {
       </IndexContiner>
       <IndexContiner onClick={() => nav('/JobNotice')}>채용 공고</IndexContiner>
       {!loginState.userEnterprise && (
-        <IndexContiner onClick={() => nav('/IegalAdvice')}>
+        <IndexContiner onClick={() => nav('/LegalChat')}>
           법률 상담
         </IndexContiner>
       )}

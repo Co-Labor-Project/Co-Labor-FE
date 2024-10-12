@@ -1,13 +1,13 @@
-import CompanyList from '../Enterprises/components/EnterprisesList';
-import Header from '../../component/Header';
-import JobNoticeList from '../../components/JobNoticeList';
-import RecentReview from '../../components/RecentReviewList';
-import Footer from '../../component/Footer';
+import JobNoticeList from './components/JobNoticeList';
+import MainTitleFilter from '../../component/MainTitleFilter';
+import { BackGroundField } from '../../component/CommonStyled';
+
 function JobNotice() {
   return (
-    <div>
+    <BackGroundField>
+      <MainTitleFilter text="📢 채용 공고" />
       <JobNoticeList />
-    </div>
+    </BackGroundField>
   );
 }
 

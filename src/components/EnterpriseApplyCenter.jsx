@@ -53,7 +53,7 @@ const EnterpriseApplyCenter = () => {
 
   const onSubmit = (json) => {
     console.log('현재 입력창 상태', input);
-    fetch(`${import.meta.env.VITE_SERVER_URL}:8080/api/enterprises/queue`, {
+    fetch(`/api/enterprises/queue`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

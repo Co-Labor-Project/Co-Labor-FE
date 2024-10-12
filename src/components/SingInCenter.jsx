@@ -59,7 +59,9 @@ const SingInCenter = () => {
       )
       .then((response) => {
         const result = response.data;
-        // console.log("로그인결과: ", result);
+        console.log('로그인결과: ', result);
+        console.log('재배포 2트', result);
+
         if (result.message === 'Login successful') {
           sessionStorage.setItem('username', Loginusername);
           sessionStorage.setItem('userType', result.userType);
@@ -74,9 +76,24 @@ const SingInCenter = () => {
           throw new Error('로그인 실패');
         }
       })
+      // .catch((error) => {
+      //   console.error('Error:', error);
+      //   alert('로그인 실패!');
+      // });
       .catch((error) => {
-        console.error('Error:', error);
-        alert('로그인 실패!');
+        if (error.response) {
+          // 서버가 응답했지만 상태 코드가 2xx가 아님
+          console.error('서버 응답 오류:', error.response.data);
+          console.error('응답 상태 코드:', error.response.status);
+          console.error('응답 헤더:', error.response.headers);
+        } else if (error.request) {
+          // 요청이 전송되었으나 응답을 받지 못함
+          console.error('요청 전송 실패:', error.request);
+        } else {
+          // 요청 설정 중에 발생한 오류
+          console.error('요청 오류:', error.message);
+        }
+        console.error('전체 오류 정보:', error.config);
       });
   };
 
