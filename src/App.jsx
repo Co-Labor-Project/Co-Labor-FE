@@ -75,7 +75,7 @@ function App() {
 
   return (
     <>
-      <NavermapsProvider ncpClientId={`${import.meta.env.VITE_MAP_KEY}`}>
+      <NavermapsProvider ncpClientId={`${import.meta.env.VITE_MAP_ID}`}>
         <LoginContext.Provider value={{ loginState, setLoginState }}>
           <JobContext.Provider value={jobs}>
             <IsEnrollContext.Provider value={{ isEnroll, setIsEnroll }}>
