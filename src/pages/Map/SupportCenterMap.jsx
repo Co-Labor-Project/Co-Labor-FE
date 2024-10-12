@@ -35,9 +35,8 @@ function SupportCenterMap() {
         setCurrentPosition(userPosition);
         setMapCenter(new navermaps.LatLng(latitude, longitude));
 
-        console.log(latitude, longitude);
+        // console.log(latitude, longitude);
         // Reverse Geocoding으로 구까지 지정
-        reverseGeocode(latitude, longitude);
         //
       },
       (error) => {
@@ -45,39 +44,11 @@ function SupportCenterMap() {
       }
     );
   }, [navermaps]);
-  const reverseGeocode = (latitude, longitude) => {
-    if (!navermaps) {
-      console.error('navermaps 객체가 아직 로드되지 않았습니다.');
-      return;
-    }
-    console.log('굳굳rnerne');
-
-    const geocoder = new navermaps.Service.Geocoder(); // Geocoder 객체 생성
-    console.log('굳굳');
-    geocoder.reverseGeocode(
-      {
-        coords: new navermaps.LatLng(latitude, longitude),
-      },
-      (status, response) => {
-        if (status === navermaps.Service.Status.OK) {
-          const address = response.v2.address; // 행정 구역 정보
-          const city = address.region.area1.name; // 예: 서울특별시
-          const district = address.region.area2.name; // 예: 강남구
-          const fullAddress = `${city} ${district}`;
-          console.log(fullAddress);
-          setCurrentAddress(fullAddress);
-        } else {
-          console.error('Error during reverse geocoding:', status);
-        }
-      }
-    );
-  };
 
   useEffect(() => {
     const url = optionCenter
       ? `/api/hospitals/region/${currentAddress}`
       : `/api/support-centers/all`;
-    console.log('진입은함', currentAddress);
     axios
       .get(url)
       .then((response) => {
@@ -191,44 +162,6 @@ function SupportCenterMap() {
         sortedCenters={sortedCenters}
         handleCenterClick={handleCenterClick}
       />
-      {/* <div className="sidePage">
-        <div className="chooseCenter">
-          <div className="selected">
-            <div className="selectImg"></div>
-            {selectedCenter && (
-              <div className="selectedText">
-                {' '}
-                <p>
-                  📌 <b>이름</b>: {selectedCenter.name}
-                </p>
-                <p>
-                  🏢 <b>주소</b>: {selectedCenter.address}
-                </p>
-                <p>
-                  📞 <b>전화번호</b>: {selectedCenter.phone}
-                </p>
-                {optionCenter && selectedCenter.hospitalInfo && (
-                  <p>
-                    🏥 <b>병원 정보</b>: {selectedCenter.hospitalInfo}
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="nearCenterList">
-          {sortedCenters.map((center, index) => (
-            <div key={index} onClick={() => handleCenterClick(center)}>
-              <SupportCenterItem
-                name={center.name}
-                address={center.address}
-                phone={center.phone}
-                hospitalInfo={optionCenter ? center.hospitalInfo : null} // 병원 정보 추가
-              />
-            </div>
-          ))}
-        </div>
-      </div> */}
 
       <ChooseMode setOptionCenter={setOptionCenter} />
     </div>

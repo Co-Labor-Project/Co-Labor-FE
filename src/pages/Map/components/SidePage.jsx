@@ -62,10 +62,10 @@ const BaseContainer = styled.div`
   top: 50%;
   transform: translate(+10%, -50%);
 
-  height: 80%;
+  height: 90%;
   width: 20%;
   z-index: 10px;
-  background: #fffefe;
+  background: #f7f7f7;
   opacity: 0.8;
   border-radius: 20px;
   /* padding: 0px 20px; */
@@ -75,8 +75,6 @@ const BaseContainer = styled.div`
   &:hover {
     opacity: 1;
     width: 25%;
-    /* border: 3px solid rgb(86, 229, 119); */
-    /* border: 1px solid rgb(111, 111, 111); */
   }
 `;
 

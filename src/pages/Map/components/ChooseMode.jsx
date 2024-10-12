@@ -1,8 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
-const ChooseMode = ({ setOptionCenter }) => {
+import styled, { keyframes } from 'styled-components';
+
+const ChooseMode = ({ setOptionCenter, moveToCurrentPosition }) => {
   return (
     <BaseContainer>
+      <Button onClick={moveToCurrentPosition}>🟠 내위치</Button>
       <Button
         onClick={() => {
           setOptionCenter(false);
@@ -22,29 +24,41 @@ const ChooseMode = ({ setOptionCenter }) => {
 };
 
 export default ChooseMode;
+
 const BaseContainer = styled.div`
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   position: relative;
-  right: 40vw;
-  top: 10px;
+  right: 30vw;
+  top: 20px;
+`;
+
+const borderAnimation = keyframes`
+  0% {
+    border-width: 0px;
+  }
+  50% {
+    border-width: 2.1   px;
+  }
+  100% {
+    border-width: 0px;
+  }
 `;
 
 const Button = styled.div`
-  text-align: center;
-  padding: 10px 30px;
-  height: 60px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: white;
-  border: 5px solid rgb(170, 236, 185);
-  border-radius: 5px;
-  transition: all 0.5s;
+  border-radius: 25px;
+  border: 0px solid rgb(86, 229, 119);
+  transition: all 0.3s ease-in-out;
+  animation: ${borderAnimation} 3s ease-in-out infinite;
 
   &:hover {
-    border: 6px solid rgb(86, 229, 119);
+    border: 2px solid rgb(86, 229, 119);
     font-size: 16px;
     transform: scale(1.2);
   }
