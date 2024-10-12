@@ -1,13 +1,19 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-const ChooseMode = ({ setOptionCenter, moveToCurrentPosition }) => {
+const ChooseMode = ({
+  setOptionCenter,
+  moveToCurrentPosition,
+  click,
+  setClick,
+}) => {
   return (
     <BaseContainer>
       <Button onClick={moveToCurrentPosition}>🟠 내위치</Button>
       <Button
         onClick={() => {
           setOptionCenter(false);
+          setClick(!click);
         }}
       >
         🏬 지원센터

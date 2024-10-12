@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../component/Header';
-import SingInCenter from '../../components/SingInCenter';
+import SingInCenter from './components/SingInCenter';
 
 const SingIn = () => {
   return (

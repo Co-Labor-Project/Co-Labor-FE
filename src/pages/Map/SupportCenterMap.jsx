@@ -16,7 +16,7 @@ function SupportCenterMap() {
   const [sortedCenters, setSortedCenters] = useState([]);
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [optionCenter, setOptionCenter] = useState(false); // false인 경우 지원센터
-
+  const [click, setClick] = useState(false); //지원센터 버그 check
   const [currentAddress, setCurrentAddress] = useState('서울특별시 강남구'); // 현재 위치의 주소
 
   useEffect(() => {
@@ -66,11 +66,11 @@ function SupportCenterMap() {
       .catch((error) => {
         console.error('Error fetching support centers:', error);
       });
-  }, [navermaps, optionCenter, currentPosition]);
+  }, [navermaps, optionCenter, currentPosition, click]);
 
   // 내 위치로 이동
   const moveToCurrentPosition = () => {
-    console.log(currentPosition);
+    // console.log(currentPosition);
     if (currentPosition) {
       setMapCenter(
         new navermaps.LatLng(
@@ -153,7 +153,7 @@ function SupportCenterMap() {
           )}
           {centers.map((center) => (
             <Marker
-              key={center.support_center_id}
+              key={optionCenter ? center.id : center.support_center_id}
               position={new navermaps.LatLng(center.latitude, center.longitude)}
               title={center.name}
               clickable={true}
@@ -175,6 +175,8 @@ function SupportCenterMap() {
       <ChooseMode
         setOptionCenter={setOptionCenter}
         moveToCurrentPosition={moveToCurrentPosition}
+        click={click}
+        setClick={setClick}
       />
     </>
   );

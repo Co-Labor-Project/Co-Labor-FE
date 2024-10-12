@@ -1,7 +1,6 @@
 import React from 'react';
 import SupportCenterItem from './SupportCenterItem';
 import styled from 'styled-components';
-import '../SupportCenterMap.css';
 const SidePage = ({
   selectedCenter,
   optionCenter,
