@@ -17,7 +17,10 @@ function SupportCenterMap() {
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [optionCenter, setOptionCenter] = useState(false); // false인 경우 지원센터
   const [click, setClick] = useState(false); //지원센터 버그 check
-  const [currentAddress, setCurrentAddress] = useState('서울특별시 강남구'); // 현재 위치의 주소
+  const [currentAddress, setCurrentAddress] = useState({
+    latitude: '',
+    longitude: '',
+  }); // 현재 위치의 주소
 
   useEffect(() => {
     if (!navermaps) {
@@ -28,7 +31,8 @@ function SupportCenterMap() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
-        const userPosition = { latitude, longitude };
+        const userPosition = { latitude: latitude, longitude: longitude };
+        setCurrentAddress([latitude, longitude]);
         setCurrentPosition(userPosition);
         setMapCenter(new navermaps.LatLng(latitude, longitude));
       },
@@ -38,36 +42,105 @@ function SupportCenterMap() {
     );
   }, [navermaps]);
 
+  // useEffect(() => {
+  //   const url = optionCenter
+  //     ? `/api/hospitals/nearby?latitude=${currentAddress.latitude}&longitude=${currentAddress.longitude}` //`/api/hospitals/region/${currentAddress}`
+  //     : `/api/support-centers/all`;
+  //   axios
+  //     .get(url)
+  //     .then((response) => {
+  //       setCenters(response.data);
+  //       console.log(response.data);
+  //       const sorted = [...response.data]
+  //         .sort((a, b) => {
+  //           return (
+  //             getDistance(currentPosition, a) - getDistance(currentPosition, b)
+  //           );
+  //         })
+  //         .slice(0, 50);
+  //       setSelectedCenter(sorted[0]); // 선택된 센터가 처음에 병원 데이터로 업데이트되도록 설정
+  //       setSortedCenters(sorted);
+
+  //       if (sorted[0]) {
+  //         setMapCenter(
+  //           new navermaps.LatLng(sorted[0].latitude, sorted[0].longitude)
+  //         );
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error fetching support centers:', error);
+  //     });
+  // }, [navermaps, optionCenter, currentPosition, click]);
   useEffect(() => {
-    const url = optionCenter
-      ? `/api/hospitals/region/${currentAddress}`
-      : `/api/support-centers/all`;
-    axios
-      .get(url)
-      .then((response) => {
-        setCenters(response.data);
-        console.log(response.data);
-        const sorted = [...response.data]
-          .sort((a, b) => {
-            return (
-              getDistance(currentPosition, a) - getDistance(currentPosition, b)
-            );
+    if (!currentPosition) return;
+
+    const fetchData = () => {
+      if (optionCenter) {
+        // 병원 데이터를 요청
+        axios
+          .get('/api/hospitals/nearby', {
+            params: {
+              latitude: currentPosition.latitude,
+              longitude: currentPosition.longitude,
+            },
           })
-          .slice(0, 50);
-        setSelectedCenter(sorted[0]); // 선택된 센터가 처음에 병원 데이터로 업데이트되도록 설정
-        setSortedCenters(sorted);
+          .then((response) => {
+            setCenters(response.data);
+            console.log('병원 데이터:', response.data);
 
-        if (sorted[0]) {
-          setMapCenter(
-            new navermaps.LatLng(sorted[0].latitude, sorted[0].longitude)
-          );
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching support centers:', error);
-      });
+            const sorted = [...response.data]
+              .sort((a, b) => {
+                return (
+                  getDistance(currentPosition, a) -
+                  getDistance(currentPosition, b)
+                );
+              })
+              .slice(0, 50);
+            setSelectedCenter(sorted[0]); // 가장 가까운 병원 선택
+            setSortedCenters(sorted);
+
+            if (sorted[0]) {
+              setMapCenter(
+                new navermaps.LatLng(sorted[0].latitude, sorted[0].longitude)
+              );
+            }
+          })
+          .catch((error) => {
+            console.error('병원 데이터를 가져오는 중 에러 발생:', error);
+          });
+      } else {
+        // 지원센터 데이터를 요청
+        axios
+          .get('/api/support-centers/all')
+          .then((response) => {
+            setCenters(response.data);
+            console.log('지원센터 데이터:', response.data);
+
+            const sorted = [...response.data]
+              .sort((a, b) => {
+                return (
+                  getDistance(currentPosition, a) -
+                  getDistance(currentPosition, b)
+                );
+              })
+              .slice(0, 50);
+            setSelectedCenter(sorted[0]); // 가장 가까운 지원센터 선택
+            setSortedCenters(sorted);
+
+            if (sorted[0]) {
+              setMapCenter(
+                new navermaps.LatLng(sorted[0].latitude, sorted[0].longitude)
+              );
+            }
+          })
+          .catch((error) => {
+            console.error('지원센터 데이터를 가져오는 중 에러 발생:', error);
+          });
+      }
+    };
+
+    fetchData();
   }, [navermaps, optionCenter, currentPosition, click]);
-
   // 내 위치로 이동
   const moveToCurrentPosition = () => {
     // console.log(currentPosition);
@@ -135,38 +208,6 @@ function SupportCenterMap() {
         origin: new navermaps.Point(0, 0),
         anchor: new navermaps.Point(12, 12),
       };
-
-  // const defaultIconImage = optionCenter
-  //   ? {
-  //       content:
-  //         '<img src="/assets/HospitalLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 40px; height: 40px; left: 0px; top: 0px;">',
-  //       size: new navermaps.Size(24, 24),
-  //       origin: new navermaps.Point(0, 0),
-  //       anchor: new navermaps.Point(12, 12),
-  //     }
-  //   : {
-  //       content:
-  //         '<img src="/assets/BuildingLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 40px; height: 40px; left: 0px; top: 0px; ">',
-  //       size: new navermaps.Size(24, 24),
-  //       origin: new navermaps.Point(0, 0),
-  //       anchor: new navermaps.Point(12, 12),
-  //     };
-
-  // const selectedIconImage = optionCenter
-  //   ? {
-  //       content:
-  //         '<img src="/assets/HospitalChoose.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 60px; height: 60px; left: 0px; top: 0px; z-index: 2px;">',
-  //       size: new navermaps.Size(48, 48),
-  //       origin: new navermaps.Point(0, 0),
-  //       anchor: new navermaps.Point(24, 24),
-  //     }
-  //   : {
-  //       content:
-  //         '<img src="/assets/BuildingChoose.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 60px; height: 60px; left: 0px; top: 0px; z-index: 2px;">',
-  //       size: new navermaps.Size(48, 48),
-  //       origin: new navermaps.Point(0, 0),
-  //       anchor: new navermaps.Point(24, 24),
-  //     };
 
   return (
     <>

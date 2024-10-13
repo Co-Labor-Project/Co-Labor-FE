@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { FadeInContainer } from '../../../component/FadeIn';
 
 const ChooseMode = ({
   setOptionCenter,
@@ -8,24 +9,26 @@ const ChooseMode = ({
   setClick,
 }) => {
   return (
-    <BaseContainer>
-      <Button onClick={moveToCurrentPosition}>🟠 내위치</Button>
-      <Button
-        onClick={() => {
-          setOptionCenter(false);
-          setClick(!click);
-        }}
-      >
-        🏬 지원센터
-      </Button>
-      <Button
-        onClick={() => {
-          setOptionCenter(true);
-        }}
-      >
-        🏥 병원
-      </Button>
-    </BaseContainer>
+    <FadeInContainer>
+      <BaseContainer>
+        <Button onClick={moveToCurrentPosition}>🟠 내위치</Button>
+        <Button
+          onClick={() => {
+            setOptionCenter(false);
+            setClick(!click);
+          }}
+        >
+          🏬 지원센터
+        </Button>
+        <Button
+          onClick={() => {
+            setOptionCenter(true);
+          }}
+        >
+          🏥 병원
+        </Button>
+      </BaseContainer>{' '}
+    </FadeInContainer>
   );
 };
 
