@@ -1,37 +1,31 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import EnterprisesItem from './EnterprisesItem';
 import { useNavigate } from 'react-router-dom';
-import FilterBox from '../../../component/filter/FilterBox';
-import { Location, JOB } from '../../../component/filter/FilterOption';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import SearchIcon from '@mui/icons-material/Search';
 import { CompanyContext } from '../../../App';
-import MainTitle from '../../../component/MainTitle';
 import styled from 'styled-components';
 import {
   LoadingSpinner,
   LoadingText,
   LoadingWrapper,
 } from '../../../component/CommonStyled';
-const CompanyList = ({ data, searchNull }) => {
-  const contextData = useContext(CompanyContext);
-  console.log(contextData);
-  const companyData =
-    Array.isArray(data) && data.length > 0 ? data : contextData;
+
+const CompanyList = ({ data, searchNull, EnterpriseData }) => {
   const nav = useNavigate();
   const [searchKeyword, setSearchKeyword] = useState('');
   const [visibleItems, setVisibleItems] = useState(12);
   const listRef = useRef();
   const [viewAll, setViewAll] = useState(false);
+  const [enterpriseData, setEnterpriseData] = useState(
+    Array.isArray(data) && data.length > 0 ? data : EnterpriseData
+  );
+
+  const arr1 =
+    enterpriseData.length < 12 ? enterpriseData : enterpriseData.slice(0, 12);
+  const itemsToShow = viewAll ? enterpriseData : arr1;
 
   const changeInput = (e) => {
     setSearchKeyword(e.target.value);
   };
-
-  const arr1 = companyData.length < 12 ? companyData : companyData.slice(0, 12);
-
-  const itemsToShow = viewAll ? companyData : arr1;
 
   const searchHandler = () => {
     if (searchKeyword === '') {
@@ -88,13 +82,20 @@ const CompanyList = ({ data, searchNull }) => {
     loadMoreItems();
   };
 
+  // enterpriseData가 변경될 때마다 재설정
+  useEffect(() => {
+    setEnterpriseData(
+      Array.isArray(data) && data.length > 0 ? data : EnterpriseData
+    );
+  }, [data, EnterpriseData]);
+
   return (
     <>
       <BaseContainer ref={listRef}>
         {itemsToShow.slice(0, visibleItems).map((item) => (
           <EnterprisesItem key={item.enterprise_id} {...item} />
         ))}
-        {viewAll && visibleItems < companyData.length && (
+        {viewAll && visibleItems < enterpriseData.length && (
           <div ref={setTarget}>
             <LoadingWrapper>
               <LoadingSpinner></LoadingSpinner>
@@ -104,7 +105,7 @@ const CompanyList = ({ data, searchNull }) => {
         )}
       </BaseContainer>
       <ButtonWrapper>
-        {!viewAll && companyData.length > 12 && (
+        {!viewAll && enterpriseData.length > 12 && (
           <MoreButton onClick={moreButton}>더보기</MoreButton>
         )}
       </ButtonWrapper>
@@ -113,6 +114,7 @@ const CompanyList = ({ data, searchNull }) => {
 };
 
 export default CompanyList;
+
 const BaseContainer = styled.div`
   margin-top: 10px;
   width: 100%;
@@ -121,6 +123,7 @@ const BaseContainer = styled.div`
   gap: 10px;
   justify-content: space-around;
 `;
+
 const ButtonWrapper = styled.div`
   margin: 30px 0px;
   width: 100%;
@@ -128,6 +131,7 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const MoreButton = styled.button`
   width: 100px;
   height: 45px;
