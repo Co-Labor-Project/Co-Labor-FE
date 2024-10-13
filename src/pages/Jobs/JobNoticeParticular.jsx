@@ -6,6 +6,8 @@ import MainTitle from '../../component/MainTitle';
 import styled from 'styled-components';
 import { BackGroundField } from '../../component/CommonStyled';
 import BasicInfo from '../Enterprises/components/BasicInfo';
+import { Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const JobNoticeDetailsCenter = () => {
   const params = useParams();
@@ -17,6 +19,7 @@ const JobNoticeDetailsCenter = () => {
   const [jobData, setJobData] = useState(null);
   const [EnterpriseData, setEnterpriseData] = useState(null);
   const [displayJobPhoto, setDisplayJobPhoto] = useState('');
+  const [relationData, setRelationData] = useState([]); // relationData 상태 추가
 
   useEffect(() => {
     const job = contextData.find(
@@ -68,6 +71,18 @@ const JobNoticeDetailsCenter = () => {
     }
   }, [jobId, contextData, companyContext]);
 
+  // relationData를 업데이트하는 useEffect 추가
+  useEffect(() => {
+    if (jobData) {
+      const filteredData = contextData
+        .filter((item) => item.jobRole === jobData.jobRole)
+        .slice(0, 10);
+      setRelationData(filteredData); // relationData 업데이트
+      console.log('relationData', relationData);
+      console.log('relationData', relationData);
+    }
+  }, [jobData, contextData]); // jobData 또는 EnterpriseData가 변경될 때마다 실행
+
   if (!jobData || !EnterpriseData) {
     return <div>Loading</div>;
   }
@@ -77,8 +92,6 @@ const JobNoticeDetailsCenter = () => {
         EnterpriseData.imageName
       }`
     : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
-
-  const EnterpriseType = EnterpriseData.type || '기업 분류를 작성해주세요!';
 
   const EnterpriseDescripton =
     EnterpriseData.description || '기업 설명을 작성해주세요!';
@@ -122,7 +135,7 @@ const JobNoticeDetailsCenter = () => {
         address2={EnterpriseData.address2}
         address3={EnterpriseData.address3}
         phone_number={EnterpriseData.phone_number}
-        type={EnterpriseType}
+        type={EnterpriseData.type || '기업 분류를 작성해주세요!'}
         description={EnterpriseDescripton}
       />
 
@@ -165,11 +178,23 @@ const JobNoticeDetailsCenter = () => {
       <MainTitle text="연관된 공고" />
 
       <Container>
-        <div>
-          {contextData.map((item) => (
-            <JobNotieItem key={item.job_id} {...item} />
-          ))}
-        </div>
+        <SwiperWrapper>
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={-40}
+            slidesPerView={3}
+            navigation
+            pagination={{ clickable: true }}
+            height={3000}
+            width={900}
+          >
+            {relationData.map((item) => (
+              <SwiperSlide key={item.job_id}>
+                <JobNotieItem {...item} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </SwiperWrapper>
       </Container>
     </BackGroundField>
   );
@@ -210,4 +235,8 @@ const DetailsImg = styled.img`
   max-width: 400px;
   max-height: 400px;
   flex: 1;
+`;
+const SwiperWrapper = styled.div`
+  max-width: 800px;
+  display: block;
 `;
