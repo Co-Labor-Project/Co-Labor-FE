@@ -33,9 +33,9 @@ const EnterpriseItem = ({
       <Container onClick={clickHandler}>
         <CompanyImg $photo={photo} />
         <InfoName>{name}</InfoName>
-        <Info>기업 분류 | {type}</Info>
+        <Info> 분류 | {type}</Info>
         <Info>
-          {address1} {address2}
+          주소 | {address1} {address2}
         </Info>
       </Container>
     </FadeInContainer>

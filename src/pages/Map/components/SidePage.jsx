@@ -67,7 +67,6 @@ const BaseContainer = styled.div`
   background: #f7f7f7;
   opacity: 0.8;
   border-radius: 20px;
-  /* padding: 0px 20px; */
   display: flex;
   flex-direction: column;
   transition: all 0.5s ease-in-out;
@@ -87,6 +86,8 @@ const Selected = styled.div`
   height: 0.1px;
   transition: all 1.5s;
   display: flex;
+  border-radius: 20px;
+
   flex-direction: column;
   gap: 10px;
   align-items: center;

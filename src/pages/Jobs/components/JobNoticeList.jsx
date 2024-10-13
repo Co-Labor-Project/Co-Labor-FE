@@ -1,13 +1,12 @@
 import JobNotieItem from './JobNotieItem';
-import { useContext } from 'react';
-import { JobContext } from '../../../App';
+
 import styled from 'styled-components';
 const JobNoticeList = ({
   data,
   searchNull = { enterprises: false, jobs: false, reviews: false },
+  JobData,
 }) => {
-  const contextData = useContext(JobContext);
-  const jobData = Array.isArray(data) && data.length > 0 ? data : contextData;
+  const jobData = Array.isArray(data) && data.length > 0 ? data : JobData;
   return (
     <>
       {!searchNull.jobs && (
