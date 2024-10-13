@@ -3,14 +3,24 @@ import MainTitle from './MainTitle';
 import styled from 'styled-components';
 import FilterBox from './filter/FilterBox';
 import { JOB, Location } from './filter/FilterOption';
-const MainTitleFilter = ({ text }) => {
+import FilterBar from './FilterBar';
+const MainTitleFilter = ({
+  text,
+  selected,
+  setSelected,
+  handleChange,
+  ifJob,
+}) => {
   return (
     <BaseContainer>
       <MainTitle text={text} />
-      <Filter>
-        <FilterBox option={JOB} />
-        <Location />
-      </Filter>
+
+      <FilterBar
+        selected={selected}
+        setSelected={setSelected}
+        handleChange={handleChange}
+        ifJob={ifJob}
+      />
     </BaseContainer>
   );
 };

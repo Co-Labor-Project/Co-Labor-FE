@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import StarRate from '../../../components/StarRate';
 import BarGraph from '../../../components/BarGraph';
 import RadarChart from '../../../components/RadarChart';
@@ -7,7 +7,6 @@ import { ReviewContext } from '../../../App';
 import styled from 'styled-components';
 
 const ReviewAverage = () => {
-  const [totalReviews, setTotalReviews] = useState(0);
   const params = useParams();
 
   const reviewContext = useContext(ReviewContext);
@@ -56,33 +55,32 @@ const ReviewAverage = () => {
     <BaseContainer>
       <ItemContainer>
         <div style={{ marginTop: '10px' }}>
-          <span>{totalReviews}개의 리뷰</span>
+          <TextItem>{reviewData.length}개의 리뷰</TextItem>
           <StarRate rating={averageRatings.averageTotal} />
-          <br />
           <br />
         </div>
         <div>
-          <span>승진 기회 및 개인 성장 가능성: </span>
+          <TextItem>승진 기회 및 개인 성장 가능성: </TextItem>
           <BarGraph rating={averageRatings.averagePromotion} />
           <br />
         </div>
         <div>
-          <span>복지 및 급여: </span>
+          <TextItem>복지 및 급여: </TextItem>
           <BarGraph rating={averageRatings.averageSalary} />
           <br />
         </div>
         <div>
-          <span>업무와 삶의 균형: </span>
+          <TextItem>업무와 삶의 균형: </TextItem>
           <BarGraph rating={averageRatings.averageBalance} />
           <br />
         </div>
         <div>
-          <span>사내 문화 평가 점수: </span>
+          <TextItem>사내 문화 평가 점수: </TextItem>
           <BarGraph rating={averageRatings.averageCulture} />
           <br />
         </div>
         <div>
-          <span>경영진 관련 평가 점수: </span>
+          <TextItem>경영진 관련 평가 점수: </TextItem>
           <BarGraph rating={averageRatings.averageManagement} />
           <br />
         </div>
@@ -123,4 +121,10 @@ const ItemContainer = styled.div`
   &:hover {
     border: 3px solid var(--primary-color);
   }
+`;
+const TextItem = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  min-width: 100px;
 `;
