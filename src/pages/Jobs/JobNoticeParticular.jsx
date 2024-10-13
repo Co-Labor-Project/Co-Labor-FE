@@ -172,9 +172,9 @@ const JobNoticeDetailsCenter = () => {
         </DetailsCondition>
       </Container>
 
-      <div className="JobDetailsdescription">
-        <pre dangerouslySetInnerHTML={{ __html: descriptionWithHighlights }} />
-      </div>
+      <Description>
+        <Pre dangerouslySetInnerHTML={{ __html: descriptionWithHighlights }} />
+      </Description>
       <MainTitle text="연관된 공고" />
 
       <Container>
@@ -239,4 +239,12 @@ const DetailsImg = styled.img`
 const SwiperWrapper = styled.div`
   max-width: 800px;
   display: block;
+`;
+
+const Description = styled.div`
+  width: 100%;
+`;
+
+const Pre = styled.div`
+  padding: 0px;
 `;
