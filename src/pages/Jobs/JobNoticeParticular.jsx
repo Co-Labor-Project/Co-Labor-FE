@@ -95,36 +95,8 @@ const JobNoticeDetailsCenter = () => {
 
   const EnterpriseDescripton =
     EnterpriseData.description || '기업 설명을 작성해주세요!';
-  const highlightWords = [
-    '우대사항',
-    '채용 절차',
-    '자격 요건',
-    '채용절차 ',
-    ' 간편 접수',
-    '1차 인터뷰',
-    '2차 인터뷰',
-    '최종합격 ',
-    '업무환경 ',
-    '복지혜택 ',
-    '핵심업무 ',
-    '조직 소개',
-    '팀 메시지',
-    '복지혜택',
-    '복지 및 혜택',
-    '핵심업무',
-  ];
 
-  const applyHighlighting = (text) => {
-    if (!text) return ''; // description이 null 또는 undefined인 경우 빈 문자열 반환
-    let highlightedText = text;
-    highlightWords.forEach((word) => {
-      const regex = new RegExp(word, 'g');
-      highlightedText = highlightedText.replace(regex, `<b>${word}</b>`);
-    });
-    return highlightedText;
-  };
-  const descriptionWithHighlights = applyHighlighting(jobData.description);
-
+  const description = jobData.description || ''; // 기본 값을 빈 문자열로 설정
   return (
     <BackGroundField>
       <MainTitle text={EnterpriseData.name} />
@@ -173,7 +145,7 @@ const JobNoticeDetailsCenter = () => {
       </Container>
 
       <Description>
-        <Pre dangerouslySetInnerHTML={{ __html: descriptionWithHighlights }} />
+        <Pre dangerouslySetInnerHTML={{ __html: description }} />
       </Description>
       <MainTitle text="연관된 공고" />
 
