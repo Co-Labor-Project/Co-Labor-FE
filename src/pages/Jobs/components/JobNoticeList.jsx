@@ -1,5 +1,4 @@
 import JobNotieItem from './JobNotieItem';
-
 import styled from 'styled-components';
 const JobNoticeList = ({
   data,
@@ -32,6 +31,7 @@ const ListContainer = styled.div`
   width: 100%;
   max-width: 1280px;
   display: flex;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;

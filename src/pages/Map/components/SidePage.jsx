@@ -1,7 +1,6 @@
 import React from 'react';
 import SupportCenterItem from './SupportCenterItem';
 import styled from 'styled-components';
-import { FadeInContainer } from '../../../component/FadeIn';
 
 const SidePage = ({
   selectedCenter,
@@ -10,52 +9,48 @@ const SidePage = ({
   handleCenterClick,
 }) => {
   return (
-    <FadeInContainer>
-      <BaseContainer>
-        <ChooseCenter>
-          <Selected>
-            {/* IMG 출처 - fanjianhua */}
-            <ObjectImg src="/assets/Building.jpg" alt="image" />
-            {selectedCenter && (
-              <TextContainer>
+    <BaseContainer>
+      <ChooseCenter>
+        <Selected>
+          {/* IMG 출처 - fanjianhua */}
+          <ObjectImg src="/assets/Building.jpg" alt="image" />
+          {selectedCenter && (
+            <TextContainer>
+              <TextWrapper>
+                <TextItem>📌 이름</TextItem>
+                <TextContent>{selectedCenter.name}</TextContent>
+              </TextWrapper>
+              <TextWrapper>
+                <TextItem> 🏢 주소</TextItem>
+                <TextContent> {selectedCenter.address}</TextContent>
+              </TextWrapper>
+              <TextWrapper>
+                <TextItem>📞 전화번호</TextItem>
+                <TextContent> {selectedCenter.phone}</TextContent>
+              </TextWrapper>
+              {optionCenter && selectedCenter.hospitalInfo && (
                 <TextWrapper>
-                  <TextItem>📌 이름</TextItem>
-                  <TextContent>{selectedCenter.name}</TextContent>
+                  <TextItem>🏥 병원 정보</TextItem>{' '}
+                  <TextContent>{selectedCenter.hospitalInfo}</TextContent>
                 </TextWrapper>
-                <TextWrapper>
-                  <TextItem> 🏢 주소</TextItem>
-                  <TextContent> {selectedCenter.address}</TextContent>
-                </TextWrapper>
-                <TextWrapper>
-                  <TextItem>📞 전화번호</TextItem>
-                  <TextContent> {selectedCenter.phone}</TextContent>
-                </TextWrapper>
-                {optionCenter && selectedCenter.hospitalInfo && (
-                  <TextWrapper>
-                    <TextItem>🏥 병원 정보</TextItem>{' '}
-                    <TextContent>{selectedCenter.hospitalInfo}</TextContent>
-                  </TextWrapper>
-                )}
-              </TextContainer>
-            )}
-          </Selected>
-        </ChooseCenter>
-        <FadeInContainer>
-          <NearList>
-            {sortedCenters.map((center, index) => (
-              <div key={index} onClick={() => handleCenterClick(center)}>
-                <SupportCenterItem
-                  name={center.name}
-                  address={center.address}
-                  phone={center.phone}
-                  hospitalInfo={optionCenter ? center.hospitalInfo : null} // 병원 정보 추가
-                />
-              </div>
-            ))}
-          </NearList>
-        </FadeInContainer>
-      </BaseContainer>
-    </FadeInContainer>
+              )}
+            </TextContainer>
+          )}
+        </Selected>
+      </ChooseCenter>
+      <NearList>
+        {sortedCenters.map((center, index) => (
+          <div key={index} onClick={() => handleCenterClick(center)}>
+            <SupportCenterItem
+              name={center.name}
+              address={center.address}
+              phone={center.phone}
+              hospitalInfo={optionCenter ? center.hospitalInfo : null} // 병원 정보 추가
+            />
+          </div>
+        ))}
+      </NearList>
+    </BaseContainer>
   );
 };
 
@@ -84,6 +79,7 @@ const BaseContainer = styled.div`
 
 const NearList = styled.div`
   overflow-y: auto;
+
   height: 100%;
 `;
 
