@@ -1,98 +1,113 @@
 import React from 'react';
 import styled from 'styled-components';
+import useScrollFadeIn from '../../../hooks/fade_in';
 const Contact = () => {
   return (
     <BaseContainer>
+      <Title>Contact</Title>
       <Dohyun />
       <JunHwa />
-      <Dohyun />
-      <Dohyun />
+      <HanUl />
+      <MoonKi />
     </BaseContainer>
   );
 };
 
 export default Contact;
 
-const Dohyun = () => (
-  <ContentContainer>
-    <Photo $src={'/assets/profile.jpg'}></Photo>
-    <TextWrapper>
-      <Name>김도현</Name>
-      <Role>프론트엔드</Role>
-    </TextWrapper>
-    <ContactWrapper>
-      <a href="https://github.com/kdhqwe1030">
-        <img src="https://skillicons.dev/icons?i=github&theme=light" />
-      </a>
-      <a href="mailto:kdhqwe1030@gmail.com">
-        <img src="https://skillicons.dev/icons?i=gmail&theme=light" />
-      </a>
-      <a href="https://instagram.com/no_dohyun">
-        <img src="https://skillicons.dev/icons?i=instagram" />
-      </a>
-    </ContactWrapper>
-  </ContentContainer>
-);
-const JunHwa = () => (
-  <ContentContainer>
-    <Photo $src={'/assets/profile.jpg'}></Photo>
-    <TextWrapper>
-      <Name>조준화</Name>
-      <Role>백엔드 / 머신러닝 엔지니어</Role>
-    </TextWrapper>
-    <ContactWrapper>
-      <a href="https://github.com/jjj5306">
-        <img src="https://skillicons.dev/icons?i=github&theme=light" />
-      </a>
-      <a href="mailto:jjj5306@naver.com">
-        <img src="https://skillicons.dev/icons?i=gmail&theme=light" />
-      </a>
-      <a href="https://instagram.com/no_dohyun">
-        <img src="https://skillicons.dev/icons?i=instagram" />
-      </a>
-    </ContactWrapper>
-  </ContentContainer>
-);
-const HanUl = () => (
-  <ContentContainer>
-    <Photo $src={'/assets/profile.jpg'}></Photo>
-    <TextWrapper>
-      <Name>정한울</Name>
-      <Role>백엔드</Role>
-    </TextWrapper>
-    <ContactWrapper>
-      <a href="https://github.com/jho7535">
-        <img src="https://skillicons.dev/icons?i=github&theme=light" />
-      </a>
-      <a href="mailto:jho7535@naver.com">
-        <img src="https://skillicons.dev/icons?i=gmail&theme=light" />
-      </a>
-      <a href="https://instagram.com/no_dohyun">
-        <img src="https://skillicons.dev/icons?i=instagram" />
-      </a>
-    </ContactWrapper>
-  </ContentContainer>
-);
-const MoonKi = () => (
-  <ContentContainer>
-    <Photo $src={'/assets/profile.jpg'}></Photo>
-    <TextWrapper>
-      <Name>김문기</Name>
-      <Role>백엔드</Role>
-    </TextWrapper>
-    <ContactWrapper>
-      <a href="https://github.com/mk-isos">
-        <img src="https://skillicons.dev/icons?i=github&theme=light" />
-      </a>
-      <a href="mailto:mkisos0316@gmail.com">
-        <img src="https://skillicons.dev/icons?i=gmail&theme=light" />
-      </a>
-      <a href="https://www.instagram.com/mk_isos">
-        <img src="https://skillicons.dev/icons?i=instagram" />
-      </a>
-    </ContactWrapper>
-  </ContentContainer>
-);
+const Dohyun = () => {
+  const fadeInProps = useScrollFadeIn('up', 3);
+
+  return (
+    <ContentContainer>
+      <Photo $src={'/assets/profile.jpg'}></Photo>
+      <TextWrapper>
+        <Name>김도현</Name>
+        <Role>프론트엔드</Role>
+      </TextWrapper>
+      <ContactWrapper>
+        <a href="https://github.com/kdhqwe1030">
+          <img src="https://skillicons.dev/icons?i=github&theme=light" />
+        </a>
+        <a href="mailto:kdhqwe1030@gmail.com">
+          <img src="https://skillicons.dev/icons?i=gmail&theme=light" />
+        </a>
+        <a href="https://instagram.com/no_dohyun">
+          <img src="https://skillicons.dev/icons?i=instagram" />
+        </a>
+      </ContactWrapper>
+    </ContentContainer>
+  );
+};
+const JunHwa = () => {
+  const fadeInProps = useScrollFadeIn('up', 3);
+  return (
+    <ContentContainer>
+      <Photo $src={'/assets/profile.jpg'}></Photo>
+      <TextWrapper>
+        <Name>조준화</Name>
+        <Role>백엔드 / ML 엔지니어</Role>
+      </TextWrapper>
+      <ContactWrapper>
+        <a href="https://github.com/jjj5306">
+          <img src="https://skillicons.dev/icons?i=github&theme=light" />
+        </a>
+        <a href="mailto:jjj5306@naver.com">
+          <img src="https://skillicons.dev/icons?i=gmail&theme=light" />
+        </a>
+        <a href="https://instagram.com/no_dohyun">
+          <img src="https://skillicons.dev/icons?i=instagram" />
+        </a>
+      </ContactWrapper>
+    </ContentContainer>
+  );
+};
+const HanUl = () => {
+  const fadeInProps = useScrollFadeIn('up', 3);
+  return (
+    <ContentContainer>
+      <Photo $src={'/assets/profile.jpg'}></Photo>
+      <TextWrapper>
+        <Name>정한울</Name>
+        <Role>백엔드</Role>
+      </TextWrapper>
+      <ContactWrapper>
+        <a href="https://github.com/jho7535">
+          <img src="https://skillicons.dev/icons?i=github&theme=light" />
+        </a>
+        <a href="mailto:jho7535@naver.com">
+          <img src="https://skillicons.dev/icons?i=gmail&theme=light" />
+        </a>
+        <a href="https://instagram.com/00.08.24_jho">
+          <img src="https://skillicons.dev/icons?i=instagram" />
+        </a>
+      </ContactWrapper>
+    </ContentContainer>
+  );
+};
+const MoonKi = () => {
+  const fadeInProps = useScrollFadeIn('up', 3);
+  return (
+    <ContentContainer>
+      <Photo $src={'/assets/profile.jpg'}></Photo>
+      <TextWrapper>
+        <Name>김문기</Name>
+        <Role>백엔드</Role>
+      </TextWrapper>
+      <ContactWrapper>
+        <a href="https://github.com/mk-isos">
+          <img src="https://skillicons.dev/icons?i=github&theme=light" />
+        </a>
+        <a href="mailto:mkisos0316@gmail.com">
+          <img src="https://skillicons.dev/icons?i=gmail&theme=light" />
+        </a>
+        <a href="https://www.instagram.com/mk_isos">
+          <img src="https://skillicons.dev/icons?i=instagram" />
+        </a>
+      </ContactWrapper>
+    </ContentContainer>
+  );
+};
 const BaseContainer = styled.div`
   width: 100%;
   height: calc(100vh - 81px);
@@ -100,7 +115,10 @@ const BaseContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 80px;
+  /* background-color: #148d7f; */
   background-color: #191f28;
+
+  position: relative;
 `;
 
 const ContentContainer = styled.div`
@@ -111,9 +129,17 @@ const ContentContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 30px;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   border-radius: 15px;
   padding: 30px 30px;
+`;
+const Title = styled.div`
+  position: absolute;
+  top: 5%;
+  left: 11%;
+  font-size: 34px;
+  font-weight: 400;
+  color: white;
 `;
 const Photo = styled.div`
   border-radius: 50%;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import useScrollFadeIn from '../../../hooks/fade_in';
+import GoToButton from './GoToButton';
 
 const MapInfo = () => {
   return (
@@ -8,7 +9,10 @@ const MapInfo = () => {
       <ContentWrapper>
         <LeftContainer>
           <MainContainer />
-          <SubContainer />
+          <SubWrap>
+            <SubContainer />
+            <GoToButton text="노동자 지원센터 바로가기" url="/support" />
+          </SubWrap>
         </LeftContainer>
         <RightContainer>
           <Example />
@@ -26,7 +30,11 @@ const BaseContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
+const SubWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
 const ContentWrapper = styled.div`
   width: 80%;
   height: 100%;

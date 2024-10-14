@@ -52,16 +52,16 @@ const Header = () => {
   return (
     <BaseContiner>
       <Logo onClick={() => nav('/')}></Logo>
-      <IndexContiner onClick={() => nav('/Enterprises')}>
+      <IndexContiner onClick={() => nav('/enterprises')}>
         기업 정보
       </IndexContiner>
-      <IndexContiner onClick={() => nav('/JobNotice')}>채용 공고</IndexContiner>
+      <IndexContiner onClick={() => nav('/jobNotice')}>채용 공고</IndexContiner>
       {!loginState.userEnterprise && (
-        <IndexContiner onClick={() => nav('/LegalChat')}>
+        <IndexContiner onClick={() => nav('/legalChat')}>
           법률 상담
         </IndexContiner>
       )}
-      <IndexContiner onClick={() => nav('/Support')}>
+      <IndexContiner onClick={() => nav('/support')}>
         노동자 지원센터
       </IndexContiner>
 

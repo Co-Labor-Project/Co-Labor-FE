@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import useScrollFadeIn from '../../../hooks/fade_in';
+import GoToButton from './GoToButton';
 
 const LegalChatInfo = () => {
   return (
@@ -8,7 +9,10 @@ const LegalChatInfo = () => {
       <ContentWrapper>
         <LeftContainer>
           <MainContainer />
-          <SubContainer />
+          <SubWrap>
+            <SubContainer />
+            <GoToButton text="법률상담 바로가기" url="/legalChat" />
+          </SubWrap>
         </LeftContainer>
         <RightContainer>
           <Example />
@@ -25,9 +29,12 @@ const BaseContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fbfbfb;
 `;
-
+const SubWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
 const ContentWrapper = styled.div`
   width: 80%;
   height: 100%;

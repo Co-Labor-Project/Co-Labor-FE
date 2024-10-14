@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import useScrollFadeIn from '../../../hooks/fade_in';
+import GoToButton from './GoToButton';
 
 const JobInfo = () => {
   return (
@@ -8,7 +9,13 @@ const JobInfo = () => {
       <ContentWrapper>
         <LeftContainer>
           <MainContainer />
-          <SubContainer />
+          <SubWrap>
+            <SubContainer />
+            <ButtonWrap>
+              <GoToButton text="기업정보 바로가기" url="/enterprises" />
+              <GoToButton text="채용공고 바로가기" url="/jobNotice" />
+            </ButtonWrap>
+          </SubWrap>
         </LeftContainer>
         <RightContainer>
           <Example />
@@ -26,7 +33,15 @@ const BaseContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
+const SubWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+const ButtonWrap = styled.div`
+  display: flex;
+  gap: 4px;
+`;
 const ContentWrapper = styled.div`
   width: 80%;
   height: 100%;
