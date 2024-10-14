@@ -12,7 +12,7 @@ const MainIntroduce = () => {
         <Wrapper>
           <Text>기업 정보 및 채용 정보, 법률 상담과 지원 센터까지.</Text>
           <Text>한국에서의 안정적인 정착을 위한</Text>
-          <Text>모든 솔루션을 &amp;Co Labor&amp;에서 만나보세요.</Text>
+          <Text>모든 솔루션을 &apos;Co Labor&apos;에서 만나보세요.</Text>
         </Wrapper>
       </div>
     </BaseContainer>
@@ -24,6 +24,7 @@ export default MainIntroduce;
 const BaseContainer = styled.div`
   width: 100%;
   height: calc(100vh - 81px);
+
   display: flex;
   align-items: center;
   justify-content: center;

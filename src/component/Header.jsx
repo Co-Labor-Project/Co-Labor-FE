@@ -109,6 +109,8 @@ const BaseContiner = styled.div`
   font-size: 15px;
   padding: 5px 0px;
   z-index: 100;
+  position: relative;
+  background-color: white;
 `;
 const Logo = styled.div`
   background-image: url(/assets/Co-labor.png);

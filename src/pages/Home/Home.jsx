@@ -1,35 +1,16 @@
-// import QuickMenu from '../../components/QuickMenu';
-// import RecentReview from '../../components/RecentReviewList';
-// import MainIntroduce from './components/MainIntroduce';
-// import MainTitle from './components/MainTitle';
-// import styled from 'styled-components';
-// const Home = () => {
-//   return (
-//     <Basefiled>
-//       <MainTitle />
-//       <MainIntroduce />
-//       <QuickMenu />
-//       <RecentReview />
-//     </Basefiled>
-//   );
-// };
-
-// export default Home;
-
-// const Basefiled = styled.div`
-//   width: calc(100vw - 20px);
-//   padding: 0;
-// `;
 import React, { useState, useEffect } from 'react';
 import QuickMenu from '../../components/QuickMenu';
 import RecentReview from '../../components/RecentReviewList';
 import MainIntroduce from './components/MainIntroduce';
 import MainTitle from './components/MainTitle';
 import styled from 'styled-components';
+import JobInfo from './components/JobInfo';
+import LegalChatInfo from './components/LegalChatInfo';
+import MapInfo from './components/MapInfo';
 
 const Home = () => {
   const [page, setPage] = useState(0);
-  const lastPage = 3; // 총 4개의 컨테이너
+  const lastPage = 4; // 컨테이너 개수
 
   // 스크롤 이벤트 핸들러
   const handleScroll = (e) => {
@@ -51,7 +32,7 @@ const Home = () => {
 
   return (
     <Basefiled>
-      <Wrap page={page}>
+      <Wrap $page={page} $lastPage={lastPage}>
         <Container>
           <MainTitle />
         </Container>
@@ -59,10 +40,16 @@ const Home = () => {
           <MainIntroduce />
         </Container>
         <Container>
-          <QuickMenu />
+          <JobInfo />
         </Container>
         <Container>
+          <LegalChatInfo />
+        </Container>
+        {/* <Container>
           <RecentReview />
+        </Container> */}
+        <Container>
+          <MapInfo />
         </Container>
       </Wrap>
     </Basefiled>
@@ -75,7 +62,6 @@ const Basefiled = styled.div`
   width: calc(100vw - 18px);
   padding: 0;
 `;
-
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -83,9 +69,9 @@ const Container = styled.div`
 
 const Wrap = styled.div`
   position: relative;
-  top: ${({ page }) => `-${page * 100}vh`}; /* 페이지에 따라 위치 변경 */
+  top: ${({ $page }) => `-${$page * 100}vh`}; /* 페이지에 따라 위치 변경 */
   transition: top 1s ease-in-out;
   display: flex;
   flex-direction: column;
-  height: 400vh; /* 페이지에 따른 높이 설정*/
+  height: ${($lastPage) => `${$lastPage * 100}vh`}; /* 페이지에 따른 높이 설정*/
 `;
