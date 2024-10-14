@@ -4,7 +4,7 @@ import { FadeInContainer } from '../../../component/FadeIn';
 import useScrollFadeIn from '../../../hooks/fade_in';
 
 const MainIntroduce = () => {
-  const fadeInProps = useScrollFadeIn('up', 1);
+  const fadeInProps = useScrollFadeIn('up', 3);
 
   return (
     <BaseContainer>

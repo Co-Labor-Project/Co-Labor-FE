@@ -87,5 +87,5 @@ const Wrap = styled.div`
   transition: top 1s ease-in-out;
   display: flex;
   flex-direction: column;
-  height: 400vh; /* 4개의 컨테이너에 맞춰 높이를 설정 */
+  height: 400vh; /* 페이지에 따른 높이 설정*/
 `;
