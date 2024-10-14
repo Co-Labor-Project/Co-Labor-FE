@@ -68,7 +68,7 @@ const Header = () => {
       <SearchBox>
         <SearchBoxInner
           type="text"
-          placeholder="기업 정보와 채용 공고, 기업 리뷰를 검색해보세요!"
+          placeholder="기업 정보와 채용 공고를 검색해보세요!"
           onChange={changeInput}
           onKeyDown={keyHandler}
         />
@@ -107,7 +107,6 @@ const BaseContiner = styled.div`
   align-items: center;
   border-bottom: 1px solid rgb(226, 226, 226);
   font-size: 15px;
-
   padding: 5px 0px;
   z-index: 100;
 `;
