@@ -7,10 +7,11 @@ import styled from 'styled-components';
 import JobInfo from './components/JobInfo';
 import LegalChatInfo from './components/LegalChatInfo';
 import MapInfo from './components/MapInfo';
+import Contact from './components/Contact';
 
 const Home = () => {
   const [page, setPage] = useState(0);
-  const lastPage = 4; // 컨테이너 개수
+  const lastPage = 5; // 컨테이너 개수
 
   // 스크롤 이벤트 핸들러
   const handleScroll = (e) => {
@@ -45,11 +46,11 @@ const Home = () => {
         <Container>
           <LegalChatInfo />
         </Container>
-        {/* <Container>
-          <RecentReview />
-        </Container> */}
         <Container>
           <MapInfo />
+        </Container>
+        <Container>
+          <Contact />
         </Container>
       </Wrap>
     </Basefiled>
