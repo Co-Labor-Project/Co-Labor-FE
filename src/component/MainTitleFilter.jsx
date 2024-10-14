@@ -1,8 +1,6 @@
 import React from 'react';
 import MainTitle from './MainTitle';
 import styled from 'styled-components';
-import FilterBox from './filter/FilterBox';
-import { JOB, Location } from './filter/FilterOption';
 import FilterBar from './FilterBar';
 const MainTitleFilter = ({
   text,

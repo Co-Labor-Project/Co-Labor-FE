@@ -85,10 +85,10 @@ function App() {
                     <Header />
                     <Routes>
                       <Route path="/" element={<Home />} />
-                      <Route path="/Enterprises" element={<Enterprises />} />
-                      <Route path="/JobNotice" element={<JobNotice />} />
-                      <Route path="/LegalChat" element={<LegalChat />} />
-                      <Route path="/Support" element={<Support />} />
+                      <Route path="/enterprises" element={<Enterprises />} />
+                      <Route path="/jobNotice" element={<JobNotice />} />
+                      <Route path="/legalChat" element={<LegalChat />} />
+                      <Route path="/support" element={<Support />} />
                       <Route path="/SingIn" element={<SingIn />} />
 
                       <Route path="/Search/:keyword" element={<Search />} />

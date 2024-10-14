@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import StarRate from '../../../components/StarRate';
-import BarGraph from '../../../components/BarGraph';
-import RadarChart from '../../../components/RadarChart';
+import StarRate from '../../../component/StarRate';
+import BarGraph from '../../../component/BarGraph';
+import RadarChart from '../../../component/RadarChart';
 import { useParams } from 'react-router-dom';
 import { ReviewContext } from '../../../App';
 import styled from 'styled-components';

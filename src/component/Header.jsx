@@ -52,23 +52,23 @@ const Header = () => {
   return (
     <BaseContiner>
       <Logo onClick={() => nav('/')}></Logo>
-      <IndexContiner onClick={() => nav('/Enterprises')}>
+      <IndexContiner onClick={() => nav('/enterprises')}>
         기업 정보
       </IndexContiner>
-      <IndexContiner onClick={() => nav('/JobNotice')}>채용 공고</IndexContiner>
+      <IndexContiner onClick={() => nav('/jobNotice')}>채용 공고</IndexContiner>
       {!loginState.userEnterprise && (
-        <IndexContiner onClick={() => nav('/LegalChat')}>
+        <IndexContiner onClick={() => nav('/legalChat')}>
           법률 상담
         </IndexContiner>
       )}
-      <IndexContiner onClick={() => nav('/Support')}>
+      <IndexContiner onClick={() => nav('/support')}>
         노동자 지원센터
       </IndexContiner>
 
       <SearchBox>
         <SearchBoxInner
           type="text"
-          placeholder="기업 정보와 채용 공고, 기업 리뷰를 검색해보세요!"
+          placeholder="기업 정보와 채용 공고를 검색해보세요!"
           onChange={changeInput}
           onKeyDown={keyHandler}
         />
@@ -107,9 +107,10 @@ const BaseContiner = styled.div`
   align-items: center;
   border-bottom: 1px solid rgb(226, 226, 226);
   font-size: 15px;
-
   padding: 5px 0px;
   z-index: 100;
+  position: relative;
+  background-color: white;
 `;
 const Logo = styled.div`
   background-image: url(/assets/Co-labor.png);
