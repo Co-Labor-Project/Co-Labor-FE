@@ -62,7 +62,7 @@ const MainContainer = () => {
       <MainTextWrap>
         <MainText>지원 센터 및 병원 지도 서비스</MainText>
         <div>
-          <MainSideText>가까운 지원 센터와 병원을 손쉽게 찾기</MainSideText>
+          <MainSideText>가까운 지원 센터와 병원을 한눈에 파악</MainSideText>
           <MainSideText>위치 기반 지도 서비스 제공</MainSideText>
         </div>
       </MainTextWrap>
@@ -91,12 +91,10 @@ const SubContainer = () => {
     <div {...fadeInProps}>
       <SubTextWrap>
         <SubText>
-          내 주변에 있는 외국인 근로자 지원 센터와 병원을 지도로 쉽게
-          확인하세요.
+          내 주변에 있는 외국인 근로자 지원 터와 병원을 쉽게 확인하세요.
         </SubText>
         <SubText>
-          {' '}
-          필요한 도움을 받을 수 있는 기관을 빠르게 찾아가세요.{' '}
+          도움이 필요할 때, 가장 가까운 지원센터와 병원을 찾아보세요.
         </SubText>
       </SubTextWrap>
     </div>
