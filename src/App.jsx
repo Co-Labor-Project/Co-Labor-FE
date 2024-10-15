@@ -4,7 +4,6 @@ import React, { useEffect, useState, createContext } from 'react';
 import styled from 'styled-components';
 import { NavermapsProvider } from 'react-naver-maps';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import TranslateList from './components/TranslateList';
 
 import Enterprises from './pages/Enterprises/Enterprises';
@@ -120,7 +119,6 @@ function App() {
                       />
                       <Route path="*" element={<Notfound />} />
                     </Routes>
-                    <Footer />
                     <TraslateButton>
                       <TranslateList />
                     </TraslateButton>
