@@ -220,7 +220,6 @@ const BaseContiner = styled.div`
   background-color: white;
 `;
 const Logo = styled.div`
-  /* background-image: url(/assets/logo.jpg); */
   background-image: url(${LogoPhoto});
   width: 120px;
   height: 70px;
@@ -249,7 +248,6 @@ const SearchBox = styled.div`
   padding: 0px 18px;
   transition: width 1s, height 1s, border 1s, font-size 0.5s;
   font-weight: bold;
-  /* border: 3px solid #58c179; */
   border: 3px solid #379c57;
   width: 500px;
   height: 40px;
