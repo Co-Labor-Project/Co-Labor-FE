@@ -12,7 +12,7 @@ import {
 const CompanyList = ({ data, searchNull, EnterpriseData }) => {
   const nav = useNavigate();
   const [searchKeyword, setSearchKeyword] = useState('');
-  const [visibleItems, setVisibleItems] = useState(12);
+  const [visibleItems, setVisibleItems] = useState(10);
   const listRef = useRef();
   const [viewAll, setViewAll] = useState(false);
   const [enterpriseData, setEnterpriseData] = useState(
@@ -25,21 +25,6 @@ const CompanyList = ({ data, searchNull, EnterpriseData }) => {
 
   const changeInput = (e) => {
     setSearchKeyword(e.target.value);
-  };
-
-  const searchHandler = () => {
-    if (searchKeyword === '') {
-      alert('❌ 검색어를 입력해 주세요!');
-    } else {
-      nav(`/AiSearch/${searchKeyword}`);
-      setSearchKeyword('');
-    }
-  };
-
-  const keyHandler = (e) => {
-    if (e.keyCode === 13) {
-      searchHandler();
-    }
   };
 
   const loadMoreItems = () => {
@@ -118,6 +103,7 @@ export default CompanyList;
 const BaseContainer = styled.div`
   margin-top: 10px;
   width: 100%;
+  max-width: 1200px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

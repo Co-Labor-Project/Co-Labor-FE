@@ -1,60 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import './SearchOutput.css';
+import styled from 'styled-components';
 import JobNoticeList from './Jobs/components/JobNoticeList';
 import CompanyList from './Enterprises/components/EnterprisesList';
-import { useParams } from 'react-router-dom';
+import { fetchData } from '../apis/search';
+import MainTitle from '../components/MainTitle';
 
 const SearchOutput = ({ input }) => {
   const [enterprises, setEnterprises] = useState([]);
   const [jobs, setJobs] = useState([]);
-  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isSearchNull, setIsSearchNull] = useState({
     enterprises: false,
     jobs: false,
-    reviews: false,
   });
-  const [isAI, setIsAi] = useState(true);
-  const url = window.location.href;
-  let desURL = '';
-  if (url.indexOf('AiSearch') === -1) {
-    desURL = `/api/search?keyword=${input}`;
-  } else {
-    desURL = `http://15.165.75.244:8081/ai-search?sentence=${input}`;
-  }
+  const url = `/api/search?keyword=${input}`;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(desURL, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json; charset=utf-8',
-            credentials: 'include',
-          },
-        });
-        if (!response.ok) {
-          throw new Error('데이터 불러오기 실패');
-        }
-        if (desURL.indexOf('AiSearch') === -1) {
-          setIsAi(false);
-          console.log('isAI', isAI);
-        }
-        console.log(response);
-
-        const data = await response.json();
-        setEnterprises(data.enterprises || []);
-        setJobs(data.jobs || []);
-        setReviews(data.reviews || []);
-
-        console.log(data.enterprises);
-        setLoading(false);
-      } catch (error) {
-        console.error('Fetch error:', error);
-        setLoading(false);
-      }
-    };
-    fetchData();
+    fetchData({ url, setEnterprises, setJobs, setLoading });
   }, [input]);
 
   useEffect(() => {
@@ -80,36 +42,46 @@ const SearchOutput = ({ input }) => {
         jobs: false,
       }));
     }
-    if (reviews.length === 0) {
-      setIsSearchNull((prevInput) => ({
-        ...prevInput,
-        reviews: true,
-      }));
-    } else {
-      setIsSearchNull((prevInput) => ({
-        ...prevInput,
-        reviews: false,
-      }));
-    }
-  }, [enterprises, jobs, reviews]);
-  const params = useParams();
+  }, [enterprises, jobs]);
 
   return (
-    <div>
-      <div className="inputText">
-        <h2> &quot;{input}&quot; 검색 결과</h2>
-      </div>
+    <BaseContainer>
+      <InputText>
+        <h1> &quot; {input} &quot; 검색 결과</h1>
+      </InputText>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <>
+        <ContentContainer>
+          <MainTitle text="🏢 기업 정보" />
           <CompanyList data={enterprises} searchNull={isSearchNull} />
+          <MainTitle text="📢 채용 공고" />
           <JobNoticeList data={jobs} searchNull={isSearchNull} />
-        </>
+        </ContentContainer>
       )}
-      <div className="gap"></div>
-    </div>
+    </BaseContainer>
   );
 };
 
 export default SearchOutput;
+const BaseContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+`;
+const InputText = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+`;
+
+const ContentContainer = styled.div`
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+`;
