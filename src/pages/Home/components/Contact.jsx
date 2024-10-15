@@ -55,7 +55,7 @@ const JunHwa = () => {
         <Photo $src={JunHwaImg}></Photo>
         <TextWrapper>
           <Name>조준화</Name>
-          <Role>백엔드 / ML 엔지니어</Role>
+          <Role>백엔드 </Role>
         </TextWrapper>
         <ContactWrapper>
           <a href="https://github.com/jjj5306">
@@ -176,7 +176,11 @@ const Role = styled.div`
   width: 100%;
   text-align: center;
 `;
-const TextWrapper = styled.div``;
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
 const ContactWrapper = styled.div`
   display: flex;
   gap: 20px;

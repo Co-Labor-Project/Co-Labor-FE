@@ -208,7 +208,7 @@ function SupportCenterMap() {
               }}
             />
           )}
-          {centers.map((center) => (
+          {/* {centers.map((center) => (
             <Marker
               key={optionCenter ? center.id : center.support_center_id}
               position={new navermaps.LatLng(center.latitude, center.longitude)}
@@ -223,7 +223,28 @@ function SupportCenterMap() {
                 handleCenterClick(center);
               }}
             />
-          ))}
+          ))} */}
+          {centers.map((center) => {
+            const isSelected = optionCenter
+              ? selectedCenter && selectedCenter.id === center.id
+              : selectedCenter &&
+                selectedCenter.support_center_id === center.support_center_id;
+
+            return (
+              <Marker
+                key={optionCenter ? center.id : center.support_center_id}
+                position={
+                  new navermaps.LatLng(center.latitude, center.longitude)
+                }
+                title={center.name}
+                clickable={true}
+                icon={isSelected ? selectedIconImage : defaultIconImage} // 선택 여부에 따른 아이콘 설정
+                onClick={() => {
+                  handleCenterClick(center);
+                }}
+              />
+            );
+          })}
         </NaverMap>
       )}
       <SidePage

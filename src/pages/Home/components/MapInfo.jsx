@@ -11,7 +11,7 @@ const MapInfo = () => {
           <MainContainer />
           <SubWrap>
             <SubContainer />
-            <GoToButton text="노동자 지원센터 바로가기" url="/support" />
+            <GoToButton text="지원센터 바로가기" url="/support" />
           </SubWrap>
         </LeftContainer>
         <RightContainer>
@@ -60,9 +60,9 @@ const MainContainer = () => {
   return (
     <div {...fadeInProps}>
       <MainTextWrap>
-        <MainText>지원 센터 및 병원 지도 서비스</MainText>
+        <MainText>지원센터 및 병원 위치 서비스</MainText>
         <div>
-          <MainSideText>가까운 지원 센터와 병원을 한눈에 파악</MainSideText>
+          <MainSideText>가까운 지원센터와 병원을 한눈에 파악</MainSideText>
           <MainSideText>위치 기반 지도 서비스 제공</MainSideText>
         </div>
       </MainTextWrap>
@@ -91,7 +91,7 @@ const SubContainer = () => {
     <div {...fadeInProps}>
       <SubTextWrap>
         <SubText>
-          내 주변에 있는 외국인 근로자 지원 터와 병원을 쉽게 확인하세요.
+          내 주변에 있는 외국인 근로자 지원센터와 병원을 쉽게 확인하세요.
         </SubText>
         <SubText>
           도움이 필요할 때, 가장 가까운 지원센터와 병원을 찾아보세요.

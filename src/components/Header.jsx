@@ -170,7 +170,7 @@ const Header = () => {
         </IndexContiner>
       )}
       <IndexContiner onClick={() => handleNavigation('/support')}>
-        노동자 지원센터
+        지원센터
       </IndexContiner>
 
       <SearchBox>
