@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import { BackGroundField } from '../../components/CommonStyled';
 import MainTitle from '../../components/MainTitle';
 import { CompanyContext, JobContext, ReviewContext } from '../../App';
