@@ -5,6 +5,11 @@ import SupportCenterItem from './components/SupportCenterItem';
 import styled from 'styled-components';
 import ChooseMode from './components/ChooseMode';
 import SidePage from './components/SidePage';
+import HospitalImg from '../../assets/icon/HospitalLocation.png';
+import HospitalChooseImg from '../../assets/icon/HospitalChoose.png';
+import BuildingImg from '../../assets/icon/BuildingLocation.png';
+import BuildingChooseImg from '../../assets/icon/BuildingChoose.png';
+import CurrentLocation from '../../assets/icon/currentLocation.png';
 function SupportCenterMap() {
   const navermaps = useNavermaps();
   // console.log('navermaps 객체:', navermaps); // navermaps 객체 확인
@@ -42,35 +47,6 @@ function SupportCenterMap() {
     );
   }, [navermaps]);
 
-  // useEffect(() => {
-  //   const url = optionCenter
-  //     ? `/api/hospitals/nearby?latitude=${currentAddress.latitude}&longitude=${currentAddress.longitude}` //`/api/hospitals/region/${currentAddress}`
-  //     : `/api/support-centers/all`;
-  //   axios
-  //     .get(url)
-  //     .then((response) => {
-  //       setCenters(response.data);
-  //       console.log(response.data);
-  //       const sorted = [...response.data]
-  //         .sort((a, b) => {
-  //           return (
-  //             getDistance(currentPosition, a) - getDistance(currentPosition, b)
-  //           );
-  //         })
-  //         .slice(0, 50);
-  //       setSelectedCenter(sorted[0]); // 선택된 센터가 처음에 병원 데이터로 업데이트되도록 설정
-  //       setSortedCenters(sorted);
-
-  //       if (sorted[0]) {
-  //         setMapCenter(
-  //           new navermaps.LatLng(sorted[0].latitude, sorted[0].longitude)
-  //         );
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching support centers:', error);
-  //     });
-  // }, [navermaps, optionCenter, currentPosition, click]);
   useEffect(() => {
     if (!currentPosition) return;
 
@@ -177,17 +153,16 @@ function SupportCenterMap() {
     setSelectedCenter(center);
     setMapCenter(new navermaps.LatLng(center.latitude, center.longitude));
   };
+
   const selectedIconImage = optionCenter
     ? {
-        content:
-          '<img src="/assets/HospitalChoose.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 60px; height: 60px; left: 0px; top: 0px; z-index: 2;">',
+        content: `<img src=${HospitalChooseImg} alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 60px; height: 60px; left: 0px; top: 0px; z-index: 2;">`,
         size: new navermaps.Size(48, 48),
         origin: new navermaps.Point(0, 0),
         anchor: new navermaps.Point(24, 24),
       }
     : {
-        content:
-          '<img src="/assets/BuildingChoose.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 60px; height: 60px; left: 0px; top: 0px; z-index: 2;">',
+        content: `<img src=${BuildingChooseImg} alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 60px; height: 60px; left: 0px; top: 0px; z-index: 2;">`,
         size: new navermaps.Size(48, 48),
         origin: new navermaps.Point(0, 0),
         anchor: new navermaps.Point(24, 24),
@@ -195,20 +170,17 @@ function SupportCenterMap() {
 
   const defaultIconImage = optionCenter
     ? {
-        content:
-          '<img src="/assets/HospitalLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 40px; height: 40px; left: 0px; top: 0px;">',
+        content: `<img src=${HospitalImg} alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 40px; height: 40px; left: 0px; top: 0px;">`,
         size: new navermaps.Size(24, 24),
         origin: new navermaps.Point(0, 0),
         anchor: new navermaps.Point(12, 12),
       }
     : {
-        content:
-          '<img src="/assets/BuildingLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 40px; height: 40px; left: 0px; top: 0px;">',
+        content: `<img src=${BuildingImg} alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: relative; width: 40px; height: 40px; left: 0px; top: 0px;">`,
         size: new navermaps.Size(24, 24),
         origin: new navermaps.Point(0, 0),
         anchor: new navermaps.Point(12, 12),
       };
-
   return (
     <>
       {mapCenter && (
@@ -229,8 +201,7 @@ function SupportCenterMap() {
               title="현재 위치"
               clickable={true}
               icon={{
-                content:
-                  '<img src="/assets/currentLocation.png" alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">',
+                content: `<img src=${CurrentLocation} alt="" style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; -webkit-user-select: none; position: absolute; width: 40px; height: 40px; left: 0px; top: 0px;">`,
                 size: new navermaps.Size(48, 48),
                 origin: new navermaps.Point(0, 0),
                 anchor: new navermaps.Point(24, 24),

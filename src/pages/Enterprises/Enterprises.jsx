@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect } from 'react';
 import EnterprisesList from './components/EnterprisesList';
-import { BackGroundField } from '../../component/CommonStyled';
-import MainTitleFilter from '../../component/MainTitleFilter';
-import { CountyOptions } from '../../component/FilterOption';
+import { BackGroundField } from '../../components/CommonStyled';
+import MainTitleFilter from '../../components/MainTitleFilter';
+import { CountyOptions } from '../../components/FilterOption';
 import { CompanyContext } from '../../App';
 
 function Company() {

@@ -55,6 +55,7 @@ const RightContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const MainContainer = () => {
   const fadeInProps = useScrollFadeIn('right', 1.5);
 

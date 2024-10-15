@@ -1,15 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import useScrollFadeIn from '../../../hooks/fade_in';
 
 const GoToButton = ({ text, url }) => {
+  const fadeInProps = useScrollFadeIn('up', 1);
   const nav = useNavigate();
 
   return (
-    <Button onClick={() => nav(`${url}`)}>
-      {text}
-      <Direction>↗</Direction>
-    </Button>
+    <div {...fadeInProps}>
+      <Button onClick={() => nav(`${url}`)}>
+        {text}
+        <Direction>↗</Direction>
+      </Button>
+    </div>
   );
 };
 

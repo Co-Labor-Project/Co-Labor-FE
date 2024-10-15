@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import Header from '../../component/Header';
-import Footer from '../../component/Footer';
-import { BackGroundField } from '../../component/CommonStyled';
-import MainTitle from '../../component/MainTitle';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import { BackGroundField } from '../../components/CommonStyled';
+import MainTitle from '../../components/MainTitle';
 import { CompanyContext, JobContext, ReviewContext } from '../../App';
 import { useParams } from 'react-router-dom';
 import BasicInfo from './components/BasicInfo';

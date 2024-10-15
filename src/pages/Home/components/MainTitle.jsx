@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { FadeInContainer } from '../../../component/FadeIn';
+import { FadeInContainer } from '../../../components/FadeIn';
+import MainBackground from '../../../assets/mainBackground.jpg';
 
 const MainTitle = () => {
   const [webTitle, setWebTitle] = useState('');
@@ -45,7 +46,7 @@ const Background = styled.div`
   width: 100%;
   height: calc(100vh - 81px);
   position: relative;
-  background-image: url(/assets/mainBackground.jpg); //FREEPIK- tawatchai07
+  background-image: url(${MainBackground}); //FREEPIK- tawatchai07
   background-size: cover;
 `;
 
@@ -83,7 +84,7 @@ const blink = keyframes`
 `;
 
 const TitleText = styled.h1`
-  font-size: 10vh;
+  font-size: 12vh;
   font-weight: 400;
   position: relative;
   display: inline-block;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FadeInContainer } from '../../../component/FadeIn';
+import { FadeInContainer } from '../../../components/FadeIn';
 import useScrollFadeIn from '../../../hooks/fade_in';
 
 const MainIntroduce = () => {

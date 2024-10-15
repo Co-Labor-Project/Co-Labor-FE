@@ -7,7 +7,7 @@ import {
   LoadingSpinner,
   LoadingText,
   LoadingWrapper,
-} from '../../../component/CommonStyled';
+} from '../../../components/CommonStyled';
 
 const CompanyList = ({ data, searchNull, EnterpriseData }) => {
   const nav = useNavigate();

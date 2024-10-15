@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../../component/Header';
-import EnterpriseApplyCenter from '../../components/EnterpriseApplyCenter';
+import Header from '../../components/Header';
+import EnterpriseApplyCenter from './EnterpriseApplyCenter';
 const EnterpriseApply = () => {
   return (
     <>

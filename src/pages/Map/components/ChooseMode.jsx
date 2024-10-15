@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { FadeInContainer } from '../../../component/FadeIn';
+import { FadeInContainer } from '../../../components/FadeIn';
 
 const ChooseMode = ({
   setOptionCenter,
@@ -50,11 +50,11 @@ const Button = styled.div`
   justify-content: center;
   background-color: white;
   border-radius: 25px;
-  border: 2px solid rgb(86, 229, 119);
+  border: 2px solid #41b365;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
   &:hover {
-    border: 2.5px solid rgb(86, 229, 119);
+    border: 2.3px solid #47c770;
     font-size: 16px;
     transform: scale(1.2);
   }

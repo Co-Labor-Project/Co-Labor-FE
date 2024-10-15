@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   LoadingText,
   LoadingSpinner,
   LoadingWrapper,
-} from "../../../component/CommonStyled";
-import styled from "styled-components";
+} from '../../../components/CommonStyled';
+import styled from 'styled-components';
 
 const InitalMessage = ({
   messages,
@@ -13,7 +13,7 @@ const InitalMessage = ({
   onSendMessage,
   username,
 }) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [localIsSending, setLocalIsSending] = useState(false);
 
   const handleSubmit = (event) => {
@@ -21,7 +21,7 @@ const InitalMessage = ({
     if (!localIsSending && message.trim()) {
       setLocalIsSending(true);
       onSendMessage(message); // 부모 컴포넌트의 handleSendMessage를 직접 호출
-      setMessage("");
+      setMessage('');
       setLocalIsSending(false);
     }
   };
@@ -44,7 +44,7 @@ const InitalMessage = ({
               disabled={localIsSending}
             />
             <SendButton type="submit" disabled={localIsSending}>
-              {localIsSending ? "Sending..." : "→"}
+              {localIsSending ? 'Sending...' : '→'}
             </SendButton>
           </InputWrapper>
         </Container>

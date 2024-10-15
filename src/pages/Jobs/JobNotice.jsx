@@ -1,7 +1,7 @@
 import JobNoticeList from './components/JobNoticeList';
-import MainTitleFilter from '../../component/MainTitleFilter';
-import { BackGroundField } from '../../component/CommonStyled';
-import { CountyOptions } from '../../component/FilterOption';
+import MainTitleFilter from '../../components/MainTitleFilter';
+import { BackGroundField } from '../../components/CommonStyled';
+import { CountyOptions } from '../../components/FilterOption';
 import { useEffect, useState, useContext } from 'react';
 import { JobContext } from '../../App';
 function JobNotice() {

@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState, createContext } from 'react';
 import styled from 'styled-components';
 import { NavermapsProvider } from 'react-naver-maps';
-import Header from './component/Header';
-import Footer from './component/Footer';
-import TranslateList from './component/TranslateList';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import TranslateList from './components/TranslateList';
 
 import Enterprises from './pages/Enterprises/Enterprises';
 import Home from './pages/Home/Home';
@@ -92,7 +92,7 @@ function App() {
                       <Route path="/SingIn" element={<SingIn />} />
 
                       <Route path="/Search/:keyword" element={<Search />} />
-                      <Route path="/AiSearch/:keyword" element={<Search />} />
+                      {/* <Route path="/AiSearch/:keyword" element={<Search />} /> */}
                       <Route
                         path="/Search/:keyword/:enterprise_id"
                         element={<EnterpriseParticular />}

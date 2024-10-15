@@ -6,7 +6,8 @@ import {
   CountyOptions,
   Task,
 } from './FilterOption';
-
+import FilterIcon from '../assets/icon/filter.svg';
+import FilterArrow from '../assets/icon/arrow-down-grey-filter.svg';
 const FilterBar = ({ selected, setSelected, handleChange, ifJob }) => {
   useEffect(() => {
     console.log('Updated selected:', selected);
@@ -20,11 +21,7 @@ const FilterBar = ({ selected, setSelected, handleChange, ifJob }) => {
   };
   return (
     <BaseContainer>
-      <FilterIconStyled
-        src="/assets/filter.svg"
-        alt="Filter Icon"
-        onClick={onClear}
-      />
+      <FilterIconStyled src={FilterIcon} alt="Filter Icon" onClick={onClear} />
       {ifJob && (
         <FilterBox
           name="task"
@@ -173,7 +170,7 @@ const FilterContainer = styled.select`
   -moz-appearance: none; // Firefox에서 기본 스타일 제거
   -o-appearance: none;
   appearance: none; // 기본 화살표 아이콘 제거
-  background-image: url('/assets/arrow-down-grey-filter.svg');
+  background-image: url(${FilterArrow});
   background-repeat: no-repeat;
   background-position: right 16px center;
   background-size: 16px 16px;

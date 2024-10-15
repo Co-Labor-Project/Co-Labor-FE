@@ -2,7 +2,7 @@ import {
   LoadingText,
   LoadingSpinner,
   LoadingWrapper,
-} from '../../../component/CommonStyled';
+} from '../../../components/CommonStyled';
 import styled from 'styled-components';
 export const MessageList = ({ messages, loading, isSending }) => (
   <BaseContainer>
