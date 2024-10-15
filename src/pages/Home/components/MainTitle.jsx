@@ -48,6 +48,7 @@ const Background = styled.div`
   position: relative;
   background-image: url(${MainBackground}); //FREEPIK- tawatchai07
   background-size: cover;
+  pointer-events: none;
 `;
 
 const Blu = styled.div`
@@ -57,6 +58,7 @@ const Blu = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
   z-index: 0;
+  pointer-events: none;
 `;
 
 const BaseContainer = styled.div`

@@ -27,7 +27,10 @@ const GoogleTranslate = () => {
       document.body.removeChild(addGoogleTranslateScript);
     };
   }, []);
-
+  // 스크롤 이벤를 home요소에서 상속 안 받으며, 상위 요소로 전파 방지
+  const handleWheel = (e) => {
+    e.stopPropagation();
+  };
   const handleLanguageChange = (lang) => {
     const value = lang.code;
     const gtCombo = document.querySelector('.goog-te-combo');
@@ -51,6 +54,7 @@ const GoogleTranslate = () => {
         {/* 번역버튼 hover 시 리스트 표시 */}
         {isHovered && (
           <LanguageList
+            onWheel={handleWheel}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -87,6 +91,7 @@ const ButtonCotainer = styled.li`
   border-radius: 5px;
   font-size: 14px;
   position: relative;
+  z-index: 100;
 `;
 
 const LanguageList = styled.ul`
@@ -105,6 +110,7 @@ const LanguageList = styled.ul`
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 8px;
+  z-index: 200;
 `;
 
 const LanguageItem = styled.li`
