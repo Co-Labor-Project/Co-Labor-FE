@@ -1,15 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import searchIcon from '../assets/icon/search_icon.png';
 import LogoPhoto from '../assets/logo.jpg';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../App';
-import { logOut } from '../apis/login';
+import { logOut, whoIsIt } from '../apis/login';
 
 const Header = () => {
   const nav = useNavigate();
   const { loginState, setLoginState } = useContext(LoginContext);
   const [searchKeyword, setSearchKeyword] = useState('');
+
+  useEffect(() => {
+    whoIsIt(setLoginState);
+  }, []);
 
   const changeInput = (e) => {
     setSearchKeyword(e.target.value);
