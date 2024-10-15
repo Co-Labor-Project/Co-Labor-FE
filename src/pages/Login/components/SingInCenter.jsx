@@ -3,7 +3,7 @@ import './SingInCenter.css';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../../App';
 import axios from 'axios';
-import { onLogin, signUp } from '../../../apis/Login';
+import { onLogin, signUp } from '../../../apis/login';
 
 const SingInCenter = () => {
   const { loginState, setLoginState } = useContext(LoginContext);

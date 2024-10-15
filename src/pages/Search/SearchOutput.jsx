@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import JobNoticeList from './Jobs/components/JobNoticeList';
-import CompanyList from './Enterprises/components/EnterprisesList';
-import { fetchData } from '../apis/search';
-import MainTitle from '../components/MainTitle';
+import JobNoticeList from '../Jobs/components/JobNoticeList';
+import CompanyList from '../Enterprises/components/EnterprisesList';
+import { fetchData } from '../../apis/search';
+import MainTitle from '../../components/MainTitle';
 
 const SearchOutput = ({ input }) => {
   const [enterprises, setEnterprises] = useState([]);
