@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MainIntroduce from './components/MainIntroduce';
 import MainTitle from './components/MainTitle';
 import styled from 'styled-components';
@@ -10,16 +10,28 @@ import Contact from './components/Contact';
 const Home = () => {
   const [page, setPage] = useState(0);
   const lastPage = 5; // 컨테이너 개수
+  const [isThrottled, setIsThrottled] = useState(false); // 스로틀 상태
 
   // 스크롤 이벤트 핸들러
-  const handleScroll = (e) => {
-    e.preventDefault();
-    if (e.deltaY > 0 && page < lastPage) {
-      setPage((prevPage) => Math.min(prevPage + 1, lastPage));
-    } else if (e.deltaY < 0 && page > 0) {
-      setPage((prevPage) => Math.max(prevPage - 1, 0));
-    }
-  };
+  const handleScroll = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (!isThrottled) {
+        if (e.deltaY > 0 && page < lastPage) {
+          setPage((prevPage) => Math.min(prevPage + 1, lastPage));
+        } else if (e.deltaY < 0 && page > 0) {
+          setPage((prevPage) => Math.max(prevPage - 1, 0));
+        }
+
+        // 스로틀 상태를 true로 설정하고 1초 후에 다시 false로 변경
+        setIsThrottled(true);
+        setTimeout(() => {
+          setIsThrottled(false);
+        }, 1000);
+      }
+    },
+    [page, lastPage, isThrottled]
+  );
 
   // 컴포넌트가 마운트될 때 스크롤 이벤트 리스너 추가
   useEffect(() => {
@@ -27,7 +39,7 @@ const Home = () => {
     return () => {
       window.removeEventListener('wheel', handleScroll);
     };
-  }, [page]);
+  }, [handleScroll]);
 
   return (
     <Basefiled>
