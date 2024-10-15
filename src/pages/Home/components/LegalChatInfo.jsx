@@ -64,10 +64,8 @@ const MainContainer = () => {
       <MainTextWrap>
         <MainText>법률 상담 챗봇</MainText>
         <div>
-          <MainSideText>한국에서의 법적 문제, 이제 간편하게 해결</MainSideText>
-          <MainSideText>
-            실시간 법률 상담으로 빠르고 정확한 답변 제공
-          </MainSideText>
+          <MainSideText>한국에서의 법적 문제, 이제 손쉽게 상담</MainSideText>
+          <MainSideText>Co Labor 챗봇으로 상담부터 판결까지</MainSideText>
         </div>
       </MainTextWrap>
     </div>
@@ -95,9 +93,9 @@ const SubContainer = () => {
     <div {...fadeInProps}>
       <SubTextWrap>
         <SubText>
-          외국인 근로자들이 직장에서 마주하는 법적 고민을 해결해드립니다.
+          외국인 근로자들이 직장에서 마주할 수 있는 법적 고민을 해결해드립니다.
         </SubText>
-        <SubText> 노동법 관련 궁금한 점을 언제든지 챗봇과 상담하고, </SubText>
+        <SubText> 불합리한 상황을 언제든지 챗봇과 상담하고, </SubText>
         <SubText>한국에서의 권리와 의무를 명확히 파악하세요.</SubText>
       </SubTextWrap>
     </div>

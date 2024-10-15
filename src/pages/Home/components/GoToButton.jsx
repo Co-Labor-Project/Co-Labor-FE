@@ -31,7 +31,6 @@ const Button = styled.button`
   font-weight: 600;
   color: #000;
 
-  margin: 1rem;
   color: black;
   background: transparent;
   box-shadow: -1px 4px 6px rgba(0, 0, 0, 0.2);

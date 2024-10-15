@@ -40,7 +40,7 @@ const SubWrap = styled.div`
 `;
 const ButtonWrap = styled.div`
   display: flex;
-  gap: 4px;
+  gap: 2px;
 `;
 const ContentWrapper = styled.div`
   width: 80%;
@@ -69,10 +69,8 @@ const MainContainer = () => {
       <MainTextWrap>
         <MainText>기업 정보 & 채용 공고</MainText>
         <div>
-          <MainSideText>믿을 수 있는 기업 정보와 일자리, 한눈에</MainSideText>
-          <MainSideText>
-            외국인 근로자들을 위한 맞춤 정보와 채용 기회
-          </MainSideText>
+          <MainSideText>믿을 수 있는 기업 정보와 일자리,</MainSideText>
+          <MainSideText>외국인 근로자들을 위한 채용 기회</MainSideText>
         </div>
       </MainTextWrap>
     </div>
@@ -101,7 +99,7 @@ const SubContainer = () => {
     <div {...fadeInProps}>
       <SubTextWrap>
         <SubText>
-          &quot;다양한 기업의 세부 정보와 신뢰도 평가를 통해 적합한 회사를
+          &quot;다양한 기업의 세부 정보와 리뷰 평가를 통해 적합한 회사를
           찾아보세요.
         </SubText>
         <SubText> 경력과 직무, 근무 조건에 맞춘 채용 공고를 확인하고, </SubText>
