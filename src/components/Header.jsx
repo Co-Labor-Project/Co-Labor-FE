@@ -215,7 +215,7 @@ const BaseContiner = styled.div`
   border-bottom: 1px solid rgb(226, 226, 226);
   font-size: 15px;
   padding: 5px 0px;
-  z-index: 100;
+  z-index: 201;
   position: relative;
   background-color: white;
 `;

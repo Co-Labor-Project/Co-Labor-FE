@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { FadeInContainer } from '../../../components/FadeIn';
 import useScrollFadeIn from '../../../hooks/fade_in';
+import { Arrow, ArrowWrapper } from './Arrow';
 
-const MainIntroduce = () => {
+const MainIntroduce = ({ onClick }) => {
   const fadeInProps = useScrollFadeIn('up', 3);
 
   return (
@@ -19,6 +20,9 @@ const MainIntroduce = () => {
           </TextWrap>
         </Wrapper>
       </div>
+      <ArrowWrapper>
+        <Arrow isMain={false} onClick={onClick} />
+      </ArrowWrapper>
     </BaseContainer>
   );
 };
@@ -33,6 +37,7 @@ const BaseContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #f9fafb;
+  position: relative;
 `;
 const Text = styled.div`
   font-size: 32px;

@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import useScrollFadeIn from '../../../hooks/fade_in';
 import GoToButton from './GoToButton';
-
-const LegalChatInfo = () => {
+import { Arrow, ArrowWrapper } from './Arrow';
+const LegalChatInfo = ({ onClick }) => {
   return (
     <BaseContainer>
       <ContentWrapper>
@@ -17,6 +17,10 @@ const LegalChatInfo = () => {
         <RightContainer>
           <Example />
         </RightContainer>
+
+        <ArrowWrapper>
+          <Arrow isMain={false} onClick={onClick} />
+        </ArrowWrapper>
       </ContentWrapper>
     </BaseContainer>
   );
@@ -29,6 +33,7 @@ const BaseContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 const SubWrap = styled.div`
   display: flex;

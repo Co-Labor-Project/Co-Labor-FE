@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import useScrollFadeIn from '../../../hooks/fade_in';
 import GoToButton from './GoToButton';
+import { Arrow, ArrowWrapper } from './Arrow';
 
-const MapInfo = () => {
+const MapInfo = ({ onClick }) => {
   return (
     <BaseContainer>
       <ContentWrapper>
@@ -17,6 +18,9 @@ const MapInfo = () => {
         <RightContainer>
           <Example />
         </RightContainer>
+        <ArrowWrapper>
+          <Arrow isMain={false} onClick={onClick} />
+        </ArrowWrapper>
       </ContentWrapper>
     </BaseContainer>
   );
@@ -29,6 +33,7 @@ const BaseContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 const SubWrap = styled.div`
   display: flex;

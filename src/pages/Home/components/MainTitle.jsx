@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FadeInContainer } from '../../../components/FadeIn';
 import MainBackground from '../../../assets/mainBackground.jpg';
+import { Arrow, ArrowWrapper } from './Arrow';
 
-const MainTitle = () => {
+const MainTitle = ({ onClick }) => {
   const [webTitle, setWebTitle] = useState('');
   const [count, setCount] = useState(0);
   const completionWord = 'Co Labor';
@@ -35,7 +36,9 @@ const MainTitle = () => {
         <FadeInContainer>
           <SubText>외국인 근로자의 든든한 파트너</SubText>
         </FadeInContainer>
-        <Arrow />
+        <ArrowWrapper>
+          <Arrow isMain={true} onClick={onClick} />
+        </ArrowWrapper>
       </BaseContainer>
     </Background>
   );
@@ -108,16 +111,3 @@ const SubText = styled.div`
 `;
 // 일자리, 법률, 정보 제공까지, 한국에서의 안정적인 정착을 위한 모든 솔루션을 한 곳에서 만나보세요.
 const TextWrapper = styled.div``;
-
-const Arrow = styled.div`
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  width: 24px;
-  height: 24px;
-  margin-left: -12px;
-  border-left: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-`;

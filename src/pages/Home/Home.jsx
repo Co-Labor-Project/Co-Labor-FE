@@ -41,23 +41,30 @@ const Home = () => {
     };
   }, [handleScroll]);
 
+  const handleClickNext = () => {
+    console.log('내려가짐');
+    if (page < lastPage) {
+      setPage((prevPage) => Math.min(prevPage + 1, lastPage));
+    }
+  };
+
   return (
     <Basefiled>
       <Wrap $page={page} $lastPage={lastPage}>
         <Container>
-          <MainTitle />
+          <MainTitle onClick={handleClickNext} />
         </Container>
         <Container>
-          <MainIntroduce />
+          <MainIntroduce onClick={handleClickNext} />
         </Container>
         <Container>
-          <JobInfo />
+          <JobInfo onClick={handleClickNext} />
         </Container>
         <Container>
-          <LegalChatInfo />
+          <LegalChatInfo onClick={handleClickNext} />
         </Container>
         <Container>
-          <MapInfo />
+          <MapInfo onClick={handleClickNext} />
         </Container>
         <Container>
           <Contact />
