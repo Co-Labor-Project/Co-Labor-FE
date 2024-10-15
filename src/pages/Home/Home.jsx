@@ -70,7 +70,7 @@ const Home = () => {
 export default Home;
 
 const Basefiled = styled.div`
-  width: calc(100vw - 18px);
+  width: 100vw;
   padding: 0;
 `;
 const Container = styled.div`

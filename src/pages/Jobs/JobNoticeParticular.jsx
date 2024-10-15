@@ -8,7 +8,7 @@ import { BackGroundField } from '../../components/CommonStyled';
 import BasicInfo from '../Enterprises/components/BasicInfo';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import 'swiper/swiper-bundle.css';
 const JobNoticeDetailsCenter = () => {
   const params = useParams();
   const contextData = useContext(JobContext);
