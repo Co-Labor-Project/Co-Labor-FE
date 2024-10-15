@@ -20,28 +20,10 @@ const SearchOutput = ({ input }) => {
   }, [input]);
 
   useEffect(() => {
-    if (enterprises.length === 0) {
-      setIsSearchNull((prevInput) => ({
-        ...prevInput,
-        enterprises: true,
-      }));
-    } else {
-      setIsSearchNull((prevInput) => ({
-        ...prevInput,
-        enterprises: false,
-      }));
-    }
-    if (jobs.length === 0) {
-      setIsSearchNull((prevInput) => ({
-        ...prevInput,
-        jobs: true,
-      }));
-    } else {
-      setIsSearchNull((prevInput) => ({
-        ...prevInput,
-        jobs: false,
-      }));
-    }
+    setIsSearchNull({
+      enterprises: enterprises.length === 0,
+      jobs: jobs.length === 0,
+    });
   }, [enterprises, jobs]);
 
   return (
@@ -54,9 +36,22 @@ const SearchOutput = ({ input }) => {
       ) : (
         <ContentContainer>
           <MainTitle text="🏢 기업 정보" />
-          <CompanyList data={enterprises} searchNull={isSearchNull} />
+          {isSearchNull.enterprises ? (
+            <ErrorTextWrap>
+              <ErrorText>해당하는 기업 정보가 없습니다.</ErrorText>
+            </ErrorTextWrap>
+          ) : (
+            <CompanyList data={enterprises || []} />
+          )}
+
           <MainTitle text="📢 채용 공고" />
-          <JobNoticeList data={jobs} searchNull={isSearchNull} />
+          {isSearchNull.jobs ? (
+            <ErrorTextWrap>
+              <ErrorText>해당하는 채용 공고가 없습니다.</ErrorText>
+            </ErrorTextWrap>
+          ) : (
+            <JobNoticeList data={jobs || []} />
+          )}
         </ContentContainer>
       )}
     </BaseContainer>
@@ -64,6 +59,7 @@ const SearchOutput = ({ input }) => {
 };
 
 export default SearchOutput;
+
 const BaseContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -84,4 +80,16 @@ const ContentContainer = styled.div`
   align-items: center;
   gap: 20px;
   margin-bottom: 30px;
+`;
+
+const ErrorTextWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+`;
+
+const ErrorText = styled.div`
+  font-size: 24px;
+  font-weight: 700;
 `;
