@@ -12,7 +12,7 @@ import Notfound from './pages/Notfound';
 import JobNotice from './pages/Jobs/JobNotice';
 import LegalChat from './pages/LegalChat/LegalChat';
 import Support from './pages/Map/Support';
-import Search from './pages/Search';
+import Search from './pages/Search/Search';
 import EnterpriseParticular from './pages/Enterprises/EnterpriseParticular';
 import JobNoticeParticular from './pages/Jobs/JobNoticeParticular';
 import SingIn from './pages/Login/SingIn';
