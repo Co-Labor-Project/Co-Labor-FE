@@ -15,15 +15,9 @@ export const onLogin = (Loginusername, Loginpassword, setLoginState) => {
       console.log('로그인 결과: ', result);
 
       if (result.message === 'Login successful') {
-        sessionStorage.setItem('username', Loginusername);
-        sessionStorage.setItem('userType', result.userType);
-        alert('로그인 성공!');
+        whoIsIt(setLoginState);
 
-        if (result.userType === 'enterprise') {
-          setLoginState({ userEnterprise: true, userLogin: false });
-        } else {
-          setLoginState({ userLogin: true, userEnterprise: false });
-        }
+        alert('로그인 성공!');
       } else {
         throw new Error('로그인 실패');
       }
@@ -38,22 +32,72 @@ export const onLogin = (Loginusername, Loginpassword, setLoginState) => {
 };
 
 export const signUp = (json, url, nav) => {
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: json,
-    credentials: 'include',
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      // console.log("회원가입결과: ", result);
-      if (!alert('회원가입 성공!')) nav('/');
+  axios
+    .post(url, json, {
+      headers: {
+        'Content-Type': 'application/json', // 명시적으로 Content-Type을 지정
+      },
+      withCredentials: true, // 쿠키를 포함하여 요청 보냄
+    })
+    .then((response) => {
+      alert('회원가입 성공!');
+      nav('/');
     })
     .catch((error) => {
-      // console.error("Error:", error);
+      console.error(
+        '회원가입 실패:',
+        error.response ? error.response.data : error.message
+      );
       alert('회원가입 실패!');
     });
-  return;
+};
+
+export const whoIsIt = (setLoginState) => {
+  axios
+    .get('/api/auth/current-user', {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log('resres', res.data);
+      sessionStorage.setItem('username', res.data.username);
+      sessionStorage.setItem('userType', res.data.userType);
+      if (res.data.userType === 'enterprise_user') {
+        setLoginState({ userEnterprise: true, userLogin: true });
+      } else {
+        setLoginState({ userLogin: true, userEnterprise: false });
+      }
+    })
+    .catch((error) => {});
+};
+
+export const logOut = (setLoginState) => {
+  axios
+    .post('/api/auth/logout', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true,
+    })
+    .then((response) => {
+      setLoginState({ userLogin: false, userEnterprise: false });
+      sessionStorage.clear();
+      alert('로그아웃 완료!');
+      const cookies = document.cookie.split(';');
+      cookies.forEach((cookie) => {
+        const eqPos = cookie.indexOf('=');
+        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie =
+          name + '=;expires=Thu, 01 Jan 2024 00:00:00 GMT;path=/';
+      });
+    })
+    .catch((error) => {
+      console.error(
+        '로그아웃 실패:',
+        error.response ? error.response.data : error.message
+      );
+      alert('로그아웃 실패!');
+    });
 };

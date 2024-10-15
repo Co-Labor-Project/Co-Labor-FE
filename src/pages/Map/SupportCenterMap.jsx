@@ -208,22 +208,7 @@ function SupportCenterMap() {
               }}
             />
           )}
-          {/* {centers.map((center) => (
-            <Marker
-              key={optionCenter ? center.id : center.support_center_id}
-              position={new navermaps.LatLng(center.latitude, center.longitude)}
-              title={center.name}
-              clickable={true}
-              icon={
-                selectedCenter && selectedCenter.id === center.id
-                  ? selectedIconImage
-                  : defaultIconImage
-              }
-              onClick={() => {
-                handleCenterClick(center);
-              }}
-            />
-          ))} */}
+
           {centers.map((center) => {
             const isSelected = optionCenter
               ? selectedCenter && selectedCenter.id === center.id

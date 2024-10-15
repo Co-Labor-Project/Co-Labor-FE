@@ -12,9 +12,6 @@ import ReviewList from './components/ReviewList';
 const CompanyDetails = () => {
   const params = useParams();
   const companyContext = useContext(CompanyContext);
-  // console.log(companyContext);
-
-  //기업 데이터 변수 처리
 
   // 기업 데이터 변수 처리
   const EnterpriseData = companyContext.find(

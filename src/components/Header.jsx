@@ -4,102 +4,7 @@ import searchIcon from '../assets/icon/search_icon.png';
 import LogoPhoto from '../assets/logo.jpg';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../App';
-
-// const Header = () => {
-//   const nav = useNavigate();
-//   const { loginState, setLoginState } = useContext(LoginContext);
-//   const [searchKeyword, setSearchKeyword] = useState('');
-//   const changeInput = (e) => {
-//     setSearchKeyword(e.target.value);
-//   };
-//   const searchHandler = () => {
-//     if (searchKeyword === '') {
-//       alert('❌ 검색어를 입력해 주세요!');
-//     } else {
-//       nav(`/search/${searchKeyword}`);
-//       setSearchKeyword('');
-//     }
-//     console.log(loginState);
-//   };
-//   const keyHandler = (e) => {
-//     if (e.keyCode === 13) {
-//       searchHandler();
-//     }
-//   };
-
-//   const handleJobNoticeApply = async () => {
-//     try {
-//       const response1 = await fetch(
-//         `api/auth/hasEnterprise?username=${sessionStorage.getItem('username')}`,
-//         {
-//           method: 'GET',
-//           credentials: 'include', // 세션 쿠키 포함
-//         }
-//       );
-
-//       const hasEnterprise = await response1.json();
-
-//       if (!hasEnterprise) {
-//         alert('기업 등록을 먼저 해주세요!');
-//         nav('/');
-//       } else {
-//         nav('/JobNoticeApply');
-//       }
-//     } catch (error) {
-//       console.error('Error checking enterprise:', error);
-//     }
-//   };
-
-//   return (
-//     <BaseContiner>
-//       <Logo onClick={() => nav('/')}></Logo>
-//       <IndexContiner onClick={() => nav('/enterprises')}>
-//         기업 정보
-//       </IndexContiner>
-//       <IndexContiner onClick={() => nav('/jobNotice')}>채용 공고</IndexContiner>
-//       {!loginState.userEnterprise && (
-//         <IndexContiner onClick={() => nav('/legalChat')}>
-//           법률 상담
-//         </IndexContiner>
-//       )}
-//       <IndexContiner onClick={() => nav('/support')}>
-//         노동자 지원센터
-//       </IndexContiner>
-
-//       <SearchBox>
-//         <SearchBoxInner
-//           type="text"
-//           placeholder="기업 정보와 채용 공고를 검색해보세요!"
-//           onChange={changeInput}
-//           onKeyDown={keyHandler}
-//         />
-//         <SearchBoxIcon src={searchIcon} onClick={searchHandler} />
-//       </SearchBox>
-//       <RightWrapper>
-//         {loginState.userEnterprise && (
-//           <ApplyButton onClick={handleJobNoticeApply} $Apply={true}>
-//             채용공고 등록
-//           </ApplyButton>
-//         )}
-//         {loginState.userEnterprise && (
-//           <ApplyButton
-//             onClick={() => {
-//               nav('/EnterpriseApply');
-//             }}
-//             $Apply={false}
-//           >
-//             기업 등록
-//           </ApplyButton>
-//         )}
-//       </RightWrapper>
-//       {!loginState.userLogin && !loginState.userEnterprise && (
-//         <IndexContiner onClick={() => nav('/SingIn')}>
-//           로그인 / 회원가입
-//         </IndexContiner>
-//       )}
-//     </BaseContiner>
-//   );
-// };
+import { logOut } from '../apis/login';
 
 const Header = () => {
   const nav = useNavigate();
@@ -108,6 +13,7 @@ const Header = () => {
 
   const changeInput = (e) => {
     setSearchKeyword(e.target.value);
+    console.log(loginState);
   };
 
   const searchHandler = () => {
@@ -200,9 +106,13 @@ const Header = () => {
         )}
       </RightWrapper>
 
-      {!loginState.userLogin && !loginState.userEnterprise && (
+      {!loginState.userLogin ? (
         <IndexContiner onClick={() => handleNavigation('/SingIn')}>
           로그인 / 회원가입
+        </IndexContiner>
+      ) : (
+        <IndexContiner onClick={() => logOut(setLoginState)}>
+          로그아웃
         </IndexContiner>
       )}
     </BaseContiner>
