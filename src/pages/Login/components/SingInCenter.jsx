@@ -3,6 +3,7 @@ import './SingInCenter.css';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../../App';
 import axios from 'axios';
+import { onLogin, signUp } from '../../../apis/Login';
 
 const SingInCenter = () => {
   const { loginState, setLoginState } = useContext(LoginContext);
@@ -49,53 +50,53 @@ const SingInCenter = () => {
     setPassword(e.target.value);
   };
 
-  const onLogin = () => {
-    // console.log(Loginusername, Loginpassword);
-    axios
-      .post(
-        `/api/auth/login?username=${Loginusername}&password=${Loginpassword}`,
-        {},
-        { withCredentials: true }
-      )
-      .then((response) => {
-        const result = response.data;
-        console.log('로그인결과: ', result);
-        console.log('재배포 2트', result);
+  // const onLogin = () => {
+  //   // console.log(Loginusername, Loginpassword);
+  //   axios
+  //     .post(
+  //       `/api/auth/login?username=${Loginusername}&password=${Loginpassword}`,
+  //       {},
+  //       { withCredentials: true }
+  //     )
+  //     .then((response) => {
+  //       const result = response.data;
+  //       console.log('로그인결과: ', result);
+  //       console.log('재배포 2트', result);
 
-        if (result.message === 'Login successful') {
-          sessionStorage.setItem('username', Loginusername);
-          sessionStorage.setItem('userType', result.userType);
-          alert('로그인 성공!');
-          // console.log(document.cookie);
-          if (result.userType === 'enterprise') {
-            setLoginState({ userEnterprise: true, userLogin: false });
-          } else {
-            setLoginState({ userLogin: true, userEnterprise: false });
-          }
-        } else {
-          throw new Error('로그인 실패');
-        }
-      })
-      // .catch((error) => {
-      //   console.error('Error:', error);
-      //   alert('로그인 실패!');
-      // });
-      .catch((error) => {
-        if (error.response) {
-          // 서버가 응답했지만 상태 코드가 2xx가 아님
-          console.error('서버 응답 오류:', error.response.data);
-          console.error('응답 상태 코드:', error.response.status);
-          console.error('응답 헤더:', error.response.headers);
-        } else if (error.request) {
-          // 요청이 전송되었으나 응답을 받지 못함
-          console.error('요청 전송 실패:', error.request);
-        } else {
-          // 요청 설정 중에 발생한 오류
-          console.error('요청 오류:', error.message);
-        }
-        console.error('전체 오류 정보:', error.config);
-      });
-  };
+  //       if (result.message === 'Login successful') {
+  //         sessionStorage.setItem('username', Loginusername);
+  //         sessionStorage.setItem('userType', result.userType);
+  //         alert('로그인 성공!');
+  //         // console.log(document.cookie);
+  //         if (result.userType === 'enterprise') {
+  //           setLoginState({ userEnterprise: true, userLogin: false });
+  //         } else {
+  //           setLoginState({ userLogin: true, userEnterprise: false });
+  //         }
+  //       } else {
+  //         throw new Error('로그인 실패');
+  //       }
+  //     })
+  //     // .catch((error) => {
+  //     //   console.error('Error:', error);
+  //     //   alert('로그인 실패!');
+  //     // });
+  //     .catch((error) => {
+  //       if (error.response) {
+  //         // 서버가 응답했지만 상태 코드가 2xx가 아님
+  //         console.error('서버 응답 오류:', error.response.data);
+  //         console.error('응답 상태 코드:', error.response.status);
+  //         console.error('응답 헤더:', error.response.headers);
+  //       } else if (error.request) {
+  //         // 요청이 전송되었으나 응답을 받지 못함
+  //         console.error('요청 전송 실패:', error.request);
+  //       } else {
+  //         // 요청 설정 중에 발생한 오류
+  //         console.error('요청 오류:', error.message);
+  //       }
+  //       console.error('전체 오류 정보:', error.config);
+  //     });
+  // };
 
   const onsubmit = () => {
     if (input.password !== input.passwordConfirm) {
@@ -105,29 +106,8 @@ const SingInCenter = () => {
     const url = input.isEnterprise
       ? '/api/auth/signup-enterprise'
       : '/api/auth/signup-labor';
-    // console.log("패스워드 일치 후 요청 보내기");
     const json = JSON.stringify(input);
-    signUp(json, url);
-  };
-
-  const signUp = (json, url) => {
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: json,
-      credentials: 'include',
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        // console.log("회원가입결과: ", result);
-        if (!alert('회원가입 성공!')) nav('/');
-      })
-      .catch((error) => {
-        // console.error("Error:", error);
-        alert('회원가입 실패!');
-      });
+    signUp(json, url, nav);
   };
 
   const toggle = () => {
@@ -251,7 +231,12 @@ const SingInCenter = () => {
                     onChange={onChangePassword}
                   />
                 </div>
-                <button type="submit" onClick={onLogin}>
+                <button
+                  type="submit"
+                  onClick={() =>
+                    onLogin(Loginusername, Loginpassword, setLoginState)
+                  }
+                >
                   Sign in
                 </button>
                 <p>
