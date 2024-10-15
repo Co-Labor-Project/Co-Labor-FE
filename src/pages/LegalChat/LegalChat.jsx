@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import MessageSend from "./components/MessageSend";
-import { MessageList } from "./components/Message";
-import styled from "styled-components";
-import InitalMessage from "./components/InitalMessage";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import MessageSend from './components/MessageSend';
+import { MessageList } from './components/Message';
+import styled from 'styled-components';
+import InitalMessage from './components/InitalMessage';
 const LegalChat = () => {
   const [messages, setMessages] = useState([]);
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
   const [isSending, setIsSending] = useState(false); // 메시지 전송 중 상태 추가
   const [refreshTrigger, setRefreshTrigger] = useState(0); // 메시지 전송 시 토글
@@ -14,12 +14,12 @@ const LegalChat = () => {
 
   // 현재 로그인된 사용자 가져오기
   useEffect(() => {
-    const storedUsername = sessionStorage.getItem("username");
+    const storedUsername = sessionStorage.getItem('username');
     if (storedUsername) {
       setUsername(storedUsername);
     } else {
-      navigate("/SingIn");
-      alert("이 기능을 사용하려면 로그인이 필요합니다.");
+      navigate('/SingIn');
+      alert('이 기능을 사용하려면 로그인이 필요합니다.');
     }
   }, [navigate]);
 
@@ -27,11 +27,11 @@ const LegalChat = () => {
   const fetchMessages = (userId) => {
     setLoading(true);
     fetch(`/api/chatting/all?userId=${userId}`, {
-      credentials: "include",
+      credentials: 'include',
     })
       .then((response) => {
         if (response.status === 401) {
-          throw new Error("Unauthorized");
+          throw new Error('Unauthorized');
         }
         return response.json();
       })
@@ -44,8 +44,8 @@ const LegalChat = () => {
         );
       })
       .catch((error) => {
-        console.error("Error fetching messages:", error);
-        alert("메시지를 불러오지 못했습니다. 다시 시도해 주세요.");
+        console.error('Error fetching messages:', error);
+        alert('메시지를 불러오지 못했습니다. 다시 시도해 주세요.');
       })
       .finally(() => {
         setLoading(false);
@@ -55,7 +55,7 @@ const LegalChat = () => {
   // 메시지 전송 핸들러
   const handleSendMessage = (message) => {
     if (!username) {
-      console.error("User not logged in");
+      console.error('User not logged in');
       return;
     }
 
@@ -72,13 +72,13 @@ const LegalChat = () => {
         message
       )}`,
       {
-        method: "POST",
-        credentials: "include",
+        method: 'POST',
+        credentials: 'include',
       }
     )
       .then((response) => {
         if (response.status === 401) {
-          throw new Error("Unauthorized");
+          throw new Error('Unauthorized');
         }
         fetchMessages(username);
       })
@@ -86,8 +86,8 @@ const LegalChat = () => {
         setRefreshTrigger((prev) => prev + 1); // 트리거 증가
       })
       .catch((error) => {
-        console.error("Error sending message:", error);
-        alert("메시지를 전송하지 못했습니다. 다시 시도해 주세요.");
+        console.error('Error sending message:', error);
+        alert('메시지를 전송하지 못했습니다. 다시 시도해 주세요.');
       })
       .finally(() => {
         setIsSending(false);

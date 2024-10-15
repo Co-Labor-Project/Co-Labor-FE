@@ -83,7 +83,7 @@ const MainTextWrap = styled.div`
 `;
 const MainText = styled.div`
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 600;
   color: #148d7f;
 `;
 const MainSideText = styled.div`
