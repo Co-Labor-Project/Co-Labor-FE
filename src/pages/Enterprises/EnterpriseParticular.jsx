@@ -16,9 +16,15 @@ const CompanyDetails = () => {
 
   //기업 데이터 변수 처리
 
+  // 기업 데이터 변수 처리
   const EnterpriseData = companyContext.find(
     (company) => String(company.enterprise_id) === String(params.enterprise_id)
   );
+
+  // EnterpriseData가 없는 경우에 대비한 조건문 추가
+  if (!EnterpriseData) {
+    return <div>Loading...</div>; // 로딩 상태 표시
+  }
   const EnterpriseImg = EnterpriseData.imageName
     ? `${import.meta.env.VITE_SERVER_URL}:8080/static/images/` +
       EnterpriseData.imageName

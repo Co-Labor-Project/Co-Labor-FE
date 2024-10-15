@@ -19,7 +19,7 @@ function Company() {
 
   useEffect(() => {
     filterData(selected);
-  }, [selected]);
+  }, [selected, EnterprisesData]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

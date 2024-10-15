@@ -18,7 +18,7 @@ function JobNotice() {
 
   useEffect(() => {
     filterData(selected);
-  }, [selected]);
+  }, [selected, JobData]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
