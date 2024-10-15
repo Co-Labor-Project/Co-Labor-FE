@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import QuickMenu from '../../components/QuickMenu';
-import RecentReview from '../../components/RecentReviewList';
 import MainIntroduce from './components/MainIntroduce';
 import MainTitle from './components/MainTitle';
 import styled from 'styled-components';

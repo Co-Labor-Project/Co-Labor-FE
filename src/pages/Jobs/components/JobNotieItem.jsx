@@ -3,7 +3,7 @@ import useScrollFadeIn from '../../../hooks/fade_in';
 import { useNavigate, useParams } from 'react-router-dom';
 import useEmpty from '../../../hooks/useEmpty';
 import styled from 'styled-components';
-import { FadeInContainer } from '../../../component/FadeIn';
+import { FadeInContainer } from '../../../components/FadeIn';
 
 const JobNotieItem = ({
   imageName,

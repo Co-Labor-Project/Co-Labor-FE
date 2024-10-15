@@ -1,7 +1,7 @@
 import React from 'react';
 import SupportCenterItem from './SupportCenterItem';
 import styled from 'styled-components';
-
+import ChooseImg from '../../../assets/Building.jpg';
 const SidePage = ({
   selectedCenter,
   optionCenter,
@@ -13,7 +13,7 @@ const SidePage = ({
       <ChooseCenter>
         <Selected>
           {/* IMG 출처 - fanjianhua */}
-          <ObjectImg src="/assets/Building.jpg" alt="image" />
+          <ObjectImg src={ChooseImg} alt="image" />
           {selectedCenter && (
             <TextContainer>
               <TextWrapper>

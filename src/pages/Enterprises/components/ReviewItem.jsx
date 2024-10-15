@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import StarRate from '../../../component/StarRate';
-import BarGraph from '../../../component/BarGraph';
+import StarRate from '../../../components/StarRate';
+import BarGraph from '../../../components/BarGraph';
 
 const ReviewItem = ({ review }) => {
   return (

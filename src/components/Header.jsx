@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import searchIcon from '../assets/search_icon.png';
+import searchIcon from '../assets/icon/search_icon.png';
+import LogoPhoto from '../assets/logo.jpg';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../App';
 
@@ -113,12 +114,16 @@ const BaseContiner = styled.div`
   background-color: white;
 `;
 const Logo = styled.div`
-  background-image: url(/assets/Co-labor.png);
-  width: 140px;
+  /* background-image: url(/assets/logo.jpg); */
+  background-image: url(${LogoPhoto});
+  width: 120px;
   height: 70px;
+  cursor: pointer;
   background-size: cover;
+  background-position: center;
+  transition: all 0.5s;
   &:hover {
-    width: 160px;
+    width: 140px;
     height: 70px;
   }
 `;
@@ -138,13 +143,14 @@ const SearchBox = styled.div`
   padding: 0px 18px;
   transition: width 1s, height 1s, border 1s, font-size 0.5s;
   font-weight: bold;
-  border: 3px solid #58c179;
+  /* border: 3px solid #58c179; */
+  border: 3px solid #379c57;
   width: 500px;
   height: 40px;
   border-radius: 20px;
   margin: auto;
   &:focus-within {
-    border: 4px solid #a1e2a1;
+    border: 4px solid #58c179;
     width: 600px;
     height: 50px;
   }
