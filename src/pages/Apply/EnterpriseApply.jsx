@@ -161,7 +161,6 @@ const CompanyApply = () => {
           <>
             <ButWrapper>
               <MinButton type="button" onClick={() => setPage(page - 1)}>
-                {' '}
                 &lt; 이전
               </MinButton>
             </ButWrapper>
