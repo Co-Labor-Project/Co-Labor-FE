@@ -8,9 +8,9 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     server: {
+      // 경로가 "/api" 로 시작하는 요청을 대상으로 proxy 설정
       proxy: {
         '/api': {
-          // 경로가 "/api" 로 시작하는 요청을 대상으로 proxy 설정
           // 요청 전달 대상 서버 주소 설정
           // target: `${env.VITE_SERVER_URL}:443`,
           target: `${env.VITE_SERVER_URL}:80`,

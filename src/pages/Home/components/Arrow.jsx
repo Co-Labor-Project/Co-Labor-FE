@@ -26,6 +26,7 @@ const ArrowContainer = styled.div`
   transform: rotate(-45deg);
   animation: bounce 2s infinite;
   ${bounce}
+  cursor: pointer;
 `;
 export const ArrowWrapper = styled.div`
   pointer-events: auto; /* 이벤트가 이 요소에는 허용되도록 설정 */

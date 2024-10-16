@@ -17,7 +17,7 @@ import EnterpriseParticular from './pages/Enterprises/EnterpriseParticular';
 import JobNoticeParticular from './pages/Jobs/JobNoticeParticular';
 import SingIn from './pages/Login/SingIn';
 import EnterpriseApply from './pages/Apply/EnterpriseApply';
-import JobNoticeApply from './pages/Apply/JobNoticeApply';
+import NoticeApply from './pages/Apply/NoticeApply';
 export const JobContext = createContext();
 export const CompanyContext = createContext();
 export const LoginContext = createContext();
@@ -91,7 +91,6 @@ function App() {
                       <Route path="/SingIn" element={<SingIn />} />
 
                       <Route path="/Search/:keyword" element={<Search />} />
-                      {/* <Route path="/AiSearch/:keyword" element={<Search />} /> */}
                       <Route
                         path="/Search/:keyword/:enterprise_id"
                         element={<EnterpriseParticular />}
@@ -113,10 +112,7 @@ function App() {
                         path="/EnterpriseApply"
                         element={<EnterpriseApply />}
                       />
-                      <Route
-                        path="/JobNoticeApply"
-                        element={<JobNoticeApply />}
-                      />
+                      <Route path="/JobNoticeApply" element={<NoticeApply />} />
                       <Route path="*" element={<Notfound />} />
                     </Routes>
                     <TraslateButton>

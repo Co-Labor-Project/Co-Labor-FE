@@ -185,6 +185,7 @@ const SearchBoxIcon = styled.img`
   width: 30px;
   margin: auto;
   z-index: 1px;
+  cursor: pointer;
 `;
 
 const ApplyButton = styled.div`
@@ -204,6 +205,7 @@ const ApplyButton = styled.div`
     font-size: 19px;
   }
   transition: width 1s, height 1s, border 1s, font-size 0.5s;
+  cursor: pointer;
 
 `;
 const RightWrapper = styled.div`

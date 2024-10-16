@@ -149,7 +149,7 @@ const SingInCenter = () => {
                   Sign up
                 </button>
                 <p>
-                  <span>Already have an account?</span>
+                  <span>Already have an account? &nbsp;&nbsp;&nbsp;&nbsp;</span>
                   <b onClick={toggle} className="pointer">
                     Sign in here
                   </b>
@@ -187,11 +187,11 @@ const SingInCenter = () => {
                 >
                   Sign in
                 </button>
+
                 <p>
-                  <b>Forgot password?</b>
-                </p>
-                <p>
-                  <span>Don&apos;t have an account?</span>
+                  <span>
+                    Don&apos;t have an account? &nbsp;&nbsp;&nbsp;&nbsp;
+                  </span>
                   <b onClick={toggle} className="pointer">
                     Sign up here
                   </b>

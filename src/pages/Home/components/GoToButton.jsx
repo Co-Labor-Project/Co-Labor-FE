@@ -23,6 +23,7 @@ const Direction = styled.p`
   font-weight: 400;
 `;
 const Button = styled.button`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -41,7 +41,7 @@ const NoticeApply = () => {
         {page === 1 && (
           <>
             <InputWrap>
-              <InputText>사업자 등록번호</InputText>
+              <InputText>사업자 번호</InputText>
               <Input
                 type="text"
                 name="enterprise_id"
