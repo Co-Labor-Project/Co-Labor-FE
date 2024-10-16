@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState, createContext } from 'react';
 import styled from 'styled-components';
 import { NavermapsProvider } from 'react-naver-maps';
+
 import Header from './components/Header';
 import TranslateList from './components/TranslateList';
-
 import Enterprises from './pages/Enterprises/Enterprises';
 import Home from './pages/Home/Home';
 import Notfound from './pages/Notfound';
@@ -18,6 +18,7 @@ import JobNoticeParticular from './pages/Jobs/JobNoticeParticular';
 import SingIn from './pages/Login/SingIn';
 import EnterpriseApply from './pages/Apply/EnterpriseApply';
 import NoticeApply from './pages/Apply/NoticeApply';
+
 export const JobContext = createContext();
 export const CompanyContext = createContext();
 export const LoginContext = createContext();

@@ -38,11 +38,10 @@ const CompanyDetails = () => {
     const sessionName = await window.sessionStorage.getItem('username');
 
     if (EnterpriseData) {
-      // EnterpriseData가 존재할 때만 setReviewAdd 실행
       setReviewAdd((pre) => ({
         ...pre,
         userId: sessionName,
-        enterpriseId: EnterpriseData.enterprise_id, // enterpriseId 설정
+        enterpriseId: EnterpriseData.enterprise_id,
       }));
     }
 
@@ -58,20 +57,19 @@ const CompanyDetails = () => {
 
   useEffect(() => {
     if (EnterpriseData) {
-      fetchCanAddReview(); // EnterpriseData가 있을 때만 실행
+      fetchCanAddReview();
     }
-  }, [EnterpriseData, complteAdd]); // EnterpriseData가 변경될 때만 실행
+  }, [EnterpriseData, complteAdd]);
   useEffect(() => {
     fetchCanAddReview();
-    // console.log('변경됐잖아!!!!!!!!!');
-  }, [complteAdd]); // EnterpriseData가 변경될 때만 실행
+  }, [complteAdd]);
 
   const addReview = () => {
     setWrite(!write);
     if (!write) {
       setReviewAdd((pre) => ({
         ...pre,
-        enterpriseId: EnterpriseData.enterprise_id, // enterpriseId 다시 설정
+        enterpriseId: EnterpriseData.enterprise_id,
         title: '',
         rating: 0,
         promotionRating: 0,
@@ -85,7 +83,7 @@ const CompanyDetails = () => {
     }
   };
   if (!EnterpriseData) {
-    return <div>Loading...</div>; // 로딩 상태 표시
+    return <div>Loading...</div>;
   }
 
   const EnterpriseImg = EnterpriseData.imageName
@@ -119,7 +117,7 @@ const CompanyDetails = () => {
         isReview={true}
         isWrite={write}
         addReview={addReview}
-        isLogin={canAdd} // canAdd 상태를 사용
+        isLogin={canAdd}
       />
       {write && (
         <ReviewAddContainer
