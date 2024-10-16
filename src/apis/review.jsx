@@ -15,6 +15,8 @@ export const addReview = (reviewAdd, setWrite, setComplteAdd) => {
       setWrite(false);
 
       setComplteAdd(true);
+      setTimeout(() => setComplteAdd(false), 1000);
+      console.log('리뷰 등록 response:', response);
     })
 
     .catch((error) => {

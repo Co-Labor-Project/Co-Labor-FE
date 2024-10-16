@@ -129,7 +129,7 @@ const CompanyDetails = () => {
           setComplteAdd={setComplteAdd}
         />
       )}
-      <ReviewList />
+      <ReviewList complteAdd={complteAdd} />
     </BackGroundField>
   );
 };

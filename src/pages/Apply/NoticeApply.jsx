@@ -4,7 +4,7 @@ import { submitEnterprise } from '../../apis/apply';
 import styled from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
 
-const CompanyApply = () => {
+const NoticeApply = () => {
   const [input, setInput] = useState({
     enterprise_id: '',
     name: '',
@@ -170,7 +170,7 @@ const CompanyApply = () => {
   );
 };
 
-export default CompanyApply;
+export default NoticeApply;
 
 const BaseContainer = styled.div`
   width: 600px;

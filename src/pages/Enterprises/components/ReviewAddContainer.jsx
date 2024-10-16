@@ -128,6 +128,7 @@ const Title = styled.div`
 const TextareaStyled = styled(TextareaAutosize)`
   resize: none;
   border-radius: 15px;
+  width: 80%;
   outline: none;
   border: 2px solid #1fbe51;
   font-size: 18px;
