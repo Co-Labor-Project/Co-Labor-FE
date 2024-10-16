@@ -38,7 +38,18 @@ const CompanyApply = () => {
     e.preventDefault();
     submitEnterprise(input, logoFile, nav);
   };
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const Username = sessionStorage.getItem('username');
+    setInput((pre) => ({
+      ...pre,
+      enterprise_user_id: Username,
+    }));
+    console.log('초기 사용자 이름 저장', input);
+  }, []);
+
+  useEffect(() => {
+    console.log('초기 사용자 이름 저장', input);
+  }, [input]);
   return (
     <BaseContainer>
       <Form onSubmit={handleSubmit}>
