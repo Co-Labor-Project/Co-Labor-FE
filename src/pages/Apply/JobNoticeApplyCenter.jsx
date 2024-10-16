@@ -1,4 +1,4 @@
-import './JobNoticeApplyCenter.css';
+// import './JobNoticeApplyCenter.css';
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { IsEnrollContext } from '../../App';

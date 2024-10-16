@@ -2,7 +2,9 @@
   height: calc(100vh - 80.5px);
   overflow: hidden;
 }
-
+#signup-form {
+  margin-top: -60px;
+}
 .container {
   position: relative;
   min-height: 100vh;

@@ -2,6 +2,7 @@ import './SingInCenter.css';
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../App';
+import axios from 'axios';
 
 const EnterpriseApplyCenter = () => {
   const nav = useNavigate();
@@ -72,75 +73,21 @@ const EnterpriseApplyCenter = () => {
       });
   };
 
-  const onCheckRegiNum = async () => {
-    let flag = false;
-
-    // 첫 번째 fetch 호출
-    const response1 = await fetch(
-      `${
-        import.meta.env.VITE_SERVER_URL
-      }:8080/auth/hasEnterprise?username=${sessionStorage.getItem('username')}`,
-      {
-        method: 'GET',
-        credentials: 'include', // 세션 쿠키 포함
-      }
-    );
-    console.log(response1);
-
-    if (response1.ok) {
-      const hasEnterprise = await response1.json();
-      if (hasEnterprise) {
-        alert('이미 기업이 등록된 회원입니다.');
-        flag = true;
-        nav('/');
-        return; // 이미 기업이 등록된 경우, 함수 종료
-      }
-    }
-
-    // 두 번째 fetch 호출
-    if (!flag) {
-      const response2 = await fetch(
-        `${
-          import.meta.env.VITE_SERVER_URL
-        }:8080/api/enterprises/status?enterpriseId=${regiNum}`,
-        {
-          method: 'GET',
-          credentials: 'include', // 세션 쿠키 포함
-        }
-      );
-
-      const result2 = await response2.json();
-      console.log(result2);
-
-      if (result2.status === 1) {
-        console.log('실제 존재하는 사업자 번호');
-        console.log(sessionStorage.getItem('username'));
-
-        const response3 = await fetch(
-          `${
-            import.meta.env.VITE_SERVER_URL
-          }:8080/api/enterprises/map?enterpriseId=${regiNum}&username=${sessionStorage.getItem(
-            'username'
-          )}`,
-          {
-            method: 'POST',
-            credentials: 'include', // 세션 쿠키 포함
-          }
-        );
-
-        const result3 = await response3.json();
-        console.log(result3);
-
-        if (result3.status === 1) {
-          alert('기업 등록이 완료되었습니다!');
-          nav('/');
-        } else {
-          toggle();
-        }
-      } else {
-        alert('존재하지 않는 사업자 번호입니다.');
-      }
-    }
+  const onCheckRegiNum = (regiNum) => {
+    axios
+      .get(`/api/enterprises/status?enterpriseId=${regiNum}`, {
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+        toggle();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const toggle = () => {
@@ -166,13 +113,7 @@ const EnterpriseApplyCenter = () => {
           {/* SIGN UP */}
           <div className="col align-items-center flex-col sign-up">
             <div className="form-wrapper align-items-center">
-              <div
-                id="signup-form"
-                className="form sign-up"
-                // method="post"
-                // action="/signup"
-              >
-                {/* form 내부의 input 요소들 유지 */}
+              <div id="signup-form" className="form sign-up">
                 <div className="input-group">
                   <i className="bx bxs-lock-alt"></i>
                   <input
@@ -278,7 +219,7 @@ const EnterpriseApplyCenter = () => {
                     onChange={onChange}
                   />
                 </div>
-                <button type="submit" onClick={onCheckRegiNum}>
+                <button type="submit" onClick={() => onCheckRegiNum(regiNum)}>
                   사업자 번호 인증받기
                 </button>
                 {/* <p>
