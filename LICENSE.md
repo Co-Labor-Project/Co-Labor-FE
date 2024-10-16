@@ -26,6 +26,7 @@ This project includes components distributed under the MIT License. You may obta
 - react-virtualized (v9.22.5) - [License](https://github.com/bvaughn/react-virtualized/blob/master/LICENSE)
 - react-virtualized-auto-sizer (v1.0.24) - [License](https://github.com/bvaughn/react-virtualized-auto-sizer/blob/master/LICENSE)
 - react-window (v1.8.10) - [License](https://github.com/bvaughn/react-window/blob/master/LICENSE)
+- react-textarea-autosize (v8.5.3) - [License](https://github.com/Andarist/react-textarea-autosize/blob/main/LICENSE)
 - styled-components (v6.1.13) - [License](https://github.com/styled-components/styled-components/blob/main/LICENSE)
 - swiper (v11.1.5) - [License](https://github.com/nolimits4web/swiper/blob/master/LICENSE)
 - @types/react (v18.3.3) - [License](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/LICENSE)
