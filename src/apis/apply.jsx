@@ -93,7 +93,8 @@ export const submitNotice = async (input, logoFile, nav) => {
     console.log('채용공고 등록결과: ', response.data);
     if (response.status === 200) {
       alert('채용 공고 등록 성공!');
-      nav('/'); // 등록 성공 시 메인 페이지로 이동
+      window.location.href = '/';
+      // nav('/'); // 등록 성공 시 메인 페이지로 이동
     }
   } catch (error) {
     console.error('Error:', error.response);

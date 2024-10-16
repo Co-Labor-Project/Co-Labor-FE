@@ -11,6 +11,9 @@ const Home = () => {
   const [page, setPage] = useState(0);
   const lastPage = 5; // 컨테이너 개수
   const [isThrottled, setIsThrottled] = useState(false); // 스로틀 상태
+  useEffect(() => {
+    setPage(0); // 페이지를 0으로 초기화
+  }, []); // 빈 배열을 넣으면 처음 렌더링 때만 실행
 
   // 스크롤 이벤트 핸들러
   const handleScroll = useCallback(
