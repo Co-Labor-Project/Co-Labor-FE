@@ -8,7 +8,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 const CompanyApply = () => {
   const { loginState, setLoginState } = useContext(LoginContext);
-  console.log('CompanyApply', loginState);
+  // console.log('CompanyApply', loginState);
   const [input, setInput] = useState({
     enterprise_id: '',
     name: '',
@@ -28,6 +28,7 @@ const CompanyApply = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setInput((prevInput) => ({ ...prevInput, [name]: value }));
+    console.log('inputinput', input);
   };
 
   const handleFileChange = (e) => {
@@ -47,9 +48,6 @@ const CompanyApply = () => {
     console.log('초기 사용자 이름 저장', input);
   }, []);
 
-  useEffect(() => {
-    console.log('초기 사용자 이름 저장', input);
-  }, [input]);
   return (
     <BaseContainer>
       <Form onSubmit={handleSubmit}>
