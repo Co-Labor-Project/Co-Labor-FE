@@ -1,3 +1,14 @@
+.invalid-input {
+  border: 2px solid red !important; /* 유효성 검사 실패 시 빨간색 테두리 */
+}
+
+.error-messages div {
+  color: red;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
 .SingInCenter {
   height: calc(100vh - 80.5px);
   overflow: hidden;
