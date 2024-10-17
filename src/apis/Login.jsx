@@ -61,6 +61,11 @@ export const whoIsIt = (setLoginState) => {
       withCredentials: true,
     })
     .then((res) => {
+      if (res.data.message === 'No JSESSIONID found') {
+        setLoginState({ userEnterprise: false, userLogin: false });
+        return;
+      }
+
       // console.log('resres', res.data);
       sessionStorage.setItem('username', res.data.username);
       sessionStorage.setItem('userType', res.data.userType);
