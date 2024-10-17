@@ -109,5 +109,5 @@ const SubText = styled.div`
   font-weight: bold;
   margin-top: 1rem;
 `;
-// 일자리, 법률, 정보 제공까지, 한국에서의 안정적인 정착을 위한 모든 솔루션을 한 곳에서 만나보세요.
+
 const TextWrapper = styled.div``;

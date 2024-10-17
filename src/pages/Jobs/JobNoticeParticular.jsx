@@ -21,7 +21,7 @@ const JobNoticeDetailsCenter = () => {
   const [jobData, setJobData] = useState(null);
   const [EnterpriseData, setEnterpriseData] = useState(null);
   const [displayJobPhoto, setDisplayJobPhoto] = useState('');
-  const [relationData, setRelationData] = useState([]); // relationData 상태 추가
+  const [relationData, setRelationData] = useState([]);
   const { loginState, setLoginState } = useContext(LoginContext);
   const [isOwner, setIsOwner] = useState(false);
 
@@ -91,7 +91,7 @@ const JobNoticeDetailsCenter = () => {
           }
         };
 
-        setDisplayJobPhoto(''); // 초기화하여 이전 이미지가 남지 않도록 함
+        setDisplayJobPhoto('');
         checkImage();
       } else {
         setDisplayJobPhoto(
@@ -101,17 +101,16 @@ const JobNoticeDetailsCenter = () => {
     }
   }, [jobId, contextData, companyContext]);
 
-  // relationData를 업데이트하는 useEffect 추가
   useEffect(() => {
     if (jobData) {
       const filteredData = contextData
         .filter((item) => item.jobRole === jobData.jobRole)
         .slice(0, 10);
-      setRelationData(filteredData); // relationData 업데이트
+      setRelationData(filteredData);
     }
     console.log('jobData', jobData);
     console.log('jobData', jobData);
-  }, [jobData, contextData]); // jobData 또는 EnterpriseData가 변경될 때마다 실행
+  }, [jobData, contextData]);
 
   if (!jobData || !EnterpriseData) {
     return <div>Loading</div>;
@@ -124,7 +123,7 @@ const JobNoticeDetailsCenter = () => {
   const EnterpriseDescripton =
     EnterpriseData.description || '기업 설명을 작성해주세요!';
 
-  const description = jobData.description || ''; // 기본 값을 빈 문자열로 설정
+  const description = jobData.description || '';
   return (
     <BackGroundField>
       <MainTitle text={EnterpriseData.name} />

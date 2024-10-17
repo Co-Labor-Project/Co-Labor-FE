@@ -29,6 +29,6 @@ const ArrowContainer = styled.div`
   cursor: pointer;
 `;
 export const ArrowWrapper = styled.div`
-  pointer-events: auto; /* 이벤트가 이 요소에는 허용되도록 설정 */
+  pointer-events: auto;
   z-index: 200;
 `;

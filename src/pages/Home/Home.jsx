@@ -10,12 +10,11 @@ import Contact from './components/Contact';
 const Home = () => {
   const [page, setPage] = useState(0);
   const lastPage = 5; // 컨테이너 개수
-  const [isThrottled, setIsThrottled] = useState(false); // 스로틀 상태
+  const [isThrottled, setIsThrottled] = useState(false);
   useEffect(() => {
-    setPage(0); // 페이지를 0으로 초기화
-  }, []); // 빈 배열을 넣으면 처음 렌더링 때만 실행
+    setPage(0);
+  }, []);
 
-  // 스크롤 이벤트 핸들러
   const handleScroll = useCallback(
     (e) => {
       e.preventDefault();
@@ -26,7 +25,6 @@ const Home = () => {
           setPage((prevPage) => Math.max(prevPage - 1, 0));
         }
 
-        // 스로틀 상태를 true로 설정하고 1초 후에 다시 false로 변경
         setIsThrottled(true);
         setTimeout(() => {
           setIsThrottled(false);
@@ -36,7 +34,6 @@ const Home = () => {
     [page, lastPage, isThrottled]
   );
 
-  // 컴포넌트가 마운트될 때 스크롤 이벤트 리스너 추가
   useEffect(() => {
     window.addEventListener('wheel', handleScroll, { passive: false });
     return () => {
@@ -90,9 +87,9 @@ const Container = styled.div`
 
 const Wrap = styled.div`
   position: relative;
-  top: ${({ $page }) => `-${$page * 100}vh`}; /* 페이지에 따라 위치 변경 */
+  top: ${({ $page }) => `-${$page * 100}vh`};
   transition: top 1s ease-in-out;
   display: flex;
   flex-direction: column;
-  height: ${($lastPage) => `${$lastPage * 100}vh`}; /* 페이지에 따른 높이 설정*/
+  height: ${($lastPage) => `${$lastPage * 100}vh`};
 `;

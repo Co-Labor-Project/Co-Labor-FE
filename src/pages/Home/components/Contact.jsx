@@ -128,8 +128,7 @@ const BaseContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  /* background-color: #148d7f; */
-  /* background-color: #191f28; */
+
   background-color: #f5f5f5;
   position: relative;
 `;

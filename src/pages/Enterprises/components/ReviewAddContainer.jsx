@@ -14,7 +14,7 @@ const ReviewAddContainer = ({
   const handleChange = (field, value) => {
     setReviewAdd((prevReviewAdd) => ({
       ...prevReviewAdd,
-      [field]: value, // field에 따라 값 업데이트
+      [field]: value,
     }));
   };
 
@@ -23,8 +23,8 @@ const ReviewAddContainer = ({
       <Title>제목</Title>
       <TextareaStyled
         minRows={3}
-        value={reviewAdd.title || ''} // title 상태와 연결
-        onChange={(e) => handleChange('title', e.target.value)} // 제목 변경 시 호출
+        value={reviewAdd.title || ''}
+        onChange={(e) => handleChange('title', e.target.value)}
       />
       <Info>
         <TextTitleItem>총평</TextTitleItem>
@@ -72,14 +72,14 @@ const ReviewAddContainer = ({
         <TextPoint>장점</TextPoint>
         <TextareaStyled
           minRows={3}
-          value={reviewAdd.pros || ''} // 장점 상태와 연결
-          onChange={(e) => handleChange('pros', e.target.value)} // 장점 변경 시 호출
+          value={reviewAdd.pros || ''}
+          onChange={(e) => handleChange('pros', e.target.value)}
         />
         <TextPoint>단점</TextPoint>
         <TextareaStyled
           minRows={3}
-          value={reviewAdd.cons || ''} // 단점 상태와 연결
-          onChange={(e) => handleChange('cons', e.target.value)} // 단점 변경 시 호출
+          value={reviewAdd.cons || ''}
+          onChange={(e) => handleChange('cons', e.target.value)}
         />
         <CautionWrap>
           <CautionText>
@@ -100,7 +100,6 @@ const ReviewAddContainer = ({
 
 export default ReviewAddContainer;
 
-// Styled Components
 const ReviewContainer = styled.div`
   padding: 20px;
   background-color: #fff;

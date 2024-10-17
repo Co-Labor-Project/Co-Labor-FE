@@ -8,11 +8,10 @@ const LegalChat = () => {
   const [messages, setMessages] = useState([]);
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isSending, setIsSending] = useState(false); // 메시지 전송 중 상태 추가
-  const [refreshTrigger, setRefreshTrigger] = useState(0); // 메시지 전송 시 토글
+  const [isSending, setIsSending] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
   const navigate = useNavigate();
 
-  // 현재 로그인된 사용자 가져오기
   useEffect(() => {
     const storedUsername = sessionStorage.getItem('username');
     if (storedUsername) {
@@ -59,9 +58,8 @@ const LegalChat = () => {
       return;
     }
 
-    setIsSending(true); // 메시지 전송 시작 시 로딩 상태로 변경
+    setIsSending(true);
 
-    // 사용자가 보낸 메시지를 추가
     setMessages((prevMessages) => [
       ...prevMessages,
       { text: message, isUser: true },
@@ -100,19 +98,6 @@ const LegalChat = () => {
     }
   }, [username, refreshTrigger]);
 
-  // return (
-
-  //   <Field>
-  //     <BaseContainer>
-  //       <MessageList
-  //         messages={messages}
-  //         loading={loading}
-  //         isSending={isSending}
-  //       />
-  //       <MessageSend onSendMessage={handleSendMessage} isSending={isSending} />
-  //     </BaseContainer>
-  //   </Field>
-  // );
   return (
     <Field>
       <BaseContainer>

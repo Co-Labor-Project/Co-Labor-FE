@@ -40,7 +40,6 @@ const SingInCenter = () => {
     }
   }, [loginState, nav]);
 
-  // 회원가입 유효성 검사
   const validateUsername = () => {
     const usernameRegex = /^[a-zA-Z0-9]{4,}$/;
 
@@ -178,7 +177,7 @@ const SingInCenter = () => {
                     placeholder="Username"
                     value={input.username}
                     onChange={onChangeInput}
-                    onBlur={validateUsername} // 포커스가 빠져나갈 때 유효성 검사 실행
+                    onBlur={validateUsername}
                     className={isValid.username ? '' : 'invalid-input'}
                   />
                 </div>
@@ -190,7 +189,7 @@ const SingInCenter = () => {
                     placeholder="Email"
                     value={input.email}
                     onChange={onChangeInput}
-                    onBlur={validateEmail} // 포커스가 빠져나갈 때 유효성 검사 실행
+                    onBlur={validateEmail}
                     className={isValid.email ? '' : 'invalid-input'}
                   />
                 </div>
@@ -202,7 +201,7 @@ const SingInCenter = () => {
                     placeholder="Password"
                     value={input.password}
                     onChange={onChangeInput}
-                    onBlur={validatePassword} // 포커스가 빠져나갈 때 유효성 검사 실행
+                    onBlur={validatePassword}
                     className={isValid.password ? '' : 'invalid-input'}
                   />
                 </div>
@@ -214,7 +213,7 @@ const SingInCenter = () => {
                     placeholder="Confirm password"
                     value={input.passwordConfirm}
                     onChange={onChangeInput}
-                    onBlur={validatePasswordConfirm} // 포커스가 빠져나갈 때 유효성 검사 실행
+                    onBlur={validatePasswordConfirm}
                     className={isValid.passwordConfirm ? '' : 'invalid-input'}
                   />
                 </div>

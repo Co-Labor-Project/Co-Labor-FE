@@ -45,7 +45,7 @@ const SidePage = ({
               name={center.name}
               address={center.address}
               phone={center.phone}
-              hospitalInfo={optionCenter ? center.hospitalInfo : null} // 병원 정보 추가
+              hospitalInfo={optionCenter ? center.hospitalInfo : null}
             />
           </div>
         ))}

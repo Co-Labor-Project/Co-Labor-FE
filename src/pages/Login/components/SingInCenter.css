@@ -1,5 +1,5 @@
 .invalid-input {
-  border: 2px solid red !important; /* 유효성 검사 실패 시 빨간색 테두리 */
+  border: 2px solid red !important;
 }
 
 .error-messages div {

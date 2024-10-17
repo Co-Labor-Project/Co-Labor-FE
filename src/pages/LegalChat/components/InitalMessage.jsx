@@ -20,7 +20,7 @@ const InitalMessage = ({
     event.preventDefault();
     if (!localIsSending && message.trim()) {
       setLocalIsSending(true);
-      onSendMessage(message); // 부모 컴포넌트의 handleSendMessage를 직접 호출
+      onSendMessage(message);
       setMessage('');
       setLocalIsSending(false);
     }

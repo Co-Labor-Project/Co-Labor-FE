@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-// StarRate 컴포넌트
+
 export const SetStarRate = ({ rating = 0, onRatingChange }) => {
   const STAR_IDX_ARR = ['first', 'second', 'third', 'fourth', 'last'];
-  const [currentRating, setCurrentRating] = useState(rating); // 클릭 시 값을 변경할 상태
+  const [currentRating, setCurrentRating] = useState(rating);
 
-  // 클릭한 인덱스에 맞게 rating을 설정
   const handleStarClick = (index) => {
-    const newRating = index + 1; // 인덱스는 0부터 시작하므로 +1을 해서 1점부터 시작
-    setCurrentRating(newRating); // 새로운 rating 설정
-    onRatingChange(newRating); // 상위 컴포넌트에 새로운 rating 전달
+    const newRating = index + 1;
+    setCurrentRating(newRating);
+    onRatingChange(newRating);
   };
 
   return (
@@ -19,14 +18,14 @@ export const SetStarRate = ({ rating = 0, onRatingChange }) => {
           <span
             className="star_icon"
             key={`${item}_${idx}`}
-            onClick={() => handleStarClick(idx)} // 클릭 이벤트 추가
+            onClick={() => handleStarClick(idx)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
               height="39"
               viewBox="0 0 14 13"
-              fill={idx < currentRating ? '#8bcc9f' : '#cacaca'} // 클릭에 따라 색상 변경
+              fill={idx < currentRating ? '#8bcc9f' : '#cacaca'}
             >
               <path
                 d="M9,2l2.163,4.279L16,6.969,12.5,10.3l.826,4.7L9,12.779,4.674,15,5.5,10.3,2,6.969l4.837-.69Z"
@@ -36,21 +35,19 @@ export const SetStarRate = ({ rating = 0, onRatingChange }) => {
           </span>
         ))}
       </StarRateWrap>
-      <Score>{currentRating}</Score> {/* 현재 rating 값 표시 */}
+      <Score>{currentRating}</Score>
     </WrapContainer>
   );
 };
 
-// BarGraph 컴포넌트
 export const SetBarGraph = ({ rating = 0, onRatingChange }) => {
   const Bar_IDX_ARR = ['first', 'second', 'third', 'fourth', 'last'];
-  const [currentRating, setCurrentRating] = useState(rating); // 클릭 시 값을 변경할 상태
+  const [currentRating, setCurrentRating] = useState(rating);
 
-  // 클릭한 인덱스에 맞게 rating을 설정
   const handleBarClick = (index) => {
-    const newRating = index + 1; // 인덱스는 0부터 시작하므로 +1을 해서 1점부터 시작
-    setCurrentRating(newRating); // 새로운 rating 설정
-    onRatingChange(newRating); // 상위 컴포넌트에 새로운 rating 전달
+    const newRating = index + 1;
+    setCurrentRating(newRating);
+    onRatingChange(newRating);
   };
 
   return (

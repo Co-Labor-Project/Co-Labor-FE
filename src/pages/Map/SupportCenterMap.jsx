@@ -12,7 +12,6 @@ import BuildingChooseImg from '../../assets/icon/BuildingChoose.png';
 import CurrentLocation from '../../assets/icon/currentLocation.png';
 function SupportCenterMap() {
   const navermaps = useNavermaps();
-  // console.log('navermaps 객체:', navermaps); // navermaps 객체 확인
 
   const mapRef = useRef(null);
   const [centers, setCenters] = useState([]);
@@ -20,19 +19,19 @@ function SupportCenterMap() {
   const [mapCenter, setMapCenter] = useState(null);
   const [sortedCenters, setSortedCenters] = useState([]);
   const [selectedCenter, setSelectedCenter] = useState(null);
-  const [optionCenter, setOptionCenter] = useState(false); // false인 경우 지원센터
-  const [click, setClick] = useState(false); //지원센터 버그 check
+  const [optionCenter, setOptionCenter] = useState(false);
+  const [click, setClick] = useState(false);
   const [currentAddress, setCurrentAddress] = useState({
     latitude: '',
     longitude: '',
-  }); // 현재 위치의 주소
+  });
 
   useEffect(() => {
     if (!navermaps) {
       console.log('navermaps 객체가 아직 로드되지 않았습니다.');
-      return; // navermaps 객체가 로드될 때까지 대기
+      return;
     }
-    // 사용자의 현재 위치 가져오기
+
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
@@ -52,7 +51,6 @@ function SupportCenterMap() {
 
     const fetchData = () => {
       if (optionCenter) {
-        // 병원 데이터를 요청
         axios
           .get('/api/hospitals/nearby', {
             params: {
@@ -72,7 +70,7 @@ function SupportCenterMap() {
                 );
               })
               .slice(0, 50);
-            setSelectedCenter(sorted[0]); // 가장 가까운 병원 선택
+            setSelectedCenter(sorted[0]);
             setSortedCenters(sorted);
 
             if (sorted[0]) {
@@ -85,7 +83,6 @@ function SupportCenterMap() {
             console.error('병원 데이터를 가져오는 중 에러 발생:', error);
           });
       } else {
-        // 지원센터 데이터를 요청
         axios
           .get('/api/support-centers/all')
           .then((response) => {
@@ -100,7 +97,7 @@ function SupportCenterMap() {
                 );
               })
               .slice(0, 50);
-            setSelectedCenter(sorted[0]); // 가장 가까운 지원센터 선택
+            setSelectedCenter(sorted[0]);
             setSortedCenters(sorted);
 
             if (sorted[0]) {
@@ -117,9 +114,8 @@ function SupportCenterMap() {
 
     fetchData();
   }, [navermaps, optionCenter, currentPosition, click]);
-  // 내 위치로 이동
+
   const moveToCurrentPosition = () => {
-    // console.log(currentPosition);
     if (currentPosition) {
       setMapCenter(
         new navermaps.LatLng(

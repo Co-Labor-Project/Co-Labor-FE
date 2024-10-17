@@ -298,7 +298,6 @@ const NoticeApply = () => {
 
 export default NoticeApply;
 
-// 스타일 컴포넌트 정의
 const BaseContainer = styled.div`
   width: 600px;
   margin: 0 auto;

@@ -29,7 +29,7 @@ const CompanyDetails = () => {
     cons: '',
   });
   const [complteAdd, setComplteAdd] = useState(false);
-  // 기업 데이터 변수 처리
+
   const EnterpriseData = companyContext.find(
     (company) => String(company.enterprise_id) === String(params.enterprise_id)
   );
@@ -87,8 +87,7 @@ const CompanyDetails = () => {
   }
 
   const EnterpriseImg = EnterpriseData.imageName
-    ? `${import.meta.env.VITE_SERVER_URL}:8080/static/images/` +
-      EnterpriseData.imageName
+    ? `/api/static/images/` + EnterpriseData.imageName
     : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
 
   const EnterpriseType = EnterpriseData.type || '기업 분류를 작성해주세요!';
