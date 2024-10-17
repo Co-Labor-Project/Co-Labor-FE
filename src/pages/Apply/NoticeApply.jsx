@@ -115,7 +115,7 @@ const NoticeApply = () => {
               <MinButton onClick={() => setPage(page - 1)}>&lt; 이전</MinButton>
             </ButWrapper>
             <InputWrap>
-              <InputText>주소 1</InputText>
+              <InputText>시 / 도</InputText>
               <Input
                 type="text"
                 name="address1"
@@ -125,7 +125,7 @@ const NoticeApply = () => {
               />
             </InputWrap>
             <InputWrap>
-              <InputText>주소 2</InputText>
+              <InputText>시/ 군 / 구</InputText>
               <Input
                 type="text"
                 name="address2"
@@ -135,7 +135,7 @@ const NoticeApply = () => {
               />
             </InputWrap>
             <InputWrap>
-              <InputText>주소 3</InputText>
+              <InputText>상세 주소</InputText>
               <Input
                 type="text"
                 name="address3"

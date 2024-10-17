@@ -37,7 +37,6 @@ const JobNoticeDetailsCenter = () => {
         console.log('job.imageNamejob.imageName', job.imageName);
         const checkImage = async () => {
           const url = `/api/jobs/images/${job.imageName}`;
-
           try {
             const response = await fetch(url);
             if (response.ok) {
