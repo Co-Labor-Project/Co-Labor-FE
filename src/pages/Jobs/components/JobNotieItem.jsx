@@ -93,9 +93,8 @@ const JobNotieItem = ({
           <TextWrapper>
             <TextItem>근무지역 </TextItem>{' '}
             <TextContent>
-              {address1}
-              {address2}
-              {address3}
+              {address1}&nbsp;&nbsp;
+              {address2}&nbsp;&nbsp;
             </TextContent>
           </TextWrapper>
         </Description>
@@ -109,6 +108,7 @@ export default JobNotieItem;
 const BaseContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
   margin: 30px 8px;
   padding: 18px 20px;
@@ -117,7 +117,7 @@ const BaseContainer = styled.div`
   transition: all 0.1s ease-in-out;
   border: 0px solid #58c179;
   cursor: pointer;
-  height: 360px;
+  height: 400px;
   width: 260px;
 
   &:hover {
@@ -159,7 +159,8 @@ const Imgwrapper = styled.div`
 const Img = styled.img`
   border-radius: 12px;
   width: 100%;
-  max-height: 150px;
+  height: 140px;
+  max-height: 140px;
 `;
 const Description = styled.div`
   margin-top: 3px;

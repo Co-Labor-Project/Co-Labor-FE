@@ -236,6 +236,7 @@ const DetailsImg = styled.img`
   max-width: 400px;
   max-height: 400px;
   flex: 1;
+  border-radius: 10px;
 `;
 const SwiperWrapper = styled.div`
   max-width: 800px;

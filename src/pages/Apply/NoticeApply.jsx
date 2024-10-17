@@ -174,7 +174,7 @@ const NoticeApply = () => {
               />
             </InputWrap>
             <InputWrap>
-              <InputText>기업 로고</InputText>
+              <InputText>채용공고 사진</InputText>
               <Input
                 type="file"
                 name="logo"
@@ -182,6 +182,7 @@ const NoticeApply = () => {
                 onChange={handleFileChange}
               />
             </InputWrap>
+            <MinText>▷ 1000KB이하 크기의 사진을 넣어주세요.</MinText>
 
             <Button onClick={() => setPage(page + 1)}>다음</Button>
           </>
@@ -305,7 +306,10 @@ const Form = styled.form`
   gap: 30px;
   width: 100%;
 `;
-
+const MinText = styled.div`
+  font-size: 18px;
+  color: #929292;
+`;
 const InputWrap = styled.div`
   width: 100%;
   display: flex;
