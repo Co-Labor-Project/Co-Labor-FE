@@ -7,15 +7,36 @@ export const onCheckRegiNum = (regiNum, setPage) => {
     })
     .then((res) => {
       console.log(res);
-      if (res.status === 200) {
-        setPage(2); // 사업자 번호 체크 후 2번째 페이지로 이동
+      if (res.data.status === 1) {
+        onMapRegiNum(regiNum, setPage);
       } else {
-        alert('사업자 번호가 확인되지 않았습니다.');
+        alert('🧑‍⚖️ 실제로 존재하지 않는 사업자 번호입니다.');
       }
     })
     .catch((err) => {
       console.log(err);
       alert('사업자 번호 확인에 실패했습니다.');
+    });
+};
+
+const onMapRegiNum = (regiNum, setPage) => {
+  axios
+    .post(`/api/enterprises/map?enterpriseId=${regiNum}`, null, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res);
+      if (res.data.status === 1) {
+        setPage(2);
+      } else if (res.data.status === 0) {
+        alert('❌ 일반 회원은 이용하실 수 없습니다.');
+      } else if (res.data.status === 2) {
+        alert('📌 기업 등록이 이미 완료되어 있습니다.');
+        window.location.href = '/';
+      }
+    })
+    .catch((error) => {
+      console.log('2번째 map error:\n', error.response || error);
     });
 };
 export const submitEnterprise = async (input, logoFile, nav) => {
@@ -38,7 +59,7 @@ export const submitEnterprise = async (input, logoFile, nav) => {
     console.log('기업등록결과: ', response.data);
     if (response.status === 200) {
       alert('기업등록 성공!');
-      nav('/');
+      window.location.href = '/';
     }
   } catch (error) {
     console.error('Error:', error.response);

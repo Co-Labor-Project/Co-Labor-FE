@@ -55,12 +55,13 @@ const CompanyApply = () => {
             <InputWrap>
               <InputText>사업자 등록번호</InputText>
               <Input
-                type="text"
+                type="number"
                 name="enterprise_id"
                 placeholder="Enterprise ID"
                 value={input.enterprise_id}
                 onChange={handleInputChange}
               />
+              <MinText>▷ &apos;-&apos;를 제외한 숫자만 입력해 주세요.</MinText>
             </InputWrap>
 
             <Button
@@ -253,7 +254,10 @@ const TextareaStyled = styled(TextareaAutosize)`
   }
   transition: all 0.3s ease-in-out;
 `;
-
+const MinText = styled.div`
+  font-size: 18px;
+  color: #929292;
+`;
 const ButWrapper = styled.div`
   width: 100;
   display: flex;
