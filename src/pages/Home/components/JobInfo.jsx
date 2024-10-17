@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import useScrollFadeIn from '../../../hooks/fade_in';
 import GoToButton from './GoToButton';
 import { Arrow, ArrowWrapper } from './Arrow';
-import SuuportMap from '../../../assets/suuportMap.gif';
+import GifInfo from '../../../assets/jobInfo.gif';
 
 const JobInfo = ({ onClick }) => {
   return (
@@ -131,7 +131,7 @@ const Example = () => {
   return (
     <div {...fadeInProps}>
       <ExampleContainer>
-        <Img src={SuuportMap} alt="map" />
+        <Img src={GifInfo} alt="map" />
       </ExampleContainer>
     </div>
   );
