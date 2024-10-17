@@ -21,7 +21,7 @@ const MainTitle = ({ onClick }) => {
       });
 
       setCount((prevCount) => prevCount + 1);
-    }, 300);
+    }, 450);
 
     return () => {
       clearInterval(typingInterval);

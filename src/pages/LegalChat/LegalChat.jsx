@@ -20,6 +20,9 @@ const LegalChat = () => {
       navigate('/SingIn');
       alert('이 기능을 사용하려면 로그인이 필요합니다.');
     }
+    console.log(username);
+    console.log(username);
+    console.log(username);
   }, [navigate]);
 
   // 메시지 목록 불러오기

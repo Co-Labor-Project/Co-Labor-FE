@@ -22,104 +22,91 @@ const Contact = () => {
 export default Contact;
 
 const Dohyun = () => {
-  const fadeInProps = useScrollFadeIn('up', 1);
-
   return (
-    <div {...fadeInProps}>
-      <ContentContainer>
-        <Photo $src={DoHyunImg}></Photo>
-        <TextWrapper>
-          <Name>김도현</Name>
-          <Role>프론트엔드</Role>
-        </TextWrapper>
-        <ContactWrapper>
-          <a href="https://github.com/kdhqwe1030">
-            <Icon src="https://skillicons.dev/icons?i=github" />
-          </a>
-          <a href="mailto:kdhqwe1030@gmail.com">
-            <Icon src="https://skillicons.dev/icons?i=gmail" />
-          </a>
-          <a href="https://instagram.com/no_dohyun">
-            <Icon src="https://skillicons.dev/icons?i=instagram" />
-          </a>
-        </ContactWrapper>
-      </ContentContainer>
-    </div>
+    <ContentContainer>
+      <Photo $src={DoHyunImg}></Photo>
+      <TextWrapper>
+        <Name>김도현</Name>
+        <Role>프론트엔드</Role>
+      </TextWrapper>
+      <ContactWrapper>
+        <a href="https://github.com/kdhqwe1030">
+          <Icon src="https://skillicons.dev/icons?i=github" />
+        </a>
+        <a href="mailto:kdhqwe1030@gmail.com">
+          <Icon src="https://skillicons.dev/icons?i=gmail" />
+        </a>
+        <a href="https://instagram.com/no_dohyun">
+          <Icon src="https://skillicons.dev/icons?i=instagram" />
+        </a>
+      </ContactWrapper>
+    </ContentContainer>
   );
 };
 const JunHwa = () => {
-  const fadeInProps = useScrollFadeIn('up', 1);
   return (
-    <div {...fadeInProps}>
-      <ContentContainer>
-        <Photo $src={JunHwaImg}></Photo>
-        <TextWrapper>
-          <Name>조준화</Name>
-          <Role>백엔드 </Role>
-        </TextWrapper>
-        <ContactWrapper>
-          <a href="https://github.com/jjj5306">
-            <Icon src="https://skillicons.dev/icons?i=github" />
-          </a>
-          <a href="mailto:jjj5306@naver.com">
-            <Icon src="https://skillicons.dev/icons?i=gmail" />
-          </a>
-          <a href="https://instagram.com/no_dohyun">
-            <Icon src="https://skillicons.dev/icons?i=instagram" />
-          </a>
-        </ContactWrapper>
-      </ContentContainer>
-    </div>
+    <ContentContainer>
+      <Photo $src={JunHwaImg}></Photo>
+      <TextWrapper>
+        <Name>조준화</Name>
+        <Role>백엔드 </Role>
+      </TextWrapper>
+      <ContactWrapper>
+        <a href="https://github.com/jjj5306">
+          <Icon src="https://skillicons.dev/icons?i=github" />
+        </a>
+        <a href="mailto:jjj5306@naver.com">
+          <Icon src="https://skillicons.dev/icons?i=gmail" />
+        </a>
+        <a href="https://instagram.com/no_dohyun">
+          <Icon src="https://skillicons.dev/icons?i=instagram" />
+        </a>
+      </ContactWrapper>
+    </ContentContainer>
   );
 };
 const HanUl = () => {
-  const fadeInProps = useScrollFadeIn('up', 1);
   return (
-    <div {...fadeInProps}>
-      <ContentContainer>
-        <Photo $src={HanUlImg}></Photo>
-        <TextWrapper>
-          <Name>정한울</Name>
-          <Role>백엔드</Role>
-        </TextWrapper>
-        <ContactWrapper>
-          <a href="https://github.com/jho7535">
-            <Icon src="https://skillicons.dev/icons?i=github" />
-          </a>
-          <a href="mailto:jho7535@naver.com">
-            <Icon src="https://skillicons.dev/icons?i=gmail" />
-          </a>
-          <a href="https://instagram.com/00.08.24_jho">
-            <Icon src="https://skillicons.dev/icons?i=instagram" />
-          </a>
-        </ContactWrapper>
-      </ContentContainer>
-    </div>
+    <ContentContainer>
+      <Photo $src={HanUlImg}></Photo>
+      <TextWrapper>
+        <Name>정한울</Name>
+        <Role>백엔드</Role>
+      </TextWrapper>
+      <ContactWrapper>
+        <a href="https://github.com/jho7535">
+          <Icon src="https://skillicons.dev/icons?i=github" />
+        </a>
+        <a href="mailto:jho7535@naver.com">
+          <Icon src="https://skillicons.dev/icons?i=gmail" />
+        </a>
+        <a href="https://instagram.com/00.08.24_jho">
+          <Icon src="https://skillicons.dev/icons?i=instagram" />
+        </a>
+      </ContactWrapper>
+    </ContentContainer>
   );
 };
 const MoonKi = () => {
-  const fadeInProps = useScrollFadeIn('up', 1);
   return (
-    <div {...fadeInProps}>
-      <ContentContainer>
-        <Photo $src={MoonKiImg}></Photo>
-        <TextWrapper>
-          <Name>김문기</Name>
-          <Role>백엔드</Role>
-        </TextWrapper>
-        <ContactWrapper>
-          <a href="https://github.com/mk-isos">
-            <Icon src="https://skillicons.dev/icons?i=github" />
-          </a>
-          <a href="mailto:mkisos0316@gmail.com">
-            <Icon src="https://skillicons.dev/icons?i=gmail" />
-          </a>
-          <a href="https://www.instagram.com/mk_isos">
-            <Icon src="https://skillicons.dev/icons?i=instagram" />
-          </a>
-        </ContactWrapper>
-      </ContentContainer>
-    </div>
+    <ContentContainer>
+      <Photo $src={MoonKiImg}></Photo>
+      <TextWrapper>
+        <Name>김문기</Name>
+        <Role>백엔드</Role>
+      </TextWrapper>
+      <ContactWrapper>
+        <a href="https://github.com/mk-isos">
+          <Icon src="https://skillicons.dev/icons?i=github" />
+        </a>
+        <a href="mailto:mkisos0316@gmail.com">
+          <Icon src="https://skillicons.dev/icons?i=gmail" />
+        </a>
+        <a href="https://www.instagram.com/mk_isos">
+          <Icon src="https://skillicons.dev/icons?i=instagram" />
+        </a>
+      </ContactWrapper>
+    </ContentContainer>
   );
 };
 const BaseContainer = styled.div`

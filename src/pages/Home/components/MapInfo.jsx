@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import useScrollFadeIn from '../../../hooks/fade_in';
 import GoToButton from './GoToButton';
 import { Arrow, ArrowWrapper } from './Arrow';
+import SuuportMap from '../../../assets/suuportMap.gif';
 
 const MapInfo = ({ onClick }) => {
   return (
@@ -121,7 +122,9 @@ const Example = () => {
 
   return (
     <div {...fadeInProps}>
-      <ExampleContainer></ExampleContainer>
+      <ExampleContainer>
+        <Img src={SuuportMap} alt="map" />
+      </ExampleContainer>
     </div>
   );
 };
@@ -132,4 +135,9 @@ const ExampleContainer = styled.div`
   border-radius: 25px;
   border: 3px solid #333;
   box-shadow: 14px 14px 40px rgba(0, 0, 0, 0.2);
+`;
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
 `;
