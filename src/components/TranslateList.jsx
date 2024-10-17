@@ -92,7 +92,7 @@ const ButtonCotainer = styled.li`
   border-radius: 5px;
   font-size: 14px;
   position: relative;
-  z-index: 100;
+  z-index: 999;
 `;
 
 const LanguageList = styled.ul`
@@ -106,12 +106,11 @@ const LanguageList = styled.ul`
   margin: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100px;
-  z-index: 10;
   height: 80vh;
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 8px;
-  z-index: 200;
+  z-index: 1000;
 `;
 
 const LanguageItem = styled.li`
