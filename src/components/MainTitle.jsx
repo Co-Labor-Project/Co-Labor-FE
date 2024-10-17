@@ -7,6 +7,8 @@ const MainTitle = ({
   addReview,
   isWrite = false,
   isLogin = false,
+  isOwner = false,
+  DeleteNotice,
 }) => {
   const buttonText = isWrite ? '작성 취소' : '리뷰 작성';
   return (
@@ -15,6 +17,11 @@ const MainTitle = ({
       {isReview && isLogin && (
         <AddReview onClick={addReview} $isWrite={isWrite}>
           {buttonText}
+        </AddReview>
+      )}
+      {isOwner && (
+        <AddReview onClick={DeleteNotice} $isWrite={true}>
+          채용공고 삭제
         </AddReview>
       )}
     </Title>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { JobContext, CompanyContext } from '../../App';
+import { JobContext, CompanyContext, LoginContext } from '../../App';
 import JobNotieItem from './components/JobNotieItem';
 import MainTitle from '../../components/MainTitle';
 import styled from 'styled-components';
@@ -9,6 +9,8 @@ import BasicInfo from '../Enterprises/components/BasicInfo';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
+import { whoIsIt } from '../../apis/login';
+import { deleteJobNotice } from '../../apis/Notice';
 const JobNoticeDetailsCenter = () => {
   const params = useParams();
   const contextData = useContext(JobContext);
@@ -20,6 +22,35 @@ const JobNoticeDetailsCenter = () => {
   const [EnterpriseData, setEnterpriseData] = useState(null);
   const [displayJobPhoto, setDisplayJobPhoto] = useState('');
   const [relationData, setRelationData] = useState([]); // relationData 상태 추가
+  const { loginState, setLoginState } = useContext(LoginContext);
+  const [isOwner, setIsOwner] = useState(false);
+
+  useEffect(() => {
+    whoIsIt(setLoginState);
+    console.log('상세 정보', loginState.userEnterprise);
+    const storedUsername = sessionStorage.getItem('username');
+    if (jobData && jobData.enterpriseUser) {
+      console.log(
+        jobData.enterpriseUser.enterprise_user_id,
+        storedUsername,
+        loginState.userEnterprise
+      );
+      if (
+        jobData.enterpriseUser.enterprise_user_id === storedUsername &&
+        loginState.userEnterprise
+      ) {
+        console.log('진입');
+        setIsOwner(true);
+      }
+    }
+  }, [jobData]);
+
+  const DeleteNotice = () => {
+    if (jobData) {
+      console.log('딜리트 온클릭 까지 진입은 함', jobData.job_id);
+      deleteJobNotice({ jobId: jobData.job_id, nav });
+    }
+  };
 
   useEffect(() => {
     const job = contextData.find(
@@ -87,9 +118,7 @@ const JobNoticeDetailsCenter = () => {
   }
 
   const EnterpriseImg = EnterpriseData.imageName
-    ? `${import.meta.env.VITE_SERVER_URL}:443/static/images/${
-        EnterpriseData.imageName
-      }`
+    ? `api/static/images/${EnterpriseData.imageName}`
     : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
 
   const EnterpriseDescripton =
@@ -110,7 +139,11 @@ const JobNoticeDetailsCenter = () => {
         description={EnterpriseDescripton}
       />
 
-      <MainTitle text={jobData.title} />
+      <MainTitle
+        text={jobData.title}
+        isOwner={isOwner}
+        DeleteNotice={DeleteNotice}
+      />
 
       <Container>
         <DetailsImg src={displayJobPhoto} alt={jobData.title} />

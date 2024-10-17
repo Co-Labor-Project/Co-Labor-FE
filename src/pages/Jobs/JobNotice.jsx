@@ -2,20 +2,25 @@ import JobNoticeList from './components/JobNoticeList';
 import MainTitleFilter from '../../components/MainTitleFilter';
 import { BackGroundField } from '../../components/CommonStyled';
 import { CountyOptions } from '../../components/FilterOption';
-import { useEffect, useState, useContext } from 'react';
-import { JobContext } from '../../App';
+import { useEffect, useState } from 'react';
 function JobNotice() {
-  const JobData = useContext(JobContext);
-  console.log(JobData);
+  const [JobData, setJobData] = useState([]);
   const [filteredData, setFilteredData] = useState(JobData);
   const [selected, setSelected] = useState({
     city: '지역',
-    county: '지역 (시/군)', // county 필드를 추가
+    county: '지역 (시/군)',
     counties: CountyOptions['지역'],
     type: '기업 분류',
     task: '',
   });
-
+  useEffect(() => {
+    fetch(`/api/jobs`)
+      .then((response) => response.json())
+      .then((data) => {
+        setJobData(data);
+      })
+      .catch((error) => console.error('Error fetching jobs:', error));
+  }, []);
   useEffect(() => {
     filterData(selected);
   }, [selected, JobData]);

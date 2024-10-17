@@ -12,7 +12,6 @@ export default defineConfig(({ mode }) => {
       proxy: {
         '/api': {
           // 요청 전달 대상 서버 주소 설정
-          // target: `${env.VITE_SERVER_URL}:443`,
           target: `${env.VITE_SERVER_URL}:80`,
           changeOrigin: true,
           // SSL 인증서 검증 무시
