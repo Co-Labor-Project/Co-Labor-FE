@@ -6,6 +6,7 @@ const JobNoticeList = ({
   JobData,
 }) => {
   const jobData = Array.isArray(data) && data.length > 0 ? data : JobData;
+  // console.log(jobData);
   return (
     <>
       {!searchNull.jobs && (

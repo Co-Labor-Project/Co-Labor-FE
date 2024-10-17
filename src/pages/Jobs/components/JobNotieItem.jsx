@@ -14,7 +14,9 @@ const JobNotieItem = ({
   jobRole,
   experience,
   employmentType,
-  location,
+  address1,
+  address2,
+  address3,
   skills,
   deadDate,
 }) => {
@@ -89,7 +91,12 @@ const JobNotieItem = ({
             <TextContent>{employmentType}</TextContent>
           </TextWrapper>
           <TextWrapper>
-            <TextItem>근무지역 </TextItem> <TextContent>{location}</TextContent>
+            <TextItem>근무지역 </TextItem>{' '}
+            <TextContent>
+              {address1}
+              {address2}
+              {address3}
+            </TextContent>
           </TextWrapper>
         </Description>
       </BaseContainer>

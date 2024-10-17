@@ -104,7 +104,7 @@ const JobNoticeDetailsCenter = () => {
         .slice(0, 10);
       setRelationData(filteredData);
     }
-    //console.log('jobData', jobData);
+    // console.log('jobData', jobData);
     //console.log('jobData', jobData);
   }, [jobData, contextData]);
 
@@ -162,7 +162,9 @@ const JobNoticeDetailsCenter = () => {
           </DetailKey>
           <DetailKey>
             <p>근무지역 </p>
-            <span>{jobData.location}</span>
+            <span>
+              {jobData.address1} {jobData.address2} {jobData.address3}
+            </span>
           </DetailKey>
           <DetailKey>
             <p>스킬 </p>
