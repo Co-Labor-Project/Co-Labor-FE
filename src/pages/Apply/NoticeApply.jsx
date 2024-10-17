@@ -76,16 +76,7 @@ const NoticeApply = () => {
                 onChange={handleInputChange}
               />
             </InputWrap>
-            <InputWrap>
-              <InputText>요구 사항</InputText>
-              <Input
-                type="text"
-                name="requirement"
-                placeholder="Requirement"
-                value={input.requirement}
-                onChange={handleInputChange}
-              />
-            </InputWrap>{' '}
+
             <InputWrap>
               <InputText>직무 역할</InputText>
               <Input

@@ -73,7 +73,7 @@ const SingInCenter = () => {
   };
 
   const validatePassword = () => {
-    const passwordRegex = /^[a-zA-Z0-9@$!%*?&]{8,}$/;
+    const passwordRegex = /^[a-zA-Z0-9@$#!%*?&]{8,}$/;
     if (!passwordRegex.test(input.password)) {
       setErrors((prev) => ({
         ...prev,
