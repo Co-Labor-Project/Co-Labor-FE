@@ -27,19 +27,15 @@ const JobNoticeDetailsCenter = () => {
 
   useEffect(() => {
     whoIsIt(setLoginState);
-    console.log('상세 정보', loginState.userEnterprise);
+    //console.log('상세 정보', loginState.userEnterprise);
     const storedUsername = sessionStorage.getItem('username');
     if (jobData && jobData.enterpriseUser) {
-      console.log(
-        jobData.enterpriseUser.enterprise_user_id,
-        storedUsername,
-        loginState.userEnterprise
-      );
+      //console.log(jobData.enterpriseUser.enterprise_user_id,storedUsername,loginState.userEnterprise);
       if (
         jobData.enterpriseUser.enterprise_user_id === storedUsername &&
         loginState.userEnterprise
       ) {
-        console.log('진입');
+        //console.log('진입');
         setIsOwner(true);
       }
     }
@@ -47,7 +43,7 @@ const JobNoticeDetailsCenter = () => {
 
   const DeleteNotice = () => {
     if (jobData) {
-      console.log('딜리트 온클릭 까지 진입은 함', jobData.job_id);
+      //console.log('딜리트 온클릭 까지 진입은 함', jobData.job_id);
       deleteJobNotice({ jobId: jobData.job_id, nav });
     }
   };
@@ -65,7 +61,7 @@ const JobNoticeDetailsCenter = () => {
       setEnterpriseData(company);
 
       if (job.imageName) {
-        console.log('job.imageNamejob.imageName', job.imageName);
+        //console.log('job.imageNamejob.imageName', job.imageName);
         const checkImage = async () => {
           const url = `/api/jobs/images/${job.imageName}`;
           try {
@@ -108,8 +104,8 @@ const JobNoticeDetailsCenter = () => {
         .slice(0, 10);
       setRelationData(filteredData);
     }
-    console.log('jobData', jobData);
-    console.log('jobData', jobData);
+    //console.log('jobData', jobData);
+    //console.log('jobData', jobData);
   }, [jobData, contextData]);
 
   if (!jobData || !EnterpriseData) {

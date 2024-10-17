@@ -58,7 +58,7 @@ const JobNotieItem = ({
   }, [imageName]);
 
   const clickHandler = () => {
-    console.log(job_id);
+    //console.log(job_id);
     if (
       isObjEmpty ||
       parms.keyword === 'undefined' ||

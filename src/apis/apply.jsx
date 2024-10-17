@@ -1,12 +1,12 @@
 import axios from 'axios';
 export const onCheckRegiNum = (regiNum, setPage) => {
-  console.log(regiNum, setPage);
+  //console.log(regiNum, setPage);
   axios
     .get(`/api/enterprises/status?enterpriseId=${regiNum}`, {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res);
+      //console.log(res);
       if (res.data.status === 1) {
         onMapRegiNum(regiNum, setPage);
       } else {
@@ -14,7 +14,7 @@ export const onCheckRegiNum = (regiNum, setPage) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
       alert('사업자 번호 확인에 실패했습니다.');
     });
 };
@@ -25,7 +25,7 @@ const onMapRegiNum = (regiNum, setPage) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res);
+      //console.log(res);
       if (res.data.status === 1) {
         setPage(2);
       } else if (res.data.status === 0) {
@@ -36,7 +36,7 @@ const onMapRegiNum = (regiNum, setPage) => {
       }
     })
     .catch((error) => {
-      console.log('2번째 map error:\n', error.response || error);
+      //console.log('2번째 map error:\n', error.response || error);
     });
 };
 export const submitEnterprise = async (input, logoFile, nav) => {
@@ -56,7 +56,7 @@ export const submitEnterprise = async (input, logoFile, nav) => {
       withCredentials: true,
     });
 
-    console.log('기업등록결과: ', response.data);
+    //console.log('기업등록결과: ', response.data);
     if (response.status === 200) {
       alert('기업등록 성공!');
       window.location.href = '/';
@@ -111,7 +111,7 @@ export const submitNotice = async (input, logoFile, nav) => {
       withCredentials: true,
     });
 
-    console.log('채용공고 등록결과: ', response.data);
+    //console.log('채용공고 등록결과: ', response.data);
     if (response.status === 200) {
       alert('채용 공고 등록 성공!');
       window.location.href = '/';

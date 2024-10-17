@@ -11,7 +11,7 @@ import FilterArrow from '../assets/icon/arrow-down-grey-filter.svg';
 
 const FilterBar = ({ selected, setSelected, handleChange, ifJob }) => {
   useEffect(() => {
-    console.log('Updated selected:', selected);
+    //console.log('Updated selected:', selected);
   }, [selected]);
 
   const onClear = () => {

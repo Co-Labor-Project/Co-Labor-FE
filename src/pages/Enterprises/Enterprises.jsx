@@ -7,7 +7,7 @@ import { CompanyContext } from '../../App';
 
 function Company() {
   const EnterprisesData = useContext(CompanyContext);
-  console.log(EnterprisesData);
+  //console.log(EnterprisesData);
   const [filteredData, setFilteredData] = useState(EnterprisesData);
   const [selected, setSelected] = useState({
     city: '지역',

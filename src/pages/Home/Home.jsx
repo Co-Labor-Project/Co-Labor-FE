@@ -42,7 +42,7 @@ const Home = () => {
   }, [handleScroll]);
 
   const handleClickNext = () => {
-    console.log('내려가짐');
+    //console.log('내려가짐');
     if (page < lastPage) {
       setPage((prevPage) => Math.min(prevPage + 1, lastPage));
     }

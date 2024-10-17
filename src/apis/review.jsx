@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const addReview = (reviewAdd, setWrite, setComplteAdd) => {
-  console.log('reviewAdd 요청 전', reviewAdd);
+  //console.log('reviewAdd 요청 전', reviewAdd);
   axios
     .post(`/api/reviews/${reviewAdd.enterpriseId}`, reviewAdd, {
       headers: {
@@ -11,12 +11,12 @@ export const addReview = (reviewAdd, setWrite, setComplteAdd) => {
     })
     .then((response) => {
       alert('리뷰 등록완료!');
-      console.log('리뷰 등록 response:', response);
+      //console.log('리뷰 등록 response:', response);
       setWrite(false);
 
       setComplteAdd(true);
       setTimeout(() => setComplteAdd(false), 1000);
-      console.log('리뷰 등록 response:', response);
+      //console.log('리뷰 등록 response:', response);
     })
 
     .catch((error) => {

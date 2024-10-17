@@ -45,7 +45,7 @@ const NoticeApply = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setInput((prevInput) => ({ ...prevInput, [name]: value }));
-    console.log(input);
+    //console.log(input);
   };
 
   const handleFileChange = (e) => {
@@ -57,7 +57,7 @@ const NoticeApply = () => {
     const requestData = {
       ...input,
     };
-    console.log('최종 나가는 Data', requestData);
+    //console.log('최종 나가는 Data', requestData);
     submitNotice(requestData, logoFile, nav);
   };
 

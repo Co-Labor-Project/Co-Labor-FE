@@ -5,7 +5,7 @@ export const deleteJobNotice = ({ jobId, nav }) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log('삭제 성공:', res.data);
+      //console.log('삭제 성공:', res.data);
       nav('/jobNotice');
     })
     .catch((err) => {

@@ -17,7 +17,7 @@ const Header = () => {
 
   const changeInput = (e) => {
     setSearchKeyword(e.target.value);
-    console.log(loginState);
+    //console.log(loginState);
   };
 
   const searchHandler = () => {
@@ -27,7 +27,7 @@ const Header = () => {
       nav(`/search/${searchKeyword}`);
       setSearchKeyword(''); // 검색 후 입력값 초기화
     }
-    console.log(loginState);
+    //console.log(loginState);
   };
 
   const keyHandler = (e) => {

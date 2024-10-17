@@ -12,7 +12,7 @@ export const onLogin = (Loginusername, Loginpassword, setLoginState) => {
     )
     .then((response) => {
       const result = response.data;
-      console.log('로그인 결과: ', result);
+      //console.log('로그인 결과: ', result);
 
       if (result.message === 'Login successful') {
         whoIsIt(setLoginState);
@@ -66,7 +66,7 @@ export const whoIsIt = (setLoginState) => {
         return;
       }
 
-      // console.log('resres', res.data);
+      // //console.log('resres', res.data);
       sessionStorage.setItem('username', res.data.username);
       sessionStorage.setItem('userType', res.data.userType);
       if (res.data.userType === 'enterprise_user') {

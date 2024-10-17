@@ -28,7 +28,7 @@ function SupportCenterMap() {
 
   useEffect(() => {
     if (!navermaps) {
-      console.log('navermaps 객체가 아직 로드되지 않았습니다.');
+      //console.log('navermaps 객체가 아직 로드되지 않았습니다.');
       return;
     }
 
@@ -60,7 +60,7 @@ function SupportCenterMap() {
           })
           .then((response) => {
             setCenters(response.data);
-            console.log('병원 데이터:', response.data);
+            //console.log('병원 데이터:', response.data);
 
             const sorted = [...response.data]
               .sort((a, b) => {
@@ -87,7 +87,7 @@ function SupportCenterMap() {
           .get('/api/support-centers/all')
           .then((response) => {
             setCenters(response.data);
-            console.log('지원센터 데이터:', response.data);
+            //console.log('지원센터 데이터:', response.data);
 
             const sorted = [...response.data]
               .sort((a, b) => {
