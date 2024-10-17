@@ -150,9 +150,9 @@ const Imgwrapper = styled.div`
   align-items: center;
 `;
 const Img = styled.img`
-  border-radius: 15px;
-  width: 150px;
-  height: 126px;
+  border-radius: 12px;
+  width: 100%;
+  max-height: 150px;
 `;
 const Description = styled.div`
   margin-top: 3px;
