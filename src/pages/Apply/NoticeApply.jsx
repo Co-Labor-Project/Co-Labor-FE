@@ -163,12 +163,13 @@ const NoticeApply = () => {
               />
             </InputWrap>
             <InputWrap>
-              <InputText>기업 로고</InputText>
+              <InputText>기술 / 스킬</InputText>
               <Input
-                type="file"
-                name="logo"
-                accept="image/*"
-                onChange={handleFileChange}
+                type="text"
+                name="skills"
+                placeholder="skills"
+                value={input.skills}
+                onChange={handleInputChange}
               />
             </InputWrap>
             <InputWrap>
@@ -181,6 +182,16 @@ const NoticeApply = () => {
                 onChange={handleInputChange}
               />
             </InputWrap>
+            <InputWrap>
+              <InputText>기업 로고</InputText>
+              <Input
+                type="file"
+                name="logo"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+            </InputWrap>
+
             <Button onClick={() => setPage(page + 1)}>다음</Button>
           </>
         )}
@@ -374,6 +385,7 @@ const MinButton = styled.button`
 
 const Button = styled.button`
   margin-top: 20px;
+  margin-bottom: 40px;
   width: 100%;
   height: 40px;
   background-color: white;

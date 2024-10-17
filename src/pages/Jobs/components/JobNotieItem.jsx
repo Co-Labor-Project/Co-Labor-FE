@@ -33,9 +33,7 @@ const JobNotieItem = ({
         return;
       }
 
-      const url = `${
-        import.meta.env.VITE_SERVER_URL
-      }:8080/static/images/${imageName}`;
+      const url = `/api/jobs/images/${imageName}`;
       try {
         const response = await fetch(url);
         if (response.ok) {

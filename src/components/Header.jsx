@@ -36,29 +36,6 @@ const Header = () => {
     }
   };
 
-  const handleJobNoticeApply = async () => {
-    try {
-      const response1 = await fetch(
-        `api/auth/hasEnterprise?username=${sessionStorage.getItem('username')}`,
-        {
-          method: 'GET',
-          credentials: 'include', // 세션 쿠키 포함
-        }
-      );
-
-      const hasEnterprise = await response1.json();
-
-      if (!hasEnterprise) {
-        alert('기업 등록을 먼저 해주세요!');
-        nav('/');
-      } else {
-        nav('/JobNoticeApply');
-      }
-    } catch (error) {
-      console.error('Error checking enterprise:', error);
-    }
-  };
-
   // 다른 요소를 클릭할 때 searchKeyword 초기화
   const handleNavigation = (path) => {
     setSearchKeyword(''); // 입력값 초기화
@@ -96,7 +73,7 @@ const Header = () => {
 
       <RightWrapper>
         {loginState.userEnterprise && (
-          <ApplyButton onClick={handleJobNoticeApply} $Apply={true}>
+          <ApplyButton onClick={() => nav('/JobNoticeApply')} $Apply={true}>
             채용공고 등록
           </ApplyButton>
         )}

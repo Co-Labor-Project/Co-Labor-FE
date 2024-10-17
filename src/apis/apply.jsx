@@ -97,7 +97,7 @@ export const submitNotice = async (input, logoFile, nav) => {
       // nav('/'); // 등록 성공 시 메인 페이지로 이동
     }
   } catch (error) {
-    console.error('Error:', error.response);
-    alert('채용 공고 등록 실패!');
+    // console.error('Error:', error.response);
+    alert('기업등록을 먼저 해주세요!');
   }
 };

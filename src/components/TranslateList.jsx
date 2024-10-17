@@ -27,6 +27,7 @@ const GoogleTranslate = () => {
       document.body.removeChild(addGoogleTranslateScript);
     };
   }, []);
+
   // 스크롤 이벤를 home요소에서 상속 안 받으며, 상위 요소로 전파 방지
   const handleWheel = (e) => {
     e.stopPropagation();

@@ -34,10 +34,10 @@ const JobNoticeDetailsCenter = () => {
       setEnterpriseData(company);
 
       if (job.imageName) {
+        console.log('job.imageNamejob.imageName', job.imageName);
         const checkImage = async () => {
-          const url = `${import.meta.env.VITE_SERVER_URL}:8080/static/images/${
-            job.imageName
-          }`;
+          const url = `/api/jobs/images/${job.imageName}`;
+
           try {
             const response = await fetch(url);
             if (response.ok) {
@@ -54,7 +54,7 @@ const JobNoticeDetailsCenter = () => {
               }
             }
           } catch (error) {
-            console.error('Error fetching image:', error);
+            // console.error('Error fetching image:', error);
             setDisplayJobPhoto(
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s'
             );
@@ -78,9 +78,9 @@ const JobNoticeDetailsCenter = () => {
         .filter((item) => item.jobRole === jobData.jobRole)
         .slice(0, 10);
       setRelationData(filteredData); // relationData 업데이트
-      console.log('relationData', relationData);
-      console.log('relationData', relationData);
     }
+    console.log('jobData', jobData);
+    console.log('jobData', jobData);
   }, [jobData, contextData]); // jobData 또는 EnterpriseData가 변경될 때마다 실행
 
   if (!jobData || !EnterpriseData) {
@@ -88,7 +88,7 @@ const JobNoticeDetailsCenter = () => {
   }
 
   const EnterpriseImg = EnterpriseData.imageName
-    ? `${import.meta.env.VITE_SERVER_URL}:8080/static/images/${
+    ? `${import.meta.env.VITE_SERVER_URL}:443/static/images/${
         EnterpriseData.imageName
       }`
     : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';

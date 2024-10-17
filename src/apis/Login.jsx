@@ -61,7 +61,7 @@ export const whoIsIt = (setLoginState) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log('resres', res.data);
+      // console.log('resres', res.data);
       sessionStorage.setItem('username', res.data.username);
       sessionStorage.setItem('userType', res.data.userType);
       if (res.data.userType === 'enterprise_user') {
