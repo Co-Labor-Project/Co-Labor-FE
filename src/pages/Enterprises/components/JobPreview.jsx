@@ -18,7 +18,7 @@ const JobPreview = () => {
   const nav = useNavigate();
   const JobImgName = (job) =>
     job.imageName
-      ? `${import.meta.env.VITE_SERVER_URL}:8080/static/images/` + job.imageName
+      ? `/api/jobs/images/${job.imageName}`
       : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s';
 
   return (

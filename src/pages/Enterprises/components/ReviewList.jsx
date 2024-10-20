@@ -1,5 +1,5 @@
 import React from 'react';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ReviewContext } from '../../../App';
@@ -7,14 +7,23 @@ import { ReviewContext } from '../../../App';
 import styled from 'styled-components';
 import ReviewItem from './ReviewItem';
 
-const ReviewList = () => {
+const ReviewList = ({ complteAdd }) => {
   const params = useParams();
-
-  const reviewContext = useContext(ReviewContext);
-  const reviewData = reviewContext.filter(
-    (review) =>
-      String(review.enterprise.enterprise_id) === String(params.enterprise_id)
-  );
+  const [reviewData, setReviewData] = useState([]);
+  useEffect(() => {
+    fetch('/api/reviews/all')
+      .then((response) => response.json())
+      .then((data) =>
+        setReviewData(
+          data.filter(
+            (review) =>
+              String(review.enterprise.enterprise_id) ===
+              String(params.enterprise_id)
+          )
+        )
+      )
+      .catch((error) => console.error('Error fetching reviews:', error));
+  }, [complteAdd, params.enterprise_id]);
 
   return (
     <BaseContiner>

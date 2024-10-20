@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import useEmpty from '../../../hooks/useEmpty';
-import { FadeInContainer } from '../../../component/FadeIn';
+import { FadeInContainer } from '../../../components/FadeIn';
 
 const EnterpriseItem = ({
   photo,
@@ -15,9 +15,8 @@ const EnterpriseItem = ({
   const nav = useNavigate();
   const parms = useParams();
   const isObjEmpty = useEmpty(parms);
-
   if (!photo) {
-    photo = 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
+    photo = 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png'; //회사 아이콘 제작자: xnimrodx - Flaticon
   }
 
   const clickHandler = () => {

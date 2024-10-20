@@ -3,6 +3,7 @@ import './SingInCenter.css';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../../App';
 import axios from 'axios';
+import { onLogin, signUp } from '../../../apis/login';
 
 const SingInCenter = () => {
   const { loginState, setLoginState } = useContext(LoginContext);
@@ -18,20 +19,86 @@ const SingInCenter = () => {
   });
   const [Loginusername, setUsername] = useState('');
   const [Loginpassword, setPassword] = useState('');
+  const [errors, setErrors] = useState({
+    username: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
+    name: '',
+  });
 
+  const [isValid, setIsValid] = useState({
+    username: true,
+    email: true,
+    password: true,
+    passwordConfirm: true,
+    name: true,
+  });
   useEffect(() => {
-    // console.log("Login state changed:", loginState);
     if (loginState.userLogin || loginState.userEnterprise) {
       nav('/');
     }
   }, [loginState, nav]);
 
-  // useEffect(() => {
-  //   const savedUsername = sessionStorage.getItem("username");
-  //   if (savedUsername) {
-  //     setLoginState({ userLogin: true });
-  //   }
-  // }, [setLoginState]);
+  const validateUsername = () => {
+    const usernameRegex = /^[a-zA-Z0-9]{4,}$/;
+
+    if (input.username.trim() === '') {
+      setErrors((prev) => ({ ...prev, username: 'userName을 입력해주세요.' }));
+      setIsValid((prev) => ({ ...prev, username: false }));
+    } else if (!usernameRegex.test(input.username)) {
+      setErrors((prev) => ({
+        ...prev,
+        username: 'userName는 영어와 숫자로 4글자 이상 입력 가능합니다.',
+      }));
+      setIsValid((prev) => ({ ...prev, username: false }));
+    } else {
+      setErrors((prev) => ({ ...prev, username: '' }));
+      setIsValid((prev) => ({ ...prev, username: true }));
+    }
+  };
+
+  const validateEmail = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(input.email)) {
+      setErrors((prev) => ({
+        ...prev,
+        email: '올바른 이메일 형식이 아닙니다.',
+      }));
+      setIsValid((prev) => ({ ...prev, email: false }));
+    } else {
+      setErrors((prev) => ({ ...prev, email: '' }));
+      setIsValid((prev) => ({ ...prev, email: true }));
+    }
+  };
+
+  const validatePassword = () => {
+    const passwordRegex = /^[a-zA-Z0-9@$#!%*?&]{8,}$/;
+    if (!passwordRegex.test(input.password)) {
+      setErrors((prev) => ({
+        ...prev,
+        password:
+          '비밀번호는 8자 이상, 영어, 숫자, 특수문자를 포함해야 합니다.',
+      }));
+      setIsValid((prev) => ({ ...prev, password: false }));
+    } else {
+      setErrors((prev) => ({ ...prev, password: '' }));
+      setIsValid((prev) => ({ ...prev, password: true }));
+    }
+  };
+
+  const validatePasswordConfirm = () => {
+    if (input.password !== input.passwordConfirm) {
+      setErrors((prev) => ({
+        ...prev,
+        passwordConfirm: '비밀번호가 일치하지 않습니다.',
+      }));
+      setIsValid((prev) => ({ ...prev, passwordConfirm: false }));
+    } else {
+      setErrors((prev) => ({ ...prev, passwordConfirm: '' }));
+      setIsValid((prev) => ({ ...prev, passwordConfirm: true }));
+    }
+  };
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
@@ -49,54 +116,6 @@ const SingInCenter = () => {
     setPassword(e.target.value);
   };
 
-  const onLogin = () => {
-    // console.log(Loginusername, Loginpassword);
-    axios
-      .post(
-        `/api/auth/login?username=${Loginusername}&password=${Loginpassword}`,
-        {},
-        { withCredentials: true }
-      )
-      .then((response) => {
-        const result = response.data;
-        console.log('로그인결과: ', result);
-        console.log('재배포 2트', result);
-
-        if (result.message === 'Login successful') {
-          sessionStorage.setItem('username', Loginusername);
-          sessionStorage.setItem('userType', result.userType);
-          alert('로그인 성공!');
-          // console.log(document.cookie);
-          if (result.userType === 'enterprise') {
-            setLoginState({ userEnterprise: true, userLogin: false });
-          } else {
-            setLoginState({ userLogin: true, userEnterprise: false });
-          }
-        } else {
-          throw new Error('로그인 실패');
-        }
-      })
-      // .catch((error) => {
-      //   console.error('Error:', error);
-      //   alert('로그인 실패!');
-      // });
-      .catch((error) => {
-        if (error.response) {
-          // 서버가 응답했지만 상태 코드가 2xx가 아님
-          console.error('서버 응답 오류:', error.response.data);
-          console.error('응답 상태 코드:', error.response.status);
-          console.error('응답 헤더:', error.response.headers);
-        } else if (error.request) {
-          // 요청이 전송되었으나 응답을 받지 못함
-          console.error('요청 전송 실패:', error.request);
-        } else {
-          // 요청 설정 중에 발생한 오류
-          console.error('요청 오류:', error.message);
-        }
-        console.error('전체 오류 정보:', error.config);
-      });
-  };
-
   const onsubmit = () => {
     if (input.password !== input.passwordConfirm) {
       alert('패스워드가 일치하지 않습니다.');
@@ -105,29 +124,8 @@ const SingInCenter = () => {
     const url = input.isEnterprise
       ? '/api/auth/signup-enterprise'
       : '/api/auth/signup-labor';
-    // console.log("패스워드 일치 후 요청 보내기");
     const json = JSON.stringify(input);
-    signUp(json, url);
-  };
-
-  const signUp = (json, url) => {
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: json,
-      credentials: 'include',
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        // console.log("회원가입결과: ", result);
-        if (!alert('회원가입 성공!')) nav('/');
-      })
-      .catch((error) => {
-        // console.error("Error:", error);
-        alert('회원가입 실패!');
-      });
+    signUp(json, url, nav);
   };
 
   const toggle = () => {
@@ -136,7 +134,11 @@ const SingInCenter = () => {
       containerRef.current.classList.toggle('sign-up');
     }
   };
-
+  const keyHandler = (e) => {
+    if (e.keyCode === 13) {
+      onLogin(Loginusername, Loginpassword, setLoginState);
+    }
+  };
   useEffect(() => {
     if (containerRef.current) {
       setTimeout(() => {
@@ -152,6 +154,21 @@ const SingInCenter = () => {
           <div className="col align-items-center flex-col sign-up">
             <div className="form-wrapper align-items-center">
               <div id="signup-form" className="form sign-up">
+                <div className="error-messages">
+                  {errors.username && (
+                    <div style={{ color: 'red' }}>{errors.username}</div>
+                  )}
+                  {errors.email && (
+                    <div style={{ color: 'red' }}>{errors.email}</div>
+                  )}
+
+                  {errors.password && (
+                    <div style={{ color: 'red' }}>{errors.password}</div>
+                  )}
+                  {errors.passwordConfirm && (
+                    <div style={{ color: 'red' }}>{errors.passwordConfirm}</div>
+                  )}
+                </div>
                 <div className="input-group">
                   <i className="bx bxs-user"></i>
                   <input
@@ -160,6 +177,8 @@ const SingInCenter = () => {
                     placeholder="Username"
                     value={input.username}
                     onChange={onChangeInput}
+                    onBlur={validateUsername}
+                    className={isValid.username ? '' : 'invalid-input'}
                   />
                 </div>
                 <div className="input-group">
@@ -170,6 +189,8 @@ const SingInCenter = () => {
                     placeholder="Email"
                     value={input.email}
                     onChange={onChangeInput}
+                    onBlur={validateEmail}
+                    className={isValid.email ? '' : 'invalid-input'}
                   />
                 </div>
                 <div className="input-group">
@@ -180,6 +201,8 @@ const SingInCenter = () => {
                     placeholder="Password"
                     value={input.password}
                     onChange={onChangeInput}
+                    onBlur={validatePassword}
+                    className={isValid.password ? '' : 'invalid-input'}
                   />
                 </div>
                 <div className="input-group">
@@ -190,6 +213,8 @@ const SingInCenter = () => {
                     placeholder="Confirm password"
                     value={input.passwordConfirm}
                     onChange={onChangeInput}
+                    onBlur={validatePasswordConfirm}
+                    className={isValid.passwordConfirm ? '' : 'invalid-input'}
                   />
                 </div>
                 <div className="input-group">
@@ -215,14 +240,13 @@ const SingInCenter = () => {
                 </div>
                 <button
                   onClick={() => {
-                    // console.log(input);
                     onsubmit();
                   }}
                 >
                   Sign up
                 </button>
                 <p>
-                  <span>Already have an account?</span>
+                  <span>Already have an account? &nbsp;&nbsp;&nbsp;&nbsp;</span>
                   <b onClick={toggle} className="pointer">
                     Sign in here
                   </b>
@@ -249,16 +273,22 @@ const SingInCenter = () => {
                     name="password"
                     placeholder="Password"
                     onChange={onChangePassword}
+                    onKeyDown={keyHandler}
                   />
                 </div>
-                <button type="submit" onClick={onLogin}>
+                <button
+                  type="submit"
+                  onClick={() =>
+                    onLogin(Loginusername, Loginpassword, setLoginState)
+                  }
+                >
                   Sign in
                 </button>
+
                 <p>
-                  <b>Forgot password?</b>
-                </p>
-                <p>
-                  <span>Don&apos;t have an account?</span>
+                  <span>
+                    Don&apos;t have an account? &nbsp;&nbsp;&nbsp;&nbsp;
+                  </span>
                   <b onClick={toggle} className="pointer">
                     Sign up here
                   </b>
@@ -270,7 +300,7 @@ const SingInCenter = () => {
         <div className="row content-row">
           <div className="col align-items-center flex-col">
             <div className="text sign-in">
-              <h2>Co Labor</h2>
+              <h2 className="notranslate">Co Labor</h2>
             </div>
             <div className="img sign-in"></div>
           </div>

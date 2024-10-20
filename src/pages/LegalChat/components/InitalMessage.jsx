@@ -3,20 +3,29 @@ import {
   LoadingText,
   LoadingSpinner,
   LoadingWrapper,
-} from '../../../component/CommonStyled';
+} from '../../../components/CommonStyled';
 import styled from 'styled-components';
 
-const InitalMessage = ({ messages, loading, isSending, onSendMessage }) => {
+const InitalMessage = ({
+  messages,
+  loading,
+  isSending,
+  onSendMessage,
+  username,
+}) => {
   const [message, setMessage] = useState('');
+  const [localIsSending, setLocalIsSending] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!isSending) {
-      // 메시지 전송 중에는 중복 전송 방지
+    if (!localIsSending && message.trim()) {
+      setLocalIsSending(true);
       onSendMessage(message);
       setMessage('');
+      setLocalIsSending(false);
     }
   };
+
   return (
     <BaseContainer onSubmit={handleSubmit}>
       {loading ? (
@@ -32,10 +41,10 @@ const InitalMessage = ({ messages, loading, isSending, onSendMessage }) => {
               type="text"
               value={message}
               onChange={(event) => setMessage(event.target.value)}
-              disabled={isSending} // 전송 중일 때 입력 비활성화
-            ></InputPrompt>
-            <SendButton type="submit" disabled={isSending}>
-              {isSending ? 'Sending...' : '→'} {/* 전송 중 상태 표시 */}
+              disabled={localIsSending}
+            />
+            <SendButton type="submit" disabled={localIsSending}>
+              {localIsSending ? 'Sending...' : '→'}
             </SendButton>
           </InputWrapper>
         </Container>
@@ -45,7 +54,8 @@ const InitalMessage = ({ messages, loading, isSending, onSendMessage }) => {
 };
 
 export default InitalMessage;
-const BaseContainer = styled.div`
+
+const BaseContainer = styled.form`
   height: 100%;
 `;
 

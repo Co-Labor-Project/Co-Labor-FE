@@ -19,10 +19,10 @@ const MessageSend = ({ onSendMessage, isSending }) => {
         type="text"
         value={message}
         onChange={(event) => setMessage(event.target.value)}
-        disabled={isSending} // 전송 중일 때 입력 비활성화
+        disabled={isSending}
       ></InputPrompt>
       <SendButton type="submit" disabled={isSending}>
-        {isSending ? 'Sending...' : '→'} {/* 전송 중 상태 표시 */}
+        {isSending ? 'Sending...' : '→'}
       </SendButton>
     </BaseContainer>
   );

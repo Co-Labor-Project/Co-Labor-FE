@@ -3,7 +3,7 @@ import useScrollFadeIn from '../../../hooks/fade_in';
 import { useNavigate, useParams } from 'react-router-dom';
 import useEmpty from '../../../hooks/useEmpty';
 import styled from 'styled-components';
-import { FadeInContainer } from '../../../component/FadeIn';
+import { FadeInContainer } from '../../../components/FadeIn';
 
 const JobNotieItem = ({
   imageName,
@@ -14,7 +14,9 @@ const JobNotieItem = ({
   jobRole,
   experience,
   employmentType,
-  location,
+  address1,
+  address2,
+  address3,
   skills,
   deadDate,
 }) => {
@@ -33,9 +35,7 @@ const JobNotieItem = ({
         return;
       }
 
-      const url = `${
-        import.meta.env.VITE_SERVER_URL
-      }:8080/static/images/${imageName}`;
+      const url = `/api/jobs/images/${imageName}`;
       try {
         const response = await fetch(url);
         if (response.ok) {
@@ -60,7 +60,7 @@ const JobNotieItem = ({
   }, [imageName]);
 
   const clickHandler = () => {
-    console.log(job_id);
+    //console.log(job_id);
     if (
       isObjEmpty ||
       parms.keyword === 'undefined' ||
@@ -91,7 +91,11 @@ const JobNotieItem = ({
             <TextContent>{employmentType}</TextContent>
           </TextWrapper>
           <TextWrapper>
-            <TextItem>근무지역 </TextItem> <TextContent>{location}</TextContent>
+            <TextItem>근무지역 </TextItem>{' '}
+            <TextContent>
+              {address1}&nbsp;&nbsp;
+              {address2}&nbsp;&nbsp;
+            </TextContent>
           </TextWrapper>
         </Description>
       </BaseContainer>
@@ -104,6 +108,7 @@ export default JobNotieItem;
 const BaseContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
   margin: 30px 8px;
   padding: 18px 20px;
@@ -112,7 +117,7 @@ const BaseContainer = styled.div`
   transition: all 0.1s ease-in-out;
   border: 0px solid #58c179;
   cursor: pointer;
-  height: 360px;
+  height: 400px;
   width: 260px;
 
   &:hover {
@@ -152,9 +157,10 @@ const Imgwrapper = styled.div`
   align-items: center;
 `;
 const Img = styled.img`
-  border-radius: 15px;
-  width: 150px;
-  height: 126px;
+  border-radius: 12px;
+  width: 100%;
+  height: 140px;
+  max-height: 140px;
 `;
 const Description = styled.div`
   margin-top: 3px;

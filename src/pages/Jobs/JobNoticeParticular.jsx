@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { JobContext, CompanyContext } from '../../App';
+import { JobContext, CompanyContext, LoginContext } from '../../App';
 import JobNotieItem from './components/JobNotieItem';
-import MainTitle from '../../component/MainTitle';
+import MainTitle from '../../components/MainTitle';
 import styled from 'styled-components';
-import { BackGroundField } from '../../component/CommonStyled';
+import { BackGroundField } from '../../components/CommonStyled';
 import BasicInfo from '../Enterprises/components/BasicInfo';
-
+import { Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
+import { whoIsIt } from '../../apis/login';
+import { deleteJobNotice } from '../../apis/Notice';
 const JobNoticeDetailsCenter = () => {
   const params = useParams();
   const contextData = useContext(JobContext);
@@ -17,6 +21,32 @@ const JobNoticeDetailsCenter = () => {
   const [jobData, setJobData] = useState(null);
   const [EnterpriseData, setEnterpriseData] = useState(null);
   const [displayJobPhoto, setDisplayJobPhoto] = useState('');
+  const [relationData, setRelationData] = useState([]);
+  const { loginState, setLoginState } = useContext(LoginContext);
+  const [isOwner, setIsOwner] = useState(false);
+
+  useEffect(() => {
+    whoIsIt(setLoginState);
+    //console.log('상세 정보', loginState.userEnterprise);
+    const storedUsername = sessionStorage.getItem('username');
+    if (jobData && jobData.enterpriseUser) {
+      //console.log(jobData.enterpriseUser.enterprise_user_id,storedUsername,loginState.userEnterprise);
+      if (
+        jobData.enterpriseUser.enterprise_user_id === storedUsername &&
+        loginState.userEnterprise
+      ) {
+        //console.log('진입');
+        setIsOwner(true);
+      }
+    }
+  }, [jobData]);
+
+  const DeleteNotice = () => {
+    if (jobData) {
+      //console.log('딜리트 온클릭 까지 진입은 함', jobData.job_id);
+      deleteJobNotice({ jobId: jobData.job_id, nav });
+    }
+  };
 
   useEffect(() => {
     const job = contextData.find(
@@ -31,10 +61,9 @@ const JobNoticeDetailsCenter = () => {
       setEnterpriseData(company);
 
       if (job.imageName) {
+        //console.log('job.imageNamejob.imageName', job.imageName);
         const checkImage = async () => {
-          const url = `${import.meta.env.VITE_SERVER_URL}:8080/static/images/${
-            job.imageName
-          }`;
+          const url = `/api/jobs/images/${job.imageName}`;
           try {
             const response = await fetch(url);
             if (response.ok) {
@@ -51,14 +80,14 @@ const JobNoticeDetailsCenter = () => {
               }
             }
           } catch (error) {
-            console.error('Error fetching image:', error);
+            // console.error('Error fetching image:', error);
             setDisplayJobPhoto(
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Gn8yBWZsQEVzdXIx-qFWrYYlphEWWnG4Og&s'
             );
           }
         };
 
-        setDisplayJobPhoto(''); // 초기화하여 이전 이미지가 남지 않도록 함
+        setDisplayJobPhoto('');
         checkImage();
       } else {
         setDisplayJobPhoto(
@@ -68,50 +97,29 @@ const JobNoticeDetailsCenter = () => {
     }
   }, [jobId, contextData, companyContext]);
 
+  useEffect(() => {
+    if (jobData) {
+      const filteredData = contextData
+        .filter((item) => item.jobRole === jobData.jobRole)
+        .slice(0, 10);
+      setRelationData(filteredData);
+    }
+    // console.log('jobData', jobData);
+    //console.log('jobData', jobData);
+  }, [jobData, contextData]);
+
   if (!jobData || !EnterpriseData) {
     return <div>Loading</div>;
   }
 
   const EnterpriseImg = EnterpriseData.imageName
-    ? `${import.meta.env.VITE_SERVER_URL}:8080/static/images/${
-        EnterpriseData.imageName
-      }`
+    ? `api/static/images/${EnterpriseData.imageName}`
     : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
-
-  const EnterpriseType = EnterpriseData.type || '기업 분류를 작성해주세요!';
 
   const EnterpriseDescripton =
     EnterpriseData.description || '기업 설명을 작성해주세요!';
-  const highlightWords = [
-    '우대사항',
-    '채용 절차',
-    '자격 요건',
-    '채용절차 ',
-    ' 간편 접수',
-    '1차 인터뷰',
-    '2차 인터뷰',
-    '최종합격 ',
-    '업무환경 ',
-    '복지혜택 ',
-    '핵심업무 ',
-    '조직 소개',
-    '팀 메시지',
-    '복지혜택',
-    '복지 및 혜택',
-    '핵심업무',
-  ];
 
-  const applyHighlighting = (text) => {
-    if (!text) return ''; // description이 null 또는 undefined인 경우 빈 문자열 반환
-    let highlightedText = text;
-    highlightWords.forEach((word) => {
-      const regex = new RegExp(word, 'g');
-      highlightedText = highlightedText.replace(regex, `<b>${word}</b>`);
-    });
-    return highlightedText;
-  };
-  const descriptionWithHighlights = applyHighlighting(jobData.description);
-
+  const description = jobData.description || '';
   return (
     <BackGroundField>
       <MainTitle text={EnterpriseData.name} />
@@ -122,11 +130,15 @@ const JobNoticeDetailsCenter = () => {
         address2={EnterpriseData.address2}
         address3={EnterpriseData.address3}
         phone_number={EnterpriseData.phone_number}
-        type={EnterpriseType}
+        type={EnterpriseData.type || '기업 분류를 작성해주세요!'}
         description={EnterpriseDescripton}
       />
 
-      <MainTitle text={jobData.title} />
+      <MainTitle
+        text={jobData.title}
+        isOwner={isOwner}
+        DeleteNotice={DeleteNotice}
+      />
 
       <Container>
         <DetailsImg src={displayJobPhoto} alt={jobData.title} />
@@ -150,7 +162,9 @@ const JobNoticeDetailsCenter = () => {
           </DetailKey>
           <DetailKey>
             <p>근무지역 </p>
-            <span>{jobData.location}</span>
+            <span>
+              {jobData.address1} {jobData.address2} {jobData.address3}
+            </span>
           </DetailKey>
           <DetailKey>
             <p>스킬 </p>
@@ -159,17 +173,29 @@ const JobNoticeDetailsCenter = () => {
         </DetailsCondition>
       </Container>
 
-      <div className="JobDetailsdescription">
-        <pre dangerouslySetInnerHTML={{ __html: descriptionWithHighlights }} />
-      </div>
+      <Description>
+        <Pre dangerouslySetInnerHTML={{ __html: description }} />
+      </Description>
       <MainTitle text="연관된 공고" />
 
       <Container>
-        <div>
-          {contextData.map((item) => (
-            <JobNotieItem key={item.job_id} {...item} />
-          ))}
-        </div>
+        <SwiperWrapper>
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={-40}
+            slidesPerView={3}
+            navigation
+            pagination={{ clickable: true }}
+            height={3000}
+            width={900}
+          >
+            {relationData.map((item) => (
+              <SwiperSlide key={item.job_id}>
+                <JobNotieItem {...item} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </SwiperWrapper>
       </Container>
     </BackGroundField>
   );
@@ -210,4 +236,17 @@ const DetailsImg = styled.img`
   max-width: 400px;
   max-height: 400px;
   flex: 1;
+  border-radius: 10px;
+`;
+const SwiperWrapper = styled.div`
+  max-width: 800px;
+  display: block;
+`;
+
+const Description = styled.div`
+  width: 100%;
+`;
+
+const Pre = styled.div`
+  padding: 0px;
 `;
