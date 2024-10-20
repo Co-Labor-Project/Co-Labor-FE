@@ -33,6 +33,9 @@ const onMapRegiNum = (regiNum, setPage) => {
       } else if (res.data.status === 2) {
         alert('📌 기업 등록이 이미 완료되어 있습니다.');
         window.location.href = '/';
+      } else if (res.data.status === 3) {
+        alert('📌 이미 기업에 포함되어 있습니다.');
+        window.location.href = '/';
       }
     })
     .catch((error) => {
