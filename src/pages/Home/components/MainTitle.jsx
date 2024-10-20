@@ -32,7 +32,7 @@ const MainTitle = ({ onClick }) => {
     <Background>
       <Blu />
       <BaseContainer>
-        <TitleText>{webTitle}</TitleText>
+        <TitleText className="notranslate">{webTitle}</TitleText>
         <FadeInContainer>
           <SubText>외국인 근로자의 든든한 파트너</SubText>
         </FadeInContainer>

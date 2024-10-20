@@ -38,14 +38,16 @@ const GoogleTranslate = () => {
     if (gtCombo) {
       gtCombo.value = value;
       gtCombo.dispatchEvent(new Event('change'));
+      setChooseCountry(lang);
+      console.log(lang);
     }
-    setChooseCountry(lang);
   };
   return (
     <>
       <div id="google_translate_element" style={{ display: 'none' }}></div>
 
       <ButtonCotainer
+        className="notranslate"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -62,6 +64,7 @@ const GoogleTranslate = () => {
             {languages.map((lang) => (
               <LanguageItem
                 key={lang.code}
+                className="notranslate"
                 onClick={() => handleLanguageChange(lang)}
               >
                 <Flag code={lang.flag} />
@@ -97,7 +100,7 @@ const ButtonCotainer = styled.li`
 
 const LanguageList = styled.ul`
   position: absolute;
-  top: -80vh;
+  top: -70vh;
   left: 0;
   background-color: white;
   border: 1px solid #ccc;
@@ -106,7 +109,7 @@ const LanguageList = styled.ul`
   margin: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100px;
-  height: 80vh;
+  height: 70vh;
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 8px;
@@ -121,6 +124,9 @@ const LanguageItem = styled.li`
   }
   font-size: 14px;
   border-bottom: 1px solid #b7b7b7;
+  /* &.notranslate {
+    translate: none;
+  } */
 `;
 
 const Flag = styled.div`

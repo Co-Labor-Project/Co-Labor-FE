@@ -33,7 +33,7 @@ const BaseContainer = styled.div`
 
   &:hover {
     margin: 10px 0px;
-    padding: 5px 10px;
+    padding: 15px 15px;
     border: 2px solid var(--primary-color);
   }
 `;
@@ -50,5 +50,5 @@ const TextWrapper = styled.div`
 `;
 const TextItem = styled.div`
   width: 80px;
-  font-weight: 500;
+  font-weight: 600;
 `;

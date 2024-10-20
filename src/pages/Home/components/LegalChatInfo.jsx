@@ -72,7 +72,10 @@ const MainContainer = () => {
         <MainText>법률 상담 챗봇</MainText>
         <div>
           <MainSideText>한국에서의 법적 문제, 이제 손쉽게 상담</MainSideText>
-          <MainSideText>Co Labor 챗봇으로 상담부터 판결까지</MainSideText>
+          <MainSideText>
+            <span className="notranslate">Co Labor</span> &nbsp;챗봇으로
+            상담부터 판결까지
+          </MainSideText>
         </div>
       </MainTextWrap>
     </div>

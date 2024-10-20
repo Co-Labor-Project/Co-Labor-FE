@@ -35,7 +35,7 @@ export const Message = ({ text, isUser }) => {
     </UserMsg>
   ) : (
     <AiMsg>
-      <UserMsgWrapper>{'Co Labor :'}</UserMsgWrapper>
+      <UserMsgWrapper className="notranslate">{'Co Labor :'}</UserMsgWrapper>
       <AIMsgWrapper dangerouslySetInnerHTML={{ __html: text }} />
     </AiMsg>
   );

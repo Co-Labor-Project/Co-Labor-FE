@@ -300,7 +300,7 @@ const SingInCenter = () => {
         <div className="row content-row">
           <div className="col align-items-center flex-col">
             <div className="text sign-in">
-              <h2>Co Labor</h2>
+              <h2 className="notranslate">Co Labor</h2>
             </div>
             <div className="img sign-in"></div>
           </div>

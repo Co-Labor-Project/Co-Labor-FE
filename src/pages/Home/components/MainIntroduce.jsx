@@ -15,7 +15,8 @@ const MainIntroduce = ({ onClick }) => {
           <Text>한국에서의 안정적인 정착을 위한</Text>
           <TextWrap>
             <Text>모든 솔루션을 </Text>&nbsp;&nbsp;
-            <Color>&apos;Co Labor&apos; </Color>&nbsp;&nbsp;
+            <Color className="notranslate">&apos;Co Labor&apos; </Color>
+            &nbsp;&nbsp;
             <Text>에서 만나보세요</Text>
           </TextWrap>
         </Wrapper>
