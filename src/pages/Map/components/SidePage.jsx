@@ -1,7 +1,7 @@
 import React from 'react';
 import SupportCenterItem from './SupportCenterItem';
 import styled from 'styled-components';
-import ChooseImg from '../../../assets/Building.jpg';
+import ChooseImg from '../../../assets/Building.jpg'; //fanjianhua- FREEPIK
 const SidePage = ({
   selectedCenter,
   optionCenter,

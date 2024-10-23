@@ -50,7 +50,7 @@ const Background = styled.div`
   width: 100%;
   height: calc(100vh - 81px);
   position: relative;
-  background-image: url(${MainBackground}); //FREEPIK- tawatchai07
+  background-image: url(${MainBackground}); //tawatchai07 - FREEPIK
   background-size: cover;
   pointer-events: none;
 `;
