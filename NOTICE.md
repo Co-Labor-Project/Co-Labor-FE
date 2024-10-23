@@ -1,4 +1,11 @@
-## MIT License
+# License overview of included 3rd party libraries
+
+The Co-Labor-FE project is licensed under the terms of the [Apache License 2.0](LICENSE.md).  
+However, Co-Labor-FE includes several third-party Open-Source libraries, which are licensed under their own respective Open-Source licenses.
+
+## Libraries directly included in Co-Labor-FE
+
+### MIT License
 
 This project includes components distributed under the MIT License. You may obtain a copy of the license at [MIT License](https://opensource.org/licenses/MIT).
 
