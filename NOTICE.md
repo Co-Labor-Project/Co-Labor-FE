@@ -1,9 +1,3 @@
-# License for Co-Labor-FE Project
-
-This project contains software licensed under multiple licenses, including but not limited to the following:
-
----
-
 ## MIT License
 
 This project includes components distributed under the MIT License. You may obtain a copy of the license at [MIT License](https://opensource.org/licenses/MIT).
@@ -55,3 +49,25 @@ This project includes components distributed under the BSD-2-Clause License. You
 
 ### BSD Licensed Components:
 - dotenv (v16.4.5) - [License](https://github.com/motdotla/dotenv/blob/master/LICENSE)
+
+---
+
+## SIL OPEN FONT LICENSE Version 1.1
+
+This project contains font software licensed under the SIL Open Font License, Version 1.1. You may obtain a copy of the license at [SIL Open Font License](https://scripts.sil.org/OFL).
+
+### Font Components:
+- Pretendard (Copyright © 2021, Kil Hyung-jin)
+- Source (Copyright © 2014-2021, Adobe)
+- Inter (Copyright © 2016, The Inter Project Authors)
+- M PLUS 1 (Copyright © 2021, The M+ FONTS Project Authors)
+
+The OFL allows the licensed fonts to be used, studied, modified, and redistributed freely as long as they are not sold by themselves. Fonts and derivatives can be bundled and distributed with software, provided that the original names are not used by derivative works.
+
+---
+
+## Apache License 2.0 (For Icons)
+
+The SVG files and any files ending with '\_icon.png' located in the 'icon' directory are licensed under the Apache License, Version 2.0. You may obtain a copy of the license at [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+---
