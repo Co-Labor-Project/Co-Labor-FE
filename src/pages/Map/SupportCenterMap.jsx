@@ -5,14 +5,13 @@ import SupportCenterItem from './components/SupportCenterItem';
 import styled from 'styled-components';
 import ChooseMode from './components/ChooseMode';
 import SidePage from './components/SidePage';
-import HospitalImg from '../../assets/icon/HospitalLocation.png';
-import HospitalChooseImg from '../../assets/icon/HospitalChoose.png';
-import BuildingImg from '../../assets/icon/BuildingLocation.png';
-import BuildingChooseImg from '../../assets/icon/BuildingChoose.png';
-import CurrentLocation from '../../assets/icon/currentLocation.png';
+import HospitalImg from '../../assets/icon/HospitalLocation.png'; //병원 아이콘 제작자: mavadee - Flaticon
+import HospitalChooseImg from '../../assets/icon/HospitalChoose.png'; //병원 아이콘 제작자: mavadee - Flaticon
+import BuildingImg from '../../assets/icon/BuildingLocation.png'; //회사 아이콘 제작자: nawicon - Flaticon
+import BuildingChooseImg from '../../assets/icon/BuildingChoose.png'; //회사 아이콘 제작자: nawicon - Flaticon
+import CurrentLocation from '../../assets/icon/currentLocation.png'; // 내 위치 아이콘 제작자: Creative Stall Premium - Flaticon
 function SupportCenterMap() {
   const navermaps = useNavermaps();
-
   const mapRef = useRef(null);
   const [centers, setCenters] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(null);

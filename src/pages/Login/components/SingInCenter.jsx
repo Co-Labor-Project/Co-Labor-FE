@@ -148,6 +148,8 @@ const SingInCenter = () => {
   }, []);
 
   return (
+    //  This code was originally created by TechNext on CodePen
+    //  Original Pen: https://codepen.io/technext/pen/WNpWeWw
     <div className="SingInCenter">
       <div id="container" className="container" ref={containerRef}>
         <div className="row">
