@@ -58,7 +58,7 @@ const JunHwa = () => {
         <a href="mailto:jjj5306@naver.com">
           <Icon src="https://skillicons.dev/icons?i=gmail" />
         </a>
-        <a href="https://instagram.com/no_dohyun">
+        <a href="https://instagram.com/jo__ojun">
           <Icon src="https://skillicons.dev/icons?i=instagram" />
         </a>
       </ContactWrapper>
