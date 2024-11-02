@@ -129,13 +129,16 @@ const TextTitle = styled.div`
   margin-top: 3px;
   font-size: 18px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 const TextWrapper = styled.div`
   display: flex;
 `;
 const TextItem = styled.div`
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 25px;
   width: 100px;
   min-width: 100px;
@@ -143,12 +146,16 @@ const TextItem = styled.div`
 const TextContent = styled.div`
   font-size: 13px;
   line-height: 25px;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 const EnterpriseName = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #232527;
+  color: #666;
 `;
 
 const Imgwrapper = styled.div`
