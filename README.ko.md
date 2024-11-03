@@ -17,9 +17,14 @@ Co-Labor 프로젝트의 프론트엔드 레포지토리입니다.
 
 <br/>
 
-## 빠른시작
+## 빠른 시작
 [QuickStart](https://github.com/Co-Labor-Project/deploy/blob/main/README.md)
 
+<br/>
+
+## How to Contribute
+
+[Contribution](https://github.com/Co-Labor-Project/Co-Labor-BE/blob/develop/CONTRIBUTING-EN.md)
 
 <br/>
 
