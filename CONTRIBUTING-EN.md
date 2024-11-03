@@ -1,42 +1,82 @@
 # Co-Labor Contribution Guidelines
 
-[Korean Version](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/develop/CONTRIBUTING.md)
+[한글 버전](https://github.com/Co-Labor-Project/Co-Labor-BE/blob/develop/CONTRIBUTING.md)
 
-Thank you for your interest in contributing to the Co-Labor project! This document provides guidelines for contributing to the project and supporting its growth as an open-source initiative.
+Thank you for your interest in the Co-Labor project! 🎉
 
-## 📌 Preparation Before Contributing
+<br />
 
-Before contributing, please refer to the README file of each repository for details on setting up your local environment and installing necessary dependencies.
+## 📌 Introduction
 
-- [Frontend Repository README](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/main/README.en.md)
+- Please check the ISSUES to see if the problem has already been reported or if the feature has been discussed.
+
+- If you want to propose a new feature or report a bug, please create an issue.
+
+<br />
+
+## Configuration
+
+Please refer to the following documents to set up your development environment and prepare for contribution!
+
+- [Backend](https://github.com/Co-Labor-Project/Co-Labor-BE/blob/develop/README.md)
+- [Frontend](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/main/README.ko.md)
 - [QuickStart](https://github.com/Co-Labor-Project/deploy/blob/main/README.md)
 
-## 🛠️ Areas of Contribution (to be finalized)
+<br />
 
-- **Frontend Feature Enhancements**: Add new UI features or enhance existing ones to improve the user experience based on user feedback. Examples include search functionality, filtering options, and data visualization.
-- **UI/UX Design Improvements**: Use React and CSS to optimize page layout, style, accessibility, and mobile responsiveness to improve user experience.
-- **Bug Reporting and Fixes**: Identify bugs in the project, create issues, or fix them directly.
-- **Documentation Improvement**: Enhance README or other documentation to improve usability and understanding.
+## 🛠️ How to Contirbute
 
-## 📝 Issue Submission Guide
+1.  Create an Issue
 
-When creating an issue for a new feature or bug fix, please refer to the following guidelines and feel free to draft the issue accordingly. 
-**Note**: This project currently does not have an automatic issue template, so please refer to the following sections and include the necessary information manually when submitting an issue.
+    - Please create an issue for the part you wish to contribute to.
 
-### Frontend Issue Submission Guide
+2.  Create a Branch
 
-When creating an issue related to frontend feature enhancement or bug fixes, please consider the following points:
+    - Please create a branch according to the issue number.
+    - Branch naming convention: feat/#issueNumber or fix/#issueNumber
 
-1. **Problem Description 📘**: Provide a concise and clear description of the issue or feature enhancement needed.
-2. **Improvement or Implementation Ideas 🛠**: Briefly propose ideas to solve the issue or suggest improvements.
-3. **Additional Information 📎**: Attach relevant screenshots, error messages, or any additional information if necessary.
+3.  Code Changes
 
-## 🚀 Branch and Pull Request Guide
+    - Maintain good readability and follow package and file naming conventions.
+    - Especially for variables and classes, please use Camel Case naming convention.
+    - Add detailed comments.
 
-1. **Branch Creation**: When developing a new feature, create a branch with the issue number as a reference.
+4.  Commit
 
-   - Branch naming convention: `feat/#issue-number` or `fix/#issue-number`
-   - Example: `feat/#69` or `fix/#45`
+    - Please write commit messages following these conventions:
+      ```
+      feat: Commit for new features
+      fix: Commit for bug fixes
+      build: Commit for build-related file changes / module installations or deletions
+      chore: Commit for miscellaneous changes
+      ci: Commit for CI-related configuration changes
+      docs: Commit for documentation changes
+      style: Commit for code style or formatting changes
+      refactor: Commit for code refactoring
+      test: Commit for test code modifications
+      perf: Commit for performance improvements
+      ```
 
-   ```bash
-   git checkout -b feat/#issue-number
+5.  Please follow the PR rules when creating a pull request.
+
+    - Please follow the PR rules when creating a pull request.
+    - PR title example: `[feat] #69 - Add search functionality`
+
+6.  Review and Feedback
+    - After creating a PR, incorporate necessary feedback through GitHub comments in consultation with the team.
+    - Once feedback is reflected, commit the changes to the PR and request another review.
+    - The PR will be merged after receiving final team approval.
+
+<br />
+
+## Pull Request Checklist
+
+[ ] Have you followed the code style guide?  
+[ ] Have you added tests?  
+[ ] Have you followed the commit convention?
+
+<br />
+
+## License
+
+By contributing to this project, you agree that your contributions will be licensed under the project's license.
