@@ -1,4 +1,4 @@
-[한글 버전](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/main/README.md)
+[한글 버전](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/main/README.ko.md)
 
 # Co-Labor-FE
 Frontend repository for the Co-Labor project.
