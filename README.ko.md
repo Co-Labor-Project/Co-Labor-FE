@@ -1,4 +1,4 @@
-[English version](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/main/README.en.md)
+[English version](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/main/README.md)
 
 # Co-Labor-FE
 Co-Labor 프로젝트의 프론트엔드 레포지토리입니다. 
