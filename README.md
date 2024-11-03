@@ -24,7 +24,7 @@ Frontend repository for the Co-Labor project.
 
 ## How to Contribute
 
-[Contribution](https://github.com/Co-Labor-Project/Co-Labor-BE/blob/develop/CONTRIBUTING-EN.md)
+[Contribution](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/main/CONTRIBUTING-EN.md)
 
 <br/>
 
