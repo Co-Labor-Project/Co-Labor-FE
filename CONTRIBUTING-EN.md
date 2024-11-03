@@ -8,7 +8,7 @@ Thank you for your interest in contributing to the Co-Labor project! This docume
 
 Before contributing, please refer to the README file of each repository for details on setting up your local environment and installing necessary dependencies.
 
-- [Frontend Repository README](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/main/README.md)
+- [Frontend Repository README](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/main/README.en.md)
 - [QuickStart](https://github.com/Co-Labor-Project/deploy/blob/main/README.md)
 
 ## 🛠️ Areas of Contribution (to be finalized)
