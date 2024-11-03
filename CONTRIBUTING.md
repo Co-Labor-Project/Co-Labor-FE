@@ -1,6 +1,6 @@
 # Co-Labor 기여 가이드라인
 
-[English Version](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/develop/CONTRIBUTING-EN.md)
+[English Version](https://github.com/Co-Labor-Project/Co-Labor-FE/blob/main/CONTRIBUTING-EN.md)
 
 Co-Labor 프로젝트에 관심을 가져 주셔서 감사합니다! 이 문서는 프로젝트에 기여하기 위한 지침을 제공합니다. 오픈 소스로 프로젝트를 성장시키는 데 많은 도움을 주시기 바랍니다.
 
