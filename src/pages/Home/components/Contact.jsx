@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import useScrollFadeIn from '../../../hooks/fade_in';
 
-import DoHyunImg from '../../../assets/profile/DoHyun.jpg';
-import HanUlImg from '../../../assets/profile/HanUl.jpg';
-import JunHwaImg from '../../../assets/profile/JunHwa.jpg';
-import MoonKiImg from '../../../assets/profile/MoonKi.jpg';
+import DoHyunImg from '../../../assets/profile/DoHyun.webp';
+import HanUlImg from '../../../assets/profile/HanUl.webp';
+import JunHwaImg from '../../../assets/profile/JunHwa.webp';
+import MoonKiImg from '../../../assets/profile/MoonKi.webp';
 
 const Contact = () => {
   return (

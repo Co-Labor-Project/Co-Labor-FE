@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import useScrollFadeIn from '../../../hooks/fade_in';
 import GoToButton from './GoToButton';
 import { Arrow, ArrowWrapper } from './Arrow';
-import LegalChat from '../../../assets/legalChat.gif';
+import LegalChat from '../../../assets/legalChat.webp';
 
 const LegalChatInfo = ({ onClick }) => {
   return (

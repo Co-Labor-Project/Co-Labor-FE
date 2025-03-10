@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import useScrollFadeIn from '../../../hooks/fade_in';
 import GoToButton from './GoToButton';
 import { Arrow, ArrowWrapper } from './Arrow';
-import GifInfo from '../../../assets/jobInfo.gif';
+import GifInfo from '../../../assets/jobInfo.webp';
 
 const JobInfo = ({ onClick }) => {
   return (

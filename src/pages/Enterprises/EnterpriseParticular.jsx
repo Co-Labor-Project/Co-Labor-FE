@@ -88,7 +88,7 @@ const CompanyDetails = () => {
 
   const EnterpriseImg = EnterpriseData.imageName
     ? `/api/static/images/` + EnterpriseData.imageName
-    : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
+    : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.webp';
 
   const EnterpriseType = EnterpriseData.type || '기업 분류를 작성해주세요!';
   const EnterpriseDescription =

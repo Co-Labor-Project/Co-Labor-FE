@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FadeInContainer } from '../../../components/FadeIn';
-import MainBackground from '../../../assets/mainBackground.jpg';
+import MainBackground from '../../../assets/mainBackground.webp';
 import { Arrow, ArrowWrapper } from './Arrow';
 
 const MainTitle = ({ onClick }) => {

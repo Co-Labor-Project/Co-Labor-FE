@@ -114,7 +114,7 @@ const JobNoticeDetailsCenter = () => {
 
   const EnterpriseImg = EnterpriseData.imageName
     ? `api/static/images/${EnterpriseData.imageName}`
-    : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.png';
+    : 'https://cdn-icons-png.flaticon.com/512/4091/4091968.webp';
 
   const EnterpriseDescripton =
     EnterpriseData.description || '기업 설명을 작성해주세요!';

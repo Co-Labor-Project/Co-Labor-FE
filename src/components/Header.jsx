@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import searchIcon from '../assets/icon/search_icon.png';
-import LogoPhoto from '../assets/logo.jpg';
+import searchIcon from '../assets/icon/search_icon.webp';
+import LogoPhoto from '../assets/logo.webp';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../App';
 import { logOut, whoIsIt } from '../apis/Login';
