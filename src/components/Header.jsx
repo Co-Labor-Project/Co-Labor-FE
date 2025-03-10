@@ -4,7 +4,7 @@ import searchIcon from '../assets/icon/search_icon.png';
 import LogoPhoto from '../assets/logo.jpg';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../App';
-import { logOut, whoIsIt } from '../apis/login';
+import { logOut, whoIsIt } from '../apis/Login';
 
 const Header = () => {
   const nav = useNavigate();

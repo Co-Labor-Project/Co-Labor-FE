@@ -9,7 +9,7 @@ import BasicInfo from '../Enterprises/components/BasicInfo';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-import { whoIsIt } from '../../apis/login';
+import { whoIsIt } from '../../apis/Login';
 import { deleteJobNotice } from '../../apis/Notice';
 const JobNoticeDetailsCenter = () => {
   const params = useParams();
